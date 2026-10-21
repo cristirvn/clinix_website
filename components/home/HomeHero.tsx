@@ -1,9 +1,8 @@
 import { ButtonLink, Container, Eyebrow } from "@/components/ui/primitives";
-import { L } from "@/components/ui/L";
 import { EegTrace } from "@/components/home/EegTrace";
 import type { HomeContent } from "@/content/pages/home";
 
-/** Section 1 — one promise, one button, four short facts. */
+/** Section 1 — one promise, main button (BrainMap) + quick-diagnostic button, four short facts. */
 export function HomeHero({ hero }: { hero: HomeContent["hero"] }) {
   return (
     <section data-tone="default" className="bg-bg pb-16 pt-16 text-ink sm:pb-24 sm:pt-28">
@@ -16,12 +15,9 @@ export function HomeHero({ hero }: { hero: HomeContent["hero"] }) {
           <ButtonLink href="/brainmap" size="lg" className="w-full sm:w-auto">
             {hero.cta}
           </ButtonLink>
-          <L
-            href="/chestionare"
-            className="font-semibold text-ink underline decoration-accent decoration-2 underline-offset-[6px] transition hover:decoration-ink"
-          >
+          <ButtonLink href="/#diagnostic" variant="outline" size="lg" className="w-full sm:w-auto">
             {hero.secondary}
-          </L>
+          </ButtonLink>
         </div>
 
         <EegTrace className="mt-14 h-14 sm:mt-20 sm:h-20" />

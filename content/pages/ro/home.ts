@@ -11,7 +11,7 @@ export const HOME_RO: HomeContent = {
     title: "Vezi ce se întâmplă, de fapt, în creierul tău.",
     lead: "BrainMap citește activitatea electrică a creierului tău în 30 de minute. Îți explicăm harta pe înțelesul tău, în aceeași vizită. Apoi decizi.",
     cta: "Vreau să văd ce se întâmplă în creierul meu",
-    secondary: "Sau începe cu un test gratuit →",
+    secondary: "Diagnosticare rapidă · 2 minute →",
     facts: [
       "30 de minute scanarea",
       "Fără radiații, fără ace",
@@ -20,7 +20,7 @@ export const HOME_RO: HomeContent = {
     ],
   },
   triage: {
-    eyebrow: "Evaluare gratuită",
+    eyebrow: "Diagnosticare rapidă · gratuit",
     title: "Cu ce te confrunți cel mai des?",
     lead: "Alege ce te descrie cel mai bine acum. Te ducem direct la testul potrivit — durează 2–3 minute.",
   },

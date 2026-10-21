@@ -11,11 +11,11 @@ export const HOME_EN: HomeContent = {
     title: "See what's really happening in your brain.",
     lead: "BrainMap reads your brain's electrical activity in 30 minutes. We explain the map in plain words, in the same visit. Then you decide.",
     cta: "Show me what's happening in my brain",
-    secondary: "Or start with a free test →",
+    secondary: "Quick self-check · 2 minutes →",
     facts: ["30-minute scan", "No radiation, no needles", "Explained in the same visit", "No GP referral needed"],
   },
   triage: {
-    eyebrow: "Free assessment",
+    eyebrow: "Quick self-check · free",
     title: "What do you struggle with most?",
     lead: "Pick what describes you best right now. We'll take you straight to the right test — it takes 2–3 minutes.",
   },
