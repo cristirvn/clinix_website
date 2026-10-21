@@ -17,7 +17,7 @@ export function QuizGrid({ locale, limit }: { locale: Locale; limit?: number }) 
             href={`/chestionare/${card.slug}`}
             className="group flex h-full flex-col rounded-[var(--radius)] border border-line bg-surface p-7 text-ink transition hover:-translate-y-1 hover:border-accent hover:shadow-[0_24px_50px_-30px_rgba(0,0,0,0.4)]"
           >
-            <span className="mb-4 text-xs font-bold uppercase tracking-[0.16em] text-accent">
+            <span className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-accent">
               {questionCount(locale, card.slug)} {q} · {min}
             </span>
             <span className="font-display text-2xl">{card.title}</span>

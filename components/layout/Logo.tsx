@@ -31,11 +31,12 @@ export function Logo({
   className?: string;
 }) {
   return (
-    <span className={`inline-flex items-center gap-3 ${className}`}>
-      <LogoMark size={36} />
+    <span className={`inline-flex items-center gap-2.5 sm:gap-3 ${className}`}>
+      <LogoMark size={34} className="flex-none" />
       <span className="flex flex-col leading-none">
-        <span className="whitespace-nowrap font-display text-[0.92rem] font-semibold uppercase tracking-[0.14em] sm:text-[1.05rem] sm:tracking-[0.16em]">
-          Emmanuel CliniX
+        {/* Phones: two stacked lines so the header fits 320px; one line from sm up. */}
+        <span className="font-display text-[0.86rem] font-semibold uppercase leading-[1.15] tracking-[0.14em] sm:whitespace-nowrap sm:text-[1.05rem] sm:leading-none sm:tracking-[0.16em]">
+          <span className="block sm:inline">Emmanuel</span> <span className="block sm:inline">CliniX</span>
         </span>
         {tagline && (
           <span className="mt-1.5 hidden whitespace-nowrap text-[0.62rem] font-medium uppercase tracking-[0.28em] opacity-70 sm:block">

@@ -204,6 +204,9 @@ h3,
   letter-spacing: var(--display-tracking);
   line-height: 1.1;
   text-wrap: balance;
+  /* Long words never push a phone screen sideways. */
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 p {
@@ -228,6 +231,13 @@ details > summary {
 details > summary::-webkit-details-marker {
   display: none;
 }
+}
+
+/* Phones: leave room under the sticky "Apply" bar so nothing hides behind it. */
+@media (max-width: 767px) {
+  body:has([data-sticky-cta]) {
+    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  }
 }
 
 /* Scroll reveal — content stays visible without JS (see components/ui/Reveal). */

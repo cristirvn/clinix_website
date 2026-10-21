@@ -21,16 +21,16 @@ export function Footer({ locale }: { locale: Locale }) {
 
         <div>
           <h3 className="mb-5 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">{dict.footer.clinic}</h3>
-          <ul className="space-y-3">
+          <ul className="space-y-1">
             {NAV_ITEMS.map((item) => (
               <li key={item.key}>
-                <L href={item.href} className="hover:underline">
+                <L href={item.href} className="inline-block py-1.5 hover:underline">
                   {dict.nav[item.key]}
                 </L>
               </li>
             ))}
             <li>
-              <L href="/brainmap" className="hover:underline">
+              <L href="/brainmap" className="inline-block py-1.5 hover:underline">
                 BrainMap
               </L>
             </li>
@@ -39,16 +39,16 @@ export function Footer({ locale }: { locale: Locale }) {
 
         <div>
           <h3 className="mb-5 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">{dict.footer.freeTests}</h3>
-          <ul className="space-y-3">
+          <ul className="space-y-1">
             {tests.slice(0, 5).map((t) => (
               <li key={t.slug}>
-                <L href={`/chestionare/${t.slug}`} className="hover:underline">
+                <L href={`/chestionare/${t.slug}`} className="inline-block py-1.5 hover:underline">
                   {t.title}
                 </L>
               </li>
             ))}
             <li>
-              <L href="/chestionare" className="font-semibold hover:underline">
+              <L href="/chestionare" className="inline-block py-1.5 font-semibold hover:underline">
                 {dict.footer.allTests}
               </L>
             </li>
@@ -57,19 +57,19 @@ export function Footer({ locale }: { locale: Locale }) {
 
         <div>
           <h3 className="mb-5 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">{dict.footer.contact}</h3>
-          <ul className="space-y-3 text-on-dark-soft">
+          <ul className="space-y-1 text-on-dark-soft [overflow-wrap:anywhere]">
             <li>
-              <a href={CLINIC.phoneHref} className="text-on-dark hover:underline">
+              <a href={CLINIC.phoneHref} className="inline-block py-1.5 text-on-dark hover:underline">
                 {CLINIC.phone}
               </a>
             </li>
             <li>
-              <a href={`mailto:${CLINIC.email}`} className="text-on-dark hover:underline">
+              <a href={`mailto:${CLINIC.email}`} className="inline-block py-1.5 text-on-dark hover:underline">
                 {CLINIC.email}
               </a>
             </li>
             <li>
-              <a href={CLINIC.mapsHref} target="_blank" rel="noopener noreferrer" className="hover:underline">
+              <a href={CLINIC.mapsHref} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 hover:underline">
                 {CLINIC.address}
               </a>
             </li>
@@ -84,10 +84,10 @@ export function Footer({ locale }: { locale: Locale }) {
             <span>
               © {year} {CLINIC.name}. {dict.footer.rights}
             </span>
-            <L href="/politica-de-confidentialitate" className="hover:underline">
+            <L href="/politica-de-confidentialitate" className="inline-block py-1.5 hover:underline">
               {dict.footer.privacy}
             </L>
-            <L href="/termeni-si-conditii" className="hover:underline">
+            <L href="/termeni-si-conditii" className="inline-block py-1.5 hover:underline">
               {dict.footer.terms}
             </L>
           </p>

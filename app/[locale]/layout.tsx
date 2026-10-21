@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
-export const viewport: Viewport = { width: "device-width", initialScale: 1 };
+export const viewport: Viewport = { width: "device-width", initialScale: 1, viewportFit: "cover" };
 
 export default async function LocaleLayout({
   children,

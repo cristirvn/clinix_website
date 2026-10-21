@@ -89,7 +89,7 @@ export function Testimonials({ copy }: { copy: BrainmapFixed["proof"] }) {
             <path d="M7.5 1 1.5 7l6 6" stroke="currentColor" strokeWidth="1.9" strokeLinecap="round" strokeLinejoin="round" />
           </svg>
         </button>
-        <div className="flex gap-2" role="group" aria-label={copy.dotsLabel}>
+        <div className="flex" role="group" aria-label={copy.dotsLabel}>
           {TESTIMONIALS.map((t, i) => (
             <button
               key={t.name}
@@ -97,8 +97,10 @@ export function Testimonials({ copy }: { copy: BrainmapFixed["proof"] }) {
               aria-label={`${copy.dot} ${i + 1}`}
               aria-current={i === active ? "true" : undefined}
               onClick={() => goTo(i)}
-              className={`h-3 rounded-full transition-all ${i === active ? "w-8 bg-accent" : "w-3 bg-line"}`}
-            />
+              className="flex h-11 min-w-11 items-center justify-center"
+            >
+              <span className={`block h-3 rounded-full transition-all ${i === active ? "w-8 bg-accent" : "w-3 bg-line"}`} />
+            </button>
           ))}
         </div>
         <button

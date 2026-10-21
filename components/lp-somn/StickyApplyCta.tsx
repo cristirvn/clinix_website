@@ -17,7 +17,8 @@ export function StickyApplyCta({ label, target = "aplica" }: { label: string; ta
 
   return (
     <div
-      className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/95 px-4 py-3 backdrop-blur-md transition-transform duration-300 sm:hidden ${
+      data-sticky-cta
+      className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/95 px-4 pt-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] backdrop-blur-md transition-transform duration-300 sm:hidden ${
         hidden ? "translate-y-full" : "translate-y-0"
       }`}
       aria-hidden={hidden || undefined}

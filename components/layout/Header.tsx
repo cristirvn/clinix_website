@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import { L } from "@/components/ui/L";
 import { buttonClass } from "@/components/ui/primitives";
 import { Logo } from "@/components/layout/Logo";
@@ -33,7 +34,7 @@ export function Header() {
         scrolled ? "border-line shadow-[0_8px_30px_-20px_rgba(0,0,0,0.35)]" : "border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-6 px-5 sm:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:gap-6 sm:px-8">
         <L href="/" aria-label="Emmanuel CliniX" className="text-ink">
           <span className="text-ink">
             <Logo />
@@ -71,8 +72,10 @@ export function Header() {
         </div>
       </div>
 
-      {open && (
-        <div className="fixed inset-0 z-50 flex flex-col bg-bg text-ink lg:hidden" role="dialog" aria-modal="true">
+      {/* Portalled to <body>: the header's backdrop blur would otherwise trap this fixed overlay inside the header. */}
+      {open &&
+        createPortal(
+        <div className="fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-bg text-ink lg:hidden" role="dialog" aria-modal="true">
           <div className="flex h-20 items-center justify-between px-5">
             <Logo tagline={false} />
             <button
@@ -101,11 +104,12 @@ export function Header() {
               {dict.nav.cta}
             </L>
             <a href={CLINIC.phoneHref} className={buttonClass("outline", "lg", "w-full")}>
-              {dict.common.callUs} · {CLINIC.phone}
+              {dict.common.callUs} · <span className="whitespace-nowrap">{CLINIC.phone}</span>
             </a>
           </div>
-        </div>
-      )}
+        </div>,
+          document.body,
+        )}
     </header>
   );
 }

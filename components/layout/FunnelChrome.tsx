@@ -10,7 +10,7 @@ import { CLINIC } from "@/lib/site";
 export function FunnelHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-line bg-bg/90 text-ink backdrop-blur-md">
-      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-4 px-5 py-3 sm:px-8">
+      <div className="mx-auto flex h-18 max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:gap-4 sm:px-8">
         <L href="/" aria-label="Emmanuel CliniX">
           <Logo tagline={false} />
         </L>
@@ -42,16 +42,16 @@ export function FunnelFooter({ locale, legal }: { locale: Locale; legal?: string
           <span>
             © {new Date().getFullYear()} {CLINIC.name}. {dict.footer.rights}
           </span>
-          <a href={CLINIC.phoneHref} className="hover:underline">
+          <a href={CLINIC.phoneHref} className="inline-block py-1.5 hover:underline">
             {CLINIC.phone}
           </a>
-          <a href={`mailto:${CLINIC.email}`} className="hover:underline">
+          <a href={`mailto:${CLINIC.email}`} className="inline-block py-1.5 hover:underline">
             {CLINIC.email}
           </a>
-          <L href="/politica-de-confidentialitate" className="hover:underline">
+          <L href="/politica-de-confidentialitate" className="inline-block py-1.5 hover:underline">
             {dict.footer.privacy}
           </L>
-          <L href="/termeni-si-conditii" className="hover:underline">
+          <L href="/termeni-si-conditii" className="inline-block py-1.5 hover:underline">
             {dict.footer.terms}
           </L>
         </p>

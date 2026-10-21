@@ -31,7 +31,7 @@ export function FunnelProgress({ step, progress }: { step: 2 | 3; progress: LpSo
                   >
                     {done ? "✓" : n}
                   </span>
-                  <span className={`whitespace-nowrap text-sm sm:text-base ${active ? "font-bold text-ink" : "text-ink-soft"}`}>
+                  <span className={`text-center text-[0.8rem] leading-tight min-[400px]:text-sm sm:whitespace-nowrap sm:text-base ${active ? "font-bold text-ink" : "text-ink-soft"}`}>
                     {label}
                   </span>
                 </div>

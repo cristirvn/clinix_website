@@ -300,7 +300,7 @@ function PageNav({ f }: { f: BrainmapFixed }) {
           <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-semibold">
             {links.map(([href, label]) => (
               <li key={href}>
-                <a href={href} className="hover:text-accent">
+                <a href={href} className="inline-block py-2 hover:text-accent">
                   {label}
                 </a>
               </li>

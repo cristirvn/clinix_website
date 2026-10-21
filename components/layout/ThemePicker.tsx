@@ -30,7 +30,7 @@ export function ThemePicker() {
   }
 
   return (
-    <div className="fixed bottom-4 left-4 z-[60] print:hidden">
+    <div className="fixed bottom-28 left-3 z-[60] sm:bottom-4 sm:left-4 print:hidden">
       {open && (
         <div className="mb-3 w-64 rounded-xl border border-line bg-surface p-4 text-ink shadow-2xl">
           <p className="text-sm font-bold">{dict.design.title}</p>
@@ -66,7 +66,7 @@ export function ThemePicker() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="flex h-12 items-center gap-2 rounded-full bg-ink px-4 text-sm font-semibold text-bg shadow-xl"
+        className="flex h-11 min-w-11 items-center justify-center gap-2 rounded-full bg-ink px-3 text-sm font-semibold text-bg shadow-xl sm:h-12 sm:px-4"
         aria-expanded={open}
       >
         <span aria-hidden="true">◐</span> <span className="hidden sm:inline">{dict.design.title}</span>

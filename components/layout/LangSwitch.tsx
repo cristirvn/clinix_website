@@ -22,14 +22,14 @@ export function LangSwitch({ className = "" }: { className?: string }) {
     <button
       type="button"
       onClick={switchLang}
-      className={`inline-flex items-center gap-1.5 rounded-full border border-current/25 px-3 py-1.5 text-sm font-semibold tracking-wide transition hover:border-current/60 ${className}`}
+      className={`inline-flex items-center gap-1.5 min-h-11 min-w-11 justify-center rounded-full border border-current/25 px-3 py-1.5 text-sm font-semibold tracking-wide transition hover:border-current/60 ${className}`}
       aria-label={dict.switchTo}
       title={dict.switchTo}
     >
-      <span aria-hidden="true" className="opacity-50">
+      <span aria-hidden="true" className="hidden opacity-50 min-[400px]:inline">
         {locale.toUpperCase()}
       </span>
-      <span aria-hidden="true" className="opacity-40">
+      <span aria-hidden="true" className="hidden opacity-40 min-[400px]:inline">
         /
       </span>
       <span>{dict.switchToShort}</span>

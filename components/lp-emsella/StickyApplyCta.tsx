@@ -28,6 +28,7 @@ export function StickyApplyCta({ label, target = "aplica" }: { label: string; ta
 
   return (
     <div
+      data-sticky-cta
       className={`fixed inset-x-0 bottom-0 z-40 border-t border-line bg-bg/95 px-4 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-3 backdrop-blur-md transition-transform duration-300 sm:hidden ${
         show ? "translate-y-0" : "pointer-events-none translate-y-full"
       }`}
