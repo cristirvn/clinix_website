@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Card, CheckItem, Container, Eyebrow, Faq, Section, SectionHead, buttonClass } from "@/components/ui/primitives";
+import { Card, CheckItem, Container, Eyebrow, Faq, Section, SectionHead, buttonClass, HeroPanel } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { FunnelFooter } from "@/components/layout/FunnelChrome";
@@ -38,29 +38,27 @@ export default async function LpEmsellaPage({ params }: Props) {
   return (
     <>
       {/* HERO */}
-      <section className="bg-bg pb-20 pt-14 text-ink sm:pb-28 sm:pt-20">
-        <Container>
+      <HeroPanel>
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-[2.6rem] leading-[1.08] sm:text-6xl lg:text-7xl">
+            <h1 className="text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
               {c.hero.titleLead} <em className="not-italic text-accent">{c.hero.titleEm}</em>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-ink-soft sm:text-xl">{c.hero.sub}</p>
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{c.hero.sub}</p>
           </div>
           <Reveal className="mx-auto mt-12 max-w-4xl">
             <VideoPlayer video="lpEmsellaVsl" title={c.hero.videoTitle} />
-            <p className="mt-4 text-center text-ink-soft">{c.hero.videoNote}</p>
+            <p className="mt-4 text-center text-on-dark-soft">{c.hero.videoNote}</p>
           </Reveal>
           <div className="mt-10 text-center">
             <Cta label={c.cta} />
-            <p className="mt-3 text-ink-soft">{c.hero.ctaSub}</p>
+            <p className="mt-3 text-on-dark-soft">{c.hero.ctaSub}</p>
           </div>
           <ul className="mx-auto mt-14 grid max-w-4xl gap-x-10 gap-y-4 border-t border-line pt-10 text-lg sm:grid-cols-2">
             {c.hero.facts.map((f) => (
               <CheckItem key={f}>{f}</CheckItem>
             ))}
           </ul>
-        </Container>
-      </section>
+      </HeroPanel>
 
       {/* SEMNELE */}
       <Section tone="alt" id="semnele">

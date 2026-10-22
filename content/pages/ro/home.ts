@@ -19,6 +19,7 @@ export const HOME_RO: HomeContent = {
       "Fără trimitere de la medicul de familie",
     ],
   },
+  marquee: ["BrainMap", "Neurofeedback", "Somn", "Stres", "Anxietate", "Concentrare", "Dispoziție", "EmSella"],
   triage: {
     eyebrow: "Diagnosticare rapidă · gratuit",
     title: "Cu ce te confrunți cel mai des?",

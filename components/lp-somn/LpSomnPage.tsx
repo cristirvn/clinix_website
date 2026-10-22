@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Section, SectionHead, Eyebrow, CheckItem, Card, buttonClass } from "@/components/ui/primitives";
+import { Section, SectionHead, Eyebrow, CheckItem, Card, buttonClass, HeroPanel } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { FunnelFooter } from "@/components/layout/FunnelChrome";
@@ -35,24 +35,24 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
   return (
     <div className="pb-24 sm:pb-0">
       {/* HERO */}
-      <section className="bg-bg pb-20 pt-14 text-ink sm:pb-28 sm:pt-20">
-        <div className="mx-auto w-full max-w-5xl px-5 text-center sm:px-8">
+      <HeroPanel>
+        <div className="mx-auto w-full max-w-5xl text-center">
           <Reveal>
-            <h1 className="mx-auto max-w-4xl text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl">
+            <h1 className="mx-auto max-w-4xl text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
               {c.hero.titleStart}
               <em className="font-display italic text-accent">{c.hero.titleEm}</em>
             </h1>
           </Reveal>
           <Reveal delay={80}>
-            <Lead className="mx-auto mt-6 max-w-2xl text-ink-soft">{c.hero.sub}</Lead>
+            <Lead className="mx-auto mt-6 max-w-2xl text-on-dark-soft">{c.hero.sub}</Lead>
           </Reveal>
           <Reveal delay={140} className="mx-auto mt-10 max-w-4xl">
             <VideoPlayer video="lpSomnVsl" title={c.hero.videoTitle} />
-            <p className="mx-auto mt-5 max-w-2xl text-base text-ink-soft sm:text-lg">{c.hero.videoNote}</p>
+            <p className="mx-auto mt-5 max-w-2xl text-base text-on-dark-soft sm:text-lg">{c.hero.videoNote}</p>
           </Reveal>
           <Reveal className="mt-10">
             <ApplyCta label={c.ctaLabel} />
-            <p className="mt-3 text-base text-ink-soft">{c.hero.btnSub}</p>
+            <p className="mt-3 text-base text-on-dark-soft">{c.hero.btnSub}</p>
           </Reveal>
           <Reveal>
             <ul className="mx-auto mt-12 grid max-w-3xl gap-x-8 gap-y-4 border-t border-line pt-10 text-left text-base sm:grid-cols-2 sm:text-lg">
@@ -62,7 +62,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
             </ul>
           </Reveal>
         </div>
-      </section>
+      </HeroPanel>
 
       {/* PROBLEM */}
       <Section tone="alt" id="problema">

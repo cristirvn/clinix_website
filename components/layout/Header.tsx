@@ -10,8 +10,6 @@ import { useLocale } from "@/components/layout/LocaleProvider";
 import { CLINIC } from "@/lib/site";
 import { NAV_ITEMS } from "@/components/layout/nav";
 
-
-
 export function Header() {
   const { dict } = useLocale();
   const [open, setOpen] = useState(false);
@@ -29,44 +27,43 @@ export function Header() {
   }, [open]);
 
   return (
-    <header
-      className={`sticky top-0 z-50 border-b bg-bg/90 text-ink backdrop-blur-md transition ${
-        scrolled ? "border-line shadow-[0_8px_30px_-20px_rgba(0,0,0,0.35)]" : "border-transparent"
-      }`}
-    >
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-3 px-4 sm:gap-6 sm:px-8">
-        <L href="/" aria-label="Emmanuel CliniX" className="text-ink">
-          <span className="text-ink">
-            <Logo />
-          </span>
+    // Floating pill (sticky). Pages whose first band is a blue hero pull it up under the pill.
+    <header className="sticky top-0 z-50 h-[var(--header-h)] px-4 pt-4 sm:px-8 sm:pt-6">
+      <div
+        className={`mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 rounded-full bg-ink/85 pl-5 pr-2.5 text-on-dark backdrop-blur-xl transition sm:gap-6 sm:pl-7 ${
+          scrolled ? "shadow-[0_18px_40px_-20px_rgba(15,27,38,0.6)]" : ""
+        }`}
+      >
+        <L href="/" aria-label="Emmanuel CliniX">
+          <Logo tagline={false} />
         </L>
 
         <nav className="hidden items-center gap-8 lg:flex" aria-label="Main">
           {NAV_ITEMS.map((item) => (
-            <L key={item.key} href={item.href} className="text-[0.95rem] font-semibold text-ink/80 transition hover:text-ink">
+            <L key={item.key} href={item.href} className="text-[0.95rem] text-on-dark/75 transition hover:text-on-dark">
               {dict.nav[item.key]}
             </L>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-4 lg:flex">
+        <div className="hidden items-center gap-3 lg:flex">
           <LangSwitch />
-          <L href="/brainmap" className={buttonClass("cta", "md", "!min-h-11 !px-5 !py-2.5 text-[0.95rem]")}>
+          <L href="/brainmap" className={buttonClass("cta", "md", "!min-h-11 !bg-lime !px-6 !py-2.5 text-[0.95rem] !text-on-lime")}>
             {dict.nav.cta}
           </L>
         </div>
 
-        <div className="flex items-center gap-3 lg:hidden">
+        <div className="flex items-center gap-2 lg:hidden">
           <LangSwitch />
           <button
             type="button"
             onClick={() => setOpen(true)}
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-line"
+            className="flex h-11 w-11 items-center justify-center rounded-full bg-lime text-on-lime"
             aria-label={dict.nav.menu}
             aria-expanded={open}
           >
-            <svg width="20" height="14" viewBox="0 0 20 14" aria-hidden="true">
-              <path d="M0 1h20M0 7h20M0 13h20" stroke="currentColor" strokeWidth="2" />
+            <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+              <path d="M0 1h18M0 6h18M0 11h18" stroke="currentColor" strokeWidth="1.8" />
             </svg>
           </button>
         </div>
@@ -75,13 +72,13 @@ export function Header() {
       {/* Portalled to <body>: the header's backdrop blur would otherwise trap this fixed overlay inside the header. */}
       {open &&
         createPortal(
-        <div className="fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-bg text-ink lg:hidden" role="dialog" aria-modal="true">
-          <div className="flex h-20 items-center justify-between px-5">
+        <div className="bg-vital fixed inset-0 z-[70] flex flex-col overflow-y-auto lg:hidden" role="dialog" aria-modal="true">
+          <div className="flex h-20 items-center justify-between px-5 pt-2.5">
             <Logo tagline={false} />
             <button
               type="button"
               onClick={() => setOpen(false)}
-              className="flex h-11 w-11 items-center justify-center rounded-full border border-line text-xl"
+              className="flex h-11 w-11 items-center justify-center rounded-full border border-current/30 text-xl"
               aria-label={dict.nav.close}
             >
               ✕
@@ -93,9 +90,10 @@ export function Header() {
                 key={item.key}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="border-b border-line py-5 font-display text-3xl"
+                className="flex items-center justify-between border-b border-line py-5 font-display text-3xl"
               >
                 {dict.nav[item.key]}
+                <span aria-hidden="true" className="text-xl text-lime">→</span>
               </L>
             ))}
           </nav>

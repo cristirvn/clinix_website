@@ -1,23 +1,15 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Fraunces, Inter, Inter_Tight, Lora, Manrope } from "next/font/google";
+import { Inter, Inter_Tight } from "next/font/google";
 import "../globals.css";
 import { LOCALES, SITE_URLS, isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionary";
 import { LocaleProvider } from "@/components/layout/LocaleProvider";
-import { ThemePicker } from "@/components/layout/ThemePicker";
-import { themeBootScript } from "@/components/layout/themes";
 import { Analytics } from "@/components/layout/Analytics";
 
 // All fonts carry latin-ext for the Romanian diacritics (ă â î ș ț).
-const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin", "latin-ext"], display: "swap" });
 const inter = Inter({ variable: "--font-inter", subsets: ["latin", "latin-ext"], display: "swap" });
 const interTight = Inter_Tight({ variable: "--font-inter-tight", subsets: ["latin", "latin-ext"], display: "swap" });
-const manrope = Manrope({ variable: "--font-manrope", subsets: ["latin", "latin-ext"], display: "swap" });
-const lora = Lora({ variable: "--font-lora", subsets: ["latin", "latin-ext"], display: "swap" });
-
-const DEFAULT_THEME = process.env.NEXT_PUBLIC_DEFAULT_THEME || "ivory";
-const SHOW_PICKER = process.env.NEXT_PUBLIC_DESIGN_PREVIEW !== "0";
 
 export const dynamicParams = false;
 
@@ -54,13 +46,8 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      data-theme={DEFAULT_THEME}
-      suppressHydrationWarning
-      className={`${fraunces.variable} ${inter.variable} ${interTight.variable} ${manrope.variable} ${lora.variable}`}
+      className={`${inter.variable} ${interTight.variable}`}
     >
-      <head>
-        <script dangerouslySetInnerHTML={{ __html: themeBootScript(DEFAULT_THEME) }} />
-      </head>
       <body className="flex min-h-screen flex-col">
         <noscript>
           <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
@@ -70,7 +57,6 @@ export default async function LocaleLayout({
             {dict.skipToContent}
           </a>
           {children}
-          {SHOW_PICKER && <ThemePicker />}
         </LocaleProvider>
         <Analytics />
       </body>

@@ -17,8 +17,8 @@ export function LogoMark({ size = 40, className = "" }: { size?: number; classNa
       <g stroke="currentColor" strokeWidth="4.2" strokeLinecap="round">
         <path d="M19 19 9.5 9.5M29 19l9.5-9.5M29 29l9.5 9.5M19 29l-9.5 9.5" />
       </g>
-      <path d="M2.5 24H15" stroke="var(--accent)" strokeWidth="4.2" strokeLinecap="round" />
-      <circle cx="24" cy="24" r="3.4" fill="var(--accent)" />
+      <path d="M2.5 24H15" stroke="var(--lime)" strokeWidth="4.2" strokeLinecap="round" />
+      <circle cx="24" cy="24" r="3.4" fill="var(--lime)" />
     </svg>
   );
 }

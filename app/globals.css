@@ -1,10 +1,10 @@
 @import "tailwindcss";
 
 /*
- * Design system. Every colour / font / radius is a CSS variable, so the five
- * design directions below are just different values for the same tokens.
- * Pick one by setting NEXT_PUBLIC_DEFAULT_THEME (and NEXT_PUBLIC_DESIGN_PREVIEW=0
- * to hide the picker). Components must ONLY use these tokens — never raw hex.
+ * Design system — one direction: calm steel blue + fresh lime on warm ivory,
+ * a light neo-grotesk display face, pill buttons, soft rounded panels and
+ * "glass" cards on blue. Every colour / font / radius is a CSS variable;
+ * components use ONLY these tokens — never raw hex.
  *
  * Audience is 40–50+: 18px base text, high contrast, big tap targets.
  */
@@ -22,215 +22,158 @@
   --color-on-accent: var(--on-accent);
   --color-cta: var(--cta);
   --color-on-cta: var(--on-cta);
+  --color-lime: var(--lime);
+  --color-on-lime: var(--on-lime);
   --color-dark: var(--dark);
   --color-on-dark: var(--on-dark);
   --color-on-dark-soft: var(--on-dark-soft);
   --color-success: var(--success);
   --color-danger: var(--danger);
-  --font-display: var(--theme-display);
-  --font-body: var(--theme-body);
+  --font-display: var(--font-inter-tight), system-ui, sans-serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
   --radius-theme: var(--radius);
 }
 
-/* ── 1 · IVORY — "Ink & Ivory": navy + warm gold, classic serif. Calm, medical-premium. */
-:root,
-[data-theme="ivory"] {
-  --bg: #faf7f2;
-  --bg-alt: #f1ece3;
+:root {
+  --bg: #f8f6f0;
+  --bg-alt: #eeebe3;
   --surface: #ffffff;
-  --ink: #16191f;
-  --ink-soft: #545963;
-  --line: #e2dbcf;
-  --primary: #14243d;
+  --ink: #0f1b26;
+  --ink-soft: #4d5965;
+  --line: #e1ddd3;
+  --primary: #24527a;
   --on-primary: #ffffff;
-  --accent: #9a7642;
+  --accent: #24527a;
   --on-accent: #ffffff;
-  --cta: #14243d;
+  --cta: #24527a;
   --on-cta: #ffffff;
-  --dark: #111c2f;
-  --on-dark: #f5f0e7;
-  --on-dark-soft: #b9bfca;
-  --success: #2f6b4f;
-  --danger: #a3372e;
-  --theme-display: var(--font-fraunces), Georgia, serif;
-  --theme-body: var(--font-inter), system-ui, sans-serif;
-  --display-weight: 500;
-  --display-tracking: -0.02em;
-  --radius: 6px;
-  --btn-radius: 6px;
-  color-scheme: light;
-}
-
-/* ── 2 · MONO — Acquisition.com style: black / white, heavy sans, one teal accent. */
-[data-theme="mono"] {
-  --bg: #ffffff;
-  --bg-alt: #f4f4f3;
-  --surface: #ffffff;
-  --ink: #0b0b0c;
-  --ink-soft: #53565c;
-  --line: #e4e4e4;
-  --primary: #0b0b0c;
-  --on-primary: #ffffff;
-  --accent: #0d5b6b;
-  --on-accent: #ffffff;
-  --cta: #0b0b0c;
-  --on-cta: #ffffff;
-  --dark: #0b0b0c;
+  --lime: #c6e76c;
+  --on-lime: #12230b;
+  --dark: #234f74;
   --on-dark: #ffffff;
-  --on-dark-soft: #a7a9ad;
-  --success: #1f6b4a;
-  --danger: #b3261e;
-  --theme-display: var(--font-inter-tight), system-ui, sans-serif;
-  --theme-body: var(--font-inter), system-ui, sans-serif;
-  --display-weight: 800;
-  --display-tracking: -0.035em;
-  --radius: 4px;
-  --btn-radius: 4px;
-  color-scheme: light;
-}
-
-/* ── 3 · PETROL — brand evolution: deep petrol (from the logo) + copper, on sand. */
-[data-theme="petrol"] {
-  --bg: #f6f3ee;
-  --bg-alt: #ebe5da;
-  --surface: #ffffff;
-  --ink: #10262b;
-  --ink-soft: #4b5e63;
-  --line: #dcd3c5;
-  --primary: #0e3b43;
-  --on-primary: #ffffff;
-  --accent: #a85a2c;
-  --on-accent: #ffffff;
-  --cta: #a85a2c;
-  --on-cta: #ffffff;
-  --dark: #0c3239;
-  --on-dark: #f3eee6;
-  --on-dark-soft: #a9c0c3;
+  --on-dark-soft: #cbd8e4;
   --success: #2c6a4c;
   --danger: #a3372e;
-  --theme-display: var(--font-manrope), system-ui, sans-serif;
-  --theme-body: var(--font-manrope), system-ui, sans-serif;
-  --display-weight: 700;
-  --display-tracking: -0.025em;
-  --radius: 14px;
+  --radius: 18px;
+  /* Height the sticky pill header takes in the page flow. */
+  --header-h: 4.75rem;
   --btn-radius: 999px;
+  --display-weight: 500;
+  --display-tracking: -0.03em;
   color-scheme: light;
 }
 
-/* ── 4 · FOREST — deep green + brass, editorial serif. Warm, "longevity". */
-[data-theme="forest"] {
-  --bg: #f7f5ee;
-  --bg-alt: #ece9de;
-  --surface: #ffffff;
-  --ink: #18201c;
-  --ink-soft: #535d57;
-  --line: #d9d5c6;
-  --primary: #1e3d33;
-  --on-primary: #ffffff;
-  --accent: #8f6f35;
-  --on-accent: #ffffff;
-  --cta: #1e3d33;
-  --on-cta: #ffffff;
-  --dark: #162e27;
-  --on-dark: #f2efe5;
-  --on-dark-soft: #b1beb6;
-  --success: #2c6a4c;
-  --danger: #a3372e;
-  --theme-display: var(--font-lora), Georgia, serif;
-  --theme-body: var(--font-inter), system-ui, sans-serif;
-  --display-weight: 600;
-  --display-tracking: -0.015em;
-  --radius: 10px;
-  --btn-radius: 10px;
-  color-scheme: light;
+/*
+ * On blue the accent flips to lime (eyebrows, ticks, primary buttons) and
+ * lines turn translucent. White cards placed on blue get the light values back.
+ */
+[data-tone="dark"],
+.bg-dark,
+.bg-vital {
+  --accent: var(--lime);
+  --on-accent: var(--on-lime);
+  --cta: var(--lime);
+  --on-cta: var(--on-lime);
+  --line: rgb(255 255 255 / 0.18);
+  --eyebrow-bg: rgb(255 255 255 / 0.12);
+}
+:is([data-tone="dark"], .bg-dark, .bg-vital) :is(.bg-surface, .bg-bg, .bg-bg-alt) {
+  --accent: var(--primary);
+  --on-accent: var(--on-primary);
+  --cta: var(--primary);
+  --on-cta: var(--on-primary);
+  --line: #e1ddd3;
+  --eyebrow-bg: var(--primary);
 }
 
-/* ── 5 · MIDNIGHT — dark premium: near-black navy + champagne. */
-[data-theme="midnight"] {
-  --bg: #0e1218;
-  --bg-alt: #141a22;
-  --surface: #19202a;
-  --ink: #f1eee8;
-  --ink-soft: #b0b6bf;
-  --line: #2a3441;
-  --primary: #d9bc82;
-  --on-primary: #0e1218;
-  --accent: #d9bc82;
-  --on-accent: #0e1218;
-  --cta: #d9bc82;
-  --on-cta: #0e1218;
-  --dark: #080b10;
-  --on-dark: #f1eee8;
-  --on-dark-soft: #a3a9b2;
-  --success: #6fbf94;
-  --danger: #ef8a80;
-  --theme-display: var(--font-fraunces), Georgia, serif;
-  --theme-body: var(--font-inter), system-ui, sans-serif;
-  --display-weight: 400;
-  --display-tracking: -0.02em;
-  --radius: 8px;
-  --btn-radius: 999px;
-  color-scheme: dark;
-}
-
-@layer base {
-html {
-  font-size: 18px;
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-}
-
-@media (max-width: 640px) {
-  html {
-    font-size: 17px;
+@media (min-width: 640px) {
+  :root {
+    --header-h: 5.25rem;
   }
 }
 
-body {
-  background: var(--bg);
-  color: var(--ink);
-  font-family: var(--theme-body);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  text-rendering: optimizeLegibility;
+@layer base {
+  html {
+    font-size: 18px;
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (max-width: 640px) {
+    html {
+      font-size: 17px;
+    }
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-inter), system-ui, sans-serif;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  .font-display {
+    font-family: var(--font-inter-tight), system-ui, sans-serif;
+    font-weight: var(--display-weight);
+    letter-spacing: var(--display-tracking);
+    line-height: 1.08;
+    text-wrap: balance;
+    /* Long words never push a phone screen sideways. */
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--lime);
+    color: var(--on-lime);
+  }
+
+  :focus-visible {
+    outline: 3px solid var(--accent);
+    outline-offset: 3px;
+  }
+
+  /* Accordion marker reset (FAQ uses <details>). */
+  details > summary {
+    list-style: none;
+    cursor: pointer;
+  }
+  details > summary::-webkit-details-marker {
+    display: none;
+  }
 }
 
-h1,
-h2,
-h3,
-.font-display {
-  font-family: var(--theme-display);
-  font-weight: var(--display-weight);
-  letter-spacing: var(--display-tracking);
-  line-height: 1.1;
-  text-wrap: balance;
-  /* Long words never push a phone screen sideways. */
-  overflow-wrap: break-word;
-  hyphens: auto;
+/* The signature blue: soft light falling from the top-left onto steel blue. */
+.bg-vital {
+  background-color: var(--dark);
+  background-image:
+    radial-gradient(120% 90% at 12% 0%, rgb(255 255 255 / 0.2) 0%, rgb(255 255 255 / 0) 55%),
+    radial-gradient(90% 80% at 100% 100%, rgb(10 30 50 / 0.45) 0%, rgb(10 30 50 / 0) 60%),
+    linear-gradient(160deg, #4a7397 0%, #2a5a82 42%, #1d4568 100%);
+  color: var(--on-dark);
 }
 
-p {
-  text-wrap: pretty;
+/* Frosted card on blue. */
+.glass {
+  background: rgb(255 255 255 / 0.1);
+  border: 1px solid rgb(255 255 255 / 0.22);
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
 }
 
-::selection {
-  background: var(--accent);
-  color: var(--on-accent);
-}
-
-:focus-visible {
-  outline: 3px solid var(--accent);
-  outline-offset: 3px;
-}
-
-/* Accordion marker reset (FAQ uses <details>). */
-details > summary {
-  list-style: none;
-  cursor: pointer;
-}
-details > summary::-webkit-details-marker {
-  display: none;
-}
+/* "[ LABEL ]" pill used above headings. */
+.eyebrow-pill {
+  background: var(--eyebrow-bg, var(--primary));
+  color: var(--lime);
 }
 
 /* Phones: leave room under the sticky "Apply" bar so nothing hides behind it. */
@@ -240,13 +183,37 @@ details > summary::-webkit-details-marker {
   }
 }
 
+/* Slow drift for the hero brain. */
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
+}
+.animate-float {
+  animation: float-y 9s ease-in-out infinite;
+}
+
+/* Infinite word strip. */
+@keyframes marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+.animate-marquee {
+  animation: marquee 38s linear infinite;
+}
+
 /* Scroll reveal — content stays visible without JS (see components/ui/Reveal). */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
+  transform: translateY(18px);
   transition:
-    opacity 0.7s ease,
-    transform 0.7s ease;
+    opacity 0.8s ease,
+    transform 0.8s ease;
 }
 .reveal.is-in {
   opacity: 1;
@@ -260,5 +227,9 @@ details > summary::-webkit-details-marker {
     opacity: 1;
     transform: none;
     transition: none;
+  }
+  .animate-float,
+  .animate-marquee {
+    animation: none;
   }
 }

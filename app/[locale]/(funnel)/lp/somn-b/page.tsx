@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { ButtonLink, CheckItem, Eyebrow, Faq, Section, SectionHead } from "@/components/ui/primitives";
+import { ButtonLink, CheckItem, Eyebrow, Faq, Section, SectionHead, HeroPanel } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { FunnelFooter } from "@/components/layout/FunnelChrome";
@@ -33,10 +33,10 @@ export default async function LpSomnBPage({ params }: Props) {
   return (
     <div className="pb-24 sm:pb-0">
       {/* HERO — case study */}
-      <Section tone="dark" className="!pt-14 sm:!pt-20">
+      <HeroPanel>
         <div className="mx-auto max-w-4xl text-center">
           <Eyebrow>{hero.eyebrow}</Eyebrow>
-          <h1 className="text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl">
+          <h1 className="text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
             {hero.titleBefore}
             <em className="text-accent not-italic">{hero.titleEm}</em>
             {hero.titleAfter}
@@ -67,13 +67,13 @@ export default async function LpSomnBPage({ params }: Props) {
 
         <dl className="mx-auto mt-14 grid max-w-4xl grid-cols-1 gap-px overflow-hidden rounded-[var(--radius)] border border-on-dark/15 bg-on-dark/15 sm:grid-cols-3">
           {hero.stats.map((s) => (
-            <div key={s.label} className="flex flex-col-reverse bg-dark px-6 py-6 text-center">
+            <div key={s.label} className="flex flex-col-reverse bg-dark/50 px-6 py-6 text-center">
               <dt className="mt-1 text-on-dark-soft">{s.label}</dt>
               <dd className="font-display text-4xl text-on-dark sm:text-5xl">{s.num}</dd>
             </div>
           ))}
         </dl>
-      </Section>
+      </HeroPanel>
 
       {/* WHAT WE DO */}
       <Section>

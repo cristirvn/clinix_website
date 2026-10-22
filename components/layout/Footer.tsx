@@ -12,15 +12,16 @@ export function Footer({ locale }: { locale: Locale }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-dark text-on-dark">
-      <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 sm:px-8 md:grid-cols-2 lg:grid-cols-4">
+    <footer className="px-2.5 pb-2.5 sm:px-4 sm:pb-4">
+      <div className="bg-vital overflow-hidden rounded-[28px] text-on-dark">
+      <div className="mx-auto grid max-w-7xl gap-12 px-5 pb-16 pt-20 sm:px-8 md:grid-cols-2 lg:grid-cols-4">
         <div className="space-y-5">
           <Logo />
           <p className="max-w-xs text-on-dark-soft">{dict.footer.description}</p>
         </div>
 
         <div>
-          <h3 className="mb-5 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">{dict.footer.clinic}</h3>
+          <h3 className="mb-5 font-body text-sm font-medium uppercase tracking-[0.14em] text-accent">{dict.footer.clinic}</h3>
           <ul className="space-y-1">
             {NAV_ITEMS.map((item) => (
               <li key={item.key}>
@@ -38,7 +39,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div>
-          <h3 className="mb-5 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">{dict.footer.freeTests}</h3>
+          <h3 className="mb-5 font-body text-sm font-medium uppercase tracking-[0.14em] text-accent">{dict.footer.freeTests}</h3>
           <ul className="space-y-1">
             {tests.slice(0, 5).map((t) => (
               <li key={t.slug}>
@@ -56,7 +57,7 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div>
-          <h3 className="mb-5 font-body text-sm font-bold uppercase tracking-[0.18em] text-accent">{dict.footer.contact}</h3>
+          <h3 className="mb-5 font-body text-sm font-medium uppercase tracking-[0.14em] text-accent">{dict.footer.contact}</h3>
           <ul className="space-y-1 text-on-dark-soft [overflow-wrap:anywhere]">
             <li>
               <a href={CLINIC.phoneHref} className="inline-block py-1.5 text-on-dark hover:underline">
@@ -77,7 +78,14 @@ export function Footer({ locale }: { locale: Locale }) {
         </div>
       </div>
 
-      <div className="border-t border-on-dark/10">
+      <p
+        aria-hidden="true"
+        className="select-none whitespace-nowrap px-4 text-center font-display text-[12.2vw] leading-[0.85] tracking-[-0.04em] text-on-dark/[0.08]"
+      >
+        Emmanuel CliniX
+      </p>
+
+      <div className="border-t border-on-dark/15">
         <div className="mx-auto max-w-7xl space-y-3 px-5 py-8 text-sm text-on-dark-soft sm:px-8">
           <p>{dict.footer.disclaimer}</p>
           <p className="flex flex-wrap gap-x-4 gap-y-1">
@@ -92,6 +100,7 @@ export function Footer({ locale }: { locale: Locale }) {
             </L>
           </p>
         </div>
+      </div>
       </div>
     </footer>
   );

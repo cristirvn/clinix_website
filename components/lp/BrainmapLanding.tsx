@@ -1,7 +1,8 @@
 import type { ReactNode } from "react";
-import { Container, Eyebrow, Faq, Section, SectionHead, buttonClass } from "@/components/ui/primitives";
+import { Container, Eyebrow, Faq, Section, SectionHead, buttonClass, HeroPanel } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
+import { Photo } from "@/components/ui/Photo";
 import { FunnelFooter } from "@/components/layout/FunnelChrome";
 import { BrainmapForm } from "@/components/lp/BrainmapForm";
 import { Testimonials } from "@/components/lp/Testimonials";
@@ -66,35 +67,37 @@ export function BrainmapLanding({
   return (
     <>
       {/* 1 · HERO */}
-      <section id={HERO_ID} className="relative overflow-hidden bg-bg pb-14 pt-16 text-ink sm:pb-20 sm:pt-24">
-        <Container>
-          <div className="max-w-4xl">
+      <HeroPanel id={HERO_ID}>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-[6%] top-[10%] -z-10 hidden w-[46%] opacity-75 mix-blend-screen lg:block"
+          >
+            <div className="animate-float aspect-[16/10]">
+              <Photo image="heroBrain" locale={locale} width={1400} priority />
+            </div>
+          </div>
+          <div className="max-w-3xl">
             <h1
-              className="text-[2.6rem] sm:text-6xl lg:text-7xl [&_em]:not-italic [&_em]:text-accent"
+              className="text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem] [&_em]:not-italic [&_em]:text-accent"
               // Client copy (static content file), not user input.
               dangerouslySetInnerHTML={{ __html: lp.hero.titleHtml }}
             />
-            <p className="mt-6 max-w-2xl text-lg text-ink-soft sm:text-xl">{lp.hero.lede}</p>
+            <p className="mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{lp.hero.lede}</p>
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:gap-6">
               {cta()}
-              <p className="text-base text-ink-soft">{f.hero.micro}</p>
+              <p className="text-base text-on-dark-soft">{f.hero.micro}</p>
             </div>
           </div>
-        </Container>
-        <EegTrace className="mt-14 text-ink sm:mt-16" />
-        <Container>
-          <ul className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2 lg:grid-cols-4">
+        <EegTrace tone="dark" className="mt-14 text-on-dark sm:mt-20" />
+          <ul className="mt-6 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 lg:grid-cols-4">
             {f.hero.facts.map((fact) => (
-              <li key={fact} className="flex items-start gap-3 text-base font-semibold">
-                <span aria-hidden="true" className="mt-0.5 flex h-6 w-6 flex-none items-center justify-center rounded-full bg-accent text-xs text-on-accent">
-                  ✓
-                </span>
+              <li key={fact} className="glass flex items-center gap-3 rounded-2xl px-5 py-4 text-base">
+                <span aria-hidden="true" className="h-2.5 w-2.5 flex-none rounded-full bg-lime" />
                 {fact}
               </li>
             ))}
           </ul>
-        </Container>
-      </section>
+      </HeroPanel>
 
       {vslFirst && vsl}
 

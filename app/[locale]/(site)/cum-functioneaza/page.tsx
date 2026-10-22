@@ -16,10 +16,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function HowItWorksPage({ params }: Props) {
-  const c = content((await params).locale as Locale);
+  const locale = (await params).locale as Locale;
+  const c = content(locale);
   return (
     <>
-      <PageHero content={c.hero} />
+      <PageHero content={c.hero} image="scan" locale={locale} />
       <JourneySteps content={c.journey} />
       <ServiceBlocks content={c.services} />
       <AboutTeaser content={c.about} />

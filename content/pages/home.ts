@@ -14,6 +14,8 @@ export interface HomeContent {
     secondary: string;
     facts: string[];
   };
+  /** Words scrolling under the hero. */
+  marquee: string[];
   triage: { eyebrow: string; title: string; lead: string };
   tests: { eyebrow: string; title: string; lead: string; all: string };
   faq: { eyebrow: string; title: string; items: Array<{ q: string; a: string }> };

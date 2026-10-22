@@ -46,3 +46,61 @@ export const VIDEOS = {
 } satisfies Record<string, MediaVideo>;
 
 export type VideoKey = keyof typeof VIDEOS;
+
+/**
+ * Photos. TEMPORARY stand-ins from Unsplash (free licence) until the clinic
+ * sends its own — replace `src` with a file in /public (e.g. "/photos/cabinet.jpg")
+ * or any absolute URL. Unsplash URLs get resized automatically by <Photo>.
+ */
+export interface MediaImage {
+  src: string;
+  /** Alt text per language. */
+  alt: { ro: string; en: string };
+}
+
+const U = "https://images.unsplash.com/";
+
+export const IMAGES = {
+  /** Home hero — glowing brain drawn over the blue (black background blends away). */
+  heroBrain: { src: `${U}photo-1711409645921-ef3db0501f96`, alt: { ro: "", en: "" } },
+  /** Neurofeedback session — headset, armchair. */
+  neurofeedback: {
+    src: `${U}photo-1715866404130-67627c9828e1`,
+    alt: { ro: "Pacient în timpul unei ședințe de neurofeedback", en: "A patient during a neurofeedback session" },
+  },
+  /** BrainMap / qEEG — cap with sensors, results on screen. */
+  scan: {
+    src: `${U}photo-1715866734224-0b9eb2ac5fd6`,
+    alt: { ro: "Montarea senzorilor pentru scanarea BrainMap", en: "Fitting the sensors for a BrainMap scan" },
+  },
+  /** Consultation with a patient. */
+  consult: {
+    src: `${U}photo-1758691462858-f1286e5daf40`,
+    alt: { ro: "Consult în cabinet", en: "A consultation at the clinic" },
+  },
+  consultWarm: {
+    src: `${U}photo-1631217868264-e5b90bb7e133`,
+    alt: { ro: "Discuție cu un specialist", en: "Talking with a specialist" },
+  },
+  consultCouch: {
+    src: `${U}photo-1758691462321-9b6c98c40f7e`,
+    alt: { ro: "Discuție relaxată cu un specialist", en: "A relaxed talk with a specialist" },
+  },
+  /** Calm portrait — stress / mood. */
+  portrait: {
+    src: `${U}photo-1746410848551-ca40cdb57674`,
+    alt: { ro: "Femeie privind pe fereastră", en: "A woman looking out of the window" },
+  },
+  /** Sleep. */
+  sleep: {
+    src: `${U}photo-1603259186149-13e44113c3cb`,
+    alt: { ro: "Om treaz în pat, noaptea", en: "Someone lying awake at night" },
+  },
+  /** Clinic room. */
+  room: {
+    src: `${U}photo-1665231795856-769fb08a90bc`,
+    alt: { ro: "Cabinet", en: "Treatment room" },
+  },
+} satisfies Record<string, MediaImage>;
+
+export type ImageKey = keyof typeof IMAGES;

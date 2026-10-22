@@ -35,7 +35,7 @@ export function VideoPlayer({
 
   return (
     <div
-      className={`relative aspect-video w-full overflow-hidden rounded-[var(--radius)] bg-dark text-on-dark ring-1 ring-current/15 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ${className}`}
+      className={`relative aspect-video w-full overflow-hidden rounded-[var(--radius)] bg-ink text-on-dark ring-1 ring-on-dark/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ${className}`}
     >
       {playing && embed ? (
         embed.kind === "iframe" ? (
@@ -65,14 +65,14 @@ export function VideoPlayer({
             <svg className="absolute inset-x-0 bottom-[22%] w-full opacity-30" viewBox="0 0 960 90" fill="none" aria-hidden="true">
               <path
                 d="M0 62h52l12-22 12 34 12-44 12 32h52l12-12 12 18 12-24 12 18h68l12-36 12 52 12-42 12 26h76l12-14 12 22 12-28 12 20h72l12-28 12 38 12-44 12 34h76l12-10 12 14 12-20 12 16h68l12-30 12 44 12-38 12 24h160"
-                stroke="var(--accent)"
+                stroke="var(--lime)"
                 strokeWidth="1.6"
                 strokeLinecap="round"
                 strokeLinejoin="round"
               />
             </svg>
           )}
-          <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-cta text-on-cta shadow-xl transition group-hover:scale-105">
+          <span className="relative flex h-20 w-20 items-center justify-center rounded-full bg-lime text-on-lime shadow-xl transition group-hover:scale-105">
             <svg width="24" height="28" viewBox="0 0 22 26" aria-hidden="true">
               <path d="M2 1 L21 13 L2 25 Z" fill="currentColor" />
             </svg>

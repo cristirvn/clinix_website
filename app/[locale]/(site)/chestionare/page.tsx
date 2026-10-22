@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getQuizHub } from "@/content/quizzes";
 import { alternatesFor, type Locale } from "@/lib/i18n";
-import { ButtonLink, Container, Eyebrow, Section } from "@/components/ui/primitives";
+import { ButtonLink, Eyebrow, Section, HeroPanel } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { QuizGrid } from "@/components/quiz/QuizGrid";
 
@@ -24,23 +24,21 @@ export default async function ChestionarePage({ params }: { params: Params }) {
 
   return (
     <>
-      <section className="bg-bg pb-14 pt-16 text-ink sm:pb-20 sm:pt-24">
-        <Container>
+      <HeroPanel>
           <div className="max-w-3xl">
             <Eyebrow>{hub.hero.eyebrow}</Eyebrow>
-            <h1 className="text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl">{hub.hero.title}</h1>
-            <p className="mt-6 text-lg text-ink-soft sm:text-xl">{hub.hero.subtitle}</p>
+            <h1 className="text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem]">{hub.hero.title}</h1>
+            <p className="mt-6 text-lg text-on-dark-soft sm:text-xl">{hub.hero.subtitle}</p>
           </div>
           <ul className="mt-14 grid gap-8 border-t border-line pt-10 sm:grid-cols-3">
             {hub.promise.map((p) => (
               <li key={p.label}>
                 <p className="font-display text-2xl">{p.label}</p>
-                <p className="mt-2 text-ink-soft">{p.text}</p>
+                <p className="mt-2 text-on-dark-soft">{p.text}</p>
               </li>
             ))}
           </ul>
-        </Container>
-      </section>
+      </HeroPanel>
 
       <Section tone="alt" className="!pt-14 sm:!pt-20">
         <QuizGrid locale={locale} />

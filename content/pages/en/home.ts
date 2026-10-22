@@ -14,6 +14,7 @@ export const HOME_EN: HomeContent = {
     secondary: "Quick self-check · 2 minutes →",
     facts: ["30-minute scan", "No radiation, no needles", "Explained in the same visit", "No GP referral needed"],
   },
+  marquee: ["BrainMap", "Neurofeedback", "Sleep", "Stress", "Anxiety", "Focus", "Mood", "EmSella"],
   triage: {
     eyebrow: "Quick self-check · free",
     title: "What do you struggle with most?",

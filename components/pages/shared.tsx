@@ -1,17 +1,20 @@
-import { ButtonLink, Container, Eyebrow } from "@/components/ui/primitives";
+import { ButtonLink, Container, Eyebrow, HeroPanel } from "@/components/ui/primitives";
+import { Photo } from "@/components/ui/Photo";
+import type { ImageKey } from "@/content/media";
+import type { Locale } from "@/lib/i18n";
 import type { CtaBandContent, PageHeroContent } from "@/content/pages/blocks";
 
-/** Page-top hero for the inner pages: eyebrow, big H1, one short lead, one obvious next step. */
-export function PageHero({ content }: { content: PageHeroContent }) {
+/** Page-top hero for the inner pages: eyebrow, big H1, one short lead, one obvious next step (+ optional photo). */
+export function PageHero({ content, image, locale }: { content: PageHeroContent; image?: ImageKey; locale?: Locale }) {
   return (
-    <section className="bg-bg pb-16 pt-16 text-ink sm:pb-24 sm:pt-24">
-      <Container>
-        <div className="max-w-4xl">
+    <HeroPanel>
+      <div className={image ? "grid items-center gap-12 lg:grid-cols-12 lg:gap-16" : ""}>
+        <div className={image ? "lg:col-span-7" : "max-w-4xl"}>
           <Eyebrow>{content.eyebrow}</Eyebrow>
-          <h1 className="text-[2.6rem] sm:text-6xl lg:text-7xl">{content.title}</h1>
-          <p className="mt-6 max-w-2xl text-lg text-ink-soft sm:text-xl">{content.lead}</p>
+          <h1 className="text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem]">{content.title}</h1>
+          <p className="mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{content.lead}</p>
           {content.primary && (
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
               <ButtonLink href={content.primary.href} size="lg">
                 {content.primary.label}
               </ButtonLink>
@@ -23,15 +26,22 @@ export function PageHero({ content }: { content: PageHeroContent }) {
             </div>
           )}
         </div>
-      </Container>
-    </section>
+        {image && locale && (
+          <div className="glass rounded-[calc(var(--radius)+8px)] p-2.5 lg:col-span-5">
+            <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius)] lg:aspect-[4/5]">
+              <Photo image={image} locale={locale} width={900} priority />
+            </div>
+          </div>
+        )}
+      </div>
+    </HeroPanel>
   );
 }
 
 /** Closing dark band with the page's single next step. */
 export function CtaBand({ content }: { content: CtaBandContent }) {
   return (
-    <section data-tone="dark" className="bg-dark py-20 text-on-dark sm:py-28">
+    <section data-tone="dark" className="bg-vital py-20 text-on-dark sm:py-28">
       <Container narrow className="text-center">
         <h2 className="text-[2.1rem] sm:text-5xl">{content.title}</h2>
         <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{content.text}</p>

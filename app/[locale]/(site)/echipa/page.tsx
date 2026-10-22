@@ -16,10 +16,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function TeamPage({ params }: Props) {
-  const c = content((await params).locale as Locale);
+  const locale = (await params).locale as Locale;
+  const c = content(locale);
   return (
     <>
-      <PageHero content={c.hero} />
+      <PageHero content={c.hero} image="consultCouch" locale={locale} />
       <TeamGrid content={c.members} />
       <WorkTogether content={c.together} />
       <CtaBand content={c.cta} />
