@@ -5,17 +5,18 @@ import { HeaderApply } from "@/components/layout/HeaderApply";
 import { getDictionary } from "@/lib/dictionary";
 import type { Locale } from "@/lib/i18n";
 import { CLINIC } from "@/lib/site";
+import { CookieSettingsButton } from "@/components/layout/CookieConsent";
 
 /** Minimal header for landing pages / quizzes: logo, phone, language. No menu = no leaks. */
 export function FunnelHeader() {
   return (
-    <header className="sticky top-0 z-50 h-[var(--header-h)] px-4 pt-4 sm:px-8 sm:pt-6">
-      <div className="mx-auto flex h-14 max-w-6xl items-center justify-between gap-3 rounded-full bg-ink/85 pl-5 pr-2.5 text-on-dark backdrop-blur-xl sm:gap-4 sm:pl-7">
+    <header className="sticky top-0 z-50 h-[var(--header-h)] border-b border-line bg-surface/95 text-ink backdrop-blur-xl">
+      <div className="mx-auto flex h-full max-w-6xl items-center justify-between gap-3 px-5 sm:gap-4 sm:px-8">
         <L href="/" aria-label="Emmanuel CliniX">
-          <Logo tagline={false} />
+          <Logo />
         </L>
         <div className="flex items-center gap-3">
-          <a href={CLINIC.phoneHref} className="hidden items-center gap-2 text-on-dark/85 hover:text-on-dark sm:flex">
+          <a href={CLINIC.phoneHref} className="hidden items-center gap-2 font-medium text-ink-soft hover:text-primary sm:flex">
             <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
               <path
                 d="M2 3.5C2 2.7 2.7 2 3.5 2h1.2c.6 0 1.1.4 1.2 1l.4 2c.1.5-.1 1-.5 1.2l-.9.5c.7 1.5 1.9 2.7 3.4 3.4l.5-.9c.3-.4.7-.6 1.2-.5l2 .4c.6.1 1 .6 1 1.2v1.2c0 .8-.7 1.5-1.5 1.5C7.6 14 2 8.4 2 3.5Z"
@@ -54,6 +55,7 @@ export function FunnelFooter({ locale, legal }: { locale: Locale; legal?: string
           <L href="/termeni-si-conditii" className="inline-block py-1.5 hover:underline">
             {dict.footer.terms}
           </L>
+          <CookieSettingsButton className="inline-block py-1.5 hover:underline" />
         </p>
       </div>
     </footer>

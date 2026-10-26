@@ -4,8 +4,8 @@ import { L } from "@/components/ui/L";
 /**
  * Layout + typography building blocks. Every page is built from these so the
  * design stays consistent. Use theme tokens only (bg-bg, text-ink, bg-dark,
- * text-accent, …) — never raw colours. Inside `tone="dark"` the accent and the
- * main button turn lime automatically (see app/globals.css).
+ * text-accent, …) — never raw colours. Inside `tone="dark"` the accent turns lilac
+ * and the main button a lighter purple automatically (see app/globals.css).
  */
 
 export function Container({ children, className = "", narrow = false }: { children: ReactNode; className?: string; narrow?: boolean }) {
@@ -43,8 +43,8 @@ export function Section({
 }
 
 /**
- * Page-top blue panel, tucked under the floating header (it pulls itself up by
- * the header height). Text inside is light; the accent and buttons turn lime.
+ * Page-top plum band right under the white header: full width, purple light
+ * from the top-right. Text inside is light; buttons turn purple.
  */
 export function HeroPanel({
   children,
@@ -58,25 +58,19 @@ export function HeroPanel({
   narrow?: boolean;
 }) {
   return (
-    <section id={id} className="-mt-[var(--header-h)] px-2.5 pt-2.5 sm:px-4 sm:pt-3">
-      <div
-        className={`bg-vital relative isolate overflow-hidden rounded-[28px] pb-14 pt-[calc(var(--header-h)+2.75rem)] sm:pb-20 sm:pt-[calc(var(--header-h)+4.5rem)] ${className}`}
-      >
-        <Container narrow={narrow}>{children}</Container>
-      </div>
+    <section id={id} data-tone="dark" className={`bg-vital relative isolate overflow-hidden pb-16 pt-14 sm:pb-24 sm:pt-20 ${className}`}>
+      <Container narrow={narrow}>{children}</Container>
     </section>
   );
 }
 
-/** "[ LABEL ]" pill above a heading. */
+/** Small caps label above a heading, followed by a short rule. */
 export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <p
-      className={`eyebrow-pill mb-6 inline-flex items-center gap-1.5 rounded-full px-4 py-1.5 text-[0.78rem] font-medium uppercase tracking-[0.12em] ${className}`}
+      className={`eyebrow-rule mb-5 inline-flex items-center gap-3 text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-accent ${className}`}
     >
-      <span aria-hidden="true">[</span>
-      <span>{children}</span>
-      <span aria-hidden="true">]</span>
+      {children}
     </p>
   );
 }
@@ -98,7 +92,7 @@ export function SectionHead({
   return (
     <div className={`mb-12 max-w-3xl sm:mb-16 ${center ? "mx-auto text-center" : ""} ${className}`}>
       {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="text-[2.2rem] sm:text-5xl lg:text-[3.5rem]">{title}</h2>
+      <h2 className="text-[2.5rem] sm:text-6xl lg:text-[4rem]">{title}</h2>
       {lead && <p className={`mt-6 max-w-2xl text-lg opacity-80 sm:text-xl ${center ? "mx-auto" : ""}`}>{lead}</p>}
     </div>
   );
@@ -107,11 +101,11 @@ export function SectionHead({
 type ButtonVariant = "cta" | "outline" | "light" | "ghost";
 
 const BTN_BASE =
-  "inline-flex items-center justify-center gap-2 text-center font-medium transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2 text-center font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
 const BTN_VARIANTS: Record<ButtonVariant, string> = {
-  cta: "bg-cta text-on-cta shadow-[0_14px_34px_-16px_rgba(15,27,38,0.55)] hover:-translate-y-0.5 hover:brightness-110",
+  cta: "bg-cta text-on-cta shadow-[0_15px_30px_-12px_rgb(123_60_200_/_0.45)] hover:-translate-y-0.5 hover:brightness-110",
   outline: "border border-current/35 hover:border-current hover:bg-current/5",
-  light: "bg-lime text-on-lime shadow-[0_14px_34px_-16px_rgba(0,0,0,0.5)] hover:-translate-y-0.5 hover:brightness-105",
+  light: "bg-lime text-on-lime shadow-[0_15px_30px_-12px_rgb(162_96_229_/_0.45)] hover:-translate-y-0.5 hover:brightness-110",
   ghost: "underline decoration-1 underline-offset-[6px] hover:opacity-70",
 };
 const BTN_SIZES = {
@@ -196,7 +190,7 @@ export function Faq({
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`rounded-[var(--radius)] border border-line bg-surface p-7 text-ink shadow-[0_20px_50px_-36px_rgba(15,27,38,0.35)] sm:p-9 ${className}`}
+      className={`rounded-[var(--radius)] border border-line bg-surface p-7 text-ink shadow-[var(--shadow-card)] sm:p-9 ${className}`}
     >
       {children}
     </div>

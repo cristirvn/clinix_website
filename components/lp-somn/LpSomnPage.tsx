@@ -38,7 +38,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
       <HeroPanel>
         <div className="mx-auto w-full max-w-5xl text-center">
           <Reveal>
-            <h1 className="mx-auto max-w-4xl text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
+            <h1 className="mx-auto max-w-4xl text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
               {c.hero.titleStart}
               <em className="font-display italic text-accent">{c.hero.titleEm}</em>
             </h1>

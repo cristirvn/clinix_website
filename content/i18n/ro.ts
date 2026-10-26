@@ -64,6 +64,19 @@ export const ro = {
     error: "Nu am putut trimite formularul. Încearcă din nou sau sună-ne la",
     privacyNote: "Datele tale sunt confidențiale. Nu trimitem spam.",
   },
+  loader: {
+    left: "Neuroștiință aplicată",
+    right: "București · România",
+  },
+  cookies: {
+    title: "Folosim cookie-uri",
+    text: "Cookie-urile necesare țin site-ul în funcțiune. Cu acordul tău, folosim și cookie-uri de statistică, ca să înțelegem ce pagini sunt utile și să îmbunătățim site-ul.",
+    accept: "Accept toate",
+    essential: "Doar cele necesare",
+    policy: "Politica de confidențialitate",
+    settings: "Setări cookie",
+    label: "Acord pentru cookie-uri",
+  },
   design: {
     title: "Alege designul",
     hint: "Previzualizare pentru proprietar — dispare la lansare.",

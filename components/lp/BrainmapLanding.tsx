@@ -78,7 +78,7 @@ export function BrainmapLanding({
           </div>
           <div className="max-w-3xl">
             <h1
-              className="text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem] [&_em]:not-italic [&_em]:text-accent"
+              className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem] [&_em]:not-italic [&_em]:text-accent"
               // Client copy (static content file), not user input.
               dangerouslySetInnerHTML={{ __html: lp.hero.titleHtml }}
             />
@@ -88,10 +88,10 @@ export function BrainmapLanding({
               <p className="text-base text-on-dark-soft">{f.hero.micro}</p>
             </div>
           </div>
-        <EegTrace tone="dark" className="mt-14 text-on-dark sm:mt-20" />
-          <ul className="mt-6 grid grid-cols-1 gap-3 min-[420px]:grid-cols-2 lg:grid-cols-4">
+        <EegTrace tone="dark" className="mt-20 hidden text-on-dark sm:block" />
+          <ul className="mt-10 grid grid-cols-1 gap-3.5 border-t border-on-dark/15 pt-8 sm:mt-6 sm:grid-cols-2 sm:gap-3 sm:border-0 sm:pt-0 lg:grid-cols-4">
             {f.hero.facts.map((fact) => (
-              <li key={fact} className="glass flex items-center gap-3 rounded-2xl px-5 py-4 text-base">
+              <li key={fact} className="flex items-center gap-3 text-base sm:glass sm:rounded-2xl sm:px-5 sm:py-4">
                 <span aria-hidden="true" className="h-2.5 w-2.5 flex-none rounded-full bg-lime" />
                 {fact}
               </li>

@@ -11,7 +11,7 @@ export function PageHero({ content, image, locale }: { content: PageHeroContent;
       <div className={image ? "grid items-center gap-12 lg:grid-cols-12 lg:gap-16" : ""}>
         <div className={image ? "lg:col-span-7" : "max-w-4xl"}>
           <Eyebrow>{content.eyebrow}</Eyebrow>
-          <h1 className="text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem]">{content.title}</h1>
+          <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">{content.title}</h1>
           <p className="mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{content.lead}</p>
           {content.primary && (
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">

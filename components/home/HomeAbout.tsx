@@ -4,39 +4,45 @@ import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import type { HomeContent } from "@/content/pages/home";
 import type { Locale } from "@/lib/i18n";
 
-/** Section 5a — who we are: centred statement with a staggered row of photos. */
+/** Section 4a — who we are: one large white panel (photo + statement), soft shadow on the tinted band. */
 export function HomeAbout({ about, locale }: { about: HomeContent["about"]; locale: Locale }) {
   return (
-    <Section>
-      <div className="mx-auto max-w-3xl text-center">
-        <Eyebrow>{about.eyebrow}</Eyebrow>
-        <h2 className="text-[2.2rem] sm:text-5xl lg:text-[3.5rem]">{about.title}</h2>
-        <div className="mx-auto mt-6 max-w-xl space-y-4 text-lg text-ink-soft sm:text-xl">
-          {about.paragraphs.map((p) => (
-            <p key={p}>{p}</p>
-          ))}
+    <Section tone="alt">
+      <div className="overflow-hidden rounded-[36px] bg-surface shadow-[var(--shadow-soft)]">
+        <div className="grid items-stretch lg:grid-cols-2">
+          <div className="relative aspect-[4/3] lg:aspect-auto">
+            <div className="absolute inset-0">
+              <Photo image="consult" locale={locale} width={1200} />
+            </div>
+          </div>
+          <div className="px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
+            <Eyebrow>{about.eyebrow}</Eyebrow>
+            <h2 className="text-[2.5rem] sm:text-6xl lg:text-[4rem]">{about.title}</h2>
+            <div className="mt-6 space-y-4 text-lg text-ink-soft sm:text-xl">
+              {about.paragraphs.map((p) => (
+                <p key={p}>{p}</p>
+              ))}
+            </div>
+            <ButtonLink href="/despre-noi" variant="outline" className="mt-9 w-full text-primary sm:w-auto">
+              {about.link}
+            </ButtonLink>
+          </div>
         </div>
-        <ButtonLink href="/despre-noi" variant="outline" className="mt-9">
-          {about.link}
-        </ButtonLink>
       </div>
 
-      <div className="mt-16 grid grid-cols-2 gap-3 sm:mt-20 sm:grid-cols-3 sm:gap-6">
-        <div className="aspect-[4/5] overflow-hidden rounded-[var(--radius)] sm:mt-24">
-          <Photo image="scan" locale={locale} width={800} />
+      <div className="mt-6 grid grid-cols-2 gap-4 sm:mt-8 sm:gap-6">
+        <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
+          <Photo image="scan" locale={locale} width={900} />
         </div>
-        <div className="aspect-[4/5] overflow-hidden rounded-[var(--radius)] sm:mt-0">
-          <Photo image="consult" locale={locale} width={800} />
-        </div>
-        <div className="col-span-2 aspect-[16/9] overflow-hidden rounded-[var(--radius)] sm:col-span-1 sm:mt-12 sm:aspect-[4/5]">
-          <Photo image="neurofeedback" locale={locale} width={800} />
+        <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
+          <Photo image="neurofeedback" locale={locale} width={900} />
         </div>
       </div>
     </Section>
   );
 }
 
-/** Section 5b — who recommends us: video testimonials on the blue band. */
+/** Section 4b — who recommends us: video testimonials on the plum band. */
 export function HomeProof({ proof }: { proof: HomeContent["proof"] }) {
   return (
     <Section tone="dark">

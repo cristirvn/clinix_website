@@ -1,10 +1,11 @@
 @import "tailwindcss";
 
 /*
- * Design system — one direction: calm steel blue + fresh lime on warm ivory,
- * a light neo-grotesk display face, pill buttons, soft rounded panels and
- * "glass" cards on blue. Every colour / font / radius is a CSS variable;
- * components use ONLY these tokens — never raw hex.
+ * Design system — clean medical look: white pages, a deep plum for dark bands,
+ * one confident purple for actions, condensed bold headlines (Barlow Condensed)
+ * over a friendly sans (Montserrat), pill buttons and soft white cards.
+ * Every colour / font / radius is a CSS variable; components use ONLY these
+ * tokens — never raw hex.
  *
  * Audience is 40–50+: 18px base text, high contrast, big tap targets.
  */
@@ -29,61 +30,62 @@
   --color-on-dark-soft: var(--on-dark-soft);
   --color-success: var(--success);
   --color-danger: var(--danger);
-  --font-display: var(--font-inter-tight), system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-display-face), "Arial Narrow", system-ui, sans-serif;
+  --font-body: var(--font-body-face), system-ui, sans-serif;
   --radius-theme: var(--radius);
 }
 
 :root {
-  --bg: #f8f6f0;
-  --bg-alt: #eeebe3;
+  --bg: #ffffff;
+  --bg-alt: #f6f3fb;
   --surface: #ffffff;
-  --ink: #0f1b26;
-  --ink-soft: #4d5965;
-  --line: #e1ddd3;
-  --primary: #24527a;
+  --ink: #1f1930;
+  --ink-soft: #57536a;
+  --line: #e4e4ee;
+  --primary: #7b3cc8;
   --on-primary: #ffffff;
-  --accent: #24527a;
+  --accent: #7b3cc8;
   --on-accent: #ffffff;
-  --cta: #24527a;
+  --cta: #7b3cc8;
   --on-cta: #ffffff;
-  --lime: #c6e76c;
-  --on-lime: #12230b;
-  --dark: #234f74;
+  /* Second purple: buttons and highlights on plum bands. ("lime" is the legacy token name.) */
+  --lime: #8f4fe0;
+  --on-lime: #ffffff;
+  --dark: #1f1930;
   --on-dark: #ffffff;
-  --on-dark-soft: #cbd8e4;
+  --on-dark-soft: #d6cfe6;
   --success: #2c6a4c;
   --danger: #a3372e;
-  --radius: 18px;
-  /* Height the sticky pill header takes in the page flow. */
-  --header-h: 4.75rem;
+  --radius: 24px;
+  /* Height of the sticky white header bar. */
+  --header-h: 4.5rem;
   --btn-radius: 999px;
-  --display-weight: 500;
-  --display-tracking: -0.03em;
+  --display-weight: 700;
+  --display-tracking: 0;
+  --shadow-soft: 0 30px 80px rgb(18 12 48 / 0.08);
+  --shadow-card: 0 18px 45px rgb(18 12 48 / 0.08);
   color-scheme: light;
 }
 
 /*
- * On blue the accent flips to lime (eyebrows, ticks, primary buttons) and
- * lines turn translucent. White cards placed on blue get the light values back.
+ * On plum the accent turns a light lilac (eyebrows, ticks) and lines turn
+ * translucent. White cards placed on plum get the light values back.
  */
 [data-tone="dark"],
 .bg-dark,
 .bg-vital {
-  --accent: var(--lime);
-  --on-accent: var(--on-lime);
+  --accent: #c9a6f2;
+  --on-accent: #1f1930;
   --cta: var(--lime);
   --on-cta: var(--on-lime);
   --line: rgb(255 255 255 / 0.18);
-  --eyebrow-bg: rgb(255 255 255 / 0.12);
 }
 :is([data-tone="dark"], .bg-dark, .bg-vital) :is(.bg-surface, .bg-bg, .bg-bg-alt) {
   --accent: var(--primary);
   --on-accent: var(--on-primary);
   --cta: var(--primary);
   --on-cta: var(--on-primary);
-  --line: #e1ddd3;
-  --eyebrow-bg: var(--primary);
+  --line: #e4e4ee;
 }
 
 @media (min-width: 640px) {
@@ -108,7 +110,7 @@
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: var(--font-inter), system-ui, sans-serif;
+    font-family: var(--font-body);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
@@ -118,10 +120,10 @@
   h2,
   h3,
   .font-display {
-    font-family: var(--font-inter-tight), system-ui, sans-serif;
+    font-family: var(--font-display);
     font-weight: var(--display-weight);
     letter-spacing: var(--display-tracking);
-    line-height: 1.08;
+    line-height: 1.04;
     text-wrap: balance;
     /* Long words never push a phone screen sideways. */
     overflow-wrap: break-word;
@@ -133,8 +135,8 @@
   }
 
   ::selection {
-    background: var(--lime);
-    color: var(--on-lime);
+    background: var(--primary);
+    color: var(--on-primary);
   }
 
   :focus-visible {
@@ -152,28 +154,31 @@
   }
 }
 
-/* The signature blue: soft light falling from the top-left onto steel blue. */
+/* The signature plum: purple light falling from the top-right onto deep plum. */
 .bg-vital {
   background-color: var(--dark);
   background-image:
-    radial-gradient(120% 90% at 12% 0%, rgb(255 255 255 / 0.2) 0%, rgb(255 255 255 / 0) 55%),
-    radial-gradient(90% 80% at 100% 100%, rgb(10 30 50 / 0.45) 0%, rgb(10 30 50 / 0) 60%),
-    linear-gradient(160deg, #4a7397 0%, #2a5a82 42%, #1d4568 100%);
+    radial-gradient(90% 120% at 100% 0%, rgb(123 60 200 / 0.45) 0%, rgb(123 60 200 / 0) 60%),
+    radial-gradient(70% 90% at 0% 100%, rgb(162 96 229 / 0.18) 0%, rgb(162 96 229 / 0) 60%);
   color: var(--on-dark);
 }
 
-/* Frosted card on blue. */
-.glass {
-  background: rgb(255 255 255 / 0.1);
-  border: 1px solid rgb(255 255 255 / 0.22);
+/* Frosted card on plum. A utility so it accepts breakpoints (e.g. sm:glass). */
+@utility glass {
+  background: rgb(255 255 255 / 0.08);
+  border: 1px solid rgb(255 255 255 / 0.18);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
 
-/* "[ LABEL ]" pill used above headings. */
-.eyebrow-pill {
-  background: var(--eyebrow-bg, var(--primary));
-  color: var(--lime);
+/* Label above headings: small caps text followed by a short purple rule. */
+.eyebrow-rule::after {
+  content: "";
+  display: inline-block;
+  width: 2.5rem;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.45;
 }
 
 /* Phones: leave room under the sticky "Apply" bar so nothing hides behind it. */
@@ -232,4 +237,91 @@
   .animate-marquee {
     animation: none;
   }
+}
+
+/*
+ * Page-load curtain: the logo rises in, the caption fades in, a thin line
+ * fills, then the whole curtain slides up (see components/layout/SiteLoader).
+ */
+html:has(.site-loader:not(.is-done)) {
+  overflow: hidden;
+}
+.site-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  place-items: center;
+  background: var(--bg);
+  color: var(--ink);
+  transition:
+    transform 0.85s cubic-bezier(0.76, 0, 0.24, 1),
+    visibility 0s linear 0.85s;
+}
+.site-loader.is-done {
+  transform: translateY(-100%);
+  visibility: hidden;
+}
+.site-loader .loader-inner {
+  width: min(calc(100% - 48px), 620px);
+}
+.site-loader.is-done .loader-inner {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition:
+    transform 0.48s ease,
+    opacity 0.35s ease;
+}
+.loader-brand {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: loader-mark-in 0.7s 0.08s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.loader-copy {
+  opacity: 0;
+  animation: loader-fade-in 0.6s 0.42s ease forwards;
+}
+.loader-progress span {
+  transform: translateX(-100%);
+  animation: loader-progress 1.25s 0.18s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@keyframes loader-mark-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes loader-fade-in {
+  to {
+    opacity: 1;
+  }
+}
+@keyframes loader-progress {
+  to {
+    transform: none;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .loader-brand,
+  .loader-copy,
+  .loader-progress span {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+  .site-loader,
+  .site-loader.is-done .loader-inner {
+    transition: none;
+  }
+}
+
+/* Cookie banner slides up from the bottom edge. */
+@keyframes cookie-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+.animate-cookie-in {
+  animation: cookie-in 0.5s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
 }

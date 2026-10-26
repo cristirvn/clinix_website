@@ -1,11 +1,16 @@
-import Script from "next/script";
+"use client";
 
-/** GA4 + Microsoft Clarity, only when their IDs are set. */
+import Script from "next/script";
+import { useConsent } from "@/lib/consent";
+
+/** GA4 + Microsoft Clarity, only when their IDs are set AND the visitor accepted analytics cookies. */
 export function Analytics() {
+  const consent = useConsent();
   const ga = process.env.NEXT_PUBLIC_GA_ID;
   const ads = process.env.NEXT_PUBLIC_GADS_ID;
   const tag = ga || ads;
   const clarity = process.env.NEXT_PUBLIC_CLARITY_ID;
+  if (consent !== "all") return null;
   return (
     <>
       {tag && (

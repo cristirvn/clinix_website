@@ -40,7 +40,7 @@ export default async function LpEmsellaPage({ params }: Props) {
       {/* HERO */}
       <HeroPanel>
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-[2.6rem] font-normal leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
+            <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
               {c.hero.titleLead} <em className="not-italic text-accent">{c.hero.titleEm}</em>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{c.hero.sub}</p>

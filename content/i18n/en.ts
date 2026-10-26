@@ -62,6 +62,19 @@ export const en: Dictionary = {
     error: "We couldn't send the form. Please try again or call us on",
     privacyNote: "Your details are confidential. No spam, ever.",
   },
+  loader: {
+    left: "Applied neuroscience",
+    right: "Bucharest · Romania",
+  },
+  cookies: {
+    title: "We use cookies",
+    text: "Essential cookies keep the site working. With your consent, we also use analytics cookies to see which pages are useful and to improve the site.",
+    accept: "Accept all",
+    essential: "Essential only",
+    policy: "Privacy policy",
+    settings: "Cookie settings",
+    label: "Cookie consent",
+  },
   design: {
     title: "Choose the design",
     hint: "Owner preview — removed at launch.",

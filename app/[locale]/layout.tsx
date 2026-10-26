@@ -1,15 +1,22 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Inter, Inter_Tight } from "next/font/google";
+import { Barlow_Condensed, Montserrat } from "next/font/google";
 import "../globals.css";
 import { LOCALES, SITE_URLS, isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionary";
 import { LocaleProvider } from "@/components/layout/LocaleProvider";
 import { Analytics } from "@/components/layout/Analytics";
+import { SiteLoader } from "@/components/layout/SiteLoader";
+import { CookieConsent } from "@/components/layout/CookieConsent";
 
 // All fonts carry latin-ext for the Romanian diacritics (ă â î ș ț).
-const inter = Inter({ variable: "--font-inter", subsets: ["latin", "latin-ext"], display: "swap" });
-const interTight = Inter_Tight({ variable: "--font-inter-tight", subsets: ["latin", "latin-ext"], display: "swap" });
+const body = Montserrat({ variable: "--font-body-face", subsets: ["latin", "latin-ext"], display: "swap" });
+const display = Barlow_Condensed({
+  variable: "--font-display-face",
+  weight: ["500", "600", "700"],
+  subsets: ["latin", "latin-ext"],
+  display: "swap",
+});
 
 export const dynamicParams = false;
 
@@ -46,19 +53,21 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${inter.variable} ${interTight.variable}`}
+      className={`${body.variable} ${display.variable}`}
     >
       <body className="flex min-h-screen flex-col">
         <noscript>
-          <style>{`.reveal{opacity:1!important;transform:none!important}`}</style>
+          <style>{`.reveal{opacity:1!important;transform:none!important}.site-loader{display:none!important}`}</style>
         </noscript>
         <LocaleProvider locale={locale} dict={dict}>
+          <SiteLoader />
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-surface focus:p-3">
             {dict.skipToContent}
           </a>
           {children}
+          <CookieConsent />
+          <Analytics />
         </LocaleProvider>
-        <Analytics />
       </body>
     </html>
   );

@@ -26,9 +26,12 @@ export function LogoMark({ size = 40, className = "" }: { size?: number; classNa
 export function Logo({
   tagline = true,
   className = "",
+  taglineClassName = "sm:block",
 }: {
   tagline?: boolean;
   className?: string;
+  /** Breakpoints at which the tagline shows (hidden on phones by default). */
+  taglineClassName?: string;
 }) {
   return (
     <span className={`inline-flex items-center gap-2.5 sm:gap-3 ${className}`}>
@@ -39,7 +42,7 @@ export function Logo({
           <span className="block sm:inline">Emmanuel</span> <span className="block sm:inline">CliniX</span>
         </span>
         {tagline && (
-          <span className="mt-1.5 hidden whitespace-nowrap text-[0.62rem] font-medium uppercase tracking-[0.28em] opacity-70 sm:block">
+          <span className={`mt-1.5 hidden whitespace-nowrap text-[0.62rem] font-medium uppercase tracking-[0.28em] opacity-70 ${taglineClassName}`}>
             Longevity · Wellness · Neuro
           </span>
         )}

@@ -19,7 +19,7 @@ export function HeaderApply() {
   if (!show) return null;
   return (
     <span className="hidden sm:block">
-      <a href="#aplica" className={buttonClass("cta", "md", "!min-h-11 !bg-lime !px-6 !py-2.5 text-[0.95rem] !text-on-lime")}>
+      <a href="#aplica" className={buttonClass("cta", "md", "!min-h-11 !px-6 !py-2.5 text-[0.95rem]")}>
         {locale === "en" ? "Apply now" : "Aplică acum"}
       </a>
     </span>
