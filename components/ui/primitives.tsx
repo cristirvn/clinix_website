@@ -4,8 +4,8 @@ import { L } from "@/components/ui/L";
 /**
  * Layout + typography building blocks. Every page is built from these so the
  * design stays consistent. Use theme tokens only (bg-bg, text-ink, bg-dark,
- * text-accent, …) — never raw colours. Inside `tone="dark"` the accent turns lilac
- * and the main button a lighter purple automatically (see app/globals.css).
+ * text-accent, …) — never raw colours. Inside `tone="dark"` the accent turns a
+ * light bronze and the main button stays bronze (see app/globals.css).
  */
 
 export function Container({ children, className = "", narrow = false }: { children: ReactNode; className?: string; narrow?: boolean }) {
@@ -43,8 +43,8 @@ export function Section({
 }
 
 /**
- * Page-top plum band right under the white header: full width, purple light
- * from the top-right. Text inside is light; buttons turn purple.
+ * Page-top petrol band right under the white header: full width, faint warm
+ * light from the top-right. Text inside is light.
  */
 export function HeroPanel({
   children,
@@ -103,9 +103,9 @@ type ButtonVariant = "cta" | "outline" | "light" | "ghost";
 const BTN_BASE =
   "inline-flex items-center justify-center gap-2 text-center font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
 const BTN_VARIANTS: Record<ButtonVariant, string> = {
-  cta: "bg-cta text-on-cta shadow-[0_15px_30px_-12px_rgb(123_60_200_/_0.45)] hover:-translate-y-0.5 hover:brightness-110",
+  cta: "bg-cta text-on-cta shadow-[0_12px_26px_-14px_rgb(18_38_39_/_0.5)] hover:-translate-y-0.5 hover:brightness-110",
   outline: "border border-current/35 hover:border-current hover:bg-current/5",
-  light: "bg-lime text-on-lime shadow-[0_15px_30px_-12px_rgb(162_96_229_/_0.45)] hover:-translate-y-0.5 hover:brightness-110",
+  light: "bg-lime text-on-lime shadow-[0_12px_26px_-14px_rgb(0_0_0_/_0.5)] hover:-translate-y-0.5 hover:brightness-110",
   ghost: "underline decoration-1 underline-offset-[6px] hover:opacity-70",
 };
 const BTN_SIZES = {

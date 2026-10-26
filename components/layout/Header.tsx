@@ -30,7 +30,7 @@ export function Header() {
     // Solid white bar with a hairline under it; gains a soft shadow once the page scrolls.
     <header
       className={`sticky top-0 z-50 h-[var(--header-h)] border-b border-line bg-surface/95 text-ink backdrop-blur-xl transition-shadow ${
-        scrolled ? "shadow-[0_12px_30px_-18px_rgb(18_12_48_/_0.25)]" : ""
+        scrolled ? "shadow-[0_12px_30px_-18px_rgb(18_38_39_/_0.22)]" : ""
       }`}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-3 px-5 sm:gap-6 sm:px-8">

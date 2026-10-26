@@ -4,7 +4,7 @@ import type { HomeContent } from "@/content/pages/home";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Section 1 — full-width plum band over a clinic photo, centred: one promise,
+ * Section 1 — full-width petrol band over a clinic photo, centred: one promise,
  * the main button (BrainMap) + the quick-diagnostic button. The four facts sit
  * below as white cards that overlap the band's bottom edge.
  */
