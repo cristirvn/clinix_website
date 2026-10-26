@@ -17,7 +17,8 @@ const ERROR_SENTINEL = "\u0000ERROR";
 type Msg = { role: "user" | "assistant"; content: string };
 
 /**
- * Floating AI assistant (bottom-right). Streams answers from /api/chat. When
+ * Floating AI assistant (bottom-right) — the site's ONE floating button; call
+ * and WhatsApp sit at the top of its panel. Streams answers from /api/chat. When
  * the assistant decides the visitor wants a call-back it writes a marker, and
  * this widget shows a short lead form (name, phone, consent) that goes to
  * GoHighLevel like every other form.
@@ -138,6 +139,15 @@ export function ChatAssistant() {
               ✕
             </button>
           </header>
+
+          <div className="grid grid-cols-2 gap-2 border-b border-line bg-surface p-3">
+            <a href={CLINIC.phoneHref} className={buttonClass("outline", "md", "!min-h-11 !px-3 text-primary")}>
+              {dict.common.callUs}
+            </a>
+            <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" className={buttonClass("outline", "md", "!min-h-11 !px-3 text-primary")}>
+              WhatsApp
+            </a>
+          </div>
 
           <div ref={scrollRef} className="flex-1 space-y-4 overflow-y-auto bg-bg-alt px-4 py-5" aria-live="polite">
             <Bubble role="assistant">{t.greeting}</Bubble>

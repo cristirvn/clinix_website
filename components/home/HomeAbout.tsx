@@ -30,14 +30,6 @@ export function HomeAbout({ about, locale }: { about: HomeContent["about"]; loca
         </div>
       </div>
 
-      <div className="mt-6 grid grid-cols-2 gap-4 sm:mt-8 sm:gap-6">
-        <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
-          <Photo image="scan" locale={locale} width={900} />
-        </div>
-        <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius)]">
-          <Photo image="neurofeedback" locale={locale} width={900} />
-        </div>
-      </div>
     </Section>
   );
 }

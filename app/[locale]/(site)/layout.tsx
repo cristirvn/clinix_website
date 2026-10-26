@@ -1,6 +1,5 @@
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { WhatsAppFloat } from "@/components/layout/WhatsAppFloat";
 import { ChatAssistant } from "@/components/chat/ChatAssistant";
 import type { Locale } from "@/lib/i18n";
 
@@ -14,7 +13,6 @@ export default async function SiteLayout({ children, params }: { children: React
         {children}
       </main>
       <Footer locale={locale} />
-      <WhatsAppFloat />
       <ChatAssistant />
     </>
   );

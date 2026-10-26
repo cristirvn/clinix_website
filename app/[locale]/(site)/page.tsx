@@ -42,7 +42,7 @@ export default async function HomePage({ params }: Props) {
       {/* 3 · FAQ. */}
       <Section tone="alt" id="faq" narrow>
         <SectionHead center eyebrow={c.faq.eyebrow} title={c.faq.title} />
-        <Faq items={c.faq.items} openFirst />
+        <Faq items={c.faq.items} />
       </Section>
 
       {/* 4 · Who we are & who recommends us. */}

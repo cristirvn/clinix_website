@@ -10,24 +10,17 @@ import type { Locale } from "@/lib/i18n";
 export function TriageOptions({ locale }: { locale: Locale }) {
   const triage = getTriage(locale);
   return (
-    <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-      {triage.options.map((option, i) => (
+    // One calm list: phones get stacked rows with hairlines, wider screens a 2–3 column grid of slim rows.
+    <ul className="divide-y divide-line overflow-hidden rounded-[var(--radius)] border border-line bg-surface shadow-[var(--shadow-card)] sm:grid sm:grid-cols-2 sm:gap-3 sm:divide-y-0 sm:overflow-visible sm:border-0 sm:bg-transparent sm:shadow-none lg:grid-cols-3">
+      {triage.options.map((option) => (
         <li key={option.slug}>
           <L
             href={`/chestionare/${option.slug}`}
-            className="group flex h-full flex-col justify-between gap-5 rounded-[var(--radius)] border-t-4 border-primary bg-surface p-6 text-left text-ink shadow-[var(--shadow-card)] ring-1 ring-line transition duration-300 hover:-translate-y-1 hover:ring-primary sm:min-h-[10rem] sm:p-7"
+            className="group flex h-full items-center justify-between gap-4 px-5 py-4 text-ink transition hover:bg-bg-alt sm:rounded-[calc(var(--radius)/1.5)] sm:border sm:border-line sm:bg-surface sm:px-5 sm:py-4 sm:hover:border-primary sm:hover:bg-surface"
           >
-            <span className="font-display text-2xl font-bold leading-none text-primary">{String(i + 1).padStart(2, "0")}</span>
-            <span className="flex items-end justify-between gap-4">
-              <span className="text-lg font-semibold leading-snug sm:text-xl">{option.label}</span>
-              <span
-                aria-hidden="true"
-                className="flex h-11 w-11 flex-none items-center justify-center rounded-full border border-primary/35 text-primary transition duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary"
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                  <path d="M3 11 11 3M4.5 3H11v6.5" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
-                </svg>
-              </span>
+            <span className="text-[1.05rem] font-semibold leading-snug">{option.label}</span>
+            <span aria-hidden="true" className="flex-none text-xl text-primary transition group-hover:translate-x-0.5">
+              →
             </span>
           </L>
         </li>
