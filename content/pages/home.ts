@@ -11,8 +11,10 @@ export interface HomeContent {
     title: string;
     lead: string;
     cta: string;
-    secondary: string;
     facts: string[];
+    /** Soft second step lower in the hero: a question + a link to the quick test. */
+    testPrompt: string;
+    testCta: string;
   };
   /** Words scrolling under the hero. */
   marquee: string[];

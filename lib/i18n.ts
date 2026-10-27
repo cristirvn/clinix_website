@@ -33,6 +33,7 @@ const RO_TO_EN: Record<string, string> = {
   echipa: "team",
   "intrebari-frecvente": "faq",
   contact: "contact",
+  articole: "articles",
   "politica-de-confidentialitate": "privacy-policy",
   "termeni-si-conditii": "terms",
   multumim: "thank-you",

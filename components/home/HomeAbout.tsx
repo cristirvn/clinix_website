@@ -34,7 +34,7 @@ export function HomeAbout({ about, locale }: { about: HomeContent["about"]; loca
   );
 }
 
-/** Section 4b — who recommends us: video testimonials on the petrol band. */
+/** Section 4b — who recommends us: video testimonials on the navy band. */
 export function HomeProof({ proof }: { proof: HomeContent["proof"] }) {
   return (
     <Section tone="dark">

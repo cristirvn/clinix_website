@@ -4,8 +4,10 @@ import { TriageOptions } from "@/components/quiz/TriageOptions";
 import { HomeHero } from "@/components/home/HomeHero";
 import { HomeAbout, HomeProof } from "@/components/home/HomeAbout";
 import { FinalCta } from "@/components/home/FinalCta";
+import { JsonLd } from "@/components/seo/JsonLd";
 import { getHome } from "@/content/pages/home";
 import { alternatesFor, type Locale } from "@/lib/i18n";
+import { clinicSchema, faqSchema, websiteSchema } from "@/lib/structured-data";
 
 type Props = { params: Promise<{ locale: string }> };
 
@@ -25,13 +27,16 @@ export default async function HomePage({ params }: Props) {
 
   return (
     <>
+      {/* Structured data: who the clinic is + the FAQ (read by Google and AI assistants). */}
+      <JsonLd data={[clinicSchema(locale), websiteSchema(locale), faqSchema(c.faq.items)]} />
+
       {/* 1 · Hero — one promise, one action (→ /brainmap). */}
       <HomeHero hero={c.hero} locale={locale} />
 
-      {/* 2 · Free tests — ONE list: each answer opens the matching test (the full hub is one link away). */}
+      {/* 2 · Free tests — the three most common answers, each opens its test; the full hub is one link away. */}
       <Section id="diagnostic" className="!pt-16 sm:!pt-24">
         <SectionHead center eyebrow={c.triage.eyebrow} title={c.triage.title} lead={c.triage.lead} />
-        <TriageOptions locale={locale} />
+        <TriageOptions locale={locale} limit={3} />
         <div className="mt-12 text-center">
           <ButtonLink href="/chestionare" variant="outline" size="lg" className="w-full sm:w-auto">
             {c.tests.all}

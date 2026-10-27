@@ -6,5 +6,12 @@ export const CLINIC = {
   whatsappHref: "https://wa.me/40790099070",
   email: "contact@emmanuelclinix.ro",
   address: "Str. Pictor Alexandru Romano nr. 26, 030167 București",
+  /** The same address split up, for structured data (schema.org PostalAddress). */
+  postalAddress: {
+    streetAddress: "Str. Pictor Alexandru Romano nr. 26",
+    postalCode: "030167",
+    addressLocality: "București",
+    addressCountry: "RO",
+  },
   mapsHref: "https://maps.google.com/?q=Str.+Pictor+Alexandru+Romano+26,+Bucuresti",
 } as const;

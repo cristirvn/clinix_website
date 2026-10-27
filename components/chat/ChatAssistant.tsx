@@ -103,7 +103,7 @@ export function ChatAssistant() {
           type="button"
           onClick={() => setOpen(true)}
           aria-label={t.open}
-          className="fixed bottom-4 right-4 z-[56] flex h-14 items-center gap-2.5 rounded-full bg-primary pl-4 pr-4 text-on-primary shadow-[0_14px_30px_-12px_rgb(18_38_39_/_0.6)] transition hover:-translate-y-0.5 sm:pr-6 print:hidden"
+          className="fixed bottom-4 right-4 z-[56] flex h-14 items-center gap-2.5 rounded-full bg-primary pl-4 pr-4 text-on-primary shadow-[0_14px_30px_-12px_rgb(11_27_51_/_0.6)] transition hover:-translate-y-0.5 sm:pr-6 print:hidden"
         >
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path
