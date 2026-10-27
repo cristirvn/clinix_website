@@ -10,9 +10,10 @@ export const HOME_EN: HomeContent = {
     eyebrow: "Longevity. Wellness. Neuro.",
     title: "See what's really happening in your brain.",
     lead: "BrainMap reads your brain's electrical activity in 30 minutes. We explain the map in plain words, in the same visit. Then you decide.",
-    cta: "Show me what's happening in my brain",
-    secondary: "Quick self-check · 2 minutes →",
+    cta: "Book BrainMap",
     facts: ["30-minute scan", "No radiation, no needles", "Explained in the same visit", "No GP referral needed"],
+    testPrompt: "Not sure where to start?",
+    testCta: "Take the test →",
   },
   marquee: ["BrainMap", "Neurofeedback", "Sleep", "Stress", "Anxiety", "Focus", "Mood", "EmSella"],
   triage: {
@@ -24,7 +25,7 @@ export const HOME_EN: HomeContent = {
     eyebrow: "Free tests",
     title: "Find out where you really stand.",
     lead: "Choose the test that fits you best. At the end you get a score from 1 to 10 and the specific risks your answers point to.",
-    all: "See all free tests →",
+    all: "See all tests →",
   },
   faq: {
     eyebrow: "Questions",

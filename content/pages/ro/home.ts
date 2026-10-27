@@ -10,14 +10,15 @@ export const HOME_RO: HomeContent = {
     eyebrow: "Longevity. Wellness. Neuro.",
     title: "Vezi ce se întâmplă, de fapt, în creierul tău.",
     lead: "BrainMap citește activitatea electrică a creierului tău în 30 de minute. Îți explicăm harta pe înțelesul tău, în aceeași vizită. Apoi decizi.",
-    cta: "Vreau să văd ce se întâmplă în creierul meu",
-    secondary: "Diagnosticare rapidă · 2 minute →",
+    cta: "Programează BrainMap",
     facts: [
       "30 de minute scanarea",
       "Fără radiații, fără ace",
       "Interpretare în aceeași vizită",
       "Fără trimitere de la medicul de familie",
     ],
+    testPrompt: "Nu ești sigur de unde să începi?",
+    testCta: "Fă testul →",
   },
   marquee: ["BrainMap", "Neurofeedback", "Somn", "Stres", "Anxietate", "Concentrare", "Dispoziție", "EmSella"],
   triage: {
@@ -29,7 +30,7 @@ export const HOME_RO: HomeContent = {
     eyebrow: "Teste gratuite",
     title: "Află unde stai, de fapt.",
     lead: "Alege testul care te descrie cel mai bine. La final primești o notă de la 1 la 10 și riscurile concrete pe care le indică răspunsurile tale.",
-    all: "Vezi toate testele gratuite →",
+    all: "Vezi toate testele →",
   },
   faq: {
     eyebrow: "Întrebări",

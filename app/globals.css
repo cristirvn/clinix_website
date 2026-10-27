@@ -1,8 +1,9 @@
 @import "tailwindcss";
 
 /*
- * Design system — calm, mature clinic look: white pages, deep petrol for dark
- * bands and structure, a matte bronze for the one main action, condensed bold
+ * Design system — calm, mature clinic look (palette from the client's reference
+ * site): white pages, deep navy for dark bands and text, one clear blue for the
+ * main action and links, pale blue panels, condensed bold
  * headlines (Barlow Condensed) over a friendly sans (Montserrat), pill buttons
  * and soft white cards. No gloss, no saturated colour.
  * Every colour / font / radius is a CSS variable; components use ONLY these
@@ -38,24 +39,24 @@
 
 :root {
   --bg: #ffffff;
-  --bg-alt: #f0f3f2;
+  --bg-alt: #edf3fb;
   --surface: #ffffff;
-  --ink: #1a2a2b;
-  --ink-soft: #56625f;
-  --line: #dfe5e3;
-  --primary: #2e5859;
+  --ink: #0b1b33;
+  --ink-soft: #4a5a70;
+  --line: #e0e7f0;
+  --primary: #1d5fd1;
   --on-primary: #ffffff;
-  --accent: #2e5859;
+  --accent: #1d5fd1;
   --on-accent: #ffffff;
-  --cta: #8a6a43;
+  --cta: #1d5fd1;
   --on-cta: #ffffff;
-  /* Bronze: the main button everywhere and the logo dot. ("lime" is the legacy token name.) */
-  --lime: #8a6a43;
+  /* Blue: the main button everywhere and the logo dot. ("lime" is the legacy token name.) */
+  --lime: #1d5fd1;
   --on-lime: #ffffff;
-  --dark: #172627;
+  --dark: #0b1b33;
   --on-dark: #ffffff;
-  --on-dark-soft: #cfd9d6;
-  --success: #2c6a4c;
+  --on-dark-soft: #c5d3e5;
+  --success: #0f7a40;
   --danger: #a3372e;
   --radius: 24px;
   /* Height of the sticky white header bar. */
@@ -63,20 +64,20 @@
   --btn-radius: 999px;
   --display-weight: 700;
   --display-tracking: 0;
-  --shadow-soft: 0 30px 80px rgb(18 38 39 / 0.08);
-  --shadow-card: 0 18px 45px rgb(18 38 39 / 0.07);
+  --shadow-soft: 0 30px 80px rgb(11 27 51 / 0.08);
+  --shadow-card: 0 18px 45px rgb(11 27 51 / 0.07);
   color-scheme: light;
 }
 
 /*
- * On petrol the accent turns a light bronze (eyebrows, ticks) and lines turn
- * translucent. White cards placed on petrol get the light values back.
+ * On navy the accent turns a light blue (eyebrows, ticks) and lines turn
+ * translucent. White cards placed on navy get the light values back.
  */
 [data-tone="dark"],
 .bg-dark,
 .bg-vital {
-  --accent: #d3b88f;
-  --on-accent: #172627;
+  --accent: #a9c8f5;
+  --on-accent: #0b1b33;
   --cta: var(--lime);
   --on-cta: var(--on-lime);
   --line: rgb(255 255 255 / 0.18);
@@ -86,7 +87,7 @@
   --on-accent: var(--on-primary);
   --cta: var(--primary);
   --on-cta: var(--on-primary);
-  --line: #dfe5e3;
+  --line: #e0e7f0;
 }
 
 @media (min-width: 640px) {
@@ -155,16 +156,16 @@
   }
 }
 
-/* The signature petrol: a faint warm bronze light from the top-right on deep petrol. Matte, no shine. */
+/* The signature navy: a faint blue light from the top-right on deep navy. Matte, no shine. */
 .bg-vital {
   background-color: var(--dark);
   background-image:
-    radial-gradient(90% 120% at 100% 0%, rgb(168 132 88 / 0.22) 0%, rgb(168 132 88 / 0) 60%),
-    radial-gradient(70% 90% at 0% 100%, rgb(46 88 89 / 0.45) 0%, rgb(46 88 89 / 0) 60%);
+    radial-gradient(90% 120% at 100% 0%, rgb(29 95 209 / 0.28) 0%, rgb(29 95 209 / 0) 60%),
+    radial-gradient(70% 90% at 0% 100%, rgb(30 58 95 / 0.55) 0%, rgb(30 58 95 / 0) 60%);
   color: var(--on-dark);
 }
 
-/* Frosted card on petrol. A utility so it accepts breakpoints (e.g. sm:glass). */
+/* Frosted card on navy. A utility so it accepts breakpoints (e.g. sm:glass). */
 @utility glass {
   background: rgb(255 255 255 / 0.08);
   border: 1px solid rgb(255 255 255 / 0.18);

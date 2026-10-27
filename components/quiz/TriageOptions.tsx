@@ -5,14 +5,15 @@ import type { Locale } from "@/lib/i18n";
 /**
  * The short diagnostic: "Cu ce te confrunți cel mai des?" — nine answers, each
  * one opens the matching test (which then leads to the matching LP).
- * Used on the home page (section 2) and on /evaluare.
+ * Used on the home page (section 2, first `limit` answers only) and on /evaluare (all).
  */
-export function TriageOptions({ locale }: { locale: Locale }) {
+export function TriageOptions({ locale, limit }: { locale: Locale; limit?: number }) {
   const triage = getTriage(locale);
+  const options = limit ? triage.options.slice(0, limit) : triage.options;
   return (
     // One calm list: phones get stacked rows with hairlines, wider screens a 2–3 column grid of slim rows.
     <ul className="divide-y divide-line overflow-hidden rounded-[var(--radius)] border border-line bg-surface shadow-[var(--shadow-card)] sm:grid sm:grid-cols-2 sm:gap-3 sm:divide-y-0 sm:overflow-visible sm:border-0 sm:bg-transparent sm:shadow-none lg:grid-cols-3">
-      {triage.options.map((option) => (
+      {options.map((option) => (
         <li key={option.slug}>
           <L
             href={`/chestionare/${option.slug}`}
