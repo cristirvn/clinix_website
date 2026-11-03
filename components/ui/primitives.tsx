@@ -64,12 +64,16 @@ export function HeroPanel({
   );
 }
 
-/** Small caps label above a heading, followed by a short rule. */
-export function Eyebrow({ children, className = "" }: { children: ReactNode; className?: string }) {
+/**
+ * Small caps label above a heading, followed by a short hairline. An optional
+ * `index` ("01") gives long pages a quiet editorial rhythm.
+ */
+export function Eyebrow({ children, className = "", index }: { children: ReactNode; className?: string; index?: string }) {
   return (
     <p
-      className={`eyebrow-rule mb-5 inline-flex items-center gap-3 text-[0.8rem] font-semibold uppercase tracking-[0.16em] text-accent ${className}`}
+      className={`eyebrow-rule mb-5 inline-flex items-center gap-3 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent ${className}`}
     >
+      {index && <span className="font-display text-[0.95rem] font-medium normal-case tracking-normal tabular-nums">{index}</span>}
       {children}
     </p>
   );
@@ -82,18 +86,20 @@ export function SectionHead({
   lead,
   center = false,
   className = "",
+  index,
 }: {
   eyebrow?: ReactNode;
   title: ReactNode;
   lead?: ReactNode;
   center?: boolean;
   className?: string;
+  index?: string;
 }) {
   return (
     <div className={`mb-12 max-w-3xl sm:mb-16 ${center ? "mx-auto text-center" : ""} ${className}`}>
-      {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
-      <h2 className="text-[2.5rem] sm:text-6xl lg:text-[4rem]">{title}</h2>
-      {lead && <p className={`mt-6 max-w-2xl text-lg opacity-80 sm:text-xl ${center ? "mx-auto" : ""}`}>{lead}</p>}
+      {eyebrow && <Eyebrow index={index}>{eyebrow}</Eyebrow>}
+      <h2 className="text-[2.4rem] leading-[1.05] sm:text-[3.4rem] lg:text-[4rem]">{title}</h2>
+      {lead && <p className={`mt-6 max-w-2xl text-lg opacity-85 sm:text-xl ${center ? "mx-auto" : ""}`}>{lead}</p>}
     </div>
   );
 }
@@ -101,12 +107,12 @@ export function SectionHead({
 type ButtonVariant = "cta" | "outline" | "light" | "ghost";
 
 const BTN_BASE =
-  "inline-flex items-center justify-center gap-2 text-center font-semibold transition duration-200 disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2.5 text-center font-semibold leading-tight transition duration-300 ease-[var(--ease-out)] disabled:cursor-not-allowed disabled:opacity-60";
 const BTN_VARIANTS: Record<ButtonVariant, string> = {
-  cta: "bg-cta text-on-cta shadow-[0_12px_26px_-14px_rgb(18_38_39_/_0.5)] hover:-translate-y-0.5 hover:brightness-110",
-  outline: "border border-current/35 hover:border-current hover:bg-current/5",
-  light: "bg-lime text-on-lime shadow-[0_12px_26px_-14px_rgb(0_0_0_/_0.5)] hover:-translate-y-0.5 hover:brightness-110",
-  ghost: "underline decoration-1 underline-offset-[6px] hover:opacity-70",
+  cta: "bg-cta text-on-cta shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18),0_14px_30px_-16px_rgb(19_41_43_/_0.55)] hover:-translate-y-0.5 hover:brightness-110",
+  outline: "border border-current/30 hover:border-current hover:bg-current/5",
+  light: "bg-lime text-on-lime shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18),0_14px_30px_-16px_rgb(0_0_0_/_0.55)] hover:-translate-y-0.5 hover:brightness-110",
+  ghost: "min-h-11 py-2 underline decoration-1 underline-offset-[6px] hover:opacity-70",
 };
 const BTN_SIZES = {
   md: "min-h-12 px-7 py-3 text-base",
@@ -138,17 +144,30 @@ export function ButtonLink({
   );
 }
 
+/** Tick (or cross) drawn as a fine line, so it looks the same in every font. */
+export function TickIcon({ negative = false, className = "" }: { negative?: boolean; className?: string }) {
+  return (
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true" className={className}>
+      {negative ? (
+        <path d="M3 3l6 6M9 3l-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+      ) : (
+        <path d="M2.2 6.4 4.8 9 9.8 3.4" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+      )}
+    </svg>
+  );
+}
+
 /** ✓ list row. */
 export function CheckItem({ children, negative = false }: { children: ReactNode; negative?: boolean }) {
   return (
-    <li className="flex gap-3">
+    <li className="flex gap-3.5">
       <span
         aria-hidden="true"
-        className={`mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full text-xs font-bold ${
+        className={`mt-[0.3rem] flex h-6 w-6 flex-none items-center justify-center rounded-full ${
           negative ? "bg-danger/12 text-danger" : "bg-accent text-on-accent"
         }`}
       >
-        {negative ? "✕" : "✓"}
+        <TickIcon negative={negative} />
       </span>
       <span>{children}</span>
     </li>
@@ -169,7 +188,7 @@ export function Faq({
     <div className={`divide-y divide-line border-b border-line ${className}`}>
       {items.map((item, i) => (
         <details key={item.q} className="group py-2" open={openFirst && i === 0}>
-          <summary className="flex items-center justify-between gap-6 py-5 text-lg font-medium sm:text-xl">
+          <summary className="flex items-center justify-between gap-6 py-5 text-lg font-semibold sm:text-xl">
             <span>{item.q}</span>
             <span
               aria-hidden="true"

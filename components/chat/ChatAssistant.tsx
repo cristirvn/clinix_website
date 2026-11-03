@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "rea
 import { L } from "@/components/ui/L";
 import { buttonClass } from "@/components/ui/primitives";
 import { LogoMark } from "@/components/layout/Logo";
+import { ChatIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { useLocale } from "@/components/layout/LocaleProvider";
 import { ConsentCheckbox, Honeypot, SubmitError, TextField } from "@/components/forms/fields";
 import { submitLead } from "@/lib/lead";
@@ -17,8 +18,8 @@ const ERROR_SENTINEL = "\u0000ERROR";
 type Msg = { role: "user" | "assistant"; content: string };
 
 /**
- * Floating AI assistant (bottom-right) — the site's ONE floating button; call
- * and WhatsApp sit at the top of its panel. Streams answers from /api/chat. When
+ * Floating AI assistant (bottom-right), with a small WhatsApp button above
+ * its launcher; call and WhatsApp also sit at the top of its panel. Streams answers from /api/chat. When
  * the assistant decides the visitor wants a call-back it writes a marker, and
  * this widget shows a short lead form (name, phone, consent) that goes to
  * GoHighLevel like every other form.
@@ -99,23 +100,31 @@ export function ChatAssistant() {
   return (
     <>
       {!open && (
-        <button
-          type="button"
-          onClick={() => setOpen(true)}
-          aria-label={t.open}
-          className="fixed bottom-4 right-4 z-[56] flex h-14 items-center gap-2.5 rounded-full bg-primary pl-4 pr-4 text-on-primary shadow-[0_14px_30px_-12px_rgb(18_38_39_/_0.6)] transition hover:-translate-y-0.5 sm:pr-6 print:hidden"
-        >
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path
-              d="M4 5.5A2.5 2.5 0 0 1 6.5 3h11A2.5 2.5 0 0 1 20 5.5v8a2.5 2.5 0 0 1-2.5 2.5H10l-4.5 4v-4h0A1.5 1.5 0 0 1 4 14.5v-9Z"
-              stroke="currentColor"
-              strokeWidth="1.7"
-              strokeLinejoin="round"
-            />
-            <path d="M8.5 9.5h7M8.5 12.5h4.5" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" />
-          </svg>
-          <span className="hidden font-semibold sm:inline">{t.launcher}</span>
-        </button>
+        // Two quiet floating actions, bottom-right: WhatsApp (small, round) above the assistant (labelled pill).
+        <div className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[56] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6 print:hidden">
+          <a
+            href={CLINIC.whatsappHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={dict.common.whatsapp}
+            title={dict.common.whatsapp}
+            className="flex h-13 w-13 items-center justify-center rounded-full bg-surface text-success shadow-[0_14px_30px_-14px_rgb(19_41_43_/_0.55)] ring-1 ring-line transition duration-300 hover:-translate-y-0.5"
+          >
+            <WhatsAppIcon size={26} />
+          </a>
+          <button
+            type="button"
+            onClick={() => setOpen(true)}
+            aria-label={t.open}
+            className="group flex h-14 items-center gap-2.5 rounded-full bg-primary px-4 text-on-primary shadow-[0_16px_34px_-14px_rgb(19_41_43_/_0.7)] ring-1 ring-on-primary/10 transition duration-300 hover:-translate-y-0.5 sm:pr-6"
+          >
+            <span className="relative flex h-8 w-8 items-center justify-center">
+              <ChatIcon size={24} />
+              <span aria-hidden="true" className="absolute right-0.5 top-0.5 h-2 w-2 rounded-full bg-lime ring-2 ring-primary" />
+            </span>
+            <span className="hidden font-semibold sm:inline">{t.launcher}</span>
+          </button>
+        </div>
       )}
 
       {open && (
@@ -219,7 +228,7 @@ export function ChatAssistant() {
                 </svg>
               </button>
             </div>
-            <p className="mt-2 px-1 text-xs text-ink-soft">{t.disclaimer}</p>
+            <p className="mt-2 px-1 text-sm text-ink-soft">{t.disclaimer}</p>
           </form>
         </section>
       )}

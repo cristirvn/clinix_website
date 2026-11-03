@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Barlow_Condensed, Montserrat } from "next/font/google";
+import { Instrument_Sans, Newsreader } from "next/font/google";
 import "../globals.css";
 import { LOCALES, SITE_URLS, isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionary";
@@ -8,13 +8,17 @@ import { LocaleProvider } from "@/components/layout/LocaleProvider";
 import { Analytics } from "@/components/layout/Analytics";
 import { SiteLoader } from "@/components/layout/SiteLoader";
 import { CookieConsent } from "@/components/layout/CookieConsent";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { siteGraph } from "@/components/seo/schema";
 
 // All fonts carry latin-ext for the Romanian diacritics (ă â î ș ț).
-const body = Montserrat({ variable: "--font-body-face", subsets: ["latin", "latin-ext"], display: "swap" });
-const display = Barlow_Condensed({
+// Body: a clear, open grotesque. Headlines: an editorial serif with optical sizes (+ italic for the accent word).
+const body = Instrument_Sans({ variable: "--font-body-face", subsets: ["latin", "latin-ext"], display: "swap" });
+const display = Newsreader({
   variable: "--font-display-face",
-  weight: ["500", "600", "700"],
   subsets: ["latin", "latin-ext"],
+  style: ["normal", "italic"],
+  axes: ["opsz"],
   display: "swap",
 });
 
@@ -34,6 +38,21 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       ? "Applied neuroscience clinic in Bucharest. See what is really happening in your brain with BrainMap — then decide."
       : "Clinică de neuroștiință aplicată în București. Vezi ce se întâmplă, de fapt, în creierul tău cu BrainMap — apoi decizi.",
     openGraph: { type: "website", siteName: "Emmanuel CliniX", locale: en ? "en_GB" : "ro_RO" },
+    verification: siteVerification(en),
+  };
+}
+
+/**
+ * Search Console (Google) + Bing Webmaster Tools ownership tags, from env.
+ * `_EN` variants are used on the .co.uk domain when set. Omitted when unset.
+ */
+function siteVerification(en: boolean): Metadata["verification"] {
+  const google = (en && process.env.GOOGLE_SITE_VERIFICATION_EN) || process.env.GOOGLE_SITE_VERIFICATION;
+  const bing = (en && process.env.BING_SITE_VERIFICATION_EN) || process.env.BING_SITE_VERIFICATION;
+  if (!google && !bing) return undefined;
+  return {
+    ...(google ? { google } : {}),
+    ...(bing ? { other: { "msvalidate.01": bing } } : {}),
   };
 }
 
@@ -57,8 +76,9 @@ export default async function LocaleLayout({
     >
       <body className="flex min-h-screen flex-col">
         <noscript>
-          <style>{`.reveal{opacity:1!important;transform:none!important}.site-loader{display:none!important}`}</style>
+          <style>{`.reveal,.rise-in{opacity:1!important;transform:none!important;animation:none!important}.trace-draw{animation:none!important;stroke-dashoffset:0!important}.site-loader{display:none!important}`}</style>
         </noscript>
+        <JsonLd data={siteGraph(locale)} />
         <LocaleProvider locale={locale} dict={dict}>
           <SiteLoader />
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-surface focus:p-3">

@@ -162,7 +162,7 @@ export default async function LpSomnBThankYouPage({ params }: Props) {
         <ul className="flex flex-col items-center justify-center gap-x-10 gap-y-4 text-lg font-medium sm:flex-row sm:flex-wrap">
           {trust.map((t) => (
             <li key={t} className="flex items-center gap-3">
-              <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-xs font-bold text-on-accent">
+              <span aria-hidden="true" className="flex h-6 w-6 items-center justify-center rounded-full bg-accent text-sm font-bold text-on-accent">
                 ✓
               </span>
               {t}

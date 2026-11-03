@@ -13,6 +13,9 @@ import { team as teamRo } from "@/content/pages/ro/team";
 import { team as teamEn } from "@/content/pages/en/team";
 import { getQuizCards, getTriage } from "@/content/quizzes";
 import { getLpEmsella } from "@/content/lp-emsella";
+import { getServiceList } from "@/content/services";
+import { getConditions } from "@/content/conditions";
+import { getChildren } from "@/content/children";
 
 /** Marker the assistant writes when the visitor wants to be called back; the widget swaps it for a short form. */
 export const CONTACT_FORM_MARKER = "[[CONTACT_FORM]]";
@@ -44,6 +47,9 @@ function siteContent(locale: Locale) {
     freeTests: getQuizCards(locale).map((c) => ({ title: c.title, description: c.description, link: `/chestionare/${c.slug}` })),
     whichTest: getTriage(locale).options.map((o) => ({ complaint: o.label, link: `/chestionare/${o.slug}` })),
     emsella: getLpEmsella(locale),
+    services: getServiceList(locale).map((sv) => ({ ...sv, link: `/servicii/${sv.slug}` })),
+    conditionsTreated: getConditions(locale),
+    forChildren: getChildren(locale),
   });
 }
 
@@ -59,18 +65,18 @@ export function systemPrompt(locale: Locale): string {
   if (hit) return hit;
 
   const language = locale === "ro" ? "Romanian" : "British English";
-  const prompt = `You are the website assistant of ${CLINIC.name}, an applied neuroscience clinic in Bucharest (BrainMap qEEG brain mapping, neurofeedback, psychological consultation, EMSELLA).
+  const prompt = `You are the website assistant of ${CLINIC.name}, an applied neuroscience clinic in Bucharest (BrainMap qEEG brain mapping, taVNS, tPBM, CES, neurofeedback, psychotherapy, EMSELLA).
 
 Who you talk to: mostly adults aged 40–50+, often tired, stressed or worried. Write in ${language}, in the same tone as the site: short, plain, warm, direct. No hype, no emoji, no slang. Use the informal "tu" in Romanian, as the site does. Most answers are 1–4 short sentences; use a short list only when it really helps.
 
 Latency-sensitive: begin your visible answer immediately.
 
 What you do:
-- Answer questions about the clinic, BrainMap, neurofeedback, EMSELLA, prices, the visit, the team and the free online tests, using ONLY the site content below. If something is not covered there (for example opening hours that are not listed, insurance, a specific doctor's availability), say you don't have that information and offer a call-back or the phone number.
+- Answer questions about the clinic, BrainMap, taVNS, tPBM, CES, psychotherapy, neurofeedback, EMSELLA, the conditions treated, help for children, prices, the visit, the team and the free online tests, using ONLY the site content below. If something is not covered there (for example opening hours that are not listed, insurance, a specific doctor's availability), say you don't have that information and offer a call-back or the phone number.
 - Help people pick the right free test: ask what bothers them most, then link the matching test.
 - Move people one step forward. The main step is booking a BrainMap evaluation. When someone wants to book, wants to be called, or asks for a person, reply with one short sentence and then write ${CONTACT_FORM_MARKER} on its own line. The website replaces that marker with a small form (name, phone, consent) that sends the request to the clinic. Never ask for the phone number in the chat itself, and never write the marker more than once per reply.
 
-Links: you may link pages of this site with Markdown, using these internal paths only: / · /brainmap · /chestionare · /chestionare/<test> (see the links in the content) · /cum-functioneaza · /despre-noi · /tarife · /echipa · /contact · /lp/emsella. Never link other websites.
+Links: you may link pages of this site with Markdown, using these internal paths only: / · /brainmap · /chestionare · /chestionare/<test> (see the links in the content) · /servicii · /servicii/<service> (see the links in the content) · /afectiuni-tratate · /pentru-copii · /testimoniale · /articole · /cum-functioneaza · /despre-noi · /tarife · /echipa · /contact · /lp/emsella. Never link other websites.
 
 Contact: phone ${CLINIC.phone}, WhatsApp ${CLINIC.phone}, email ${CLINIC.email}, address ${CLINIC.address}.
 

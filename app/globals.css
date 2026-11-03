@@ -1,14 +1,17 @@
 @import "tailwindcss";
 
 /*
- * Design system — calm, mature clinic look: white pages, deep petrol for dark
- * bands and structure, a matte bronze for the one main action, condensed bold
- * headlines (Barlow Condensed) over a friendly sans (Montserrat), pill buttons
- * and soft white cards. No gloss, no saturated colour.
- * Every colour / font / radius is a CSS variable; components use ONLY these
- * tokens — never raw hex.
+ * Design system — "the quiet clinic".
  *
- * Audience is 40–50+: 18px base text, high contrast, big tap targets.
+ * Warm paper whites, deep petrol for structure and dark bands, matte bronze
+ * for the one main action and for small accents. Headlines are an editorial
+ * serif (Newsreader, optical sizes) in sentence case, body text a clear
+ * grotesque (Instrument Sans). Fine hairlines instead of heavy boxes; one
+ * signature motif — a thin EEG trace — used sparingly.
+ *
+ * Every colour / font / radius is a CSS variable; components use ONLY these
+ * tokens — never raw hex. Audience is 40–50+: 18px base text, high contrast,
+ * big tap targets.
  */
 
 @theme inline {
@@ -31,62 +34,67 @@
   --color-on-dark-soft: var(--on-dark-soft);
   --color-success: var(--success);
   --color-danger: var(--danger);
-  --font-display: var(--font-display-face), "Arial Narrow", system-ui, sans-serif;
+  --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
   --font-body: var(--font-body-face), system-ui, sans-serif;
   --radius-theme: var(--radius);
 }
 
 :root {
-  --bg: #ffffff;
-  --bg-alt: #f0f3f2;
+  /* Paper, not screen-white: a hint of warmth makes the page feel printed and calm. */
+  --bg: #fbfaf7;
+  --bg-alt: #f2efe9;
   --surface: #ffffff;
-  --ink: #1a2a2b;
-  --ink-soft: #56625f;
-  --line: #dfe5e3;
-  --primary: #2e5859;
+  --ink: #15272a;
+  --ink-soft: #4d5b5b;
+  --line: #e2ddd3;
+  /* Petrol: structure, links, the chat launcher. */
+  --primary: #2b5557;
   --on-primary: #ffffff;
-  --accent: #2e5859;
+  /* Deep bronze on light pages: eyebrows, ticks, the italic word in a headline. */
+  --accent: #7d5d36;
   --on-accent: #ffffff;
+  /* Matte bronze: the main button everywhere. */
   --cta: #8a6a43;
   --on-cta: #ffffff;
-  /* Bronze: the main button everywhere and the logo dot. ("lime" is the legacy token name.) */
+  /* Legacy name for the bronze (logo dot, light buttons on petrol). */
   --lime: #8a6a43;
   --on-lime: #ffffff;
-  --dark: #172627;
+  --dark: #13292b;
   --on-dark: #ffffff;
-  --on-dark-soft: #cfd9d6;
+  --on-dark-soft: #c8d5d2;
   --success: #2c6a4c;
   --danger: #a3372e;
-  --radius: 24px;
-  /* Height of the sticky white header bar. */
+  --radius: 22px;
+  /* Height of the sticky header bar. */
   --header-h: 4.5rem;
   --btn-radius: 999px;
-  --display-weight: 700;
-  --display-tracking: 0;
-  --shadow-soft: 0 30px 80px rgb(18 38 39 / 0.08);
-  --shadow-card: 0 18px 45px rgb(18 38 39 / 0.07);
+  --display-weight: 500;
+  --display-tracking: -0.018em;
+  --shadow-soft: 0 40px 90px -40px rgb(19 41 43 / 0.28);
+  --shadow-card: 0 1px 2px rgb(19 41 43 / 0.04), 0 18px 40px -22px rgb(19 41 43 / 0.18);
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: light;
 }
 
 /*
- * On petrol the accent turns a light bronze (eyebrows, ticks) and lines turn
- * translucent. White cards placed on petrol get the light values back.
+ * On petrol the accent turns a light bronze (eyebrows, ticks, italics) and
+ * lines turn translucent. White cards placed on petrol get the light values back.
  */
 [data-tone="dark"],
 .bg-dark,
 .bg-vital {
-  --accent: #d3b88f;
-  --on-accent: #172627;
+  --accent: #d6bb92;
+  --on-accent: #13292b;
   --cta: var(--lime);
   --on-cta: var(--on-lime);
-  --line: rgb(255 255 255 / 0.18);
+  --line: rgb(255 255 255 / 0.16);
 }
 :is([data-tone="dark"], .bg-dark, .bg-vital) :is(.bg-surface, .bg-bg, .bg-bg-alt) {
-  --accent: var(--primary);
-  --on-accent: var(--on-primary);
-  --cta: var(--primary);
-  --on-cta: var(--on-primary);
-  --line: #dfe5e3;
+  --accent: #7d5d36;
+  --on-accent: #ffffff;
+  --cta: #8a6a43;
+  --on-cta: #ffffff;
+  --line: #e2ddd3;
 }
 
 @media (min-width: 640px) {
@@ -124,11 +132,19 @@
     font-family: var(--font-display);
     font-weight: var(--display-weight);
     letter-spacing: var(--display-tracking);
-    line-height: 1.04;
+    line-height: 1.06;
+    font-optical-sizing: auto;
     text-wrap: balance;
     /* Long words never push a phone screen sideways. */
     overflow-wrap: break-word;
-    hyphens: auto;
+    hyphens: manual;
+  }
+
+  /* One word in a headline may lean: italic bronze, the clinic's handwriting. */
+  :is(h1, h2, h3) em {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--accent);
   }
 
   p {
@@ -155,88 +171,202 @@
   }
 }
 
-/* The signature petrol: a faint warm bronze light from the top-right on deep petrol. Matte, no shine. */
-.bg-vital {
-  background-color: var(--dark);
-  background-image:
-    radial-gradient(90% 120% at 100% 0%, rgb(168 132 88 / 0.22) 0%, rgb(168 132 88 / 0) 60%),
-    radial-gradient(70% 90% at 0% 100%, rgb(46 88 89 / 0.45) 0%, rgb(46 88 89 / 0) 60%);
-  color: var(--on-dark);
-}
-
 /* Frosted card on petrol. A utility so it accepts breakpoints (e.g. sm:glass). */
 @utility glass {
-  background: rgb(255 255 255 / 0.08);
-  border: 1px solid rgb(255 255 255 / 0.18);
+  background: rgb(255 255 255 / 0.07);
+  border: 1px solid rgb(255 255 255 / 0.16);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
 }
 
-/* Label above headings: small caps text followed by a short rule. */
-.eyebrow-rule::after {
-  content: "";
-  display: inline-block;
-  width: 2.5rem;
-  height: 2px;
-  background: currentColor;
-  opacity: 0.45;
-}
+/*
+ * Custom classes live in the components layer, so Tailwind utilities on the
+ * same element (absolute, sizes, colours …) always win over them.
+ */
+@layer components {
+  /*
+   * The signature petrol: deep, matte, with a faint warm bronze light from the
+   * top-right and a little depth bottom-left, so large dark areas never look flat.
+   */
+  .bg-vital {
+    background-color: var(--dark);
+    background-image:
+      radial-gradient(80% 110% at 100% 0%, rgb(168 132 88 / 0.2) 0%, rgb(168 132 88 / 0) 60%),
+      radial-gradient(70% 90% at 0% 100%, rgb(43 85 87 / 0.5) 0%, rgb(43 85 87 / 0) 60%);
+    color: var(--on-dark);
+  }
 
-/* Phones: leave room under the sticky "Apply" bar so nothing hides behind it. */
-@media (max-width: 767px) {
-  body:has([data-sticky-cta]) {
-    padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+  /*
+   * Liquid glass — used over photography (home hero). A translucent pane with a
+   * light-catching rim (gradient hairline, brighter at the top-left) and a soft
+   * inner highlight. Falls back to a solid petrol tint without backdrop-filter.
+   */
+  .liquid-glass {
+    position: relative;
+    isolation: isolate;
+    background: linear-gradient(150deg, rgb(255 255 255 / 0.15) 0%, rgb(255 255 255 / 0.05) 48%, rgb(255 255 255 / 0.09) 100%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    backdrop-filter: blur(22px) saturate(150%);
+    box-shadow:
+      inset 0 1px 0 rgb(255 255 255 / 0.28),
+      inset 0 -18px 30px -24px rgb(255 255 255 / 0.18),
+      0 24px 50px -30px rgb(0 0 0 / 0.55);
+    color: var(--on-dark);
   }
-}
+  .liquid-glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(155deg, rgb(255 255 255 / 0.6), rgb(255 255 255 / 0.1) 38%, rgb(255 255 255 / 0.04) 62%, rgb(255 255 255 / 0.32));
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .liquid-glass {
+      background: color-mix(in srgb, var(--dark) 78%, transparent);
+    }
+  }
 
-/* Slow drift for the hero brain. */
-@keyframes float-y {
-  0%,
-  100% {
-    transform: translateY(0);
+  /* Photo veil for the home hero: dense where the text sits, open where the photo speaks. */
+  .hero-veil {
+    background:
+      linear-gradient(180deg, color-mix(in srgb, var(--dark) 55%, transparent) 0%, color-mix(in srgb, var(--dark) 72%, transparent) 55%, color-mix(in srgb, var(--dark) 94%, transparent) 100%);
   }
-  50% {
-    transform: translateY(-14px);
+  @media (min-width: 1024px) {
+    .hero-veil {
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--dark) 94%, transparent) 0%, color-mix(in srgb, var(--dark) 78%, transparent) 42%, color-mix(in srgb, var(--dark) 22%, transparent) 78%, color-mix(in srgb, var(--dark) 10%, transparent) 100%),
+        linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--dark) 80%, transparent) 100%);
+    }
   }
-}
-.animate-float {
-  animation: float-y 9s ease-in-out infinite;
-}
 
-/* Infinite word strip. */
-@keyframes marquee {
-  to {
-    transform: translateX(-50%);
+  /* Label above headings: small caps text followed by a short rule. */
+  .eyebrow-rule::after {
+    content: "";
+    display: inline-block;
+    width: 2.5rem;
+    height: 1px;
+    background: currentColor;
+    opacity: 0.55;
   }
-}
-.animate-marquee {
-  animation: marquee 38s linear infinite;
-}
 
-/* Scroll reveal — content stays visible without JS (see components/ui/Reveal). */
-.reveal {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.8s ease,
-    transform 0.8s ease;
-}
-.reveal.is-in {
-  opacity: 1;
-  transform: none;
-}
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  /* Image that slowly leans in when its card is hovered. */
+  .zoom-media {
+    transition: transform 1.1s var(--ease-out);
   }
+  .group:hover .zoom-media,
+  .group:focus-visible .zoom-media {
+    transform: scale(1.04);
+  }
+
+  /* Phones: leave room under the sticky "Apply" bar so nothing hides behind it. */
+  @media (max-width: 767px) {
+    body:has([data-sticky-cta]) {
+      padding-bottom: calc(5.5rem + env(safe-area-inset-bottom));
+    }
+  }
+
+  /* Slow drift (decorative). */
+  @keyframes float-y {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+  .animate-float {
+    animation: float-y 9s ease-in-out infinite;
+  }
+
+  /* Infinite word strip. */
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .animate-marquee {
+    animation: marquee 38s linear infinite;
+  }
+
+  /* The EEG trace draws itself once, left to right. */
+  @keyframes trace-draw {
+    from {
+      stroke-dashoffset: 1;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .trace-draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: trace-draw 2.4s 0.6s var(--ease-out) forwards;
+  }
+
+  /* Hero entrance: lines rise in one after another, once. */
+  @keyframes rise-in {
+    from {
+      opacity: 0;
+      transform: translateY(22px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .rise-in {
+    animation: rise-in 0.9s var(--ease-out) both;
+  }
+  /* Entrances wait while the page-load curtain is still up, so they are actually seen. */
+  html:has(.site-loader:not(.is-done)) :is(.rise-in, .trace-draw) {
+    animation-play-state: paused;
+  }
+
+  /* Scroll reveal — content stays visible without JS (see components/ui/Reveal). */
   .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition:
+      opacity 0.9s var(--ease-out),
+      transform 0.9s var(--ease-out);
+  }
+  .reveal.is-in {
     opacity: 1;
     transform: none;
-    transition: none;
   }
-  .animate-float,
-  .animate-marquee {
-    animation: none;
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    .reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+    .animate-float,
+    .animate-marquee,
+    .rise-in {
+      animation: none;
+    }
+    .trace-draw {
+      animation: none;
+      stroke-dashoffset: 0;
+    }
+    .zoom-media {
+      transition: none;
+    }
+    .group:hover .zoom-media {
+      transform: none;
+    }
   }
 }
 
@@ -252,7 +382,9 @@ html:has(.site-loader:not(.is-done)) {
   inset: 0;
   z-index: 1000;
   display: grid;
+  grid-template-columns: minmax(0, 1fr);
   place-items: center;
+  overflow: hidden;
   background: var(--bg);
   color: var(--ink);
   transition:
@@ -264,6 +396,8 @@ html:has(.site-loader:not(.is-done)) {
   visibility: hidden;
 }
 .site-loader .loader-inner {
+  max-width: 100%;
+  overflow: hidden;
   width: min(calc(100% - 48px), 620px);
 }
 .site-loader.is-done .loader-inner {
@@ -325,4 +459,24 @@ html:has(.site-loader:not(.is-done)) {
 }
 .animate-cookie-in {
   animation: cookie-in 0.5s 0.2s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@layer components {
+  /* Dropdown / menu panels open with a short, soft drop. */
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.985);
+    }
+  }
+  .animate-menu-in {
+    animation: menu-in 0.22s var(--ease-out) both;
+    transform-origin: top center;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .animate-menu-in,
+    .animate-cookie-in {
+      animation: none;
+    }
+  }
 }

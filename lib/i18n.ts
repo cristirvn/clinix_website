@@ -45,6 +45,12 @@ const RO_TO_EN: Record<string, string> = {
   migrene: "migraines",
   stres: "stress",
   adictii: "addictions",
+  servicii: "services",
+  "afectiuni-tratate": "conditions",
+  "pentru-copii": "children",
+  articole: "articles",
+  cariere: "careers",
+  testimoniale: "testimonials",
 };
 
 const EN_TO_RO: Record<string, string> = Object.fromEntries(

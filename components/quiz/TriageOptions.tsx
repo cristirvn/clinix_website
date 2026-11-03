@@ -1,26 +1,30 @@
 import { L } from "@/components/ui/L";
+import { ArrowIcon } from "@/components/ui/icons";
 import { getTriage } from "@/content/quizzes";
 import type { Locale } from "@/lib/i18n";
 
 /**
  * The short diagnostic: "Cu ce te confrunți cel mai des?" — nine answers, each
  * one opens the matching test (which then leads to the matching LP).
- * Used on the home page (section 2) and on /evaluare.
+ * Used on /evaluare (the home page shows the same question as a quiz card, components/home/QuizStart).
  */
 export function TriageOptions({ locale }: { locale: Locale }) {
   const triage = getTriage(locale);
   return (
-    // One calm list: phones get stacked rows with hairlines, wider screens a 2–3 column grid of slim rows.
-    <ul className="divide-y divide-line overflow-hidden rounded-[var(--radius)] border border-line bg-surface shadow-[var(--shadow-card)] sm:grid sm:grid-cols-2 sm:gap-3 sm:divide-y-0 sm:overflow-visible sm:border-0 sm:bg-transparent sm:shadow-none lg:grid-cols-3">
+    // One calm list of big rows (the same look as the quiz card on the home page); two columns from md up.
+    <ul className="grid gap-2.5 md:grid-cols-2 md:gap-3">
       {triage.options.map((option) => (
         <li key={option.slug}>
           <L
             href={`/chestionare/${option.slug}`}
-            className="group flex h-full items-center justify-between gap-4 px-5 py-4 text-ink transition hover:bg-bg-alt sm:rounded-[calc(var(--radius)/1.5)] sm:border sm:border-line sm:bg-surface sm:px-5 sm:py-4 sm:hover:border-primary sm:hover:bg-surface"
+            className="group flex h-full min-h-16 items-center justify-between gap-4 rounded-[18px] border border-line bg-surface px-5 py-4 text-ink transition duration-200 hover:border-primary/50 hover:shadow-[var(--shadow-card)]"
           >
-            <span className="text-[1.05rem] font-semibold leading-snug">{option.label}</span>
-            <span aria-hidden="true" className="flex-none text-xl text-primary transition group-hover:translate-x-0.5">
-              →
+            <span className="text-[1.05rem] font-medium leading-snug">{option.label}</span>
+            <span
+              aria-hidden="true"
+              className="flex h-10 w-10 flex-none items-center justify-center rounded-full border border-primary/30 text-primary transition duration-300 group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary"
+            >
+              <ArrowIcon size={16} />
             </span>
           </L>
         </li>

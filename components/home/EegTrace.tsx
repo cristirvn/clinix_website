@@ -1,15 +1,30 @@
-/** The visual signature: a calm EEG trace drawn in the theme accent. Decorative only. */
-export function EegTrace({ className = "" }: { className?: string }) {
+/**
+ * The visual signature: one calm EEG trace — a quiet baseline, a short burst
+ * of activity, quiet again. Drawn in the theme accent; decorative only.
+ * `draw` lets it write itself once (respects reduced motion, see globals.css).
+ */
+const TRACE =
+  "M0 48h120c8 0 10-6 14-6s6 10 10 10 6-14 10-14 6 18 11 18 5-30 10-30 6 44 11 44 5-36 10-36 6 22 10 22 5-10 9-10 5 2 9 2h40c6 0 8-8 12-8s6 14 10 14 6-24 10-24 6 30 10 30 5-12 9-12 4 0 8 0h150c7 0 9-4 13-4s5 4 9 4h265";
+
+export function EegTrace({
+  className = "",
+  draw = false,
+  strokeWidth = 1.6,
+}: {
+  className?: string;
+  draw?: boolean;
+  strokeWidth?: number;
+}) {
   return (
-    <svg className={`w-full ${className}`} viewBox="0 0 960 90" fill="none" preserveAspectRatio="none" aria-hidden="true">
-      <path d="M0 62h960" stroke="var(--line)" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+    <svg className={`block w-full ${className}`} viewBox="0 0 760 96" fill="none" aria-hidden="true">
       <path
-        d="M0 62h52l12-22 12 34 12-44 12 32h52l12-12 12 18 12-24 12 18h68l12-36 12 52 12-42 12 26h76l12-14 12 22 12-28 12 20h72l12-28 12 38 12-44 12 34h76l12-10 12 14 12-20 12 16h68l12-30 12 44 12-38 12 24h160"
+        d={TRACE}
+        pathLength={1}
         stroke="var(--accent)"
-        strokeWidth="1.8"
+        strokeWidth={strokeWidth}
         strokeLinecap="round"
         strokeLinejoin="round"
-        vectorEffect="non-scaling-stroke"
+        className={draw ? "trace-draw" : undefined}
       />
     </svg>
   );

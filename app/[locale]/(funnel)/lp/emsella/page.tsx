@@ -41,7 +41,7 @@ export default async function LpEmsellaPage({ params }: Props) {
       <HeroPanel>
           <div className="mx-auto max-w-4xl text-center">
             <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
-              {c.hero.titleLead} <em className="not-italic text-accent">{c.hero.titleEm}</em>
+              {c.hero.titleLead} <em>{c.hero.titleEm}</em>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{c.hero.sub}</p>
           </div>
@@ -67,7 +67,7 @@ export default async function LpEmsellaPage({ params }: Props) {
           {c.signs.cards.map((card, i) => (
             <Reveal key={card.tag} delay={i * 80}>
               <Card className="h-full">
-                <p className="text-[0.8rem] font-bold uppercase tracking-[0.18em] text-accent">{card.tag}</p>
+                <p className="text-[0.875rem] font-bold uppercase tracking-[0.18em] text-accent">{card.tag}</p>
                 <p className="mt-4 text-lg">{card.text}</p>
               </Card>
             </Reveal>

@@ -55,6 +55,14 @@ export function ScoredQuiz({ quiz }: { quiz: ScoredQuizType }) {
     topRef.current?.querySelector<HTMLElement>("h1")?.focus({ preventScroll: true });
   }, [phase, index]);
 
+  // Arriving from the home page's first question (`?start=1`): skip the intro, continue with the questions.
+  useEffect(() => {
+    if (new URLSearchParams(window.location.search).has("start")) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect
+      setPhase("quiz");
+    }
+  }, []);
+
   // GA4 drop-off tracking.
   const firedFor = useRef<number | null>(null);
   useEffect(() => {
@@ -183,14 +191,14 @@ export function ScoredQuiz({ quiz }: { quiz: ScoredQuizType }) {
                 <span>{pct}%</span>
               </div>
               <div
-                className="mt-3 h-2 w-full overflow-hidden rounded-full bg-line"
+                className="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-line"
                 role="progressbar"
                 aria-label={progressLabel}
                 aria-valuenow={step}
                 aria-valuemin={1}
                 aria-valuemax={steps}
               >
-                <div className="h-full rounded-full bg-accent transition-all duration-300" style={{ width: `${pct}%` }} />
+                <div className="h-full rounded-full bg-primary transition-all duration-500" style={{ width: `${pct}%` }} />
               </div>
             </div>
 
@@ -210,17 +218,17 @@ export function ScoredQuiz({ quiz }: { quiz: ScoredQuizType }) {
                     type="button"
                     onClick={() => setSelected(i)}
                     aria-pressed={active}
-                    className={`flex min-h-16 w-full items-center gap-4 rounded-[var(--radius)] border-2 px-5 py-4 text-left text-lg font-medium transition sm:text-xl ${
-                      active ? "border-accent bg-bg-alt text-ink" : "border-line bg-surface text-ink hover:border-ink/30"
+                    className={`flex min-h-16 w-full items-center gap-4 rounded-[18px] border-2 px-5 py-4 text-left text-lg font-medium transition sm:text-xl ${
+                      active ? "border-primary bg-primary/[0.06] text-ink" : "border-line bg-surface text-ink hover:border-primary/40"
                     }`}
                   >
                     <span
                       aria-hidden="true"
                       className={`flex h-7 w-7 flex-none items-center justify-center rounded-full border-2 ${
-                        active ? "border-accent" : "border-line"
+                        active ? "border-primary" : "border-line"
                       }`}
                     >
-                      {active && <span className="h-3.5 w-3.5 rounded-full bg-accent" />}
+                      {active && <span className="h-3.5 w-3.5 rounded-full bg-primary" />}
                     </span>
                     <span className="flex-1">{label}</span>
                   </button>

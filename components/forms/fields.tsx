@@ -11,7 +11,7 @@ import { CLINIC } from "@/lib/site";
  */
 
 const INPUT =
-  "block w-full rounded-[var(--radius)] border-2 border-line bg-surface px-4 py-3.5 text-lg text-ink placeholder:text-ink-soft/60 transition focus:border-accent focus:outline-none aria-[invalid=true]:border-danger";
+  "block w-full rounded-[14px] border-2 border-line bg-surface px-4 py-3.5 text-lg text-ink placeholder:text-ink-soft/60 transition focus:border-primary focus:outline-none focus:ring-4 focus:ring-primary/10 aria-[invalid=true]:border-danger";
 
 function Field({ label, error, hint, htmlFor, children }: { label: ReactNode; error?: string | null; hint?: ReactNode; htmlFor: string; children: ReactNode }) {
   return (
@@ -114,11 +114,11 @@ export function ChoiceGroup({
       {options.map((o) => (
         <label
           key={o}
-          className={`flex cursor-pointer items-center gap-3 rounded-[var(--radius)] border-2 px-4 py-3.5 text-lg transition ${
-            value === o ? "border-accent bg-bg-alt" : "border-line bg-surface hover:border-ink/30"
+          className={`flex cursor-pointer items-center gap-3 rounded-[18px] border-2 px-4 py-3.5 text-lg transition ${
+            value === o ? "border-primary bg-primary/[0.06]" : "border-line bg-surface hover:border-primary/40"
           }`}
         >
-          <input type="radio" name={name} value={o} checked={value === o} onChange={() => onChange(o)} className="h-5 w-5 accent-[var(--accent)]" />
+          <input type="radio" name={name} value={o} checked={value === o} onChange={() => onChange(o)} className="h-5 w-5 accent-[var(--primary)]" />
           {o}
         </label>
       ))}

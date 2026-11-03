@@ -1,0 +1,60 @@
+# Emmanuel CliniX
+
+> Applied neuroscience clinic in Bucharest, Romania. We measure before we recommend: every plan starts from BrainMap, a qEEG map of the brain's electrical activity (30 minutes, fully clothed, no radiation, no needles, interpreted in the same visit). Non-invasive methods: neurofeedback, taVNS, tPBM, CES, psychotherapy and EmSella. Romanian site: https://emmanuelclinix.ro — English site: https://emmanuelclinix.co.uk
+
+Clinică de neuroștiință aplicată în București. Măsurăm înainte să recomandăm.
+
+- Address: Str. Pictor Alexandru Romano nr. 26, 030167 București, Romania
+- Phone / WhatsApp: +40 790 099 070
+- Email: contact@emmanuelclinix.ro
+- Languages: Romanian, English
+- BrainMap visit: 1,200 RON (1.200 lei) — scan, on-the-spot interpretation, psychological consultation and a PDF with recommendations. No GP referral needed.
+- BrainMap is an initial assessment tool, not a medical diagnosis. The online tests are self-assessment tools, not diagnoses. Nothing on the site replaces a medical consultation.
+
+## Services (English)
+
+- [BrainMap (qEEG)](https://emmanuelclinix.co.uk/services/brainmap): map of brain electrical activity, compared with normal values for your age
+- [taVNS](https://emmanuelclinix.co.uk/services/tavns): transcutaneous auricular vagus nerve stimulation, a small clip on the ear
+- [tPBM](https://emmanuelclinix.co.uk/services/tpbm): transcranial photobiomodulation with near-infrared light, no ionising radiation
+- [CES](https://emmanuelclinix.co.uk/services/ces): cranial electrotherapy stimulation, a very weak current through ear clips
+- [Psychotherapy](https://emmanuelclinix.co.uk/services/psihoterapie): regular sessions with a psychotherapist at the clinic
+- [How it works](https://emmanuelclinix.co.uk/how-it-works): the five-step patient journey, neurofeedback and EmSella explained
+- [Pricing](https://emmanuelclinix.co.uk/pricing)
+
+## Conditions (English)
+
+- [Conditions we treat](https://emmanuelclinix.co.uk/conditions): anxiety, panic attacks, insomnia, burnout, poor focus and brain fog, low mood, migraines, chronic stress, losing control of a habit, weak pelvic floor
+- [For children and teenagers](https://emmanuelclinix.co.uk/children): attention, sleep, anxiety, learning, screen time
+- [Free self-assessment tests](https://emmanuelclinix.co.uk/tests): nine 2–3 minute tests with a score from 1 to 10
+- [Help me choose a test](https://emmanuelclinix.co.uk/assessment)
+
+## Servicii (Română)
+
+- [BrainMap (qEEG)](https://emmanuelclinix.ro/servicii/brainmap)
+- [taVNS](https://emmanuelclinix.ro/servicii/tavns)
+- [tPBM](https://emmanuelclinix.ro/servicii/tpbm)
+- [CES](https://emmanuelclinix.ro/servicii/ces)
+- [Psihoterapie](https://emmanuelclinix.ro/servicii/psihoterapie)
+- [Cum funcționează](https://emmanuelclinix.ro/cum-functioneaza)
+- [Tarife](https://emmanuelclinix.ro/tarife)
+
+## Afecțiuni (Română)
+
+- [Afecțiuni tratate](https://emmanuelclinix.ro/afectiuni-tratate)
+- [Pentru copii](https://emmanuelclinix.ro/pentru-copii)
+- [Teste gratuite](https://emmanuelclinix.ro/chestionare)
+- [Ajută-mă să aleg un test](https://emmanuelclinix.ro/evaluare)
+
+## About / Despre
+
+- [About us](https://emmanuelclinix.co.uk/about) · [Despre noi](https://emmanuelclinix.ro/despre-noi)
+- [Team](https://emmanuelclinix.co.uk/team) · [Echipă](https://emmanuelclinix.ro/echipa)
+- [Testimonials](https://emmanuelclinix.co.uk/testimonials) · [Testimoniale](https://emmanuelclinix.ro/testimoniale)
+- [Articles](https://emmanuelclinix.co.uk/articles) · [Articole](https://emmanuelclinix.ro/articole)
+- [Contact](https://emmanuelclinix.co.uk/contact) · [Contact](https://emmanuelclinix.ro/contact)
+- [Careers](https://emmanuelclinix.co.uk/careers) · [Cariere](https://emmanuelclinix.ro/cariere)
+
+## Optional
+
+- [Sitemap (RO)](https://emmanuelclinix.ro/sitemap.xml)
+- [Sitemap (EN)](https://emmanuelclinix.co.uk/sitemap.xml)

@@ -15,7 +15,7 @@ export function JourneySteps({ content }: { content: HowItWorksContent["journey"
             <Reveal delay={i * 80} className="flex gap-5 lg:block">
               <span
                 aria-hidden="true"
-                className="flex h-14 w-14 flex-none items-center justify-center rounded-full border-2 border-accent font-display text-2xl text-accent lg:mb-6"
+                className="flex h-14 w-14 flex-none items-center justify-center rounded-full border border-accent/50 bg-surface font-display text-[1.6rem] text-accent lg:mb-6"
               >
                 {i + 1}
               </span>
@@ -48,7 +48,7 @@ function ServiceBlock({ service, feelsTitle, flip }: { service: Service; feelsTi
             <p key={p}>{p}</p>
           ))}
         </div>
-        <p className="mt-8 text-sm font-bold uppercase tracking-[0.16em]">{feelsTitle}</p>
+        <p className="mt-8 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{feelsTitle}</p>
         <ul className="mt-4 space-y-3">
           {service.feels.map((f) => (
             <CheckItem key={f}>{f}</CheckItem>
@@ -90,7 +90,7 @@ export function AboutTeaser({ content }: { content: HowItWorksContent["about"] }
           </ButtonLink>
         </div>
         <div>
-          <p className="mb-4 text-sm font-bold uppercase tracking-[0.16em] text-ink-soft">{content.recommendedTitle}</p>
+          <p className="mb-4 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-ink-soft">{content.recommendedTitle}</p>
           <RecommendedStrip names={content.recommendedBy} placeholderLabel={content.placeholderLabel} />
         </div>
       </div>

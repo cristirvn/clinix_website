@@ -63,7 +63,7 @@ export function QuizResult({
                   }`}
                 >
                   <p
-                    className={`text-[0.8rem] font-bold uppercase tracking-[0.16em] ${major ? "text-danger" : "text-accent"}`}
+                    className={`text-[0.875rem] font-bold uppercase tracking-[0.16em] ${major ? "text-danger" : "text-accent"}`}
                   >
                     {major ? ui.riskMajor : ui.riskSecondary}
                   </p>

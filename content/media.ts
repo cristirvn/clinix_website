@@ -25,6 +25,13 @@ export const VIDEOS = {
   serviceNeurofeedback: { src: "", duration: "" },
   serviceEmsella: { src: "", duration: "" },
   serviceConsult: { src: "", duration: "" },
+  /** /servicii/<slug> — one video at the top of each service page. */
+  serviceTavns: { src: "", duration: "" },
+  serviceTpbm: { src: "", duration: "" },
+  serviceCes: { src: "", duration: "" },
+  servicePsihoterapie: { src: "", duration: "" },
+  /** /pentru-copii — short video for parents. */
+  childrenIntro: { src: "", duration: "" },
   /** Testimonials (BrainMap LPs, home "who recommends us"). */
   testimonialErnesto: { src: "", duration: "2:14" },
   testimonialGabriela: { src: "", duration: "1:47" },
@@ -95,6 +102,22 @@ export const IMAGES = {
   sleep: {
     src: `${U}photo-1603259186149-13e44113c3cb`,
     alt: { ro: "Om treaz în pat, noaptea", en: "Someone lying awake at night" },
+  },
+  /** taVNS — headband and ear electrode, relaxed in an armchair. */
+  tavns: {
+    src: `${U}photo-1715866420139-c33e0c0932ae`,
+    alt: {
+      ro: "Pacientă relaxată în fotoliu, cu un electrod mic la ureche",
+      en: "A patient relaxing in an armchair with a small ear electrode",
+    },
+  },
+  /** tPBM — light therapy session. */
+  tpbm: {
+    src: `${U}photo-1761819921158-c3fa28f39bf0`,
+    alt: {
+      ro: "Ședință de terapie cu lumină, pacienta întinsă pe un fotoliu",
+      en: "A light therapy session, the patient reclining in a chair",
+    },
   },
   /** Clinic room. */
   room: {

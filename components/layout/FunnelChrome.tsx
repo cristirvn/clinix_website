@@ -5,24 +5,20 @@ import { HeaderApply } from "@/components/layout/HeaderApply";
 import { getDictionary } from "@/lib/dictionary";
 import type { Locale } from "@/lib/i18n";
 import { CLINIC } from "@/lib/site";
+import { PhoneIcon } from "@/components/ui/icons";
 import { CookieSettingsButton } from "@/components/layout/CookieConsent";
 
 /** Minimal header for landing pages / quizzes: logo, phone, language. No menu = no leaks. */
 export function FunnelHeader() {
   return (
-    <header className="sticky top-0 z-50 h-[var(--header-h)] border-b border-line bg-surface/95 text-ink backdrop-blur-xl">
+    <header className="sticky top-0 z-50 h-[var(--header-h)] border-b border-line bg-bg/90 text-ink backdrop-blur-xl">
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between gap-3 px-5 sm:gap-4 sm:px-8">
         <L href="/" aria-label="Emmanuel CliniX">
           <Logo />
         </L>
         <div className="flex items-center gap-3">
-          <a href={CLINIC.phoneHref} className="hidden items-center gap-2 font-medium text-ink-soft hover:text-primary sm:flex">
-            <svg width="16" height="16" viewBox="0 0 16 16" aria-hidden="true">
-              <path
-                d="M2 3.5C2 2.7 2.7 2 3.5 2h1.2c.6 0 1.1.4 1.2 1l.4 2c.1.5-.1 1-.5 1.2l-.9.5c.7 1.5 1.9 2.7 3.4 3.4l.5-.9c.3-.4.7-.6 1.2-.5l2 .4c.6.1 1 .6 1 1.2v1.2c0 .8-.7 1.5-1.5 1.5C7.6 14 2 8.4 2 3.5Z"
-                fill="currentColor"
-              />
-            </svg>
+          <a href={CLINIC.phoneHref} className="hidden items-center gap-2 font-semibold text-ink-soft transition hover:text-primary sm:flex">
+            <PhoneIcon size={18} className="text-primary" />
             {CLINIC.phone}
           </a>
           <LangSwitch />
@@ -43,19 +39,19 @@ export function FunnelFooter({ locale, legal }: { locale: Locale; legal?: string
           <span>
             © {new Date().getFullYear()} {CLINIC.name}. {dict.footer.rights}
           </span>
-          <a href={CLINIC.phoneHref} className="inline-block py-1.5 hover:underline">
+          <a href={CLINIC.phoneHref} className="inline-flex min-h-11 items-center py-1.5 hover:underline">
             {CLINIC.phone}
           </a>
-          <a href={`mailto:${CLINIC.email}`} className="inline-block py-1.5 hover:underline">
+          <a href={`mailto:${CLINIC.email}`} className="inline-flex min-h-11 items-center py-1.5 hover:underline">
             {CLINIC.email}
           </a>
-          <L href="/politica-de-confidentialitate" className="inline-block py-1.5 hover:underline">
+          <L href="/politica-de-confidentialitate" className="inline-flex min-h-11 items-center py-1.5 hover:underline">
             {dict.footer.privacy}
           </L>
-          <L href="/termeni-si-conditii" className="inline-block py-1.5 hover:underline">
+          <L href="/termeni-si-conditii" className="inline-flex min-h-11 items-center py-1.5 hover:underline">
             {dict.footer.terms}
           </L>
-          <CookieSettingsButton className="inline-block py-1.5 hover:underline" />
+          <CookieSettingsButton className="inline-flex min-h-11 items-center py-1.5 hover:underline" />
         </p>
       </div>
     </footer>

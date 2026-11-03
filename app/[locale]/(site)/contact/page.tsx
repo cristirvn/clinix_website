@@ -17,7 +17,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 function Detail({ label, children }: { label: string; children: ReactNode }) {
   return (
     <div className="border-t border-line pt-6">
-      <p className="text-[0.8rem] font-bold uppercase tracking-[0.18em] text-ink-soft">{label}</p>
+      <p className="text-[0.875rem] font-bold uppercase tracking-[0.18em] text-ink-soft">{label}</p>
       <div className="mt-2 text-lg sm:text-xl">{children}</div>
     </div>
   );
@@ -57,7 +57,7 @@ export default async function ContactPage({ params }: Props) {
           </Detail>
           <Detail label={d.addressLabel}>
             <address className="not-italic">{CLINIC.address}</address>
-            <a href={CLINIC.mapsHref} target="_blank" rel="noopener noreferrer" className={`${LINK} mt-3 inline-block text-base`}>
+            <a href={CLINIC.mapsHref} target="_blank" rel="noopener noreferrer" className={`${LINK} mt-3 inline-flex min-h-11 items-center text-base`}>
               {d.mapLink}
             </a>
           </Detail>

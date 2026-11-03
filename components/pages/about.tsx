@@ -32,9 +32,12 @@ export function Differentiators({ content }: { content: AboutContent["different"
       <SectionHead eyebrow={content.eyebrow} title={content.title} />
       <ul className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
         {content.items.map((item, i) => (
-          <li key={item.title} className="border-t-2 border-accent pt-6">
+          <li key={item.title} className="border-t border-line pt-6">
             <Reveal delay={i * 80}>
-              <h3 className="text-2xl sm:text-3xl">{item.title}</h3>
+              <span aria-hidden="true" className="font-display text-lg text-accent tabular-nums">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <h3 className="mt-3 text-2xl sm:text-3xl">{item.title}</h3>
               <p className="mt-3 text-lg text-ink-soft">{item.text}</p>
             </Reveal>
           </li>
@@ -64,7 +67,7 @@ export function ClinicSpace({ content }: { content: AboutContent["space"] }) {
         <span className="mx-3 text-ink-soft" aria-hidden="true">
           ·
         </span>
-        <L href={CLINIC.mapsHref} className="font-semibold text-accent underline underline-offset-4 hover:opacity-80">
+        <L href={CLINIC.mapsHref} target="_blank" rel="noopener noreferrer" className="font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary">
           {content.mapsLabel}
         </L>
       </p>
@@ -80,7 +83,7 @@ export function Testimonials({ content }: { content: AboutContent["testimonials"
         {content.items.map((t) => (
           <li key={t.name}>
             <VideoPlayer video={t.video} title={t.name} />
-            <p className="mt-4 font-display text-xl">{t.name}</p>
+            <p className="mt-4 border-t border-line pt-4 font-display text-2xl">{t.name}</p>
           </li>
         ))}
       </ul>

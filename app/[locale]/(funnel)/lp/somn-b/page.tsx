@@ -38,7 +38,7 @@ export default async function LpSomnBPage({ params }: Props) {
           <Eyebrow>{hero.eyebrow}</Eyebrow>
           <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
             {hero.titleBefore}
-            <em className="text-accent not-italic">{hero.titleEm}</em>
+            <em>{hero.titleEm}</em>
             {hero.titleAfter}
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">

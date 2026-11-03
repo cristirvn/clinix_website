@@ -8,6 +8,8 @@ import { BrainmapForm } from "@/components/lp/BrainmapForm";
 import { Testimonials } from "@/components/lp/Testimonials";
 import { StickyBar } from "@/components/lp/StickyBar";
 import { EegTrace } from "@/components/lp/EegTrace";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { faqPage } from "@/components/seo/schema";
 import type { Locale } from "@/lib/i18n";
 import { CLINIC } from "@/lib/site";
 import type { BrainmapLp } from "@/content/lps/types";
@@ -78,7 +80,7 @@ export function BrainmapLanding({
           </div>
           <div className="max-w-3xl">
             <h1
-              className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem] [&_em]:not-italic [&_em]:text-accent"
+              className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]"
               // Client copy (static content file), not user input.
               dangerouslySetInnerHTML={{ __html: lp.hero.titleHtml }}
             />
@@ -108,7 +110,7 @@ export function BrainmapLanding({
           {lp.identificare.cards.map((card, i) => (
             <Reveal key={card.tag} delay={i * 90}>
               <div className="h-full rounded-[var(--radius)] border border-line bg-surface p-7 text-ink sm:p-8">
-                <span className="text-[0.8rem] font-bold uppercase tracking-[0.18em] text-accent">{card.tag}</span>
+                <span className="text-[0.875rem] font-bold uppercase tracking-[0.18em] text-accent">{card.tag}</span>
                 <p className="mt-4 text-xl leading-relaxed">{card.text}</p>
               </div>
             </Reveal>
@@ -231,6 +233,7 @@ export function BrainmapLanding({
       <Section tone="alt" id="faq" narrow>
         <SectionHead center eyebrow={f.faq.eyebrow} title={f.faq.title} />
         <Faq items={[...lp.faq, ...f.faq.items]} />
+        <JsonLd data={faqPage([...lp.faq, ...f.faq.items])} />
       </Section>
 
       {/* 11 · FORMULAR */}
@@ -270,7 +273,7 @@ function QualifyList({ title, rows, negative = false }: { title: string; rows: s
           <li key={row} className="flex gap-3">
             <span
               aria-hidden="true"
-              className={`mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full text-xs font-bold ${
+              className={`mt-1 flex h-6 w-6 flex-none items-center justify-center rounded-full text-sm font-bold ${
                 negative ? "bg-danger/15 text-danger" : "bg-accent text-on-accent"
               }`}
             >

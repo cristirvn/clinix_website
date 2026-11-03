@@ -6,21 +6,21 @@ export function FeaturedOffer({ content }: { content: PricingContent["featured"]
   return (
     <section className="bg-bg pb-20 text-ink sm:pb-28">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <div className="grid overflow-hidden rounded-[var(--radius)] border-2 border-accent bg-surface lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid overflow-hidden rounded-[calc(var(--radius)+8px)] bg-surface shadow-[var(--shadow-soft)] ring-1 ring-line lg:grid-cols-[1fr_1.1fr]">
           <div className="p-8 sm:p-12">
-            <span className="inline-block rounded-full bg-accent px-4 py-1 text-sm font-bold uppercase tracking-[0.14em] text-on-accent">
+            <span className="inline-block rounded-full bg-accent px-4 py-1.5 text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-on-accent">
               {content.badge}
             </span>
             <h2 className="mt-6 text-4xl sm:text-5xl">{content.name}</h2>
             <p className="mt-6 font-display text-6xl leading-none sm:text-7xl">{content.price}</p>
             <p className="mt-4 text-lg text-ink-soft">{content.unit}</p>
-            <p className="mt-8 border-l-4 border-accent pl-4 text-lg font-semibold">{content.deduction}</p>
+            <p className="mt-8 border-l-2 border-accent pl-5 text-lg font-semibold">{content.deduction}</p>
             <ButtonLink href={content.cta.href} size="lg" className="mt-10 w-full sm:w-auto">
               {content.cta.label}
             </ButtonLink>
           </div>
           <div className="border-t border-line bg-bg-alt p-8 sm:p-12 lg:border-l lg:border-t-0">
-            <h3 className="text-sm font-bold uppercase tracking-[0.16em]">{content.includesTitle}</h3>
+            <h3 className="font-body text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{content.includesTitle}</h3>
             <ul className="mt-6 space-y-5 text-lg">
               {content.includes.map((item) => (
                 <CheckItem key={item}>{item}</CheckItem>

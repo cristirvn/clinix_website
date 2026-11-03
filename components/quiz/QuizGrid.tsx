@@ -39,14 +39,14 @@ export function QuizGrid({
         <li key={card.slug}>
           <L
             href={`/chestionare/${card.slug}`}
-            className={`group flex h-full flex-col rounded-[var(--radius)] border-t-4 border-primary bg-surface text-ink shadow-[var(--shadow-card)] ring-1 ring-line transition duration-300 hover:-translate-y-1 hover:ring-primary sm:p-8 ${compact ? "p-6" : "p-7"}`}
+            className={`group flex h-full flex-col rounded-[var(--radius)] bg-surface text-ink ring-1 ring-line transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-card)] hover:ring-primary/40 sm:p-8 ${compact ? "p-6" : "p-7"}`}
           >
             <span className={`inline-flex w-fit ${compact ? "mb-4 sm:mb-8" : "mb-8"} items-center gap-2 rounded-full bg-bg-alt px-3 py-1 text-sm font-medium text-ink-soft`}>
-              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-primary" />
+              <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-accent" />
               {questionCount(locale, card.slug)} {q} · {min}
             </span>
             <span className="flex items-center justify-between gap-4">
-              <span className="font-display text-[1.9rem] font-bold leading-tight sm:text-[2.1rem]">{card.title}</span>
+              <span className="font-display text-[1.9rem] leading-[1.1] sm:text-[2.1rem]">{card.title}</span>
               {compact && <span className="sm:hidden">{arrow}</span>}
             </span>
             <span className={`mt-3 flex-1 text-ink-soft ${compact ? "hidden sm:block" : ""}`}>{card.description}</span>
