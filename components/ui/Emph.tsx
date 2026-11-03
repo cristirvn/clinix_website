@@ -2,7 +2,7 @@ import { Fragment } from "react";
 
 /**
  * Renders `*words*` in a content string as <em> — in headings that is the
- * italic bronze accent (see globals.css). Everything else is plain text.
+ * italic accent (see globals.css). Everything else is plain text.
  */
 export function Emph({ text }: { text: string }) {
   const parts = text.split(/\*([^*]+)\*/);

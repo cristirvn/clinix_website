@@ -35,6 +35,16 @@ export function ChatAssistant() {
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
+  // On phones the floating buttons wait until the visitor scrolls past the first
+  // screen, so they never sit on top of the hero's main button.
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > window.innerHeight * 0.6);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: scrollRef.current.scrollHeight });
   }, [messages, open]);
@@ -101,14 +111,14 @@ export function ChatAssistant() {
     <>
       {!open && (
         // Two quiet floating actions, bottom-right: WhatsApp (small, round) above the assistant (labelled pill).
-        <div className="fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[56] flex flex-col items-end gap-3 sm:bottom-6 sm:right-6 print:hidden">
+        <div className={`fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[56] flex flex-col items-end gap-3 transition duration-300 sm:bottom-6 sm:right-6 print:hidden ${scrolled ? "" : "max-sm:pointer-events-none max-sm:translate-y-3 max-sm:opacity-0"}`}>
           <a
             href={CLINIC.whatsappHref}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={dict.common.whatsapp}
             title={dict.common.whatsapp}
-            className="flex h-13 w-13 items-center justify-center rounded-full bg-surface text-success shadow-[0_14px_30px_-14px_rgb(19_41_43_/_0.55)] ring-1 ring-line transition duration-300 hover:-translate-y-0.5"
+            className="flex h-13 w-13 items-center justify-center rounded-full bg-surface text-success shadow-[0_14px_30px_-14px_rgb(11_27_51_/_0.55)] ring-1 ring-line transition duration-300 hover:-translate-y-0.5"
           >
             <WhatsAppIcon size={26} />
           </a>
@@ -116,7 +126,7 @@ export function ChatAssistant() {
             type="button"
             onClick={() => setOpen(true)}
             aria-label={t.open}
-            className="group flex h-14 items-center gap-2.5 rounded-full bg-primary px-4 text-on-primary shadow-[0_16px_34px_-14px_rgb(19_41_43_/_0.7)] ring-1 ring-on-primary/10 transition duration-300 hover:-translate-y-0.5 sm:pr-6"
+            className="group flex h-14 items-center gap-2.5 rounded-full bg-primary px-4 text-on-primary shadow-[0_16px_34px_-14px_rgb(11_27_51_/_0.7)] ring-1 ring-on-primary/10 transition duration-300 hover:-translate-y-0.5 sm:pr-6"
           >
             <span className="relative flex h-8 w-8 items-center justify-center">
               <ChatIcon size={24} />

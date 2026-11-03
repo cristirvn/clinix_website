@@ -3,8 +3,8 @@
 /*
  * Design system — "the quiet clinic".
  *
- * Warm paper whites, deep petrol for structure and dark bands, matte bronze
- * for the one main action and for small accents. Headlines are an editorial
+ * Clean whites with pale-blue panels, deep navy for dark bands, one clear blue
+ * for the main action and for small accents. Headlines are an editorial
  * serif (Newsreader, optical sizes) in sentence case, body text a clear
  * grotesque (Instrument Sans). Fine hairlines instead of heavy boxes; one
  * signature motif — a thin EEG trace — used sparingly.
@@ -40,29 +40,29 @@
 }
 
 :root {
-  /* Paper, not screen-white: a hint of warmth makes the page feel printed and calm. */
-  --bg: #fbfaf7;
-  --bg-alt: #f2efe9;
+  /* Clean white with pale-blue panels (client's reference palette). */
+  --bg: #ffffff;
+  --bg-alt: #edf3fb;
   --surface: #ffffff;
-  --ink: #15272a;
-  --ink-soft: #4d5b5b;
-  --line: #e2ddd3;
-  /* Petrol: structure, links, the chat launcher. */
-  --primary: #2b5557;
+  --ink: #0b1b33;
+  --ink-soft: #4a5a70;
+  --line: #e0e7f0;
+  /* Blue: structure, links, the chat launcher. */
+  --primary: #1d5fd1;
   --on-primary: #ffffff;
-  /* Deep bronze on light pages: eyebrows, ticks, the italic word in a headline. */
-  --accent: #7d5d36;
+  /* Blue on light pages: eyebrows, ticks, the italic word in a headline. */
+  --accent: #1d5fd1;
   --on-accent: #ffffff;
-  /* Matte bronze: the main button everywhere. */
-  --cta: #8a6a43;
+  /* Blue: the main button everywhere. */
+  --cta: #1d5fd1;
   --on-cta: #ffffff;
-  /* Legacy name for the bronze (logo dot, light buttons on petrol). */
-  --lime: #8a6a43;
+  /* Legacy name for the main blue (logo dot, light buttons on navy). */
+  --lime: #1d5fd1;
   --on-lime: #ffffff;
-  --dark: #13292b;
+  --dark: #0b1b33;
   --on-dark: #ffffff;
-  --on-dark-soft: #c8d5d2;
-  --success: #2c6a4c;
+  --on-dark-soft: #c5d3e5;
+  --success: #0f7a40;
   --danger: #a3372e;
   --radius: 22px;
   /* Height of the sticky header bar. */
@@ -70,31 +70,31 @@
   --btn-radius: 999px;
   --display-weight: 500;
   --display-tracking: -0.018em;
-  --shadow-soft: 0 40px 90px -40px rgb(19 41 43 / 0.28);
-  --shadow-card: 0 1px 2px rgb(19 41 43 / 0.04), 0 18px 40px -22px rgb(19 41 43 / 0.18);
+  --shadow-soft: 0 40px 90px -40px rgb(11 27 51 / 0.28);
+  --shadow-card: 0 1px 2px rgb(11 27 51 / 0.04), 0 18px 40px -22px rgb(11 27 51 / 0.18);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: light;
 }
 
 /*
- * On petrol the accent turns a light bronze (eyebrows, ticks, italics) and
- * lines turn translucent. White cards placed on petrol get the light values back.
+ * On navy the accent turns a light blue (eyebrows, ticks, italics) and
+ * lines turn translucent. White cards placed on navy get the light values back.
  */
 [data-tone="dark"],
 .bg-dark,
 .bg-vital {
-  --accent: #d6bb92;
-  --on-accent: #13292b;
+  --accent: #a9c8f5;
+  --on-accent: #0b1b33;
   --cta: var(--lime);
   --on-cta: var(--on-lime);
   --line: rgb(255 255 255 / 0.16);
 }
 :is([data-tone="dark"], .bg-dark, .bg-vital) :is(.bg-surface, .bg-bg, .bg-bg-alt) {
-  --accent: #7d5d36;
+  --accent: #1d5fd1;
   --on-accent: #ffffff;
-  --cta: #8a6a43;
+  --cta: #1d5fd1;
   --on-cta: #ffffff;
-  --line: #e2ddd3;
+  --line: #e0e7f0;
 }
 
 @media (min-width: 640px) {
@@ -140,7 +140,7 @@
     hyphens: manual;
   }
 
-  /* One word in a headline may lean: italic bronze, the clinic's handwriting. */
+  /* One word in a headline may lean: italic blue, the clinic's handwriting. */
   :is(h1, h2, h3) em {
     font-style: italic;
     font-weight: 400;
@@ -185,14 +185,14 @@
  */
 @layer components {
   /*
-   * The signature petrol: deep, matte, with a faint warm bronze light from the
+   * The signature navy: deep, matte, with a faint cool light from the
    * top-right and a little depth bottom-left, so large dark areas never look flat.
    */
   .bg-vital {
     background-color: var(--dark);
     background-image:
-      radial-gradient(80% 110% at 100% 0%, rgb(168 132 88 / 0.2) 0%, rgb(168 132 88 / 0) 60%),
-      radial-gradient(70% 90% at 0% 100%, rgb(43 85 87 / 0.5) 0%, rgb(43 85 87 / 0) 60%);
+      radial-gradient(80% 110% at 100% 0%, rgb(169 200 245 / 0.14) 0%, rgb(169 200 245 / 0) 60%),
+      radial-gradient(70% 90% at 0% 100%, rgb(29 95 209 / 0.32) 0%, rgb(29 95 209 / 0) 60%);
     color: var(--on-dark);
   }
 

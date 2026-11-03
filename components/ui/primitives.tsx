@@ -5,7 +5,7 @@ import { L } from "@/components/ui/L";
  * Layout + typography building blocks. Every page is built from these so the
  * design stays consistent. Use theme tokens only (bg-bg, text-ink, bg-dark,
  * text-accent, …) — never raw colours. Inside `tone="dark"` the accent turns a
- * light bronze and the main button stays bronze (see app/globals.css).
+ * light blue and the main button stays blue (see app/globals.css).
  */
 
 export function Container({ children, className = "", narrow = false }: { children: ReactNode; className?: string; narrow?: boolean }) {
@@ -109,7 +109,7 @@ type ButtonVariant = "cta" | "outline" | "light" | "ghost";
 const BTN_BASE =
   "inline-flex items-center justify-center gap-2.5 text-center font-semibold leading-tight transition duration-300 ease-[var(--ease-out)] disabled:cursor-not-allowed disabled:opacity-60";
 const BTN_VARIANTS: Record<ButtonVariant, string> = {
-  cta: "bg-cta text-on-cta shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18),0_14px_30px_-16px_rgb(19_41_43_/_0.55)] hover:-translate-y-0.5 hover:brightness-110",
+  cta: "bg-cta text-on-cta shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18),0_14px_30px_-16px_rgb(11_27_51_/_0.55)] hover:-translate-y-0.5 hover:brightness-110",
   outline: "border border-current/30 hover:border-current hover:bg-current/5",
   light: "bg-lime text-on-lime shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18),0_14px_30px_-16px_rgb(0_0_0_/_0.55)] hover:-translate-y-0.5 hover:brightness-110",
   ghost: "min-h-11 py-2 underline decoration-1 underline-offset-[6px] hover:opacity-70",
