@@ -20,8 +20,8 @@ export const BRAINMAP_FIXED_EN: BrainmapFixed = {
   },
   vsl: {
     eyebrow: "What comes next",
-    title: "Here's what we measure, before we say anything",
-    lede: "Four and a half minutes. Cristi shows you what BrainMap is, what a real map looks like, and why we start from a measurement, not a symptom.",
+    title: "Here's what we measure",
+    lede: "Four and a half minutes. Cristi shows you what a real map looks like.",
     playerTitle: "Emmanuel CliniX",
     points: [
       { title: "What the sensors read", text: "The electrical activity your brain produces anyway, every second." },
@@ -31,7 +31,7 @@ export const BRAINMAP_FIXED_EN: BrainmapFixed = {
   },
   mechanism: {
     eyebrow: "How it works",
-    title: ["We don't start from the symptom.", "We start from the measurement."],
+    title: ["First we measure.", "Then we recommend."],
     steps: [
       {
         badge: "30 min",
@@ -66,7 +66,7 @@ export const BRAINMAP_FIXED_EN: BrainmapFixed = {
   proof: {
     eyebrow: "Proof",
     title: "You don't have to take our word for it",
-    lede: "Ernesto, Gabriela and Paulina started exactly where you are now: with the map of their brain.",
+    lede: "They started exactly where you are now.",
     caption: "Full testimonial",
     playLabel: "Play testimonial",
     prev: "Previous testimonial",
@@ -126,7 +126,7 @@ export const BRAINMAP_FIXED_EN: BrainmapFixed = {
   },
   formSection: {
     eyebrow: "The first step",
-    lede: "Fill in the form below. We'll call you as soon as we can to book you in.",
+    lede: "Fill in the form. We'll call you to book you in.",
     flow: [
       { n: "01", a: "You fill in", b: "the form" },
       { n: "02", a: "We call you", b: "and book" },

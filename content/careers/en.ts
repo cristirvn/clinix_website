@@ -10,7 +10,7 @@ export const CAREERS_EN: CareersContent = {
   hero: {
     eyebrow: "Careers",
     title: "Work with us.",
-    lead: "We are looking for people who want to measure before they recommend, and who talk to patients in plain words.",
+    lead: "We are looking for people who measure before they recommend.",
   },
   why: {
     eyebrow: "Why us",

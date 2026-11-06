@@ -78,7 +78,7 @@ export function Header() {
             ref={menuButton}
             type="button"
             onClick={() => setOpen(true)}
-            className="flex h-11 items-center gap-2.5 rounded-full bg-primary px-4 font-semibold text-on-primary sm:px-5"
+            className="lg lg-tint flex h-11 items-center gap-2.5 rounded-full px-4 font-semibold sm:px-5"
             aria-expanded={open}
             aria-haspopup="dialog"
           >

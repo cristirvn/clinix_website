@@ -16,7 +16,7 @@ export const ARTICLES_PAGE_RO: ArticlesPageContent = {
   hero: {
     eyebrow: "Articole",
     title: "Pe scurt, despre creier.",
-    lead: "Explicații scurte, fără termeni medicali. Ca să înțelegi ce ți se întâmplă și ce poți face.",
+    lead: "Explicații scurte, fără termeni medicali.",
   },
   readMore: "Citește →",
   minutes: "min de citit",

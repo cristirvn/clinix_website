@@ -24,7 +24,7 @@ export const TESTIMONIALS_PAGE_RO: TestimonialsPageContent = {
   note: "Rezultatele pot varia de la persoană la persoană.",
   cta: {
     title: "Primul pas: vezi harta creierului tău.",
-    text: "Scanare, interpretare pe loc, consult psihologic și PDF cu recomandări. O oră în clinică, în București.",
+    text: "Scanare, interpretare și consult psihologic. O oră, în București.",
     primary: { label: "Vreau BrainMap →", href: "/brainmap" },
     secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
   },

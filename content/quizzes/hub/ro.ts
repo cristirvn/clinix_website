@@ -11,7 +11,7 @@ export const HUB_RO: QuizHub = {
     eyebrow: "Chestionare",
     title: "Află unde stai, de fapt.",
     subtitle:
-      "Alege testul care te descrie cel mai bine. La final primești o notă de la 1 la 10 și riscurile concrete pe care le indică răspunsurile tale.",
+      "Alege testul care te descrie. Primești o notă de la 1 la 10.",
   },
   /** The promise, restated as three scannable facts above the cards. */
   promise: [

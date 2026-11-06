@@ -24,7 +24,7 @@ export const TESTIMONIALS_PAGE_EN: TestimonialsPageContent = {
   note: "Results may vary from person to person.",
   cta: {
     title: "First step: see the map of your brain.",
-    text: "Scan, on-the-spot interpretation, psychological consultation and a PDF with recommendations. One hour at the clinic in Bucharest.",
+    text: "Scan, interpretation and psychological consultation. One hour, in Bucharest.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Or take a free test", href: "/chestionare" },
   },

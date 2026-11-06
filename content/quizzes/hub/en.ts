@@ -11,7 +11,7 @@ export const HUB_EN: QuizHub = {
     eyebrow: "Free tests",
     title: "Find out where you really stand.",
     subtitle:
-      "Choose the test that describes you best. At the end you get a score from 1 to 10 and the specific risks your answers point to.",
+      "Choose the test that describes you. You get a score from 1 to 10.",
   },
   /** The promise, restated as three scannable facts above the cards. */
   promise: [

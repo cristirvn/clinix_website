@@ -16,7 +16,7 @@ export const ARTICLES_PAGE_EN: ArticlesPageContent = {
   hero: {
     eyebrow: "Articles",
     title: "The brain, in short.",
-    lead: "Short explanations, no medical jargon. So you can understand what is happening to you and what you can do.",
+    lead: "Short explanations, no medical jargon.",
   },
   readMore: "Read →",
   minutes: "min read",

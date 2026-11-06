@@ -1,5 +1,5 @@
 import type { Locale } from "@/lib/i18n";
-import type { ImageKey, VideoKey } from "@/content/media";
+import type { ImageKey } from "@/content/media";
 import { HOME_RO } from "@/content/pages/ro/home";
 import { HOME_EN } from "@/content/pages/en/home";
 
@@ -9,7 +9,7 @@ export type ServiceSlug = "brainmap" | "tavns" | "tpbm" | "ces" | "psihoterapie"
 /** Home page copy — one object per language (`ro/home.ts`, `en/home.ts`). */
 export interface HomeContent {
   seo: { title: string; description: string };
-  /** 1 · Hero over a photo: BrainMap promise, ticks, phone, three glass facts. */
+  /** 1 · Hero over a photo: BrainMap promise, ticks, main action + phone, three glass facts. */
   hero: {
     eyebrow: string;
     title: string;
@@ -18,14 +18,12 @@ export interface HomeContent {
     cta: string;
     /** Small line next to the main button (price / duration). */
     note: string;
-    /** Label of the phone pill over the photo. */
+    /** Accessible label of the phone button next to the main action. */
     phoneLabel: string;
     /** Big number + label. `value` is counted up on screen; `decimals` keeps "99,7". */
     stats: Array<{ value: number; decimals?: number; suffix?: string; label: string }>;
   };
-  /** 2 · The three booking actions that sit on the hero's bottom edge. */
-  actions: { label: string; online: string; whatsapp: string; call: string };
-  /** 3 · Services: BrainMap first (featured), then the four treatments. */
+  /** 2 · Services: BrainMap first (featured), then the four treatments. */
   services: {
     eyebrow: string;
     title: string;
@@ -34,20 +32,9 @@ export interface HomeContent {
     featuredBadge: string;
     items: Array<{ slug: ServiceSlug; image: ImageKey; eyebrow: string; title: string; text: string }>;
   };
-  /** 4 · Quiz start: the first question inline (options come from `getTriage`). */
+  /** 3 · Quiz start: the first question inline (options come from `getTriage`). */
   quiz: { eyebrow: string; title: string; lead: string; step: string; next: string; pickFirst: string };
-  /** 5 · Short proof strip. */
-  proof: {
-    eyebrow: string;
-    title: string;
-    lead: string;
-    caption: string;
-    testimonials: Array<{ name: string; video: VideoKey }>;
-    recommendedLabel: string;
-    /** Logos / names of partners who recommend the clinic. The strip stays hidden while empty. */
-    recommendedBy: Array<{ name: string; logo?: string; href?: string }>;
-  };
-  /** 6 · Closing band: one action + how to reach us. */
+  /** 4 · Closing band: one action + how to reach us. */
   final: { title: string; lead: string; cta: string; note: string; reach: string; address: string };
   /**
    * Approved FAQ. No longer shown on the home page (kept short on purpose),

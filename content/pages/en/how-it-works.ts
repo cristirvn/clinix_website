@@ -8,8 +8,8 @@ export const howItWorks: HowItWorksContent = {
   },
   hero: {
     eyebrow: "How it works",
-    title: "We don’t start from the symptom. We start from a measurement.",
-    lead: "Five simple steps. You know what comes next from day one, and you see in data what has changed.",
+    title: "First we measure. Then we recommend.",
+    lead: "Five simple steps. You see in data what has changed.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Take a free test", href: "/chestionare" },
   },
@@ -19,7 +19,7 @@ export const howItWorks: HowItWorksContent = {
     steps: [
       {
         title: "A free test or a phone call",
-        text: "Take an online test in a few minutes, or call us. Tell us briefly what is going on.",
+        text: "Take an online test in a few minutes, or call us.",
       },
       {
         title: "The BrainMap scan",
@@ -27,11 +27,11 @@ export const howItWorks: HowItWorksContent = {
       },
       {
         title: "Interpretation and plan",
-        text: "We explain your map in plain words, in the same visit. You leave knowing where you stand and what comes next.",
+        text: "We explain your map in plain words, in the same visit.",
       },
       {
         title: "Treatment sessions",
-        text: "Neurofeedback, for example: painless sessions in which the brain gradually learns to keep a steadier rhythm.",
+        text: "Neurofeedback, for example: painless sessions in which the brain learns a steadier rhythm.",
       },
       {
         title: "We measure again",
@@ -41,8 +41,8 @@ export const howItWorks: HowItWorksContent = {
   },
   services: {
     eyebrow: "Equipment and services",
-    title: "See exactly what happens, before you come in.",
-    lead: "A short video for each service. In plain words, no medical jargon.",
+    title: "See it all before you come.",
+    lead: "A short video for each service.",
     feelsTitle: "What it feels like",
     items: [
       {
@@ -52,13 +52,12 @@ export const howItWorks: HowItWorksContent = {
         video: "serviceBrainmap",
         videoTitle: "How BrainMap works",
         paragraphs: [
-          "We fit a cap with sensors. You sit in a chair, fully clothed, with your eyes closed and then open. The sensors read the electrical activity your brain produces anyway, every second. Like a microphone listening to the brain talk.",
+          "We fit a cap with sensors. You sit in a chair with your eyes closed, then open. The sensors only listen to your brain’s activity, like a microphone.",
           "On the map we see areas that are too active and areas that are too slow, and compare them with the normal values for your age.",
         ],
         feels: [
           "30 minutes, fully clothed.",
           "No radiation, no needles, no pain.",
-          "Nothing enters your body. Nothing is administered.",
           "You get up from the chair and carry on with your day exactly as planned.",
         ],
         link: { label: "Everything about BrainMap →", href: "/brainmap" },
@@ -72,11 +71,10 @@ export const howItWorks: HowItWorksContent = {
         // TODO(owner): list the related protocols you offer alongside neurofeedback (names + one line each).
         paragraphs: [
           "We start from your BrainMap, not from a standard recipe. The protocol targets exactly the areas we found in you.",
-          "Session by session, the brain learns to keep a steadier electrical rhythm. We don’t mask the symptom the way a pill does. We train the brain to regulate itself, and the effect builds over time.",
+          "Session by session, the brain learns a steadier rhythm. We don’t mask the symptom: we train the brain to regulate itself.",
         ],
         feels: [
           "Painless sessions of 30–45 minutes.",
-          "The sensors only read brain activity; they send nothing into it.",
           "You sit back in a chair and feel nothing during the session.",
           "You can go straight back to your day after each session.",
         ],
@@ -89,7 +87,7 @@ export const howItWorks: HowItWorksContent = {
         videoTitle: "How the psychological consultation works",
         paragraphs: [
           "The map shows what is happening in the brain. The conversation with the psychologist shows what that means for your everyday life.",
-          "We talk through what the map shows and what your options are. You decide. There is no obligation.",
+          "You decide. There is no obligation.",
         ],
         feels: [
           "No second appointment.",
@@ -104,14 +102,13 @@ export const howItWorks: HowItWorksContent = {
         video: "serviceEmsella",
         videoTitle: "How the EmSella chair works",
         paragraphs: [
-          "EmSella strengthens the pelvic floor. The chair emits an electromagnetic field that reaches the pelvic floor directly. There, the muscles contract at maximum intensity — including the deep fibres you cannot control consciously, however hard you try.",
+          "EmSella strengthens the pelvic floor. An electromagnetic field contracts the muscles at maximum intensity — including the deep fibres you cannot control yourself.",
           "For leaks when you cough or lift, sudden urgency and waking at night. For women and men.",
         ],
         feels: [
           "28 minutes. Fully clothed.",
           "You don’t undress, nobody touches you, nothing enters your body.",
           "You feel the contractions strongly, but it is not painful.",
-          "No recovery time. You get up and carry on with your day straight away.",
         ],
         link: { label: "Everything about EmSella →", href: "/lp/emsella" },
       },
@@ -129,7 +126,7 @@ export const howItWorks: HowItWorksContent = {
   },
   cta: {
     title: "First step: see the map of your brain.",
-    text: "Scan, on-the-spot interpretation, psychological consultation and a PDF with recommendations. One hour at the clinic in Bucharest.",
+    text: "Scan, interpretation and psychological consultation. One hour, in Bucharest.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Or take a free test", href: "/chestionare" },
   },

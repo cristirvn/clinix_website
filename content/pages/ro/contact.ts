@@ -8,7 +8,7 @@ export const CONTACT_RO: ContactContent = {
   },
   eyebrow: "Contact",
   title: "Hai să vorbim.",
-  lead: "Sună-ne, scrie-ne pe WhatsApp sau lasă-ne numărul tău și te sunăm noi.",
+  lead: "Sună-ne, scrie-ne pe WhatsApp sau lasă-ne numărul.",
   details: {
     addressLabel: "Adresa",
     mapLink: "Deschide în Google Maps →",
@@ -22,7 +22,7 @@ export const CONTACT_RO: ContactContent = {
   },
   form: {
     title: "Completează formularul. Te sunăm noi.",
-    text: "Lasă-ne datele tale și te contactăm în 24 de ore pentru o discuție scurtă. Fără obligații, fără costuri.",
+    text: "Te contactăm în 24 de ore. Fără obligații, fără costuri.",
     emailLabel: "Email (opțional)",
     messagePlaceholder: "Pe scurt, cu ce te putem ajuta?",
     submit: "Trimite — Te sunăm noi",

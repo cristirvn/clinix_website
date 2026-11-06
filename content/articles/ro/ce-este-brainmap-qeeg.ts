@@ -55,7 +55,7 @@ export const ARTICLE: Article = {
   ],
   cta: {
     title: "Primul pas: vezi harta creierului tău.",
-    text: "Scanare, interpretare pe loc, consult psihologic și PDF cu recomandări. O oră în clinică, în București.",
+    text: "Scanare, interpretare și consult psihologic. O oră, în București.",
     primary: { label: "Vreau BrainMap →", href: "/brainmap" },
   },
 };

@@ -20,8 +20,8 @@ export const SERVICES_RO: ServicesLocale = {
     },
     hero: {
       eyebrow: "Servicii",
-      title: "Aparatura și serviciile noastre.",
-      lead: "Fiecare pornește de la același principiu: măsurăm înainte să recomandăm. Alege un serviciu și vezi, pe scurt, cum funcționează.",
+      title: "Serviciile noastre.",
+      lead: "Același principiu peste tot: măsurăm înainte să recomandăm.",
     },
     more: "Ce include",
     cardLink: "Află mai multe →",
@@ -31,7 +31,7 @@ export const SERVICES_RO: ServicesLocale = {
     },
     cta: {
       title: "Primul pas: vezi harta creierului tău.",
-      text: "Scanare, interpretare pe loc, consult psihologic și PDF cu recomandări. O oră în clinică, în București.",
+      text: "Scanare, interpretare și consult psihologic. O oră, în București.",
       primary: { label: "Vreau BrainMap →", href: "/brainmap" },
       secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
     },
@@ -58,9 +58,9 @@ export const SERVICES_RO: ServicesLocale = {
       video: "serviceBrainmap",
       what: {
         eyebrow: "Ce este",
-        title: "Nu pornim de la simptom. Pornim de la măsurătoare.",
+        title: "Întâi măsurăm. Apoi recomandăm.",
         paragraphs: [
-          "Îți punem o cască cu senzori. Stai pe scaun, cu hainele pe tine, cu ochii închiși și apoi deschiși. Senzorii citesc activitatea electrică pe care creierul tău o produce oricum, în fiecare secundă. Ca un microfon care ascultă creierul vorbind.",
+          "Îți punem o cască cu senzori. Stai pe scaun, cu ochii închiși și apoi deschiși. Senzorii doar ascultă activitatea creierului tău, ca un microfon.",
           "Pe hartă vedem zone prea active și zone prea lente. Le comparăm cu valorile normale pentru vârsta ta.",
         ],
       },
@@ -73,7 +73,7 @@ export const SERVICES_RO: ServicesLocale = {
           { title: "Consult psihologic, în aceeași vizită", text: "Fără o a doua programare." },
           {
             title: "PDF pe mail sau pe WhatsApp",
-            text: "Interpretarea completă și recomandări personalizate pe care le poți aplica acasă, pe cont propriu, fără costuri în plus.",
+            text: "Interpretarea completă și recomandări pe care le poți aplica acasă.",
           },
         ],
         facts: [
@@ -127,7 +127,7 @@ export const SERVICES_RO: ServicesLocale = {
       },
       cta: {
         title: "Primul pas: vezi harta creierului tău.",
-        text: "Scanare, interpretare pe loc, consult psihologic și PDF cu recomandări. O oră în clinică, în București.",
+        text: "Scanare, interpretare și consult psihologic. O oră, în București.",
         primary: { label: "Vreau BrainMap →", href: "/brainmap" },
         secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
       },
@@ -147,18 +147,17 @@ export const SERVICES_RO: ServicesLocale = {
       },
       hero: {
         eyebrow: "taVNS · stimulare vagală prin ureche",
-        title: "Un semnal blând, prin ureche, către nervul vag.",
-        lead: "Nervul vag ajută corpul să treacă din „alertă” în „repaus”. Îl stimulăm ușor, printr-un clips pus pe ureche.",
+        title: "Un semnal blând, către nervul vag.",
+        lead: "Ajută corpul să treacă din „alertă” în „repaus”. Printr-un clips pus pe ureche.",
         videoTitle: "Cum decurge o ședință de taVNS",
       },
       video: "serviceTavns",
       what: {
         eyebrow: "Ce este",
-        title: "Pe scurt, fără termeni medicali",
+        title: "Pe scurt",
         paragraphs: [
-          "taVNS înseamnă stimularea transcutanată a nervului vag, la nivelul urechii. O ramură a nervului vag trece chiar sub pielea urechii. Acolo punem un electrod mic, ca un clips.",
-          "Aparatul trimite impulsuri electrice foarte slabe, prin piele. Nu taie, nu înțeapă, nu îți intră nimic în corp.",
-          "Nervul vag face parte din sistemul care liniștește corpul: ritmul inimii, respirația, digestia, somnul. Studiile arată că stimularea lui poate ajuta corpul să iasă mai ușor din starea de alertă. Nu e un tratament-minune și nu promitem vindecare. Îl folosim ca sprijin, într-un plan făcut pe baza evaluării tale.",
+          "O ramură a nervului vag trece chiar sub pielea urechii. Acolo punem un electrod mic, ca un clips, care trimite impulsuri foarte slabe. Nu înțeapă, nu îți intră nimic în corp.",
+          "Nervul vag ajută corpul să se liniștească. Nu e un tratament-minune și nu promitem vindecare: îl folosim ca sprijin, într-un plan făcut pe baza evaluării tale.",
         ],
       },
       session: {
@@ -192,7 +191,7 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "Îl recomandăm ca parte dintr-un plan, nu ca soluție unică. Mai ales când corpul pare blocat în „alertă”.",
+        lead: "Ca parte dintr-un plan, când corpul pare blocat în „alertă”.",
         conditions: ["anxietate", "panica", "stres", "somn", "burnout", "migrene"],
         note: "Îți spunem sincer, după evaluare, dacă taVNS are sens pentru tine.",
       },
@@ -237,7 +236,7 @@ export const SERVICES_RO: ServicesLocale = {
       },
       cta: {
         title: "Vrei să afli dacă taVNS ți se potrivește?",
-        text: "Lasă-ne numărul tău. Te sunăm, te ascultăm și îți spunem sincer dacă te putem ajuta.",
+        text: "Lasă-ne numărul. Te sunăm și îți spunem sincer dacă te putem ajuta.",
         primary: { label: "Te sunăm noi →", href: "/contact" },
         secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
       },
@@ -257,18 +256,17 @@ export const SERVICES_RO: ServicesLocale = {
       },
       hero: {
         eyebrow: "tPBM · fotobiomodulare transcraniană",
-        title: "Lumină infraroșie, pentru celulele creierului.",
+        title: "Lumină infraroșie, pentru creier.",
         lead: "O cască cu lumină din spectrul infraroșu apropiat. Fără ace, fără durere, fără radiații ionizante.",
         videoTitle: "Cum decurge o ședință de tPBM",
       },
       video: "serviceTpbm",
       what: {
         eyebrow: "Ce este",
-        title: "Pe scurt, fără termeni medicali",
+        title: "Pe scurt",
         paragraphs: [
-          "tPBM înseamnă fotobiomodulare transcraniană. Folosim lumină din spectrul infraroșu apropiat. Ea trece prin piele și prin oasele craniului, până în straturile de la suprafața creierului.",
-          "Cercetările arată că această lumină poate susține felul în care celulele își produc energia. De aceea este studiată pentru concentrare, memorie și starea de spirit.",
-          "Este o metodă încă în studiu. Nu promitem vindecare. O recomandăm doar când evaluarea ta arată că are sens, alături de celelalte părți ale planului.",
+          "Lumina din spectrul infraroșu apropiat trece prin piele și prin craniu, până la suprafața creierului. Cercetările arată că poate susține felul în care celulele își produc energia.",
+          "Este o metodă încă în studiu. Nu promitem vindecare. O recomandăm doar când evaluarea ta arată că are sens.",
         ],
       },
       session: {
@@ -302,7 +300,7 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "O folosim ca sprijin, mai ales când oboseala mentală, ceața din minte sau lipsa de energie sunt pe primul plan.",
+        lead: "Ca sprijin, când oboseala mentală sau ceața din minte sunt pe primul plan.",
         conditions: ["focus", "dispozitie", "burnout"],
         note: "Îți spunem sincer, după evaluare, dacă tPBM are sens pentru tine.",
       },
@@ -344,7 +342,7 @@ export const SERVICES_RO: ServicesLocale = {
       },
       cta: {
         title: "Vrei să afli dacă tPBM ți se potrivește?",
-        text: "Lasă-ne numărul tău. Te sunăm, te ascultăm și îți spunem sincer dacă te putem ajuta.",
+        text: "Lasă-ne numărul. Te sunăm și îți spunem sincer dacă te putem ajuta.",
         primary: { label: "Te sunăm noi →", href: "/contact" },
         secondary: { label: "Sau fă testul de focus", href: "/chestionare/focus" },
       },
@@ -364,18 +362,17 @@ export const SERVICES_RO: ServicesLocale = {
       },
       hero: {
         eyebrow: "CES · electrostimulare craniană",
-        title: "Un curent foarte slab, care ajută creierul să se liniștească.",
+        title: "Un curent foarte slab, pentru calm.",
         lead: "Două clipsuri mici, pe lobii urechilor. Stai relaxat, iar aparatul face restul.",
         videoTitle: "Cum decurge o ședință de CES",
       },
       video: "serviceCes",
       what: {
         eyebrow: "Ce este",
-        title: "Pe scurt, fără termeni medicali",
+        title: "Pe scurt",
         paragraphs: [
-          "CES înseamnă electrostimulare craniană. Aparatul trimite un curent foarte slab, de ordinul microamperilor, prin două clipsuri puse pe lobii urechilor.",
-          "Metoda este folosită de zeci de ani ca sprijin pentru anxietate, somn și stres. Scopul e simplu: să ajute creierul să intre mai ușor într-un ritm de calm.",
-          "Nu e un tratament-minune și nu înlocuiește tratamentul prescris de medic. Îl folosim când are sens pentru tine, într-un plan pe care îl urmărim în timp.",
+          "Aparatul trimite un curent foarte slab, de ordinul microamperilor, prin două clipsuri puse pe lobii urechilor. Metoda e folosită de zeci de ani ca sprijin pentru anxietate, somn și stres.",
+          "Nu e un tratament-minune și nu înlocuiește tratamentul prescris de medic. Îl folosim când are sens pentru tine.",
         ],
       },
       session: {
@@ -409,7 +406,7 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "Îl recomandăm ca parte dintr-un plan, mai ales când mintea nu se oprește și somnul are de suferit.",
+        lead: "Ca parte dintr-un plan, când mintea nu se oprește și somnul suferă.",
         conditions: ["anxietate", "somn", "stres"],
         note: "Îți spunem sincer, după evaluare, dacă CES are sens pentru tine.",
       },
@@ -450,7 +447,7 @@ export const SERVICES_RO: ServicesLocale = {
       },
       cta: {
         title: "Vrei să afli dacă CES ți se potrivește?",
-        text: "Lasă-ne numărul tău. Te sunăm, te ascultăm și îți spunem sincer dacă te putem ajuta.",
+        text: "Lasă-ne numărul. Te sunăm și îți spunem sincer dacă te putem ajuta.",
         primary: { label: "Te sunăm noi →", href: "/contact" },
         secondary: { label: "Sau fă testul de anxietate", href: "/chestionare/anxietate" },
       },
@@ -470,8 +467,8 @@ export const SERVICES_RO: ServicesLocale = {
       },
       hero: {
         eyebrow: "Psihoterapie",
-        title: "Un loc sigur în care să vorbești. Și un plan.",
-        lead: "Discuții regulate cu un psihoterapeut, în clinică, în București. Confidențial, în ritmul tău.",
+        title: "Un loc sigur să vorbești.",
+        lead: "Discuții regulate cu un psihoterapeut. Confidențial, în ritmul tău.",
         videoTitle: "Cum decurge psihoterapia la Emmanuel CliniX",
       },
       video: "servicePsihoterapie",
@@ -479,9 +476,8 @@ export const SERVICES_RO: ServicesLocale = {
         eyebrow: "Ce este",
         title: "Pe scurt",
         paragraphs: [
-          "Psihoterapia este o colaborare între tine și un psihoterapeut. Vorbiți despre ce te apasă, înțelegeți împreună de unde vine și exersați alte moduri de a reacționa.",
-          "La noi, discuția poate porni și de la date. Dacă ai făcut BrainMap, psihoterapeutul vede ce arată harta și ține cont de ea.",
-          "Nu primești sfaturi generale. Lucrați pe situația ta, cu obiective clare, pe care le revedeți din când în când.",
+          "Vorbiți despre ce te apasă, înțelegeți împreună de unde vine și exersați alte moduri de a reacționa.",
+          "La noi, discuția poate porni și de la date: dacă ai făcut BrainMap, psihoterapeutul ține cont de hartă.",
         ],
       },
       session: {
@@ -515,7 +511,7 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "Când simți că nu mai faci față singur, sau când același tipar se repetă de prea mult timp.",
+        lead: "Când nu mai faci față singur sau același tipar se tot repetă.",
         conditions: ["anxietate", "panica", "dispozitie", "stres", "burnout", "adictii"],
         note: "Psihoterapia nu înlocuiește tratamentul medical, atunci când acesta este necesar.",
       },

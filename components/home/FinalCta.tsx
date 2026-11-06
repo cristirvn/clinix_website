@@ -8,59 +8,60 @@ import { CLINIC } from "@/lib/site";
 import { getDictionary } from "@/lib/dictionary";
 
 /**
- * Closing band — one panel, two halves: the same single action as the hero on
- * the left; on the right a calm photo with how to reach us (phone, WhatsApp,
- * address) on a glass card.
+ * Section 4 — the close. One inset navy panel that mirrors the hero: the
+ * headline and the same single action on the left, a calm photo on the
+ * right with the three ways to reach us on a glass card. It replaces the
+ * footer's own call-to-action band on this page (`data-final-cta`, see
+ * globals.css), so the page ends once, quickly.
  */
 export function FinalCta({ final, locale }: { final: HomeContent["final"]; locale: Locale }) {
   const dict = getDictionary(locale);
+  const reach = [
+    { href: CLINIC.phoneHref, icon: <PhoneIcon className="flex-none text-accent" />, label: CLINIC.phone, strong: true },
+    { href: CLINIC.whatsappHref, icon: <WhatsAppIcon className="flex-none text-accent" />, label: dict.common.whatsapp, strong: true, external: true },
+    { href: CLINIC.mapsHref, icon: <PinIcon className="flex-none text-accent" />, label: CLINIC.address, sr: `${final.address}: `, external: true },
+  ];
   return (
-    <section className="bg-bg py-20 text-ink sm:py-28">
+    <section data-final-cta className="bg-bg py-20 sm:py-28">
       <Container>
-        <div className="grid overflow-hidden rounded-[32px] bg-surface shadow-[var(--shadow-soft)] ring-1 ring-line lg:grid-cols-2">
-          <div className="flex flex-col px-6 py-12 sm:px-12 sm:py-16 lg:px-16 lg:py-20">
-            <EegTrace className="mb-10 w-44 opacity-90" strokeWidth={2} />
-            <h2 className="text-[2.3rem] leading-[1.06] sm:text-[3.2rem] lg:text-[3.5rem]">{final.title}</h2>
-            <p className="mt-6 text-lg text-ink-soft sm:text-xl">{final.lead}</p>
+        <div data-tone="dark" className="bg-vital relative isolate grid overflow-hidden rounded-[28px] text-on-dark sm:rounded-[36px] lg:grid-cols-2">
+          <div className="relative z-10 flex flex-col px-5 pb-10 pt-12 sm:px-12 sm:pb-16 sm:pt-20 lg:px-16 lg:py-24">
+            <EegTrace draw className="mb-10 w-40 opacity-90 sm:w-48" strokeWidth={2} />
+            <h2 className="max-w-xl text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[3.8rem]">{final.title}</h2>
+            <p className="mt-6 text-lg text-on-dark-soft sm:text-xl">{final.lead}</p>
             <div className="mt-10">
-              <ButtonLink href="/brainmap" size="lg" className="group w-full sm:w-auto">
+              <ButtonLink href="/brainmap" size="lg" className="group w-full !px-4 max-[420px]:!text-base sm:w-auto sm:!px-9">
                 {final.cta}
                 <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
               </ButtonLink>
             </div>
-            <p className="mt-5 text-ink-soft">{final.note}</p>
+            <p className="mt-5 text-base text-on-dark-soft">{final.note}</p>
           </div>
 
-          <div data-tone="dark" className="relative isolate flex min-h-[26rem] flex-col justify-end bg-dark p-5 text-on-dark sm:p-8">
-            <div aria-hidden="true" className="absolute inset-0 -z-20">
+          <div className="relative isolate flex min-h-[25rem] flex-col justify-end p-3 sm:p-6 lg:min-h-0">
+            {/* The photo fades into the navy (a mask, not an overlay), so there is no seam. */}
+            <div aria-hidden="true" className="fade-photo absolute inset-0 -z-20 lg:-left-[18%]">
               <Photo image="consult" locale={locale} width={1200} />
             </div>
-            <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-dark/85 via-dark/20 to-dark/0" />
 
-            <div className="liquid-glass rounded-[22px] p-5 sm:p-7">
-              <p className="text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{final.reach}</p>
-              <ul className="mt-4 space-y-1">
-                <li>
-                  <a href={CLINIC.phoneHref} className="flex min-h-12 items-center gap-3 text-lg font-semibold hover:underline">
-                    <PhoneIcon className="flex-none text-accent" />
-                    {CLINIC.phone}
-                  </a>
-                </li>
-                <li>
-                  <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-center gap-3 text-lg font-semibold hover:underline">
-                    <WhatsAppIcon className="flex-none text-accent" />
-                    {dict.common.whatsapp}
-                  </a>
-                </li>
-                <li>
-                  <a href={CLINIC.mapsHref} target="_blank" rel="noopener noreferrer" className="flex min-h-12 items-start gap-3 py-2 text-on-dark/90 hover:underline">
-                    <PinIcon className="mt-0.5 flex-none text-accent" />
-                    <span>
-                      <span className="sr-only">{final.address}: </span>
-                      {CLINIC.address}
-                    </span>
-                  </a>
-                </li>
+            <div className="liquid-glass rounded-[22px] p-4 sm:p-6 lg:ml-auto lg:max-w-md">
+              <p className="px-2 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{final.reach}</p>
+              <ul className="mt-2">
+                {reach.map((r) => (
+                  <li key={r.href}>
+                    <a
+                      href={r.href}
+                      {...(r.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                      className={`flex min-h-12 items-center gap-3 rounded-[14px] px-2 py-2 transition hover:bg-on-dark/10 ${r.strong ? "text-lg font-semibold" : "text-on-dark/90"}`}
+                    >
+                      {r.icon}
+                      <span>
+                        {r.sr && <span className="sr-only">{r.sr}</span>}
+                        {r.label}
+                      </span>
+                    </a>
+                  </li>
+                ))}
               </ul>
             </div>
           </div>

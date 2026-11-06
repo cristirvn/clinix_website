@@ -25,8 +25,8 @@ export const BRAINMAP_FIXED_RO: BrainmapFixed = {
   },
   vsl: {
     eyebrow: "Ce urmează",
-    title: "Uite ce măsurăm, înainte să spunem ceva",
-    lede: "Patru minute și jumătate. Cristi îți arată ce este BrainMap, cum arată o hartă reală și de ce pornim de la măsurătoare, nu de la simptom.",
+    title: "Uite ce măsurăm",
+    lede: "4 minute și jumătate. Cristi îți arată cum arată o hartă reală.",
     playerTitle: "Emmanuel CliniX",
     points: [
       { title: "Ce citesc senzorii", text: "Activitatea electrică pe care creierul o produce oricum, în fiecare secundă." },
@@ -36,7 +36,7 @@ export const BRAINMAP_FIXED_RO: BrainmapFixed = {
   },
   mechanism: {
     eyebrow: "Mecanismul",
-    title: ["Nu pornim de la simptom.", "Pornim de la măsurătoare."],
+    title: ["Întâi măsurăm.", "Apoi recomandăm."],
     steps: [
       {
         badge: "30 min",
@@ -71,7 +71,7 @@ export const BRAINMAP_FIXED_RO: BrainmapFixed = {
   proof: {
     eyebrow: "Dovezi",
     title: "Nu trebuie să ne crezi pe cuvânt",
-    lede: "Ernesto, Gabriela și Paulina au început exact de unde ești tu acum: de la harta creierului lor.",
+    lede: "Au început exact de unde ești tu acum.",
     caption: "Testimonial complet",
     playLabel: "Pornește testimonialul",
     prev: "Testimonialul anterior",
@@ -134,7 +134,7 @@ export const BRAINMAP_FIXED_RO: BrainmapFixed = {
   },
   formSection: {
     eyebrow: "Primul pas",
-    lede: "Completează formularul de mai jos. Te sunăm noi în cel mai scurt timp, ca să programăm.",
+    lede: "Completează formularul. Te sunăm noi, ca să programăm.",
     flow: [
       { n: "01", a: "Completezi", b: "formularul" },
       { n: "02", a: "Te sunăm", b: "și programăm" },

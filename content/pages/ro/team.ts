@@ -34,7 +34,7 @@ export const team: TeamContent = {
   hero: {
     eyebrow: "Echipă",
     title: "Oamenii care îți citesc harta.",
-    lead: "O echipă mică, care lucrează împreună pe fiecare caz. De la scanare până la ultima ședință.",
+    lead: "O echipă mică. Lucrăm împreună pe fiecare caz.",
     primary: { label: "Vreau BrainMap →", href: "/brainmap" },
   },
   members: {
@@ -55,11 +55,11 @@ export const team: TeamContent = {
     points: [
       {
         title: "Toți pornim de la harta ta",
-        text: "Cine face scanarea, psihologul și terapeutul care te însoțește în ședințe lucrează pe aceeași hartă. Nu povestești totul de la capăt.",
+        text: "Toată echipa lucrează pe aceeași hartă. Nu povestești totul de la capăt.",
       },
       {
         title: "Ne uităm împreună la progres",
-        text: "La fiecare hartă de control discutăm în echipă ce s-a schimbat și ajustăm protocolul dacă e nevoie.",
+        text: "La fiecare hartă de control discutăm ce s-a schimbat și ajustăm planul.",
       },
       {
         title: "Îți spunem deschis",
@@ -69,7 +69,7 @@ export const team: TeamContent = {
   },
   cta: {
     title: "Cunoaște-ne la prima vizită.",
-    text: "O oră în clinică: scanare, interpretare, consult psihologic. Plus un PDF cu interpretarea și recomandările tale.",
+    text: "O oră în clinică. Plus un PDF cu recomandările tale.",
     primary: { label: "Vreau BrainMap →", href: "/brainmap" },
     secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
   },

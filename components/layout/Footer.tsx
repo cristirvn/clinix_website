@@ -20,7 +20,7 @@ export function Footer({ locale }: { locale: Locale }) {
   return (
     <footer data-tone="dark" className="bg-vital text-on-dark">
       <div className="mx-auto max-w-7xl px-5 pt-16 sm:px-8 sm:pt-24">
-        <div className="grid gap-10 border-b border-line pb-14 lg:grid-cols-12 lg:items-end lg:pb-20">
+        <div className="footer-cta grid gap-10 border-b border-line pb-14 lg:grid-cols-12 lg:items-end lg:pb-20">
           <div className="lg:col-span-8">
             <EegTrace className="mb-8 w-48 sm:w-60" strokeWidth={1.8} />
             <p className="font-display text-[2.4rem] leading-[1.04] tracking-[-0.02em] sm:text-6xl lg:text-[4.4rem]">{dict.footer.statement}</p>

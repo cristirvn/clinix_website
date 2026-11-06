@@ -11,7 +11,7 @@ export const CONDITIONS_EN: ConditionsContent = {
   hero: {
     eyebrow: "Conditions we treat",
     title: "What we can help with.",
-    lead: "Choose what describes you best. Take the free test in 2–3 minutes, or see straight away how we work with your situation.",
+    lead: "Choose what describes you. Take the free test or see how we help.",
   },
   ui: {
     takeTest: "Take the free test →",
@@ -39,7 +39,7 @@ export const CONDITIONS_EN: ConditionsContent = {
   ],
   cta: {
     title: "First step: see the map of your brain.",
-    text: "Scan, on-the-spot interpretation, psychological consultation and a PDF with recommendations. One hour at the clinic in Bucharest.",
+    text: "Scan, interpretation and psychological consultation. One hour, in Bucharest.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Or request a call back", href: "/contact" },
   },

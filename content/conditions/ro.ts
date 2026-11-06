@@ -14,7 +14,7 @@ export const CONDITIONS_RO: ConditionsContent = {
   hero: {
     eyebrow: "Afecțiuni tratate",
     title: "Cu ce te putem ajuta.",
-    lead: "Alege ce te descrie cel mai bine. Fă testul gratuit în 2–3 minute sau află direct cum lucrăm cu situația ta.",
+    lead: "Alege ce te descrie. Fă testul gratuit sau vezi cum te ajutăm.",
   },
   ui: {
     takeTest: "Fă testul gratuit →",
@@ -97,7 +97,7 @@ export const CONDITIONS_RO: ConditionsContent = {
   ],
   cta: {
     title: "Primul pas: vezi harta creierului tău.",
-    text: "Scanare, interpretare pe loc, consult psihologic și PDF cu recomandări. O oră în clinică, în București.",
+    text: "Scanare, interpretare și consult psihologic. O oră, în București.",
     primary: { label: "Vreau BrainMap →", href: "/brainmap" },
     secondary: { label: "Sau cere să fii sunat", href: "/contact" },
   },

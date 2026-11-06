@@ -10,7 +10,7 @@ export const CAREERS_RO: CareersContent = {
   hero: {
     eyebrow: "Cariere",
     title: "Lucrează cu noi.",
-    lead: "Căutăm oameni care vor să măsoare înainte să recomande și să vorbească cu pacienții pe înțelesul lor.",
+    lead: "Căutăm oameni care măsoară înainte să recomande.",
   },
   why: {
     eyebrow: "De ce la noi",

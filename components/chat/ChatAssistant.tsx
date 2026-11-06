@@ -118,7 +118,7 @@ export function ChatAssistant() {
             rel="noopener noreferrer"
             aria-label={dict.common.whatsapp}
             title={dict.common.whatsapp}
-            className="flex h-13 w-13 items-center justify-center rounded-full bg-surface text-success shadow-[0_14px_30px_-14px_rgb(11_27_51_/_0.55)] ring-1 ring-line transition duration-300 hover:-translate-y-0.5"
+            className="lg lg-clear flex h-13 w-13 items-center justify-center rounded-full !text-success"
           >
             <WhatsAppIcon size={26} />
           </a>
@@ -126,11 +126,11 @@ export function ChatAssistant() {
             type="button"
             onClick={() => setOpen(true)}
             aria-label={t.open}
-            className="group flex h-14 items-center gap-2.5 rounded-full bg-primary px-4 text-on-primary shadow-[0_16px_34px_-14px_rgb(11_27_51_/_0.7)] ring-1 ring-on-primary/10 transition duration-300 hover:-translate-y-0.5 sm:pr-6"
+            className="lg lg-tint group flex h-14 items-center gap-2.5 rounded-full px-4 sm:pr-6"
           >
             <span className="relative flex h-8 w-8 items-center justify-center">
               <ChatIcon size={24} />
-              <span aria-hidden="true" className="absolute right-0.5 top-0.5 h-2 w-2 rounded-full bg-lime ring-2 ring-primary" />
+              <span aria-hidden="true" className="absolute right-0.5 top-0.5 h-2.5 w-2.5 rounded-full bg-success ring-2 ring-on-cta" />
             </span>
             <span className="hidden font-semibold sm:inline">{t.launcher}</span>
           </button>

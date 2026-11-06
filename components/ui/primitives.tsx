@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { L } from "@/components/ui/L";
+import { GlassRefraction } from "@/components/ui/GlassRefraction";
 
 /**
  * Layout + typography building blocks. Every page is built from these so the
@@ -36,7 +37,7 @@ export function Section({
   narrow?: boolean;
 }) {
   return (
-    <section id={id} data-tone={tone} className={`${TONES[tone]} scroll-mt-24 py-20 sm:py-28 ${className}`}>
+    <section id={id} data-tone={tone} className={`${TONES[tone]} scroll-mt-24 py-24 sm:py-32 ${className}`}>
       <Container narrow={narrow}>{children}</Container>
     </section>
   );
@@ -104,15 +105,24 @@ export function SectionHead({
   );
 }
 
-type ButtonVariant = "cta" | "outline" | "light" | "ghost";
+type ButtonVariant = "cta" | "outline" | "light" | "ghost" | "glass";
 
+/*
+ * Buttons are liquid glass (see `.lg` in app/globals.css):
+ *  cta / light — glass tinted with the brand blue, the one obvious action;
+ *  outline     — clear glass on light pages, smoky glass inside dark bands;
+ *  glass       — always smoky glass (for photos);
+ *  ghost       — an underlined text link with a big tap area.
+ * Add <GlassRefraction /> as the first child for real refraction (hero only).
+ */
 const BTN_BASE =
-  "inline-flex items-center justify-center gap-2.5 text-center font-semibold leading-tight transition duration-300 ease-[var(--ease-out)] disabled:cursor-not-allowed disabled:opacity-60";
+  "inline-flex items-center justify-center gap-2.5 text-center font-semibold leading-tight disabled:cursor-not-allowed disabled:opacity-60";
 const BTN_VARIANTS: Record<ButtonVariant, string> = {
-  cta: "bg-cta text-on-cta shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18),0_14px_30px_-16px_rgb(11_27_51_/_0.55)] hover:-translate-y-0.5 hover:brightness-110",
-  outline: "border border-current/30 hover:border-current hover:bg-current/5",
-  light: "bg-lime text-on-lime shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18),0_14px_30px_-16px_rgb(0_0_0_/_0.55)] hover:-translate-y-0.5 hover:brightness-110",
-  ghost: "min-h-11 py-2 underline decoration-1 underline-offset-[6px] hover:opacity-70",
+  cta: "lg lg-tint",
+  light: "lg lg-tint",
+  outline: "lg lg-clear",
+  glass: "lg lg-smoke",
+  ghost: "min-h-11 py-2 underline decoration-1 underline-offset-[6px] transition hover:opacity-70",
 };
 const BTN_SIZES = {
   md: "min-h-12 px-7 py-3 text-base",
@@ -130,15 +140,19 @@ export function ButtonLink({
   variant = "cta",
   size = "md",
   className = "",
+  refract = false,
 }: {
   href: string;
   children: ReactNode;
   variant?: ButtonVariant;
   size?: "md" | "lg";
   className?: string;
+  /** Real SVG refraction of what is behind (Chromium; others keep the frosted glass). Use on 1–2 key CTAs over photos only. */
+  refract?: boolean;
 }) {
   return (
     <L href={href} className={buttonClass(variant, size, className)}>
+      {refract && <GlassRefraction />}
       {children}
     </L>
   );

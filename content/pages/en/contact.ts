@@ -8,7 +8,7 @@ export const CONTACT_EN: ContactContent = {
   },
   eyebrow: "Contact",
   title: "Let's talk.",
-  lead: "Call us, message us on WhatsApp or leave your number and we'll call you.",
+  lead: "Call us, message us on WhatsApp or leave your number.",
   details: {
     addressLabel: "Address",
     mapLink: "Open in Google Maps →",
@@ -22,7 +22,7 @@ export const CONTACT_EN: ContactContent = {
   },
   form: {
     title: "Fill in the form. We'll call you.",
-    text: "Leave us your details and we'll get back to you within 24 hours for a short conversation. No obligation, no cost.",
+    text: "We'll get back to you within 24 hours. No obligation, no cost.",
     emailLabel: "Email (optional)",
     messagePlaceholder: "Briefly, how can we help?",
     submit: "Send — we'll call you",

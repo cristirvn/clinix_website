@@ -1,4 +1,4 @@
-import { Container, Eyebrow } from "@/components/ui/primitives";
+import { Container, Eyebrow, buttonClass } from "@/components/ui/primitives";
 import { L } from "@/components/ui/L";
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
@@ -10,35 +10,35 @@ import type { Locale } from "@/lib/i18n";
 type Service = HomeContent["services"]["items"][number];
 
 /**
- * Section 3 — five services without a cramped row of five: BrainMap is the
- * tall featured card (it is where everyone starts), the four treatments sit
- * beside it in a 2×2 grid. On phones the four become slim rows (thumbnail +
- * text) so the section stays short and easy to scan.
+ * Section 2 — five services, picture-led. BrainMap is the tall featured card
+ * (everyone starts there); the four treatments are photo tiles beside it,
+ * 2×2. Each tile carries only its name, a plain-words subtitle and (on large
+ * screens) one short line — the detail lives on the service page.
  */
 export function HomeServices({ services, locale }: { services: HomeContent["services"]; locale: Locale }) {
   const [featured, ...rest] = services.items;
   return (
-    <section id="servicii" className="scroll-mt-24 bg-bg pb-20 pt-16 text-ink sm:pb-28 sm:pt-24">
+    <section id="servicii" className="scroll-mt-24 bg-bg py-24 text-ink sm:py-32">
       <Container>
-        <div className="mb-10 grid gap-6 sm:mb-14 lg:grid-cols-12 lg:items-end">
-          <div className="lg:col-span-7">
-            <Eyebrow index="01">{services.eyebrow}</Eyebrow>
-            <h2 className="text-[2.4rem] leading-[1.05] sm:text-[3.4rem] lg:text-[4rem]">
+        <div className="mb-12 flex flex-col gap-6 sm:mb-16 lg:flex-row lg:items-end lg:justify-between">
+          <div>
+            <Eyebrow>{services.eyebrow}</Eyebrow>
+            <h2 className="text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[4rem]">
               <Emph text={services.title} />
             </h2>
           </div>
-          <p className="max-w-md text-lg text-ink-soft sm:text-xl lg:col-span-5 lg:justify-self-end lg:pb-2">{services.lead}</p>
+          <p className="max-w-sm text-lg text-ink-soft sm:text-xl lg:pb-2 lg:text-right">{services.lead}</p>
         </div>
 
-        <div className="grid grid-cols-1 gap-4 sm:gap-5 lg:grid-cols-12 lg:gap-6">
+        <div className="grid grid-cols-1 gap-3 sm:gap-5 lg:grid-cols-12">
           <Reveal className="min-w-0 lg:col-span-5">
             <FeaturedCard service={featured} badge={services.featuredBadge} more={services.more} locale={locale} />
           </Reveal>
-          <ul className="grid min-w-0 grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5 lg:col-span-7 lg:gap-6">
+          <ul className="grid min-w-0 grid-cols-2 gap-3 sm:gap-5 lg:col-span-7">
             {rest.map((s, i) => (
-              <li key={s.slug}>
-                <Reveal delay={i * 90} className="h-full">
-                  <ServiceCard service={s} more={services.more} locale={locale} />
+              <li key={s.slug} className="min-w-0">
+                <Reveal delay={i * 80} className="h-full">
+                  <ServiceTile service={s} more={services.more} locale={locale} />
                 </Reveal>
               </li>
             ))}
@@ -54,21 +54,21 @@ function FeaturedCard({ service, badge, more, locale }: { service: Service; badg
     <L
       href={`/servicii/${service.slug}`}
       data-tone="dark"
-      className="group relative isolate flex h-full min-h-[26rem] flex-col justify-end overflow-hidden rounded-[var(--radius)] bg-dark p-6 text-on-dark sm:min-h-[32rem] sm:p-9"
+      className="group relative isolate flex h-full min-h-[27rem] flex-col justify-end overflow-hidden rounded-[var(--radius)] bg-dark p-6 text-on-dark sm:min-h-[36rem] sm:p-10"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-20">
         <Photo image={service.image} locale={locale} width={1100} className="zoom-media object-[60%_center]" />
       </div>
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-dark via-dark/60 to-dark/25" />
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-dark via-dark/55 to-dark/5" />
 
-      <span className="liquid-glass absolute left-5 top-5 rounded-full px-4 py-2 text-[0.875rem] font-semibold uppercase tracking-[0.16em] sm:left-7 sm:top-7">
+      <span className="liquid-glass absolute left-5 top-5 rounded-full px-4 py-2 text-[0.875rem] font-semibold uppercase tracking-[0.16em] sm:left-8 sm:top-8">
         {badge}
       </span>
 
-      <p className="text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{service.eyebrow}</p>
-      <h3 className="mt-2 text-[2.8rem] leading-none sm:text-[3.6rem]">{service.title}</h3>
+      <p className="text-base text-on-dark-soft">{service.eyebrow}</p>
+      <h3 className="mt-1 text-[3rem] leading-none sm:text-[4rem]">{service.title}</h3>
       <p className="mt-4 max-w-sm text-lg text-on-dark/90">{service.text}</p>
-      <span className="mt-7 inline-flex min-h-12 items-center gap-2.5 self-start rounded-full bg-cta px-6 py-3 font-semibold text-on-cta shadow-[inset_0_1px_0_rgb(255_255_255_/_0.18)] transition group-hover:brightness-110">
+      <span className={buttonClass("cta", "md", "mt-7 self-start")}>
         {more}
         <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
       </span>
@@ -76,28 +76,26 @@ function FeaturedCard({ service, badge, more, locale }: { service: Service; badg
   );
 }
 
-function ServiceCard({ service, more, locale }: { service: Service; more: string; locale: Locale }) {
+function ServiceTile({ service, more, locale }: { service: Service; more: string; locale: Locale }) {
   return (
     <L
       href={`/servicii/${service.slug}`}
-      className="group flex h-full gap-4 overflow-hidden rounded-[var(--radius)] border border-line bg-surface p-3 text-ink transition duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[var(--shadow-card)] sm:flex-col sm:gap-0 sm:p-0"
+      data-tone="dark"
+      aria-label={`${service.title} — ${service.eyebrow}. ${more}`}
+      className="group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-[var(--radius)] bg-dark p-3.5 text-on-dark sm:aspect-auto sm:h-full sm:min-h-[17rem] sm:p-6"
     >
-      <div className="relative w-[6.5rem] flex-none self-stretch overflow-hidden rounded-[14px] bg-bg-alt sm:aspect-[16/10] sm:w-full sm:rounded-none lg:aspect-[16/9]">
-        <div className="absolute inset-0">
-          <Photo image={service.image} locale={locale} width={700} className="zoom-media" />
-        </div>
+      <div aria-hidden="true" className="absolute inset-0 -z-20">
+        <Photo image={service.image} locale={locale} width={700} className="zoom-media" />
       </div>
-      <div className="flex min-w-0 flex-1 flex-col py-1 pr-1 sm:p-6 sm:pt-5">
-        <p className="text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-accent">{service.eyebrow}</p>
-        <h3 className="mt-1.5 text-[1.75rem] leading-none sm:text-[2.1rem]">{service.title}</h3>
-        <p className="mt-2.5 text-[0.98rem] leading-snug text-ink-soft sm:text-base">{service.text}</p>
-        <div className="mt-3 sm:mt-auto sm:pt-6">
-          <span className="inline-flex items-center gap-2 font-semibold text-primary sm:min-h-11 sm:rounded-full sm:border sm:border-primary/30 sm:px-5 sm:py-2 sm:transition sm:group-hover:border-primary sm:group-hover:bg-primary sm:group-hover:text-on-primary">
-            {more}
-            <ArrowIcon size={16} className="transition-transform duration-300 group-hover:translate-x-0.5" />
-          </span>
-        </div>
-      </div>
+      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-dark via-dark/45 to-dark/0" />
+
+      <span aria-hidden="true" className="lg lg-smoke absolute right-3 top-3 flex h-11 w-11 items-center justify-center rounded-full sm:right-5 sm:top-5">
+        <ArrowIcon size={17} className="-rotate-45 transition-transform duration-500 group-hover:rotate-0" />
+      </span>
+
+      <h3 className="text-[1.4rem] leading-none min-[400px]:text-[1.6rem] sm:text-[2.4rem]">{service.title}</h3>
+      <p className="mt-1.5 text-[0.95rem] leading-snug text-on-dark-soft sm:text-base">{service.eyebrow}</p>
+      <p className="mt-3 hidden max-w-xs text-base leading-snug text-on-dark/90 xl:block">{service.text}</p>
     </L>
   );
 }

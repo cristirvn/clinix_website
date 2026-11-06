@@ -9,7 +9,7 @@ export const team: TeamContent = {
   hero: {
     eyebrow: "Team",
     title: "The people who read your map.",
-    lead: "A small team that works together on every case. From the scan to the very last session.",
+    lead: "A small team. We work together on every case.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
   },
   members: {
@@ -30,11 +30,11 @@ export const team: TeamContent = {
     points: [
       {
         title: "We all start from your map",
-        text: "The person who runs your scan, the psychologist and the therapist who guides your sessions all work from the same map. You never have to start your story again.",
+        text: "The whole team works from the same map. You never have to start your story again.",
       },
       {
         title: "We review progress together",
-        text: "At every control map we discuss as a team what has changed, and adjust the protocol if needed.",
+        text: "At every control map we discuss what has changed and adjust the plan.",
       },
       {
         title: "We tell you straight",
@@ -44,7 +44,7 @@ export const team: TeamContent = {
   },
   cta: {
     title: "Meet us at your first visit.",
-    text: "One hour at the clinic: scan, interpretation, psychological consultation. Plus a PDF with your interpretation and recommendations.",
+    text: "One hour at the clinic. Plus a PDF with your recommendations.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Or take a free test", href: "/chestionare" },
   },

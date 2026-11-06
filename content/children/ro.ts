@@ -9,32 +9,31 @@ export const CHILDREN_RO: ChildrenContent = {
   },
   hero: {
     eyebrow: "Pentru copii și adolescenți",
-    title: "Înțelege ce se întâmplă, înainte să decizi.",
-    lead: "Când copilul tău nu se poate concentra, doarme prost sau e mereu încordat, nu trebuie să ghicești. Măsurăm întâi. Apoi îți explicăm, pe înțelesul tău.",
+    title: "Întâi înțelegi. Apoi decizi.",
+    lead: "Nu trebuie să ghicești. Măsurăm întâi, apoi îți explicăm pe înțelesul tău.",
     primary: { label: "Vreau să vorbim →", href: "/contact" },
   },
   signs: {
     eyebrow: "Ce observă părinții",
     title: "Recunoști ceva din astea?",
-    lead: "Nu e nevoie să fie toate. De obicei, un singur lucru se repetă și nu trece.",
+    lead: "De obicei, un singur lucru se repetă și nu trece.",
     items: [
       { title: "Atenția", text: "Se ridică de la teme după cinci minute, uită ce i s-a spus, pierde lucrurile." },
-      { title: "Somnul", text: "Adoarme greu, se trezește noaptea sau e obosit dimineața, chiar dacă a dormit destule ore." },
+      { title: "Somnul", text: "Adoarme greu, se trezește noaptea sau e obosit dimineața." },
       { title: "Emoțiile", text: "Îngrijorare, crize de furie sau retragere. Reacții mai mari decât situația." },
       { title: "Învățatul", text: "Muncește mult, dar rezultatele nu vin. Citește și nu reține." },
-      { title: "Ecranele", text: "Nu se mai poate desprinde de telefon sau de jocuri, iar fără ele devine iritat." },
+      { title: "Ecranele", text: "Nu se mai desprinde de telefon sau de jocuri." },
     ],
   },
   check: {
     eyebrow: "Ce verificăm",
-    title: "O hartă a activității creierului. Fără ace, fără radiații.",
+    title: "O hartă a creierului. Fără ace.",
     paragraphs: [
-      "Pornim de la BrainMap. Îi punem copilului o cască cu senzori care doar citesc activitatea electrică a creierului. Stă pe scaun, cu hainele pe el, cu ochii închiși și apoi deschiși.",
-      "Comparăm harta cu valorile normale pentru vârsta lui. Așa vedem dacă există zone prea active sau prea lente, legate de ce observi acasă și la școală.",
+      "Copilul poartă o cască cu senzori care doar citesc activitatea creierului. Stă pe scaun, cu ochii închiși și apoi deschiși.",
+      "Comparăm harta cu valorile normale pentru vârsta lui și vedem zonele prea active sau prea lente.",
     ],
     points: [
       "Fără radiații, fără ace, fără durere.",
-      "Nu îi intră nimic în corp. Nu i se administrează nimic.",
       "Facem pauze oricând e nevoie.",
       "Tu stai în cameră tot timpul.",
     ],
@@ -45,7 +44,7 @@ export const CHILDREN_RO: ChildrenContent = {
     eyebrow: "Cum lucrăm cu părinții",
     title: "Tu ești parte din fiecare pas.",
     steps: [
-      { title: "Ne suni", text: "Ne spui ce observi acasă și la școală. Stabilim împreună dacă evaluarea are sens." },
+      { title: "Ne suni", text: "Ne spui ce observi. Stabilim împreună dacă evaluarea are sens." },
       { title: "Veniți împreună", text: "Stai lângă copil pe toată durata scanării." },
       { title: "Îți explicăm harta", text: "Pe înțelesul tău și, pe cât se poate, și pe al copilului." },
       { title: "Decizi tu", text: "Primești PDF-ul cu interpretarea și recomandările. Nu ești obligat la nimic." },
@@ -77,7 +76,7 @@ export const CHILDREN_RO: ChildrenContent = {
   },
   cta: {
     title: "Vrei să vorbim despre copilul tău?",
-    text: "Lasă-ne numărul tău. Te sunăm, te ascultăm și îți spunem sincer dacă te putem ajuta.",
+    text: "Lasă-ne numărul. Te sunăm și îți spunem sincer dacă te putem ajuta.",
     primary: { label: "Te sunăm noi →", href: "/contact" },
     secondary: { label: "Află mai multe despre BrainMap", href: "/servicii/brainmap" },
   },

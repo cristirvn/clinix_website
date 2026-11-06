@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/home/HomeHero";
-import { HomeActions } from "@/components/home/HomeActions";
 import { HomeServices } from "@/components/home/HomeServices";
 import { HomeQuiz } from "@/components/home/HomeQuiz";
-import { HomeProof } from "@/components/home/HomeProof";
 import { FinalCta } from "@/components/home/FinalCta";
 import { getHome } from "@/content/pages/home";
 import { alternatesFor, type Locale } from "@/lib/i18n";
@@ -22,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 /**
  * Home, in the owner's order and nothing more:
- * hero (BrainMap) → booking dock → services → first quiz question → proof → closing band.
+ * hero (BrainMap + three facts) → services → first quiz question → one short close.
  */
 export default async function HomePage({ params }: Props) {
   const locale = (await params).locale as Locale;
@@ -31,10 +29,8 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       <HomeHero hero={c.hero} locale={locale} />
-      <HomeActions actions={c.actions} />
       <HomeServices services={c.services} locale={locale} />
       <HomeQuiz quiz={c.quiz} locale={locale} />
-      <HomeProof proof={c.proof} />
       <FinalCta final={c.final} locale={locale} />
     </>
   );

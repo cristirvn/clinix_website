@@ -171,12 +171,23 @@
   }
 }
 
-/* Frosted card on petrol. A utility so it accepts breakpoints (e.g. sm:glass). */
+/*
+ * Frosted pane (cheap glass, no hover). A utility so it accepts breakpoints
+ * (e.g. sm:glass). Same recipe as .liquid-glass, minus the rim.
+ */
 @utility glass {
-  background: rgb(255 255 255 / 0.07);
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.11), rgb(255 255 255 / 0.05));
   border: 1px solid rgb(255 255 255 / 0.16);
-  -webkit-backdrop-filter: blur(14px);
-  backdrop-filter: blur(14px);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18);
+  -webkit-backdrop-filter: blur(14px) saturate(160%);
+  backdrop-filter: blur(14px) saturate(160%);
+}
+
+/* Lets the specular highlight on glass buttons glide instead of jump. */
+@property --lg-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 28%;
 }
 
 /*
@@ -197,19 +208,164 @@
   }
 
   /*
-   * Liquid glass — used over photography (home hero). A translucent pane with a
-   * light-catching rim (gradient hairline, brighter at the top-left) and a soft
-   * inner highlight. Falls back to a solid petrol tint without backdrop-filter.
+   * LIQUID GLASS — one system for buttons (.lg + a variant) and panels
+   * (.liquid-glass). Recipe after Apple's iOS 26 material and React Bits'
+   * "Glass Surface" (reactbits.dev/components/glass-surface, MIT):
+   *   1. a translucent fill (tinted for the main action) over a blurred,
+   *      saturated backdrop;
+   *   2. a specular rim — a gradient hairline, bright top-left and
+   *      bottom-right, drawn with a masked ::before ring;
+   *   3. an inner glow (inset shadows) and a soft sheen (::after) that
+   *      glides across on hover;
+   *   4. a soft drop shadow, so the glass still has an edge on plain white.
+   * Refraction (SVG displacement of the backdrop) is added only on the hero
+   * CTAs by <GlassRefraction> (Chromium); everywhere else this cheap frosted
+   * version runs, and without backdrop-filter the fills turn near-opaque.
+   * Text contrast: white on the blue tint stays >= 4.5:1 (fill >= 88% blue).
    */
+  .lg {
+    --lg-blur: 12px;
+    --lg-sheen: 0.24;
+    --lg-rim: linear-gradient(150deg, rgb(255 255 255 / 0.85), rgb(255 255 255 / 0.12) 34%, rgb(255 255 255 / 0) 56%, rgb(255 255 255 / 0.4));
+    position: relative;
+    isolation: isolate;
+    background: var(--lg-fill);
+    box-shadow: var(--lg-depth);
+    -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(170%);
+    backdrop-filter: blur(var(--lg-blur)) saturate(170%);
+    transition:
+      transform 0.45s var(--ease-out),
+      box-shadow 0.45s var(--ease-out),
+      --lg-x 0.9s var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .lg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+    padding: 1.25px;
+    background: var(--lg-rim);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+  }
+  .lg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background:
+      radial-gradient(90% 75% at var(--lg-x) -10%, rgb(255 255 255 / var(--lg-sheen)), rgb(255 255 255 / 0) 62%),
+      radial-gradient(70% 55% at calc(100% - var(--lg-x)) 115%, rgb(255 255 255 / calc(var(--lg-sheen) * 0.55)), rgb(255 255 255 / 0) 70%);
+    pointer-events: none;
+  }
+  @media (hover: hover) {
+    .lg:hover {
+      --lg-x: 72%;
+      transform: translateY(-2px);
+      box-shadow: var(--lg-depth), var(--lg-lift);
+    }
+  }
+  .lg:active {
+    transform: translateY(0) scale(0.985);
+    transition-duration: 0.12s;
+  }
+  .lg:disabled {
+    transform: none;
+  }
+
+  /* Main action: glass tinted with the brand blue, deeper toward the bottom. */
+  .lg-tint {
+    --lg-fill: linear-gradient(180deg, color-mix(in srgb, var(--cta) 90%, transparent) 0%, color-mix(in srgb, color-mix(in srgb, var(--cta) 84%, var(--dark)) 96%, transparent) 100%);
+    --lg-depth:
+      inset 0 1px 0 rgb(255 255 255 / 0.34),
+      inset 0 -1px 0 rgb(255 255 255 / 0.12),
+      inset 0 -14px 22px -16px rgb(255 255 255 / 0.5),
+      0 1px 2px rgb(11 27 51 / 0.16),
+      0 12px 26px -12px color-mix(in srgb, var(--cta) 70%, transparent);
+    --lg-lift: 0 20px 38px -16px color-mix(in srgb, var(--cta) 75%, transparent);
+    color: var(--on-cta);
+  }
+
+  /* Clear glass on light pages: white-frosted, a dark hairline for definition. */
+  .lg-clear {
+    --lg-sheen: 0.7;
+    --lg-fill: linear-gradient(180deg, rgb(255 255 255 / 0.82), rgb(255 255 255 / 0.55));
+    --lg-rim: linear-gradient(150deg, rgb(255 255 255 / 1), rgb(255 255 255 / 0.3) 40%, rgb(255 255 255 / 0.1) 60%, rgb(255 255 255 / 0.9));
+    --lg-depth:
+      inset 0 0 0 1px rgb(11 27 51 / 0.1),
+      inset 0 -10px 18px -14px rgb(11 27 51 / 0.14),
+      0 1px 2px rgb(11 27 51 / 0.06),
+      0 10px 24px -14px rgb(11 27 51 / 0.3);
+    --lg-lift: 0 18px 34px -16px rgb(11 27 51 / 0.32);
+    color: var(--ink);
+  }
+
+  /* Smoky glass over navy or photos: dark, frosted, thin bright rim, white text. */
+  .lg-smoke,
+  :is([data-tone="dark"], .bg-dark, .bg-vital) .lg-clear {
+    --lg-blur: 16px;
+    --lg-sheen: 0.2;
+    --lg-fill: linear-gradient(180deg, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0.05)), color-mix(in srgb, var(--dark) 30%, transparent);
+    --lg-rim: linear-gradient(150deg, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.12) 36%, rgb(255 255 255 / 0.05) 60%, rgb(255 255 255 / 0.36));
+    --lg-depth:
+      inset 0 1px 0 rgb(255 255 255 / 0.22),
+      inset 0 -12px 20px -16px rgb(255 255 255 / 0.35),
+      0 16px 32px -18px rgb(0 0 0 / 0.6);
+    --lg-lift: 0 22px 40px -18px rgb(0 0 0 / 0.6);
+    color: var(--on-dark);
+  }
+  /* White cards inside dark bands keep the clear glass. */
+  :is([data-tone="dark"], .bg-dark, .bg-vital) :is(.bg-surface, .bg-bg, .bg-bg-alt) .lg-clear {
+    --lg-blur: 12px;
+    --lg-sheen: 0.7;
+    --lg-fill: linear-gradient(180deg, rgb(255 255 255 / 0.82), rgb(255 255 255 / 0.55));
+    --lg-rim: linear-gradient(150deg, rgb(255 255 255 / 1), rgb(255 255 255 / 0.3) 40%, rgb(255 255 255 / 0.1) 60%, rgb(255 255 255 / 0.9));
+    --lg-depth:
+      inset 0 0 0 1px rgb(11 27 51 / 0.1),
+      inset 0 -10px 18px -14px rgb(11 27 51 / 0.14),
+      0 1px 2px rgb(11 27 51 / 0.06),
+      0 10px 24px -14px rgb(11 27 51 / 0.3);
+    color: var(--ink);
+  }
+
+  /*
+   * Refraction layer (components/ui/GlassRefraction). When it runs, the
+   * button hands its fill and blur to this layer, whose backdrop-filter adds
+   * the SVG displacement — so the photo behind visibly bends at the rim.
+   */
+  .lg[data-refract] {
+    background: transparent;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .lg-refract {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+  .lg[data-refract] > .lg-refract {
+    background: var(--lg-fill);
+  }
+
+  /* Liquid-glass PANEL (stat tiles, chips, cards over photos). Same material as .lg-smoke, no hover. */
   .liquid-glass {
     position: relative;
     isolation: isolate;
-    background: linear-gradient(150deg, rgb(255 255 255 / 0.15) 0%, rgb(255 255 255 / 0.05) 48%, rgb(255 255 255 / 0.09) 100%);
-    -webkit-backdrop-filter: blur(22px) saturate(150%);
-    backdrop-filter: blur(22px) saturate(150%);
+    background: linear-gradient(160deg, rgb(255 255 255 / 0.15) 0%, rgb(255 255 255 / 0.05) 50%, rgb(255 255 255 / 0.08) 100%), color-mix(in srgb, var(--dark) 22%, transparent);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(20px) saturate(160%);
     box-shadow:
-      inset 0 1px 0 rgb(255 255 255 / 0.28),
-      inset 0 -18px 30px -24px rgb(255 255 255 / 0.18),
+      inset 0 1px 0 rgb(255 255 255 / 0.24),
+      inset 0 -20px 34px -28px rgb(255 255 255 / 0.3),
       0 24px 50px -30px rgb(0 0 0 / 0.55);
     color: var(--on-dark);
   }
@@ -220,7 +376,7 @@
     z-index: -1;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(155deg, rgb(255 255 255 / 0.6), rgb(255 255 255 / 0.1) 38%, rgb(255 255 255 / 0.04) 62%, rgb(255 255 255 / 0.32));
+    background: linear-gradient(150deg, rgb(255 255 255 / 0.62), rgb(255 255 255 / 0.1) 36%, rgb(255 255 255 / 0.04) 62%, rgb(255 255 255 / 0.3));
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,
       linear-gradient(#000 0 0);
@@ -228,23 +384,68 @@
     mask-composite: exclude;
     pointer-events: none;
   }
+
+  /* No backdrop-filter (old browsers, some Android webviews): near-opaque fills keep the text readable. */
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .liquid-glass {
-      background: color-mix(in srgb, var(--dark) 78%, transparent);
+    .liquid-glass,
+    .lg-smoke,
+    :is([data-tone="dark"], .bg-dark, .bg-vital) .lg-clear {
+      background: color-mix(in srgb, var(--dark) 82%, transparent);
+    }
+    .lg-clear {
+      --lg-fill: rgb(255 255 255 / 0.96);
+    }
+    .lg-tint {
+      --lg-fill: var(--cta);
+    }
+  }
+  @media (prefers-reduced-transparency: reduce) {
+    .liquid-glass,
+    .lg-smoke,
+    :is([data-tone="dark"], .bg-dark, .bg-vital) .lg-clear {
+      background: color-mix(in srgb, var(--dark) 88%, transparent);
+    }
+    .lg-tint {
+      --lg-fill: var(--cta);
     }
   }
 
   /* Photo veil for the home hero: dense where the text sits, open where the photo speaks. */
   .hero-veil {
     background:
-      linear-gradient(180deg, color-mix(in srgb, var(--dark) 55%, transparent) 0%, color-mix(in srgb, var(--dark) 72%, transparent) 55%, color-mix(in srgb, var(--dark) 94%, transparent) 100%);
+      linear-gradient(180deg, color-mix(in srgb, var(--dark) 62%, transparent) 0%, color-mix(in srgb, var(--dark) 74%, transparent) 50%, color-mix(in srgb, var(--dark) 92%, transparent) 100%);
   }
   @media (min-width: 1024px) {
     .hero-veil {
       background:
-        linear-gradient(90deg, color-mix(in srgb, var(--dark) 94%, transparent) 0%, color-mix(in srgb, var(--dark) 78%, transparent) 42%, color-mix(in srgb, var(--dark) 22%, transparent) 78%, color-mix(in srgb, var(--dark) 10%, transparent) 100%),
-        linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--dark) 80%, transparent) 100%);
+        linear-gradient(90deg, color-mix(in srgb, var(--dark) 92%, transparent) 0%, color-mix(in srgb, var(--dark) 74%, transparent) 40%, color-mix(in srgb, var(--dark) 18%, transparent) 76%, color-mix(in srgb, var(--dark) 6%, transparent) 100%),
+        linear-gradient(180deg, transparent 50%, color-mix(in srgb, var(--dark) 78%, transparent) 100%);
     }
+  }
+
+  /* A photo that dissolves into the band around it: from the top on phones, from the left on large screens. */
+  .fade-photo {
+    -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+    mask-image: linear-gradient(180deg, transparent 0%, #000 45%);
+  }
+  @media (min-width: 1024px) {
+    .fade-photo {
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 42%);
+      mask-image: linear-gradient(90deg, transparent 0%, #000 42%);
+    }
+  }
+
+  /* The hero photo settles in once (a slow, slight zoom-out). */
+  @keyframes hero-settle {
+    from {
+      transform: scale(1.07);
+    }
+    to {
+      transform: none;
+    }
+  }
+  .hero-settle {
+    animation: hero-settle 2.6s var(--ease-out) both;
   }
 
   /* Label above headings: small caps text followed by a short rule. */
@@ -327,7 +528,7 @@
     animation: rise-in 0.9s var(--ease-out) both;
   }
   /* Entrances wait while the page-load curtain is still up, so they are actually seen. */
-  html:has(.site-loader:not(.is-done)) :is(.rise-in, .trace-draw) {
+  html:has(.site-loader:not(.is-done)) :is(.rise-in, .trace-draw, .hero-settle) {
     animation-play-state: paused;
   }
 
@@ -354,20 +555,34 @@
     }
     .animate-float,
     .animate-marquee,
-    .rise-in {
+    .rise-in,
+    .hero-settle {
       animation: none;
     }
     .trace-draw {
       animation: none;
       stroke-dashoffset: 0;
     }
-    .zoom-media {
+    .zoom-media,
+    .lg {
       transition: none;
+    }
+    .lg:hover,
+    .lg:active {
+      transform: none;
     }
     .group:hover .zoom-media {
       transform: none;
     }
   }
+}
+
+/* A page that ends with its own closing band (home) hides the footer's band, so the page ends once. Unlayered, so it beats the `grid` utility. */
+main:has([data-final-cta]) + footer .footer-cta {
+  display: none;
+}
+main:has([data-final-cta]) + footer .footer-cta + * {
+  padding-top: 0;
 }
 
 /*

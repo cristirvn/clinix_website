@@ -54,7 +54,7 @@ export const ARTICLE: Article = {
   ],
   cta: {
     title: "First step: see the map of your brain.",
-    text: "Scan, on-the-spot interpretation, psychological consultation and a PDF with recommendations. One hour at the clinic in Bucharest.",
+    text: "Scan, interpretation and psychological consultation. One hour, in Bucharest.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
   },
 };

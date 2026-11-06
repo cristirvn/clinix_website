@@ -19,8 +19,8 @@ export const SERVICES_EN: ServicesLocale = {
     },
     hero: {
       eyebrow: "Services",
-      title: "Our equipment and services.",
-      lead: "Each one starts from the same principle: we measure before we recommend. Choose a service and see, in short, how it works.",
+      title: "Our services.",
+      lead: "One principle throughout: we measure before we recommend.",
     },
     more: "What it includes",
     cardLink: "Find out more →",
@@ -30,7 +30,7 @@ export const SERVICES_EN: ServicesLocale = {
     },
     cta: {
       title: "First step: see the map of your brain.",
-      text: "Scan, on-the-spot interpretation, psychological consultation and a PDF with recommendations. One hour at the clinic in Bucharest.",
+      text: "Scan, interpretation and psychological consultation. One hour, in Bucharest.",
       primary: { label: "Book a BrainMap →", href: "/brainmap" },
       secondary: { label: "Or take a free test", href: "/chestionare" },
     },
@@ -57,9 +57,9 @@ export const SERVICES_EN: ServicesLocale = {
       video: "serviceBrainmap",
       what: {
         eyebrow: "What it is",
-        title: "We don’t start from the symptom. We start from a measurement.",
+        title: "First we measure. Then we recommend.",
         paragraphs: [
-          "We fit a cap with sensors. You sit in a chair, fully clothed, with your eyes closed and then open. The sensors read the electrical activity your brain produces anyway, every second. Like a microphone listening to the brain talk.",
+          "We fit a cap with sensors. You sit in a chair with your eyes closed, then open. The sensors only listen to your brain’s activity, like a microphone.",
           "On the map we see areas that are too active and areas that are too slow, and compare them with the normal values for your age.",
         ],
       },
@@ -72,7 +72,7 @@ export const SERVICES_EN: ServicesLocale = {
           { title: "Psychological consultation, in the same visit", text: "No second appointment." },
           {
             title: "PDF by email or WhatsApp",
-            text: "The full interpretation and personalised recommendations you can apply at home, on your own, at no extra cost.",
+            text: "The full interpretation and recommendations you can apply at home.",
           },
         ],
         facts: ["A 30-minute scan", "No radiation, no needles", "Interpreted in the same visit", "No GP referral needed"],
@@ -121,7 +121,7 @@ export const SERVICES_EN: ServicesLocale = {
       },
       cta: {
         title: "First step: see the map of your brain.",
-        text: "Scan, on-the-spot interpretation, psychological consultation and a PDF with recommendations. One hour at the clinic in Bucharest.",
+        text: "Scan, interpretation and psychological consultation. One hour, in Bucharest.",
         primary: { label: "Book a BrainMap →", href: "/brainmap" },
         secondary: { label: "Or take a free test", href: "/chestionare" },
       },
@@ -141,18 +141,17 @@ export const SERVICES_EN: ServicesLocale = {
       },
       hero: {
         eyebrow: "taVNS · vagus nerve stimulation via the ear",
-        title: "A gentle signal, through the ear, to the vagus nerve.",
-        lead: "The vagus nerve helps the body switch from ‘alert’ to ‘rest’. We stimulate it gently, through a small clip on the ear.",
+        title: "A gentle signal to the vagus nerve.",
+        lead: "It helps the body switch from ‘alert’ to ‘rest’. Through a small clip on the ear.",
         videoTitle: "What a taVNS session looks like",
       },
       video: "serviceTavns",
       what: {
         eyebrow: "What it is",
-        title: "In short, without the jargon",
+        title: "In short",
         paragraphs: [
-          "taVNS stands for transcutaneous auricular vagus nerve stimulation. A branch of the vagus nerve runs just under the skin of the ear. That is where we place a small electrode, like a clip.",
-          "The device sends very weak electrical pulses through the skin. Nothing is cut, nothing pricks, nothing enters your body.",
-          "The vagus nerve is part of the system that calms the body down: heart rate, breathing, digestion, sleep. Studies show that stimulating it may help the body come out of ‘alert’ more easily. It is not a miracle treatment and we don’t promise a cure. We use it as support, within a plan based on your assessment.",
+          "A branch of the vagus nerve runs just under the skin of the ear. That is where we place a small electrode, like a clip, which sends very weak pulses. Nothing pricks, nothing enters your body.",
+          "The vagus nerve helps the body calm down. It is not a miracle treatment and we don’t promise a cure: we use it as support, within a plan based on your assessment.",
         ],
       },
       session: {
@@ -181,7 +180,7 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "We recommend it as part of a plan, not as a stand-alone fix. Especially when the body seems stuck on ‘alert’.",
+        lead: "As part of a plan, when the body seems stuck on ‘alert’.",
         conditions: ["anxietate", "panica", "stres", "somn", "burnout", "migrene"],
         note: "After the assessment, we’ll tell you honestly whether taVNS makes sense for you.",
       },
@@ -223,7 +222,7 @@ export const SERVICES_EN: ServicesLocale = {
       },
       cta: {
         title: "Want to know if taVNS is right for you?",
-        text: "Leave us your number. We’ll call, listen, and tell you honestly whether we can help.",
+        text: "Leave your number. We’ll call and tell you honestly whether we can help.",
         primary: { label: "Request a call back →", href: "/contact" },
         secondary: { label: "Or take a free test", href: "/chestionare" },
       },
@@ -243,18 +242,17 @@ export const SERVICES_EN: ServicesLocale = {
       },
       hero: {
         eyebrow: "tPBM · transcranial photobiomodulation",
-        title: "Near-infrared light, for the brain’s cells.",
+        title: "Near-infrared light, for the brain.",
         lead: "A headset with near-infrared light. No needles, no pain, no ionising radiation.",
         videoTitle: "What a tPBM session looks like",
       },
       video: "serviceTpbm",
       what: {
         eyebrow: "What it is",
-        title: "In short, without the jargon",
+        title: "In short",
         paragraphs: [
-          "tPBM stands for transcranial photobiomodulation. We use light from the near-infrared range. It passes through the skin and the skull, reaching the outer layers of the brain.",
-          "Research suggests this light may support the way cells produce their energy. That is why it is being studied for focus, memory and mood.",
-          "It is a method that is still being researched. We don’t promise a cure. We only recommend it when your assessment shows it makes sense, alongside the other parts of your plan.",
+          "Near-infrared light passes through the skin and the skull, reaching the outer layers of the brain. Research suggests it may support the way cells produce their energy.",
+          "It is still being researched. We don’t promise a cure. We only recommend it when your assessment shows it makes sense.",
         ],
       },
       session: {
@@ -283,7 +281,7 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "We use it as support, especially when mental fatigue, brain fog or low energy are at the front.",
+        lead: "As support, when mental fatigue or brain fog come first.",
         conditions: ["focus", "dispozitie", "burnout"],
         note: "After the assessment, we’ll tell you honestly whether tPBM makes sense for you.",
       },
@@ -325,7 +323,7 @@ export const SERVICES_EN: ServicesLocale = {
       },
       cta: {
         title: "Want to know if tPBM is right for you?",
-        text: "Leave us your number. We’ll call, listen, and tell you honestly whether we can help.",
+        text: "Leave your number. We’ll call and tell you honestly whether we can help.",
         primary: { label: "Request a call back →", href: "/contact" },
         secondary: { label: "Or take the focus test", href: "/chestionare/focus" },
       },
@@ -345,18 +343,17 @@ export const SERVICES_EN: ServicesLocale = {
       },
       hero: {
         eyebrow: "CES · cranial electrotherapy stimulation",
-        title: "A very weak current that helps the brain settle.",
+        title: "A very weak current, for calm.",
         lead: "Two small clips on your earlobes. You relax, and the device does the rest.",
         videoTitle: "What a CES session looks like",
       },
       video: "serviceCes",
       what: {
         eyebrow: "What it is",
-        title: "In short, without the jargon",
+        title: "In short",
         paragraphs: [
-          "CES stands for cranial electrotherapy stimulation. The device sends a very weak current, measured in microamps, through two clips placed on your earlobes.",
-          "The method has been used for decades as support for anxiety, sleep and stress. The aim is simple: to help the brain settle into a calmer rhythm more easily.",
-          "It is not a miracle treatment and it does not replace treatment prescribed by your doctor. We use it when it makes sense for you, within a plan we follow over time.",
+          "The device sends a very weak current, measured in microamps, through two clips on your earlobes. It has been used for decades as support for anxiety, sleep and stress.",
+          "It is not a miracle treatment and it does not replace treatment prescribed by your doctor. We use it when it makes sense for you.",
         ],
       },
       session: {
@@ -385,7 +382,7 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "We recommend it as part of a plan, especially when your mind won’t switch off and your sleep suffers.",
+        lead: "As part of a plan, when your mind won’t switch off and sleep suffers.",
         conditions: ["anxietate", "somn", "stres"],
         note: "After the assessment, we’ll tell you honestly whether CES makes sense for you.",
       },
@@ -426,7 +423,7 @@ export const SERVICES_EN: ServicesLocale = {
       },
       cta: {
         title: "Want to know if CES is right for you?",
-        text: "Leave us your number. We’ll call, listen, and tell you honestly whether we can help.",
+        text: "Leave your number. We’ll call and tell you honestly whether we can help.",
         primary: { label: "Request a call back →", href: "/contact" },
         secondary: { label: "Or take the anxiety test", href: "/chestionare/anxietate" },
       },
@@ -446,8 +443,8 @@ export const SERVICES_EN: ServicesLocale = {
       },
       hero: {
         eyebrow: "Psychotherapy",
-        title: "A safe place to talk. And a plan.",
-        lead: "Regular sessions with a psychotherapist, at the clinic in Bucharest. Confidential, at your own pace.",
+        title: "A safe place to talk.",
+        lead: "Regular sessions with a psychotherapist. Confidential, at your own pace.",
         videoTitle: "How psychotherapy works at Emmanuel CliniX",
       },
       video: "servicePsihoterapie",
@@ -455,9 +452,8 @@ export const SERVICES_EN: ServicesLocale = {
         eyebrow: "What it is",
         title: "In short",
         paragraphs: [
-          "Psychotherapy is a partnership between you and a psychotherapist. You talk about what weighs on you, work out together where it comes from, and practise other ways of responding.",
-          "With us, the conversation can also start from data. If you have had a BrainMap, the psychotherapist sees what the map shows and takes it into account.",
-          "You don’t get generic advice. You work on your own situation, with clear goals that you review from time to time.",
+          "You talk about what weighs on you, work out together where it comes from, and practise other ways of responding.",
+          "With us, the conversation can also start from data: if you have had a BrainMap, the psychotherapist takes the map into account.",
         ],
       },
       session: {
@@ -474,7 +470,7 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "When you feel you can no longer cope on your own, or when the same pattern has been repeating for too long.",
+        lead: "When you can’t cope alone, or the same pattern keeps repeating.",
         conditions: ["anxietate", "panica", "dispozitie", "stres", "burnout", "adictii"],
         note: "Psychotherapy does not replace medical treatment when that is needed.",
       },

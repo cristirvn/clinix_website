@@ -9,44 +9,44 @@ export const about: AboutContent = {
   hero: {
     eyebrow: "About us",
     title: "We measure before we recommend.",
-    lead: "Emmanuel CliniX is an applied neuroscience clinic in Bucharest. Longevity. Wellness. Neuro.",
+    lead: "An applied neuroscience clinic in Bucharest.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Take a free test", href: "/chestionare" },
   },
   mission: {
     eyebrow: "Why we exist",
-    title: "Nobody has shown you, concretely, what is going on.",
+    title: "Nobody has shown you what is going on.",
     paragraphs: [
-      "Many people come to us having already tried several things, and none of them lasted. They were all guesses. General solutions to a problem that isn’t general.",
-      "It is hard to fix something you have never seen. That is why, with us, the first step is a map of your brain’s activity. Only then do we talk about what comes next.",
+      "Many people come to us having already tried a lot. It was all guesswork.",
+      "So with us, the first step is a map of your brain. Only then do we talk about what comes next.",
     ],
   },
   different: {
     eyebrow: "What makes us different",
-    title: "Four things we do differently.",
+    title: "What we do differently.",
     items: [
       {
         title: "Data, not guesswork",
-        text: "We start from your BrainMap, not a standard recipe. You see data about you, not general advice.",
+        text: "We start from your map, not a standard recipe.",
       },
       {
         title: "All in one visit",
-        text: "Scan, on-the-spot interpretation and a psychological consultation. No second appointment.",
+        text: "Scan, interpretation and consultation. No second appointment.",
       },
       {
         title: "Progress you can see",
-        text: "We repeat the map every 10 sessions. You see what has changed in data, not impressions.",
+        text: "We repeat the map every 10 sessions. You see what has changed.",
       },
       {
         title: "Honest from the start",
-        text: "We don’t promise everything is solved after one visit. If we see we can’t help you, we tell you on the phone.",
+        text: "If we see we can’t help you, we tell you on the phone.",
       },
     ],
   },
   space: {
     eyebrow: "The clinic",
     title: "A calm place in Bucharest.",
-    lead: "The scan, the interpretation and the psychological consultation all happen in one place, in one visit.",
+    lead: "Everything in one place, in a single visit.",
     mapsLabel: "View on map →",
     // TODO(owner): send photos of the clinic (reception, BrainMap room, consultation room, EmSella chair) and set `src`.
     photos: [
@@ -58,7 +58,7 @@ export const about: AboutContent = {
   testimonials: {
     eyebrow: "Proof",
     title: "You don’t have to take our word for it",
-    lead: "Ernesto, Gabriela and Paulina started exactly where you are now: with a map of their brain.",
+    lead: "They started exactly where you are now.",
     items: [
       { name: "Ernesto", video: "testimonialErnesto" },
       { name: "Gabriela", video: "testimonialGabriela" },
@@ -74,7 +74,7 @@ export const about: AboutContent = {
   },
   cta: {
     title: "Start with a map of your brain.",
-    text: "One hour at the clinic: scan, interpretation, psychological consultation. Plus a PDF with your interpretation and recommendations.",
+    text: "One hour at the clinic. Plus a PDF with your recommendations.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Or take a free test", href: "/chestionare" },
   },

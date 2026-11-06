@@ -47,8 +47,8 @@ export const howItWorks: HowItWorksContent = {
   },
   hero: {
     eyebrow: "Cum funcționează",
-    title: "Nu pornim de la simptom. Pornim de la măsurătoare.",
-    lead: "Cinci pași simpli. Știi de la început ce urmează și vezi în date ce s-a schimbat.",
+    title: "Întâi măsurăm. Apoi recomandăm.",
+    lead: "Cinci pași simpli. Vezi în date ce s-a schimbat.",
     primary: { label: "Vreau BrainMap →", href: "/brainmap" },
     secondary: { label: "Fac un test gratuit", href: "/chestionare" },
   },
@@ -58,7 +58,7 @@ export const howItWorks: HowItWorksContent = {
     steps: [
       {
         title: "Un test gratuit sau un telefon",
-        text: "Faci un test online, în câteva minute, sau ne suni. Ne spui pe scurt care e situația ta.",
+        text: "Faci un test online în câteva minute sau ne suni.",
       },
       {
         title: "Scanarea BrainMap",
@@ -66,11 +66,11 @@ export const howItWorks: HowItWorksContent = {
       },
       {
         title: "Interpretarea și planul",
-        text: "Îți explicăm harta pe înțelesul tău, în aceeași vizită. Pleci știind care e situația și ce urmează.",
+        text: "Îți explicăm harta pe înțelesul tău, în aceeași vizită.",
       },
       {
         title: "Ședințele de tratament",
-        text: "De exemplu neurofeedback: ședințe nedureroase, în care creierul învață treptat să-și mențină un ritm mai stabil.",
+        text: "De exemplu neurofeedback: ședințe nedureroase, în care creierul învață un ritm mai stabil.",
       },
       {
         title: "Măsurăm din nou",
@@ -80,8 +80,8 @@ export const howItWorks: HowItWorksContent = {
   },
   services: {
     eyebrow: "Aparatura și serviciile",
-    title: "Vezi exact ce se întâmplă, înainte să vii.",
-    lead: "Câte un video scurt pentru fiecare serviciu. Pe înțelesul tău, fără termeni medicali.",
+    title: "Vezi totul înainte să vii.",
+    lead: "Un video scurt pentru fiecare serviciu.",
     feelsTitle: "Cum se simte",
     items: [
       {
@@ -91,13 +91,12 @@ export const howItWorks: HowItWorksContent = {
         video: "serviceBrainmap",
         videoTitle: "Cum funcționează BrainMap",
         paragraphs: [
-          "Îți punem o cască cu senzori. Stai pe scaun, cu hainele pe tine, cu ochii închiși și apoi deschiși. Senzorii citesc activitatea electrică pe care creierul tău o produce oricum, în fiecare secundă. Ca un microfon care ascultă creierul vorbind.",
+          "Îți punem o cască cu senzori. Stai pe scaun, cu ochii închiși și apoi deschiși. Senzorii doar ascultă activitatea creierului tău, ca un microfon.",
           "Pe hartă vedem zone prea active și zone prea lente. Le comparăm cu valorile normale pentru vârsta ta.",
         ],
         feels: [
           "30 de minute, cu hainele pe tine.",
           "Fără radiații, fără ace, fără durere.",
-          "Nu îți intră nimic în corp. Nu ți se administrează nimic.",
           "Te ridici de pe scaun și îți continui ziua exact cum ai plănuit-o.",
         ],
         link: { label: "Află tot despre BrainMap →", href: "/brainmap" },
@@ -111,11 +110,10 @@ export const howItWorks: HowItWorksContent = {
         // TODO(owner): list the related protocols you offer alongside neurofeedback (names + one line each).
         paragraphs: [
           "Pornim de la Brain Map-ul tău, nu de la o rețetă standard. Protocolul vizează exact zonele identificate la tine.",
-          "Ședință cu ședință, creierul învață să-și mențină un ritm electric mai stabil. Nu mascăm simptomul, cum face un medicament. Antrenăm creierul să se autoregleze, iar efectul se construiește în timp.",
+          "Ședință cu ședință, creierul învață un ritm mai stabil. Nu mascăm simptomul: antrenăm creierul să se autoregleze.",
         ],
         feels: [
           "Ședințe de 30–45 de minute, nedureroase.",
-          "Senzorii doar citesc activitatea creierului, nu transmit nimic spre el.",
           "Stai relaxat pe un scaun și nu simți nimic în timpul ședinței.",
           "Îți poți relua activitățile imediat după fiecare ședință.",
         ],
@@ -128,7 +126,7 @@ export const howItWorks: HowItWorksContent = {
         videoTitle: "Cum decurge consultul psihologic",
         paragraphs: [
           "Harta arată ce se întâmplă în creier. Discuția cu psihologul arată ce înseamnă asta pentru viața ta de zi cu zi.",
-          "Discutăm ce arată harta și ce opțiuni ai mai departe. Decizi tu. Nu ești obligat la nimic.",
+          "Decizi tu. Nu ești obligat la nimic.",
         ],
         feels: [
           "Fără o a doua programare.",
@@ -143,14 +141,13 @@ export const howItWorks: HowItWorksContent = {
         video: "serviceEmsella",
         videoTitle: "Cum funcționează scaunul EmSella",
         paragraphs: [
-          "EmSella întărește planșeul pelvin. Scaunul emite un câmp electromagnetic care ajunge direct la planșeul pelvin. Acolo, mușchii se contractă la intensitate maximă — inclusiv fibrele profunde, pe care nu le poți controla conștient, oricât ai încerca.",
+          "EmSella întărește planșeul pelvin. Un câmp electromagnetic contractă mușchii la intensitate maximă — inclusiv fibrele profunde, pe care nu le poți controla singur.",
           "Pentru pierderi de urină la efort, senzația bruscă de urgență și trezirile de noapte. La femei și la bărbați.",
         ],
         feels: [
           "28 de minute. Cu hainele pe tine.",
           "Nu te dezbraci, nu te atinge nimeni, nu îți intră nimic în corp.",
           "Simți contracțiile puternic, dar nu e o senzație dureroasă.",
-          "Fără perioadă de recuperare. Te ridici și îți continui ziua imediat.",
         ],
         link: { label: "Află tot despre EmSella →", href: "/lp/emsella" },
       },
@@ -168,7 +165,7 @@ export const howItWorks: HowItWorksContent = {
   },
   cta: {
     title: "Primul pas: vezi harta creierului tău.",
-    text: "Scanare, interpretare pe loc, consult psihologic și PDF cu recomandări. O oră în clinică, în București.",
+    text: "Scanare, interpretare și consult psihologic. O oră, în București.",
     primary: { label: "Vreau BrainMap →", href: "/brainmap" },
     secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
   },

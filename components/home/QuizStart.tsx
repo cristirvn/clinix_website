@@ -48,7 +48,7 @@ export function QuizStart({
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-[30px] bg-surface p-5 text-ink shadow-[var(--shadow-soft)] ring-1 ring-line sm:p-10"
+      className="rounded-[30px] bg-surface p-5 text-ink shadow-[var(--shadow-soft)] ring-1 ring-line sm:p-10 lg:p-12"
       aria-describedby={`${id}-help`}
     >
       <div className="flex items-center gap-4">
@@ -59,19 +59,21 @@ export function QuizStart({
       </div>
 
       <fieldset className="mt-6">
-        <legend className="font-display text-[1.9rem] leading-[1.1] sm:text-[2.5rem]">{question}</legend>
+        <legend className="font-display text-[1.9rem] leading-[1.1] sm:text-[2.4rem]">{question}</legend>
         <p id={`${id}-help`} className="mt-3 text-ink-soft">
           {help}
         </p>
 
-        <div className="mt-7 grid gap-2.5">
+        <div className="mt-7 grid gap-2.5 md:grid-cols-2 md:gap-3">
           {options.map((o) => {
             const checked = choice === o.slug;
             return (
               <label
                 key={o.slug}
-                className={`group flex cursor-pointer items-center gap-4 rounded-[18px] border px-4 py-3.5 transition duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent sm:px-5 sm:py-4 ${
-                  checked ? "border-primary bg-primary/[0.06]" : "border-line hover:border-primary/45 hover:bg-bg"
+                className={`group flex min-h-14 cursor-pointer items-center gap-4 rounded-[18px] border px-4 py-3 transition duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent sm:px-5 ${
+                  checked
+                    ? "border-primary bg-primary/[0.07] shadow-[0_12px_26px_-18px_var(--primary)]"
+                    : "border-line hover:-translate-y-px hover:border-primary/45 hover:bg-bg-alt/50"
                 }`}
               >
                 <input
