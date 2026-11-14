@@ -88,11 +88,10 @@ export const about: AboutContent = {
     title: "Un loc liniștit, în București.",
     lead: "Totul în același loc, într-o singură vizită.",
     mapsLabel: "Vezi pe hartă →",
-    // TODO(owner): send photos of the clinic (reception, BrainMap room, consultation room, EmSella chair) and set `src`.
     photos: [
-      { label: "Fotografie clinică · în curând", src: "" },
-      { label: "Fotografie clinică · în curând", src: "" },
-      { label: "Fotografie clinică · în curând", src: "" },
+      { label: "Scanare BrainMap: harta creierului, explicată pe loc", src: "/photos/brainmap-sesiune.webp" },
+      { label: "Casca iMediSync, folosită la BrainMap și la tPBM", src: "/photos/imedisync-casca.webp" },
+      { label: "Scaunul EmSella din clinică", src: "/photos/emsella-cabinet.webp" },
     ],
   },
   testimonials: {

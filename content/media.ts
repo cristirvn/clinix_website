@@ -55,9 +55,10 @@ export const VIDEOS = {
 export type VideoKey = keyof typeof VIDEOS;
 
 /**
- * Photos. TEMPORARY stand-ins from Unsplash (free licence) until the clinic
- * sends its own — replace `src` with a file in /public (e.g. "/photos/cabinet.jpg")
- * or any absolute URL. Unsplash URLs get resized automatically by <Photo>.
+ * Photos. `/photos/…` are the clinic's own (shot at the clinic, exported as
+ * WebP from the originals: max ~2000px, metadata stripped). The rest are
+ * Unsplash stand-ins (free licence) for things the clinic has no photo of yet;
+ * Unsplash URLs get resized automatically by <Photo>.
  */
 export interface MediaImage {
   src: string;
@@ -70,28 +71,44 @@ const U = "https://images.unsplash.com/";
 export const IMAGES = {
   /** Home hero — glowing brain drawn over the blue (black background blends away). */
   heroBrain: { src: `${U}photo-1711409645921-ef3db0501f96`, alt: { ro: "", en: "" } },
-  /** Neurofeedback session — headset, armchair. */
-  neurofeedback: {
-    src: `${U}photo-1715866404130-67627c9828e1`,
-    alt: { ro: "Pacient în timpul unei ședințe de neurofeedback", en: "A patient during a neurofeedback session" },
+  /** Home hero — the specialist walks a patient (iMediSync headset on) through her brain map. */
+  homeHero: {
+    src: "/photos/home-hero.webp",
+    alt: {
+      ro: "Specialistul îi arată pacientei harta creierului ei, pe laptop, în timp ce ea poartă casca iMediSync",
+      en: "The specialist shows a patient her brain map on a laptop while she wears the iMediSync headset",
+    },
   },
-  /** BrainMap / qEEG — cap with sensors, results on screen. */
+  /** Neurofeedback — live EEG on the tablet. */
+  neurofeedback: {
+    src: "/photos/neurofeedback-eeg.webp",
+    alt: { ro: "Semnalul EEG în timp real, pe tableta din cabinet", en: "The live EEG signal on the clinic's tablet" },
+  },
+  /** BrainMap / qEEG — the map on screen, patient wearing the iMediSync headset. */
   scan: {
-    src: `${U}photo-1715866734224-0b9eb2ac5fd6`,
-    alt: { ro: "Montarea senzorilor pentru scanarea BrainMap", en: "Fitting the sensors for a BrainMap scan" },
+    src: "/photos/brainmap-harta.webp",
+    alt: {
+      ro: "Harta BrainMap explicată pe laptop, pacienta purtând casca iMediSync",
+      en: "The BrainMap explained on a laptop, the patient wearing the iMediSync headset",
+    },
   },
   /** Consultation with a patient. */
   consult: {
-    src: `${U}photo-1758691462858-f1286e5daf40`,
+    src: "/photos/consult.webp",
     alt: { ro: "Consult în cabinet", en: "A consultation at the clinic" },
   },
   consultWarm: {
-    src: `${U}photo-1631217868264-e5b90bb7e133`,
-    alt: { ro: "Discuție cu un specialist", en: "Talking with a specialist" },
+    src: "/photos/consult-cald.webp",
+    alt: { ro: "Discuție cu un specialist, în cabinet", en: "Talking with a specialist at the clinic" },
+  },
+  /** Consultation at the desk, seen over the patient's shoulder. */
+  consultDesk: {
+    src: "/photos/consult-birou.webp",
+    alt: { ro: "Consult la birou, în cabinet", en: "A consultation at the desk, at the clinic" },
   },
   consultCouch: {
-    src: `${U}photo-1758691462321-9b6c98c40f7e`,
-    alt: { ro: "Discuție relaxată cu un specialist", en: "A relaxed talk with a specialist" },
+    src: "/photos/consult-discutie.webp",
+    alt: { ro: "Discuție liniștită cu un specialist", en: "A calm talk with a specialist" },
   },
   /** Calm portrait — stress / mood. */
   portrait: {
@@ -111,18 +128,18 @@ export const IMAGES = {
       en: "A patient relaxing in an armchair with a small ear electrode",
     },
   },
-  /** tPBM — light therapy session. */
+  /** tPBM — session with the iMediSync headset, protocol on the tablet. */
   tpbm: {
-    src: `${U}photo-1761819921158-c3fa28f39bf0`,
+    src: "/photos/tpbm-sedinta.webp",
     alt: {
-      ro: "Ședință de terapie cu lumină, pacienta întinsă pe un fotoliu",
-      en: "A light therapy session, the patient reclining in a chair",
+      ro: "Pacientă în timpul unei ședințe tPBM, cu casca iMediSync și tableta cu protocolul",
+      en: "A patient during a tPBM session, wearing the iMediSync headset, the protocol on the tablet",
     },
   },
-  /** Clinic room. */
-  room: {
-    src: `${U}photo-1665231795856-769fb08a90bc`,
-    alt: { ro: "Cabinet", en: "Treatment room" },
+  /** EmSella chair and its console. */
+  emsella: {
+    src: "/photos/emsella.webp",
+    alt: { ro: "Scaunul EmSella și consola lui, în clinică", en: "The EmSella chair and its console at the clinic" },
   },
 } satisfies Record<string, MediaImage>;
 

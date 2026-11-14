@@ -27,7 +27,7 @@ export default async function ChildrenPage({ params }: Props) {
       <JsonLd
         data={[faqPage(c.faq.items), breadcrumbs(locale, dict.nav.home, [{ name: c.seo.title, path: "/pentru-copii" }])]}
       />
-      <PageHero content={c.hero} image="consultWarm" locale={locale} />
+      <PageHero content={c.hero} image="consultDesk" locale={locale} />
       <ChildSigns content={c.signs} />
       <ChildCheck content={c.check} />
       <ChildParents content={c.parents} />

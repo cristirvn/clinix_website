@@ -20,14 +20,8 @@ export function HomeHero({ hero, locale }: { hero: HomeContent["hero"]; locale: 
     <section className="bg-bg px-2 pb-2 sm:px-3 sm:pb-3">
       <div data-tone="dark" className="bg-dark relative isolate overflow-hidden rounded-[26px] text-on-dark sm:rounded-[36px]">
         <div aria-hidden="true" className="absolute inset-0 -z-20">
-          {/* Mirrored so the patient sits on the right, away from the text. */}
-          <Photo
-            image="neurofeedback"
-            locale={locale}
-            width={2000}
-            priority
-            className="hero-settle -scale-x-100 object-[40%_18%] lg:object-[50%_28%]"
-          />
+          {/* The specialist sits on the right, away from the text. */}
+          <Photo image="homeHero" locale={locale} width={2000} priority className="hero-settle object-[80%_45%] lg:object-[50%_42%]" />
         </div>
         <div aria-hidden="true" className="hero-veil absolute inset-0 -z-10" />
 

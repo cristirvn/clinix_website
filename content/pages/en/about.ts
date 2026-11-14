@@ -48,11 +48,10 @@ export const about: AboutContent = {
     title: "A calm place in Bucharest.",
     lead: "Everything in one place, in a single visit.",
     mapsLabel: "View on map →",
-    // TODO(owner): send photos of the clinic (reception, BrainMap room, consultation room, EmSella chair) and set `src`.
     photos: [
-      { label: "Clinic photo · coming soon", src: "" },
-      { label: "Clinic photo · coming soon", src: "" },
-      { label: "Clinic photo · coming soon", src: "" },
+      { label: "A BrainMap scan: the brain map, explained on the spot", src: "/photos/brainmap-sesiune.webp" },
+      { label: "The iMediSync headset, used for BrainMap and tPBM", src: "/photos/imedisync-casca.webp" },
+      { label: "The clinic's EmSella chair", src: "/photos/emsella-cabinet.webp" },
     ],
   },
   testimonials: {
