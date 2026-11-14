@@ -22,6 +22,15 @@ export function TeamGrid({ content }: { content: TeamContent["members"] }) {
               <h3 className="mt-6 text-[1.7rem] leading-tight">{m.name}</h3>
               <p className="mt-1.5 text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-accent">{m.role}</p>
               <p className="mt-3 text-ink-soft">{m.bio}</p>
+              {m.focus && m.focus.length > 0 && (
+                <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={content.focusLabel}>
+                  {m.focus.map((f) => (
+                    <li key={f} className="rounded-full bg-surface px-3 py-1 text-[0.8rem] font-semibold text-ink-soft ring-1 ring-line">
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+              )}
             </Reveal>
           </li>
         ))}
