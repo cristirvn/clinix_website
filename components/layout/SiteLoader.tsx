@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { LogoMark } from "@/components/layout/Logo";
+import { Logo } from "@/components/layout/Logo";
 import { useLocale } from "@/components/layout/LocaleProvider";
 
 /** Shortest time the curtain stays up, so the logo animation can play out. */
@@ -46,16 +46,8 @@ export function SiteLoader() {
   return (
     <div className={`site-loader ${done ? "is-done" : ""}`} aria-hidden="true">
       <div className="loader-inner">
-        <div className="loader-brand flex flex-col items-center gap-5 text-center sm:flex-row sm:justify-center sm:gap-6 sm:text-left">
-          <LogoMark size={88} className="flex-none text-ink" />
-          <span className="flex flex-col leading-none">
-            <span className="font-display text-[2.1rem] font-semibold uppercase tracking-[0.12em] sm:text-6xl sm:tracking-[0.14em]">
-              Emmanuel CliniX
-            </span>
-            <span className="mt-3 text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-ink-soft sm:text-xs">
-              Longevity · Wellness · Neuro
-            </span>
-          </span>
+        <div className="loader-brand flex justify-center">
+          <Logo eager className="h-20 sm:h-28" />
         </div>
         <div className="loader-copy mt-12 flex justify-between gap-8 text-[0.62rem] font-bold uppercase tracking-[0.18em] text-ink-soft sm:mt-14">
           <span>{dict.loader.left}</span>

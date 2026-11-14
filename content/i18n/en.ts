@@ -8,6 +8,8 @@ export const en: Dictionary = {
   skipToContent: "Skip to content",
   nav: {
     howItWorks: "How it works",
+    howItWorksOverview: "The whole process, in short",
+    pickService: "Choose a service to learn about",
     about: "About us",
     pricing: "Pricing",
     team: "Team",

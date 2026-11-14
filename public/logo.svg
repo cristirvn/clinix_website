@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 330 64" width="330" height="64" fill="none">
-  <g transform="translate(8 8)">
-    <g stroke="#14243D" stroke-width="4.2" stroke-linecap="round"><path d="M19 19 9.5 9.5M29 19l9.5-9.5M29 29l9.5 9.5M19 29l-9.5 9.5"/></g>
-    <path d="M2.5 24H15" stroke="#9A7642" stroke-width="4.2" stroke-linecap="round"/>
-    <circle cx="24" cy="24" r="3.4" fill="#9A7642"/>
-  </g>
-  <text x="70" y="33" font-family="Georgia, serif" font-size="19" font-weight="600" letter-spacing="3" fill="#14243D">EMMANUEL CLINIX</text>
-  <text x="71" y="50" font-family="Arial, sans-serif" font-size="8.5" letter-spacing="3" fill="#545963">LONGEVITY · WELLNESS · NEURO</text>
-</svg>

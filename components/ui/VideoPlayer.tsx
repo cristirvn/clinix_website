@@ -3,15 +3,7 @@
 import { useState } from "react";
 import { VIDEOS, type MediaVideo, type VideoKey } from "@/content/media";
 import { useLocale } from "@/components/layout/LocaleProvider";
-
-function embedUrl(src: string): { kind: "iframe" | "file"; url: string } | null {
-  if (!src) return null;
-  const yt = /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{6,})/.exec(src);
-  if (yt) return { kind: "iframe", url: `https://www.youtube-nocookie.com/embed/${yt[1]}?autoplay=1&rel=0` };
-  const vimeo = /vimeo\.com\/(?:video\/)?(\d+)/.exec(src);
-  if (vimeo) return { kind: "iframe", url: `https://player.vimeo.com/video/${vimeo[1]}?autoplay=1` };
-  return { kind: "file", url: src };
-}
+import { autoPoster, embedUrl } from "@/lib/video";
 
 /**
  * 16:9 video. Pass a key from `content/media.ts` (shared by both languages).
@@ -32,6 +24,7 @@ export function VideoPlayer({
   const media: MediaVideo = typeof video === "string" ? VIDEOS[video] : video;
   const src = (locale === "en" && media.en) || media.src;
   const embed = embedUrl(src);
+  const poster = media.poster ?? autoPoster(src);
 
   return (
     <div
@@ -56,12 +49,14 @@ export function VideoPlayer({
           className="group absolute inset-0 flex h-full w-full flex-col items-center justify-center gap-4"
           aria-label={embed ? `${dict.common.playVideo}: ${title}` : title}
           style={
-            media.poster
-              ? { backgroundImage: `url(${media.poster})`, backgroundSize: "cover", backgroundPosition: "center" }
+            poster
+              ? { backgroundImage: `url(${poster})`, backgroundSize: "cover", backgroundPosition: "center" }
               : undefined
           }
         >
-          {!media.poster && (
+          {/* Keeps the play button and title readable on any still frame. */}
+          {poster && <span aria-hidden="true" className="absolute inset-0 bg-gradient-to-t from-ink/75 via-ink/25 to-ink/10" />}
+          {!poster && (
             <svg className="absolute inset-x-0 bottom-[22%] w-full opacity-30" viewBox="0 0 960 90" fill="none" aria-hidden="true">
               <path
                 d="M0 62h52l12-22 12 34 12-44 12 32h52l12-12 12 18 12-24 12 18h68l12-36 12 52 12-42 12 26h76l12-14 12 22 12-28 12 20h72l12-28 12 38 12-44 12 34h76l12-10 12 14 12-20 12 16h68l12-30 12 44 12-38 12 24h160"

@@ -10,6 +10,8 @@ export const ro = {
   skipToContent: "Sari la conținut",
   nav: {
     howItWorks: "Cum funcționează",
+    howItWorksOverview: "Tot procesul, pe scurt",
+    pickService: "Alege serviciul despre care vrei să afli",
     about: "Despre noi",
     pricing: "Tarife",
     team: "Echipă",

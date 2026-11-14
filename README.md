@@ -97,3 +97,22 @@ tag → email/SMS nurture sequence → follow-up task.
 - English crisis lines add UK numbers (999 / Samaritans 116 123) next to the Romanian ones — confirm.
 - GHL webhooks + workflows/sequences; GA4 / Google Ads / Clarity IDs.
 - DNS: point both domains to the same deployment (e.g. Vercel project with both domains).
+
+## Control panel (`/admin`)
+
+The clinic edits, without a deploy: the explainer video of each service page
+and the testimonials (video or text) shown under it and on `/testimoniale`.
+
+1. Vercel → project → **Storage** → **Upstash for Redis** → Create → Connect
+   to this project (it adds `KV_REST_API_URL` + `KV_REST_API_TOKEN`).
+2. Vercel → Settings → Environment Variables → `ADMIN_PASSWORD` (long).
+3. Redeploy once. Open `https://emmanuelclinix.ro/admin`.
+
+Locally, without Redis, `/admin` saves to `.data/cms.json`. Code: `lib/cms/`,
+`app/admin/`, `components/admin/`.
+
+## AI search (GEO / AEO)
+
+`/llms.txt` (short index, `public/`) and `/llms-full.txt` (every service,
+FAQ, condition and article in RO + EN, generated from `content/`), JSON-LD on
+every page, AI crawlers allowed by name in `robots.txt`.

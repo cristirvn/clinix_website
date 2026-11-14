@@ -11,12 +11,13 @@ export const SERVICES_RO: ServicesLocale = {
   ui: {
     conditionLink: "Vezi afecțiunea →",
     breadcrumb: "Servicii",
+    testimonials: { eyebrow: "Testimoniale", title: "Ce spun pacienții", play: "Pornește testimonialul" },
   },
   index: {
     seo: {
       title: "Servicii și aparatură",
       description:
-        "BrainMap (qEEG), taVNS, tPBM, CES și psihoterapie la Emmanuel CliniX, în București. Ce este fiecare, cum decurge o ședință și cui îi este de folos.",
+        "BrainMap (qEEG), neurofeedback, taVNS, tPBM, CES, psihoterapie și EmSella la Emmanuel CliniX, în București. Ce este fiecare, cum decurge o ședință și cui îi este de folos.",
     },
     hero: {
       eyebrow: "Servicii",
@@ -25,10 +26,6 @@ export const SERVICES_RO: ServicesLocale = {
     },
     more: "Ce include",
     cardLink: "Află mai multe →",
-    elsewhere: {
-      text: "Neurofeedback-ul și EmSella le găsești explicate, cu video, pe pagina Cum funcționează.",
-      link: { label: "Cum funcționează →", href: "/cum-functioneaza" },
-    },
     cta: {
       title: "Primul pas: vezi harta creierului tău.",
       text: "Scanare, interpretare și consult psihologic. O oră, în București.",
@@ -554,6 +551,208 @@ export const SERVICES_RO: ServicesLocale = {
         text: "Lasă-ne numărul tău. Te sunăm, te ascultăm și găsim împreună primul pas.",
         primary: { label: "Te sunăm noi →", href: "/contact" },
         secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
+      },
+    },
+
+    neurofeedback: {
+      slug: "neurofeedback",
+      schemaType: "TherapeuticProcedure",
+      seo: {
+        title: "Neurofeedback — creierul învață să se regleze singur",
+        description:
+          "Neurofeedback la Emmanuel CliniX, în București. Protocol făcut pe baza BrainMap-ului tău. Ședințe de 30–45 de minute, nedureroase, fără medicamente.",
+      },
+      card: {
+        name: "Neurofeedback",
+        short: "Creierul învață, ședință cu ședință, un ritm mai stabil.",
+      },
+      hero: {
+        eyebrow: "Neurofeedback",
+        title: "Creierul învață să se regleze singur",
+        lead: "Pornim de la Brain Map-ul tău, nu de la o rețetă standard.",
+        videoTitle: "Cum funcționează neurofeedback-ul",
+      },
+      video: "serviceNeurofeedback",
+      what: {
+        eyebrow: "Ce este",
+        title: "Pe scurt",
+        paragraphs: [
+          "Pornim de la Brain Map-ul tău, nu de la o rețetă standard. Protocolul vizează exact zonele identificate la tine.",
+          "Ședință cu ședință, creierul învață un ritm mai stabil. Nu mascăm simptomul: antrenăm creierul să se autoregleze.",
+        ],
+      },
+      session: {
+        eyebrow: "Cum decurge o ședință",
+        title: "Stai relaxat. Creierul lucrează.",
+        steps: [
+          {
+            title: "Întâi BrainMap",
+            text: "Harta arată ce zone sunt prea active și ce zone sunt prea lente. Pe ea construim protocolul tău.",
+          },
+          {
+            title: "Senzorii pe cap",
+            text: "Stai pe un scaun, cu hainele pe tine. Senzorii doar citesc activitatea creierului, nu transmit nimic spre el.",
+          },
+          {
+            title: "Ședința",
+            text: "Stai relaxat pe un scaun și nu simți nimic în timpul ședinței.",
+          },
+          {
+            title: "Măsurăm din nou",
+            text: "Vezi în date ce s-a schimbat de la o etapă la alta.",
+          },
+        ],
+        facts: [
+          "Ședințe de 30–45 de minute",
+          "Nedureroase, fără medicamente",
+          "Protocol făcut pe harta ta",
+          "Îți reiei activitățile imediat",
+        ],
+      },
+      helps: {
+        eyebrow: "Pentru cine",
+        title: "Cui îi poate fi de folos",
+        lead: "Când creierul pare blocat într-un ritm care te obosește.",
+        conditions: ["anxietate", "panica", "somn", "focus", "stres", "burnout", "dispozitie"],
+        note: "Îți spunem sincer, după BrainMap, dacă neurofeedback-ul are sens pentru tine.",
+      },
+      safety: {
+        eyebrow: "Siguranță",
+        title: "Este sigur?",
+        points: [
+          "Neinvaziv: nu îți intră nimic în corp.",
+          "Senzorii doar citesc activitatea creierului, nu transmit nimic spre el.",
+          "Fără medicamente, fără durere.",
+          "Îți poți relua activitățile imediat după fiecare ședință.",
+        ],
+        notTitle: "Ce să ne spui înainte",
+        notFor: ["Ce medicamente iei și ce probleme de sănătate ai."],
+      },
+      faq: {
+        eyebrow: "Întrebări",
+        title: "Întrebări frecvente",
+        items: [
+          { q: "Doare?", a: "Nu. Stai relaxat pe un scaun și nu simți nimic în timpul ședinței." },
+          {
+            q: "Trebuie să fac întâi BrainMap?",
+            a: "Da. Protocolul de neurofeedback se face pe baza hărții tale, nu după o rețetă standard.",
+          },
+          {
+            q: "Câte ședințe sunt necesare?",
+            a: "Depinde de situația ta. După BrainMap îți spunem ce plan are sens și cum măsurăm progresul.",
+          },
+          {
+            q: "Înlocuiește medicamentele?",
+            a: "Nu. Nu opri nimic pe cont propriu. Discuți asta cu medicul care ți le-a prescris.",
+          },
+          { q: "Am nevoie de trimitere de la medicul de familie?", a: "Nu." },
+        ],
+      },
+      cta: {
+        title: "Primul pas: vezi harta creierului tău.",
+        text: "Scanare, interpretare și consult psihologic. O oră, în București.",
+        primary: { label: "Vreau BrainMap →", href: "/brainmap" },
+        secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
+      },
+    },
+
+    emsella: {
+      slug: "emsella",
+      schemaType: "TherapeuticProcedure",
+      seo: {
+        title: "EmSella — întărirea planșeului pelvin, pe scaun",
+        description:
+          "EmSella întărește planșeul pelvin în 28 de minute pe scaun, cu hainele pe tine — fără ace, fără recuperare. Pentru pierderi de urină la efort, urgență și treziri de noapte. În București.",
+      },
+      card: {
+        name: "EmSella",
+        short: "Întărește planșeul pelvin. 28 de minute pe scaun, cu hainele pe tine.",
+      },
+      hero: {
+        eyebrow: "EmSella · planșeu pelvin",
+        title: "Tu nu faci nimic. Scaunul face antrenamentul.",
+        lead: "E planșeul pelvin, un mușchi care s-a slăbit. Un mușchi se antrenează. 28 de minute pe scaun, cu hainele pe tine.",
+        videoTitle: "Cum funcționează scaunul EmSella",
+      },
+      video: "serviceEmsella",
+      what: {
+        eyebrow: "Ce este",
+        title: "Nu e vârsta. E un mușchi.",
+        paragraphs: [
+          "EmSella întărește planșeul pelvin. Un câmp electromagnetic contractă mușchii la intensitate maximă — inclusiv fibrele profunde, pe care nu le poți controla singur.",
+          "Pentru pierderi de urină la efort, senzația bruscă de urgență și trezirile de noapte. La femei și la bărbați.",
+        ],
+      },
+      session: {
+        eyebrow: "Cum decurge o ședință",
+        title: "28 de minute. Cu hainele pe tine.",
+        steps: [
+          {
+            title: "Te așezi pe scaun",
+            text: "Cu hainele pe tine. Nu te dezbraci, nu te atinge nimeni, nu îți intră nimic în corp.",
+          },
+          {
+            title: "Scaunul lucrează mușchiul",
+            text: "Emite un câmp electromagnetic care ajunge direct la planșeul pelvin. Acolo, mușchii se contractă la intensitate maximă.",
+          },
+          {
+            title: "Simți dacă mușchiul răspunde",
+            text: "Chiar acolo, pe scaun. Nu aștepți săptămâni ca să afli.",
+          },
+          {
+            title: "Îți continui ziua",
+            text: "Nu există perioadă de recuperare. Poți conduce, poți merge la muncă, îți reiei activitatea.",
+          },
+        ],
+        facts: [
+          "O ședință durează 28 de minute",
+          "Nu te dezbraci, nu te atinge nimeni",
+          "Fără ace, fără anestezie, fără radiații",
+          "Fără perioadă de recuperare",
+        ],
+      },
+      helps: {
+        eyebrow: "Pentru cine",
+        title: "E pentru tine dacă",
+        lead: "Pierzi urină la strănut, tuse, râs sau ridicat de greutăți. Senzația vine brusc și abia ajungi la baie. Te trezești noaptea de două sau trei ori.",
+        conditions: ["planseu-pelvin"],
+        note: "Verificăm contraindicațiile la telefon, înainte de programare.",
+      },
+      safety: {
+        eyebrow: "Siguranță",
+        title: "Este sigur?",
+        points: [
+          "Nu doare. Simți contracțiile puternic, dar nu e o senzație dureroasă.",
+          "Intensitatea se reglează pentru fiecare persoană în parte.",
+          "Fără ace, fără anestezie, fără radiații.",
+          "Fără perioadă de recuperare.",
+        ],
+        notTitle: "Nu poți face EmSella dacă",
+        notFor: ["Ești însărcinată", "Ai stimulator cardiac", "Ai implanturi metalice în zona pelvină", "Ai sterilet de cupru"],
+      },
+      faq: {
+        eyebrow: "Întrebări",
+        title: "Întrebări frecvente",
+        items: [
+          { q: "Cât durează o ședință?", a: "28 de minute. Nu ai nevoie de timp în plus înainte sau după." },
+          {
+            q: "Cât costă?",
+            a: "250 de lei o ședință. Pachetul de 5 ședințe costă 1.150 de lei, iar pachetul de 10 ședințe costă 2.000 de lei. Nu ești obligat să iei un pachet din prima.",
+          },
+          { q: "Trebuie să mă dezbrac?", a: "Nu. Stai pe scaun cu hainele pe tine. Nu te atinge nimeni." },
+          {
+            q: "De câte ședințe am nevoie?",
+            a: "Recomandăm cel puțin 10, pentru că e antrenament muscular. Un mușchi nu se întărește dintr-o dată.",
+          },
+          { q: "E și pentru bărbați?", a: "Da. Planșeul pelvin slăbește și la bărbați, cel mai accentuat după o operație de prostată." },
+          { q: "Am nevoie de trimitere de la medicul de familie?", a: "Nu." },
+        ],
+      },
+      cta: {
+        title: "Fă primul pas. Restul se simte pe scaun.",
+        text: "Completezi un formular scurt. Te sunăm noi.",
+        primary: { label: "Aplică pentru o ședință EmSella →", href: "/lp/emsella" },
+        secondary: { label: "Sau sună-ne", href: "/contact" },
       },
     },
   },

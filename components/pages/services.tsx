@@ -10,15 +10,17 @@ import type { Locale } from "@/lib/i18n";
 /** Stand-in photo per service (same as the home cards; shared media live in content/media.ts). */
 const SERVICE_IMAGES: Record<string, ImageKey> = {
   brainmap: "scan",
+  neurofeedback: "neurofeedback",
   tavns: "tavns",
   tpbm: "tpbm",
   ces: "portrait",
   psihoterapie: "consultCouch",
+  emsella: "room",
 };
 import type { ServiceContent, ServicesIndexContent } from "@/content/services/types";
 
 /** Service page top: title + lead, then the video straight away (the client's "video at the top"). */
-export function ServiceHero({ service }: { service: ServiceContent }) {
+export function ServiceHero({ service, videoUrl }: { service: ServiceContent; /** Set in /admin; overrides `service.video`. */ videoUrl?: string | null }) {
   return (
     <HeroPanel narrow>
       <Eyebrow className="rise-in">{service.hero.eyebrow}</Eyebrow>
@@ -29,7 +31,7 @@ export function ServiceHero({ service }: { service: ServiceContent }) {
         {service.hero.lead}
       </p>
       <div className="liquid-glass rise-in mt-10 rounded-[calc(var(--radius)+8px)] p-2 sm:mt-12" style={{ animationDelay: "260ms" }}>
-        <VideoPlayer video={service.video} title={service.hero.videoTitle} />
+        <VideoPlayer video={videoUrl ? { src: videoUrl } : service.video} title={service.hero.videoTitle} />
       </div>
     </HeroPanel>
   );
@@ -186,12 +188,14 @@ export function ServiceCards({ index, services, locale }: { index: ServicesIndex
           </li>
         ))}
       </ul>
+      {index.elsewhere && (
       <p className="mt-12 text-lg text-ink-soft">
         {index.elsewhere.text}{" "}
         <L href={index.elsewhere.link.href} className="font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary">
           {index.elsewhere.link.label}
         </L>
       </p>
+      )}
     </Section>
   );
 }

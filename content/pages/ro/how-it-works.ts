@@ -117,6 +117,7 @@ export const howItWorks: HowItWorksContent = {
           "Stai relaxat pe un scaun și nu simți nimic în timpul ședinței.",
           "Îți poți relua activitățile imediat după fiecare ședință.",
         ],
+        link: { label: "Află tot despre neurofeedback →", href: "/servicii/neurofeedback" },
       },
       {
         id: "consult",
@@ -149,7 +150,7 @@ export const howItWorks: HowItWorksContent = {
           "Nu te dezbraci, nu te atinge nimeni, nu îți intră nimic în corp.",
           "Simți contracțiile puternic, dar nu e o senzație dureroasă.",
         ],
-        link: { label: "Află tot despre EmSella →", href: "/lp/emsella" },
+        link: { label: "Află tot despre EmSella →", href: "/servicii/emsella" },
       },
     ],
   },

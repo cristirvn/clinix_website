@@ -1,0 +1,109 @@
+import { SERVICE_SLUGS, type ServiceSlug } from "@/content/services/types";
+
+/**
+ * Content the clinic edits itself in `/admin` (no deploy needed):
+ *  - the explainer video at the top of each service page;
+ *  - testimonials (video or text), each shown on one or more service pages
+ *    and on /testimoniale.
+ *
+ * Everything else on the site still lives in `content/`.
+ */
+
+/** Romanian is required; English is optional and falls back to Romanian. */
+export type Bilingual = { ro: string; en: string };
+
+export interface CmsTestimonial {
+  /** Random, stable id. */
+  id: string;
+  kind: "video" | "text";
+  /** As it should appear: "Mihaela R.", "Doamna Paulina". */
+  name: string;
+  /** One short line under the name: "Pacientă, 52 de ani", "De la 4h la 7h somn". Optional. */
+  detail: Bilingual;
+  /** kind = "video": a YouTube / Vimeo link or a direct .mp4 link. */
+  videoUrl: string;
+  /** kind = "text": what the patient said. */
+  quote: Bilingual;
+  /** The service pages it appears on. */
+  services: ServiceSlug[];
+  /** Hidden testimonials stay in the list but are not shown on the site. */
+  visible: boolean;
+}
+
+export interface CmsData {
+  /** Service page explainer video (YouTube / Vimeo / .mp4). Empty → the default from `content/media.ts`. */
+  videos: Partial<Record<ServiceSlug, string>>;
+  /** In display order. */
+  testimonials: CmsTestimonial[];
+  updatedAt: string | null;
+}
+
+export const EMPTY_CMS: CmsData = { videos: {}, testimonials: [], updatedAt: null };
+
+export const isServiceSlug = (v: unknown): v is ServiceSlug =>
+  typeof v === "string" && (SERVICE_SLUGS as readonly string[]).includes(v);
+
+/** Accepts YouTube, Vimeo or a direct https video file. Empty string = "no video". */
+export function isAcceptedVideoUrl(url: string): boolean {
+  if (!url) return true;
+  let u: URL;
+  try {
+    u = new URL(url);
+  } catch {
+    return false;
+  }
+  if (u.protocol !== "https:") return false;
+  const host = u.hostname.replace(/^www\.|^m\./, "");
+  if (host === "youtube.com" || host === "youtu.be" || host === "vimeo.com" || host === "player.vimeo.com") return true;
+  return /\.(mp4|webm|mov|m4v)$/i.test(u.pathname);
+}
+
+/** Defensive parse of stored JSON: unknown / broken fields are dropped, never crash a page. */
+export function normalizeCms(raw: unknown): CmsData {
+  if (!raw || typeof raw !== "object") return EMPTY_CMS;
+  const r = raw as Record<string, unknown>;
+  const str = (v: unknown, max = 4000) => (typeof v === "string" ? v.trim().slice(0, max) : "");
+  const bi = (v: unknown, max = 4000): Bilingual => {
+    const o = (v && typeof v === "object" ? v : {}) as Record<string, unknown>;
+    return { ro: str(o.ro, max), en: str(o.en, max) };
+  };
+
+  const videos: CmsData["videos"] = {};
+  if (r.videos && typeof r.videos === "object") {
+    for (const [k, v] of Object.entries(r.videos as Record<string, unknown>)) {
+      const url = str(v, 500);
+      if (isServiceSlug(k) && url && isAcceptedVideoUrl(url)) videos[k] = url;
+    }
+  }
+
+  const testimonials: CmsTestimonial[] = [];
+  if (Array.isArray(r.testimonials)) {
+    for (const t of r.testimonials as Array<Record<string, unknown>>) {
+      if (!t || typeof t !== "object") continue;
+      const kind = t.kind === "video" ? "video" : t.kind === "text" ? "text" : null;
+      const id = str(t.id, 64);
+      const name = str(t.name, 120);
+      if (!kind || !id || !name) continue;
+      const videoUrl = str(t.videoUrl, 500);
+      testimonials.push({
+        id,
+        kind,
+        name,
+        detail: bi(t.detail, 160),
+        videoUrl: isAcceptedVideoUrl(videoUrl) ? videoUrl : "",
+        quote: bi(t.quote, 2000),
+        services: Array.isArray(t.services) ? [...new Set(t.services.filter(isServiceSlug))] : [],
+        visible: t.visible !== false,
+      });
+    }
+  }
+
+  return { videos, testimonials, updatedAt: typeof r.updatedAt === "string" ? r.updatedAt : null };
+}
+
+/** The visitor's language, falling back to Romanian when the English field is empty. */
+export const pick = (b: Bilingual, locale: "ro" | "en") => (locale === "en" && b.en) || b.ro;
+
+/** Is this testimonial complete enough to show? */
+export const isShowable = (t: CmsTestimonial) =>
+  t.visible && (t.kind === "video" ? Boolean(t.videoUrl) : Boolean(t.quote.ro || t.quote.en));

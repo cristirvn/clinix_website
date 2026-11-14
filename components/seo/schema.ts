@@ -64,8 +64,8 @@ export function siteGraph(locale: Locale): Node {
           ? "Applied neuroscience clinic in Bucharest. BrainMap (qEEG) brain mapping, neurofeedback, taVNS, tPBM, CES, psychotherapy and EmSella."
           : "Clinică de neuroștiință aplicată în București. BrainMap (qEEG), neurofeedback, taVNS, tPBM, CES, psihoterapie și EmSella.",
         url,
-        logo: `${SITE_URLS[locale]}/logo.svg`,
-        image: `${SITE_URLS[locale]}/logo.svg`,
+        logo: `${SITE_URLS[locale]}/brand/logo-full.png`,
+        image: `${SITE_URLS[locale]}/brand/logo-full.png`,
         telephone: CLINIC.phoneHref.replace("tel:", ""),
         email: CLINIC.email,
         address: ADDRESS,

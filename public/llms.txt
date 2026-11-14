@@ -14,11 +14,13 @@ Clinică de neuroștiință aplicată în București. Măsurăm înainte să rec
 ## Services (English)
 
 - [BrainMap (qEEG)](https://emmanuelclinix.co.uk/services/brainmap): map of brain electrical activity, compared with normal values for your age
+- [Neurofeedback](https://emmanuelclinix.co.uk/services/neurofeedback): a protocol built on your BrainMap; session by session the brain learns a steadier rhythm
 - [taVNS](https://emmanuelclinix.co.uk/services/tavns): transcutaneous auricular vagus nerve stimulation, a small clip on the ear
 - [tPBM](https://emmanuelclinix.co.uk/services/tpbm): transcranial photobiomodulation with near-infrared light, no ionising radiation
 - [CES](https://emmanuelclinix.co.uk/services/ces): cranial electrotherapy stimulation, a very weak current through ear clips
 - [Psychotherapy](https://emmanuelclinix.co.uk/services/psihoterapie): regular sessions with a psychotherapist at the clinic
-- [How it works](https://emmanuelclinix.co.uk/how-it-works): the five-step patient journey, neurofeedback and EmSella explained
+- [EmSella](https://emmanuelclinix.co.uk/services/emsella): pelvic floor strengthening in a chair, 28 minutes, fully clothed (from 250 RON / session)
+- [How it works](https://emmanuelclinix.co.uk/how-it-works): the five-step patient journey
 - [Pricing](https://emmanuelclinix.co.uk/pricing)
 
 ## Conditions (English)
@@ -31,10 +33,12 @@ Clinică de neuroștiință aplicată în București. Măsurăm înainte să rec
 ## Servicii (Română)
 
 - [BrainMap (qEEG)](https://emmanuelclinix.ro/servicii/brainmap)
+- [Neurofeedback](https://emmanuelclinix.ro/servicii/neurofeedback)
 - [taVNS](https://emmanuelclinix.ro/servicii/tavns)
 - [tPBM](https://emmanuelclinix.ro/servicii/tpbm)
 - [CES](https://emmanuelclinix.ro/servicii/ces)
 - [Psihoterapie](https://emmanuelclinix.ro/servicii/psihoterapie)
+- [EmSella](https://emmanuelclinix.ro/servicii/emsella)
 - [Cum funcționează](https://emmanuelclinix.ro/cum-functioneaza)
 - [Tarife](https://emmanuelclinix.ro/tarife)
 
@@ -55,6 +59,8 @@ Clinică de neuroștiință aplicată în București. Măsurăm înainte să rec
 - [Careers](https://emmanuelclinix.co.uk/careers) · [Cariere](https://emmanuelclinix.ro/cariere)
 
 ## Optional
+
+- [Full text of the site for AI assistants (services, safety, FAQ, conditions, articles — RO + EN)](https://emmanuelclinix.ro/llms-full.txt)
 
 - [Sitemap (RO)](https://emmanuelclinix.ro/sitemap.xml)
 - [Sitemap (EN)](https://emmanuelclinix.co.uk/sitemap.xml)

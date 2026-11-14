@@ -1,15 +1,8 @@
-import { Fragment } from "react";
-
 /**
- * Renders `*words*` in a content string as <em> — in headings that is the
- * italic accent (see globals.css). Everything else is plain text.
+ * Content strings may still mark a word as `*emphasised*` (older copy). The
+ * client asked for ONE font and no italics, so the markers are simply removed
+ * and the text renders plain.
  */
 export function Emph({ text }: { text: string }) {
-  const parts = text.split(/\*([^*]+)\*/);
-  return (
-    <>
-      {parts.map((part, i) => (i % 2 ? <em key={i}>{part}</em> : <Fragment key={i}>{part}</Fragment>))}
-    </>
-  );
+  return <>{text.replace(/\*([^*]+)\*/g, "$1")}</>;
 }
-

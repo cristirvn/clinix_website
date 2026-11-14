@@ -14,7 +14,7 @@ export function FunnelHeader() {
     <header className="sticky top-0 z-50 h-[var(--header-h)] border-b border-line bg-bg/90 text-ink backdrop-blur-xl">
       <div className="mx-auto flex h-full max-w-6xl items-center justify-between gap-3 px-5 sm:gap-4 sm:px-8">
         <L href="/" aria-label="Emmanuel CliniX">
-          <Logo />
+          <Logo eager />
         </L>
         <div className="flex items-center gap-3">
           <a href={CLINIC.phoneHref} className="hidden items-center gap-2 font-semibold text-ink-soft transition hover:text-primary sm:flex">

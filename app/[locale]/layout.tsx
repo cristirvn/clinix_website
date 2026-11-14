@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { notFound } from "next/navigation";
-import { Instrument_Sans, Newsreader } from "next/font/google";
+import { Instrument_Sans } from "next/font/google";
 import "../globals.css";
 import { LOCALES, SITE_URLS, isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionary";
@@ -11,18 +11,12 @@ import { CookieConsent } from "@/components/layout/CookieConsent";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteGraph } from "@/components/seo/schema";
 
-// All fonts carry latin-ext for the Romanian diacritics (ă â î ș ț).
-// Body: a clear, open grotesque. Headlines: an editorial serif with optical sizes (+ italic for the accent word).
+// latin-ext for the Romanian diacritics (ă â î ș ț). ONE typeface for the whole
+// site (client request): headlines and body text are both Instrument Sans.
 const body = Instrument_Sans({ variable: "--font-body-face", subsets: ["latin", "latin-ext"], display: "swap" });
-const display = Newsreader({
-  variable: "--font-display-face",
-  subsets: ["latin", "latin-ext"],
-  style: ["normal", "italic"],
-  axes: ["opsz"],
-  display: "swap",
-});
 
-export const dynamicParams = false;
+// No `dynamicParams = false` here: it breaks on-demand revalidation (the /admin
+// pages would 404 after a save). Unknown locales still 404 via `notFound()` below.
 
 export function generateStaticParams() {
   return LOCALES.map((locale) => ({ locale }));
@@ -72,7 +66,7 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${body.variable} ${display.variable}`}
+      className={body.variable}
     >
       <body className="flex min-h-screen flex-col">
         <noscript>

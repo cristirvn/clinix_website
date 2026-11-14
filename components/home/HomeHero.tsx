@@ -48,7 +48,7 @@ export function HomeHero({ hero, locale }: { hero: HomeContent["hero"]; locale: 
               {hero.title}
             </h1>
             <p
-              className="rise-in mt-2 font-display text-[2.1rem] italic leading-tight text-accent sm:mt-3 sm:text-5xl lg:text-[3.4rem]"
+              className="rise-in mt-1 font-display text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-7xl"
               style={{ animationDelay: "240ms" }}
             >
               {hero.subtitle}

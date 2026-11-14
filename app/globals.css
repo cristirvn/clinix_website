@@ -4,9 +4,8 @@
  * Design system — "the quiet clinic".
  *
  * Clean whites with pale-blue panels, deep navy for dark bands, one clear blue
- * for the main action and for small accents. Headlines are an editorial
- * serif (Newsreader, optical sizes) in sentence case, body text a clear
- * grotesque (Instrument Sans). Fine hairlines instead of heavy boxes; one
+ * for the main action and for small accents. ONE typeface everywhere
+ * (client request): Instrument Sans, bolder for headlines, no italics. Fine hairlines instead of heavy boxes; one
  * signature motif — a thin EEG trace — used sparingly.
  *
  * Every colour / font / radius is a CSS variable; components use ONLY these
@@ -34,7 +33,7 @@
   --color-on-dark-soft: var(--on-dark-soft);
   --color-success: var(--success);
   --color-danger: var(--danger);
-  --font-display: var(--font-display-face), Georgia, "Times New Roman", serif;
+  --font-display: var(--font-body-face), system-ui, sans-serif;
   --font-body: var(--font-body-face), system-ui, sans-serif;
   --radius-theme: var(--radius);
 }
@@ -50,7 +49,7 @@
   /* Blue: structure, links, the chat launcher. */
   --primary: #1d5fd1;
   --on-primary: #ffffff;
-  /* Blue on light pages: eyebrows, ticks, the italic word in a headline. */
+  /* Blue on light pages: eyebrows, ticks. */
   --accent: #1d5fd1;
   --on-accent: #ffffff;
   /* Blue: the main button everywhere. */
@@ -68,8 +67,8 @@
   /* Height of the sticky header bar. */
   --header-h: 4.5rem;
   --btn-radius: 999px;
-  --display-weight: 500;
-  --display-tracking: -0.018em;
+  --display-weight: 600;
+  --display-tracking: -0.022em;
   --shadow-soft: 0 40px 90px -40px rgb(11 27 51 / 0.28);
   --shadow-card: 0 1px 2px rgb(11 27 51 / 0.04), 0 18px 40px -22px rgb(11 27 51 / 0.18);
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
@@ -77,7 +76,7 @@
 }
 
 /*
- * On navy the accent turns a light blue (eyebrows, ticks, italics) and
+ * On navy the accent turns a light blue (eyebrows, ticks) and
  * lines turn translucent. White cards placed on navy get the light values back.
  */
 [data-tone="dark"],
@@ -140,11 +139,11 @@
     hyphens: manual;
   }
 
-  /* One word in a headline may lean: italic blue, the clinic's handwriting. */
+  /* No mixed styles in headlines (client request): an <em> reads like the rest. */
   :is(h1, h2, h3) em {
-    font-style: italic;
-    font-weight: 400;
-    color: var(--accent);
+    font-style: normal;
+    font-weight: inherit;
+    color: inherit;
   }
 
   p {

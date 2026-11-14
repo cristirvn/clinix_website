@@ -78,6 +78,7 @@ export const howItWorks: HowItWorksContent = {
           "You sit back in a chair and feel nothing during the session.",
           "You can go straight back to your day after each session.",
         ],
+        link: { label: "Everything about neurofeedback →", href: "/servicii/neurofeedback" },
       },
       {
         id: "consult",
@@ -110,7 +111,7 @@ export const howItWorks: HowItWorksContent = {
           "You don’t undress, nobody touches you, nothing enters your body.",
           "You feel the contractions strongly, but it is not painful.",
         ],
-        link: { label: "Everything about EmSella →", href: "/lp/emsella" },
+        link: { label: "Everything about EmSella →", href: "/servicii/emsella" },
       },
     ],
   },

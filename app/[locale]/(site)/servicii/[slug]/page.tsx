@@ -2,16 +2,21 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LOCALES, isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionary";
-import { SERVICE_SLUGS, getService, getServices } from "@/content/services";
+import { SERVICE_SLUGS, getService, getServices, isServiceSlug } from "@/content/services";
 import { getCondition } from "@/content/conditions";
 import { CtaBand } from "@/components/pages/shared";
 import { ServiceFaq, ServiceHelps, ServiceHero, ServiceSafety, ServiceSession, ServiceWhat } from "@/components/pages/services";
+import { ServiceTestimonials } from "@/components/pages/testimonials";
+import { getServiceCms } from "@/lib/cms";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbs, faqPage, serviceNodes } from "@/components/seo/schema";
 import { pageMetadata } from "@/components/seo/meta";
 
-/** One page per device / service. Slugs are identical in both languages. */
-export const dynamicParams = false;
+/**
+ * One page per device / service. Slugs are identical in both languages.
+ * Unknown slugs 404 via `notFound()`. No `dynamicParams = false`: it breaks the
+ * on-demand revalidation that /admin triggers after a save.
+ */
 
 export function generateStaticParams() {
   return LOCALES.flatMap((locale) => SERVICE_SLUGS.map((slug) => ({ locale, slug })));
@@ -31,8 +36,10 @@ export default async function ServicePage({ params }: { params: Params }) {
   const { locale, slug } = await params;
   if (!isLocale(locale)) notFound();
   const service = getService(locale, slug);
-  if (!service) notFound();
+  if (!service || !isServiceSlug(slug)) notFound();
   const { ui } = getServices(locale);
+  // Video + testimonials the clinic manages in /admin.
+  const cms = await getServiceCms(slug);
   const dict = getDictionary(locale);
   const conditions = service.helps.conditions.flatMap((id) => {
     const c = getCondition(locale, id);
@@ -51,7 +58,8 @@ export default async function ServicePage({ params }: { params: Params }) {
           ]),
         ]}
       />
-      <ServiceHero service={service} />
+      <ServiceHero service={service} videoUrl={cms.videoUrl} />
+      <ServiceTestimonials items={cms.testimonials} ui={ui.testimonials} locale={locale} />
       <ServiceWhat content={service.what} />
       <ServiceSession content={service.session} />
       <ServiceHelps content={service.helps} conditions={conditions} linkLabel={ui.conditionLink} />

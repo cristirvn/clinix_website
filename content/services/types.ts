@@ -6,7 +6,8 @@ import type { ConditionId } from "@/content/conditions/types";
  * `/servicii/<slug>` — one page per device / service in the clinic.
  * Slugs are the same in both languages (`/services/tavns` in English).
  */
-export const SERVICE_SLUGS = ["brainmap", "tavns", "tpbm", "ces", "psihoterapie"] as const;
+/** Display order everywhere (menu, footer, /servicii). */
+export const SERVICE_SLUGS = ["brainmap", "neurofeedback", "tavns", "tpbm", "ces", "psihoterapie", "emsella"] as const;
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 
 export interface ServiceContent {
@@ -46,14 +47,14 @@ export interface ServiceContent {
   schemaType: "DiagnosticProcedure" | "TherapeuticProcedure" | "PsychologicalTreatment";
 }
 
-/** `/servicii` — the list of the five services. */
+/** `/servicii` — the list of all services. */
 export interface ServicesIndexContent {
   seo: PageSeo;
   hero: { eyebrow: string; title: string; lead: string };
   more: string;
   cardLink: string;
-  /** A line + link to the services that live elsewhere (neurofeedback, EmSella). */
-  elsewhere: { text: string; link: PageLink };
+  /** Optional line + link under the cards. */
+  elsewhere?: { text: string; link: PageLink };
   cta: CtaBandContent;
 }
 
@@ -61,6 +62,8 @@ export interface ServicesIndexContent {
 export interface ServicesUi {
   conditionLink: string;
   breadcrumb: string;
+  /** Testimonials section under the video (added from /admin; hidden when there are none). */
+  testimonials: { eyebrow: string; title: string; play: string };
 }
 
 export interface ServicesLocale {

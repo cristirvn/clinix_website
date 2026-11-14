@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
+import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { usePathname } from "next/navigation";
 import { L } from "@/components/ui/L";
@@ -11,11 +11,16 @@ import { LangSwitch } from "@/components/layout/LangSwitch";
 import { useLocale } from "@/components/layout/LocaleProvider";
 import { CLINIC } from "@/lib/site";
 import { internalizePath } from "@/lib/i18n";
-import { NAV_ABOUT, NAV_MAIN, isActivePath } from "@/components/layout/nav";
+import { NAV_ABOUT, NAV_MAIN, NAV_SERVICES, isActivePath } from "@/components/layout/nav";
+
+/** "Cum funcționează" is a dropdown: the visitor picks the service to read about. */
+const HOW_HREF = "/cum-functioneaza";
+const SERVICE_HREFS = [HOW_HREF, ...NAV_SERVICES.map((s) => `/servicii/${s.slug}`)];
+const NAV_PLAIN = NAV_MAIN.filter((item) => item.href !== HOW_HREF);
 
 /**
- * Site header: logo · three plain links · "Despre noi" panel · language · one
- * action. Below 1280px everything moves into a calm full-screen menu with big
+ * Site header: logo · "Cum funcționează" panel (one row per service) · two
+ * plain links · "Despre noi" panel · language · one action. Below 1280px everything moves into a calm full-screen menu with big
  * tap targets (the desktop row would otherwise crowd).
  */
 export function Header() {
@@ -50,11 +55,12 @@ export function Header() {
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-8">
         <L href="/" aria-label="Emmanuel CliniX" className="flex-none">
-          <Logo taglineClassName="sm:block xl:hidden 2xl:block" />
+          <Logo eager />
         </L>
 
         <nav className="hidden items-center gap-8 xl:flex" aria-label={dict.nav.menu}>
-          {NAV_MAIN.map((item) => (
+          <ServicesMenu pathname={pathname} />
+          {NAV_PLAIN.map((item) => (
             <L key={item.key} href={item.href} className={linkClass(item.href)} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
               {dict.nav[item.key]}
             </L>
@@ -96,18 +102,30 @@ export function Header() {
 }
 
 /**
- * "Despre noi" — a disclosure panel (WAI navigation pattern, not a menu
+ * A disclosure panel in the desktop bar (WAI navigation pattern, not a menu
  * role): opens on hover with a mouse, on click/tap, and from the keyboard
  * (Enter/Space/↓). Esc, a click outside or tabbing away closes it.
  */
-function AboutMenu({ pathname }: { pathname: string }) {
-  const { dict } = useLocale();
+function NavDisclosure({
+  label,
+  pathname,
+  active,
+  align = "right",
+  panelClass,
+  children,
+}: {
+  label: string;
+  pathname: string;
+  active: boolean;
+  align?: "left" | "right";
+  panelClass: string;
+  children: ReactNode;
+}) {
   const [open, setOpen] = useState(false);
   const wrap = useRef<HTMLDivElement>(null);
   const button = useRef<HTMLButtonElement>(null);
   const closeTimer = useRef<number | undefined>(undefined);
   const panelId = useId();
-  const active = NAV_ABOUT.some((i) => isActivePath(pathname, i.href));
 
   // Close on navigation. (Adjusting state while rendering is the React-recommended way to reset on a prop change.)
   const [lastPath, setLastPath] = useState(pathname);
@@ -181,57 +199,115 @@ function AboutMenu({ pathname }: { pathname: string }) {
         onClick={() => setOpen((v) => !v)}
         className={`flex items-center gap-1.5 py-2 text-[0.98rem] font-medium transition hover:text-primary ${active || open ? "text-ink" : "text-ink-soft"}`}
       >
-        {dict.nav.about}
+        {label}
         <ChevronIcon className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
       </button>
 
       {/* Invisible bridge so the pointer can travel from the button to the panel without closing it. */}
-      <div
-        id={panelId}
-        hidden={!open}
-        className="absolute right-0 top-full pt-4"
-      >
-        <div className="animate-menu-in w-[22rem] overflow-hidden rounded-[24px] bg-surface p-2 text-ink shadow-[var(--shadow-soft)] ring-1 ring-line">
-          <ul>
-            {NAV_ABOUT.map((item) => {
-              const current = isActivePath(pathname, item.href);
-              return (
-                <li key={item.key}>
-                  <L
-                    href={item.href}
-                    aria-current={current ? "page" : undefined}
-                    className="group flex min-h-12 items-center justify-between gap-4 rounded-[16px] px-4 py-2.5 text-[1.02rem] font-medium transition hover:bg-bg-alt focus-visible:bg-bg-alt"
-                  >
-                    <span className="flex items-center gap-3">
-                      <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${current ? "bg-accent" : "bg-line group-hover:bg-accent"}`} />
-                      {dict.nav[item.key]}
-                    </span>
-                    <ArrowIcon size={16} className="-translate-x-1 text-primary opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
-                  </L>
-                </li>
-              );
-            })}
-          </ul>
-          <a
-            href={CLINIC.phoneHref}
-            className="mt-2 flex items-center justify-between gap-3 rounded-[16px] bg-bg-alt px-4 py-3.5 text-[0.95rem] transition hover:bg-line/60"
-          >
-            <span className="text-ink-soft">{dict.common.callUs}</span>
-            <span className="flex items-center gap-2 font-semibold text-primary">
-              <PhoneIcon size={17} />
-              {CLINIC.phone}
-            </span>
-          </a>
+      <div id={panelId} hidden={!open} className={`absolute top-full pt-4 ${align === "right" ? "right-0" : "-left-6"}`}>
+        <div className={`animate-menu-in overflow-hidden rounded-[24px] bg-surface p-2 text-ink shadow-[var(--shadow-soft)] ring-1 ring-line ${panelClass}`}>
+          {children}
         </div>
       </div>
     </div>
   );
 }
 
+/** "Cum funcționează" — pick a service: name + one plain line each, then the overview page. */
+function ServicesMenu({ pathname }: { pathname: string }) {
+  const { dict, locale } = useLocale();
+  return (
+    <NavDisclosure
+      label={dict.nav.howItWorks}
+      pathname={pathname}
+      active={SERVICE_HREFS.some((h) => isActivePath(pathname, h))}
+      align="left"
+      panelClass="w-[36rem]"
+    >
+      <p className="px-4 pb-1 pt-3 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-soft">{dict.nav.pickService}</p>
+      <ul className="grid grid-cols-2 gap-0.5">
+        {NAV_SERVICES.map((s) => {
+          const href = `/servicii/${s.slug}`;
+          const current = isActivePath(pathname, href);
+          return (
+            <li key={s.slug}>
+              <L
+                href={href}
+                aria-current={current ? "page" : undefined}
+                className={`group flex min-h-14 flex-col justify-center rounded-[16px] px-4 py-2.5 transition hover:bg-bg-alt focus-visible:bg-bg-alt ${current ? "bg-bg-alt" : ""}`}
+              >
+                <span className="flex items-center gap-2 text-[1.02rem] font-semibold">
+                  {s[locale]}
+                  <ArrowIcon size={14} className="-translate-x-1 text-primary opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+                </span>
+                <span className="text-[0.88rem] leading-snug text-ink-soft">{s.sub[locale]}</span>
+              </L>
+            </li>
+          );
+        })}
+      </ul>
+      <L
+        href={HOW_HREF}
+        aria-current={isActivePath(pathname, HOW_HREF) ? "page" : undefined}
+        className="mt-2 flex items-center justify-between gap-3 rounded-[16px] bg-bg-alt px-4 py-3.5 text-[0.95rem] font-semibold text-primary transition hover:bg-line/60"
+      >
+        {dict.nav.howItWorksOverview}
+        <ArrowIcon size={16} />
+      </L>
+    </NavDisclosure>
+  );
+}
+
+/** "Despre noi" — the clinic's own pages + the phone number. */
+function AboutMenu({ pathname }: { pathname: string }) {
+  const { dict } = useLocale();
+  return (
+    <NavDisclosure
+      label={dict.nav.about}
+      pathname={pathname}
+      active={NAV_ABOUT.some((i) => isActivePath(pathname, i.href))}
+      panelClass="w-[22rem]"
+    >
+      <ul>
+        {NAV_ABOUT.map((item) => {
+          const current = isActivePath(pathname, item.href);
+          return (
+            <li key={item.key}>
+              <L
+                href={item.href}
+                aria-current={current ? "page" : undefined}
+                className="group flex min-h-12 items-center justify-between gap-4 rounded-[16px] px-4 py-2.5 text-[1.02rem] font-medium transition hover:bg-bg-alt focus-visible:bg-bg-alt"
+              >
+                <span className="flex items-center gap-3">
+                  <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${current ? "bg-accent" : "bg-line group-hover:bg-accent"}`} />
+                  {dict.nav[item.key]}
+                </span>
+                <ArrowIcon size={16} className="-translate-x-1 text-primary opacity-0 transition duration-300 group-hover:translate-x-0 group-hover:opacity-100" />
+              </L>
+            </li>
+          );
+        })}
+      </ul>
+      <a
+        href={CLINIC.phoneHref}
+        className="mt-2 flex items-center justify-between gap-3 rounded-[16px] bg-bg-alt px-4 py-3.5 text-[0.95rem] transition hover:bg-line/60"
+      >
+        <span className="text-ink-soft">{dict.common.callUs}</span>
+        <span className="flex items-center gap-2 font-semibold text-primary">
+          <PhoneIcon size={17} />
+          {CLINIC.phone}
+        </span>
+      </a>
+    </NavDisclosure>
+  );
+}
+
 /** Full-screen menu for phones, tablets and small laptops. Big rows, plain words, the three ways to reach us at the bottom. */
 function MobileMenu({ pathname, onClose }: { pathname: string; onClose: () => void }) {
-  const { dict } = useLocale();
+  const { dict, locale } = useLocale();
   const [aboutOpen, setAboutOpen] = useState(() => NAV_ABOUT.some((i) => isActivePath(pathname, i.href)));
+  const [howOpen, setHowOpen] = useState(() => SERVICE_HREFS.some((h) => isActivePath(pathname, h)));
+  const howId = useId();
   const closeRef = useRef<HTMLButtonElement>(null);
   const dialogRef = useRef<HTMLDivElement>(null);
   const aboutId = useId();
@@ -273,7 +349,7 @@ function MobileMenu({ pathname, onClose }: { pathname: string; onClose: () => vo
   return (
     <div ref={dialogRef} className="animate-menu-in fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-bg text-ink xl:hidden" role="dialog" aria-modal="true" aria-label={dict.nav.menu}>
       <div className="flex h-[var(--header-h)] flex-none items-center justify-between px-5 sm:px-8">
-        <Logo tagline={false} />
+        <Logo />
         <button
           ref={closeRef}
           type="button"
@@ -289,7 +365,47 @@ function MobileMenu({ pathname, onClose }: { pathname: string; onClose: () => vo
 
       <nav className="mx-auto w-full max-w-2xl flex-1 px-5 pt-4 sm:px-8" aria-label={dict.nav.menu}>
         <ul>
-          {NAV_MAIN.map((item) => (
+          <li>
+            <button type="button" className={row} aria-expanded={howOpen} aria-controls={howId} onClick={() => setHowOpen((v) => !v)}>
+              {dict.nav.howItWorks}
+              <span className={`flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line transition-transform duration-300 ${howOpen ? "rotate-180" : ""}`}>
+                <ChevronIcon size={16} />
+              </span>
+            </button>
+            <div id={howId} hidden={!howOpen} className="border-b border-line pb-3 pt-1">
+              <p className="pb-1 pt-2 text-[0.95rem] text-ink-soft">{dict.nav.pickService}</p>
+              <ul>
+                {NAV_SERVICES.map((s) => {
+                  const href = `/servicii/${s.slug}`;
+                  return (
+                    <li key={s.slug}>
+                      <L
+                        href={href}
+                        onClick={onClose}
+                        aria-current={isActivePath(pathname, href) ? "page" : undefined}
+                        className="flex min-h-16 items-center justify-between gap-4 py-2.5 pl-1"
+                      >
+                        <span className="flex flex-col">
+                          <span className="text-[1.2rem] font-semibold leading-tight">{s[locale]}</span>
+                          <span className="text-[0.95rem] leading-snug text-ink-soft">{s.sub[locale]}</span>
+                        </span>
+                        <ArrowIcon size={18} className="flex-none text-accent" />
+                      </L>
+                    </li>
+                  );
+                })}
+              </ul>
+              <L
+                href={HOW_HREF}
+                onClick={onClose}
+                className="mt-2 flex min-h-12 items-center justify-between gap-3 rounded-[16px] bg-bg-alt px-4 py-3 font-semibold text-primary"
+              >
+                {dict.nav.howItWorksOverview}
+                <ArrowIcon size={16} className="flex-none" />
+              </L>
+            </div>
+          </li>
+          {NAV_PLAIN.map((item) => (
             <li key={item.key}>
               <L href={item.href} onClick={onClose} className={row} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
                 {dict.nav[item.key]}
