@@ -2,7 +2,9 @@
 
 import { useCallback, useRef, useState } from "react";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
-import { VIDEOS, type VideoKey } from "@/content/media";
+import type { VideoKey } from "@/content/media";
+import { useVideoOverrides } from "@/components/layout/VideoOverrides";
+import { resolveVideo } from "@/lib/video";
 import type { BrainmapFixed } from "@/content/lps/fixed/types";
 
 const TESTIMONIALS: Array<{ name: string; video: VideoKey }> = [
@@ -19,6 +21,7 @@ const TESTIMONIALS: Array<{ name: string; video: VideoKey }> = [
 export function Testimonials({ copy }: { copy: BrainmapFixed["proof"] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(0);
+  const overrides = useVideoOverrides();
 
   const nearest = useCallback((track: HTMLDivElement) => {
     const cards = Array.from(track.children) as HTMLElement[];
@@ -76,7 +79,7 @@ export function Testimonials({ copy }: { copy: BrainmapFixed["proof"] }) {
               <span className="font-display text-2xl">{t.name}</span>
               <span className="text-sm text-ink-soft">
                 {copy.caption}
-                {VIDEOS[t.video].duration ? ` · ${VIDEOS[t.video].duration}` : ""}
+                {resolveVideo(t.video, overrides).duration ? ` · ${resolveVideo(t.video, overrides).duration}` : ""}
               </span>
             </figcaption>
           </figure>

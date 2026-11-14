@@ -1,7 +1,8 @@
 import "server-only";
 import { promises as fs } from "node:fs";
 import path from "node:path";
-import { EMPTY_CMS, normalizeCms, type CmsData } from "./types";
+import { getServiceList } from "@/content/services";
+import { EMPTY_CMS, isAcceptedVideoUrl, normalizeCms, type CmsData } from "./types";
 
 /**
  * Where `/admin` content is stored.
@@ -13,7 +14,8 @@ import { EMPTY_CMS, normalizeCms, type CmsData } from "./types";
  *  - Local development without those variables: `.data/cms.json` (git-ignored).
  *
  * Public pages read through the Next.js data cache (tag `cms`); every save in
- * /admin expires that tag and the pages, so changes are live immediately.
+ * /admin expires that tag and every page (the site layout reads the video
+ * links), so changes are live on the next visit.
  */
 export const CMS_TAG = "cms";
 const KEY = "emmanuelclinix:cms:v1";
@@ -31,6 +33,23 @@ export function storageMode(): "redis" | "file" | "none" {
   return process.env.VERCEL ? "none" : "file";
 }
 
+/**
+ * Stored JSON → data. The first version kept service page videos under
+ * `videos[<service slug>]`; those move to the service's video key (the next
+ * save writes the new shape).
+ */
+function fromStored(raw: unknown): CmsData {
+  const data = normalizeCms(raw);
+  const legacy = raw && typeof raw === "object" ? (raw as { videos?: unknown }).videos : null;
+  if (legacy && typeof legacy === "object") {
+    for (const s of getServiceList("ro")) {
+      const url = (legacy as Record<string, unknown>)[s.slug];
+      if (typeof url === "string" && url && isAcceptedVideoUrl(url) && !data.media[s.video]) data.media[s.video] = url;
+    }
+  }
+  return data;
+}
+
 async function readRedis(cached: boolean): Promise<CmsData> {
   const r = redis()!;
   const res = await fetch(`${r.url}/get/${KEY}`, {
@@ -39,12 +58,12 @@ async function readRedis(cached: boolean): Promise<CmsData> {
   });
   if (!res.ok) throw new Error(`CMS read failed: HTTP ${res.status}`);
   const body = (await res.json()) as { result?: string | null };
-  return body.result ? normalizeCms(JSON.parse(body.result)) : EMPTY_CMS;
+  return body.result ? fromStored(JSON.parse(body.result)) : EMPTY_CMS;
 }
 
 async function readFile(): Promise<CmsData> {
   try {
-    return normalizeCms(JSON.parse(await fs.readFile(LOCAL_FILE, "utf8")));
+    return fromStored(JSON.parse(await fs.readFile(LOCAL_FILE, "utf8")));
   } catch {
     return EMPTY_CMS;
   }

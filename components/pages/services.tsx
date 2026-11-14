@@ -20,7 +20,7 @@ const SERVICE_IMAGES: Record<string, ImageKey> = {
 import type { ServiceContent, ServicesIndexContent } from "@/content/services/types";
 
 /** Service page top: title + lead, then the video straight away (the client's "video at the top"). */
-export function ServiceHero({ service, videoUrl }: { service: ServiceContent; /** Set in /admin; overrides `service.video`. */ videoUrl?: string | null }) {
+export function ServiceHero({ service }: { service: ServiceContent }) {
   return (
     <HeroPanel narrow>
       <Eyebrow className="rise-in">{service.hero.eyebrow}</Eyebrow>
@@ -31,7 +31,7 @@ export function ServiceHero({ service, videoUrl }: { service: ServiceContent; /*
         {service.hero.lead}
       </p>
       <div className="liquid-glass rise-in mt-10 rounded-[calc(var(--radius)+8px)] p-2 sm:mt-12" style={{ animationDelay: "260ms" }}>
-        <VideoPlayer video={videoUrl ? { src: videoUrl } : service.video} title={service.hero.videoTitle} />
+        <VideoPlayer video={service.video} title={service.hero.videoTitle} />
       </div>
     </HeroPanel>
   );

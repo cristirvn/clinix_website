@@ -2,7 +2,8 @@ import { Card, Section, SectionHead } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { L } from "@/components/ui/L";
-import { VIDEOS, type MediaVideo, type VideoKey } from "@/content/media";
+import type { MediaVideo, VideoKey } from "@/content/media";
+import { resolveVideo, type VideoOverrides } from "@/lib/video";
 import type { Locale } from "@/lib/i18n";
 import type { QuoteTestimonial, TestimonialsPageContent, VideoTestimonial } from "@/content/testimonials/types";
 import { pick, type CmsTestimonial } from "@/lib/cms/types";
@@ -54,11 +55,16 @@ export function cmsToStories(items: CmsTestimonial[], locale: Locale, tagFor?: (
 }
 
 /** The fixed list → cards. */
-export function staticVideoStories(items: VideoTestimonial[], page: TestimonialsPageContent, locale: Locale): VideoStory[] {
+export function staticVideoStories(
+  items: VideoTestimonial[],
+  page: TestimonialsPageContent,
+  locale: Locale,
+  overrides: VideoOverrides,
+): VideoStory[] {
   return items.map((t) => ({
     id: t.id,
     name: t.name,
-    line: [t.role[locale], VIDEOS[t.video].duration].filter(Boolean).join(" · "),
+    line: [t.role[locale], resolveVideo(t.video, overrides).duration].filter(Boolean).join(" · "),
     video: t.video,
     tag: page.topics[t.topic],
   }));

@@ -7,7 +7,7 @@ import { getCondition } from "@/content/conditions";
 import { CtaBand } from "@/components/pages/shared";
 import { ServiceFaq, ServiceHelps, ServiceHero, ServiceSafety, ServiceSession, ServiceWhat } from "@/components/pages/services";
 import { ServiceTestimonials } from "@/components/pages/testimonials";
-import { getServiceCms } from "@/lib/cms";
+import { getServiceTestimonials } from "@/lib/cms";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbs, faqPage, serviceNodes } from "@/components/seo/schema";
 import { pageMetadata } from "@/components/seo/meta";
@@ -38,8 +38,8 @@ export default async function ServicePage({ params }: { params: Params }) {
   const service = getService(locale, slug);
   if (!service || !isServiceSlug(slug)) notFound();
   const { ui } = getServices(locale);
-  // Video + testimonials the clinic manages in /admin.
-  const cms = await getServiceCms(slug);
+  // Testimonials the clinic manages in /admin (the video link comes through the layout).
+  const testimonials = await getServiceTestimonials(slug);
   const dict = getDictionary(locale);
   const conditions = service.helps.conditions.flatMap((id) => {
     const c = getCondition(locale, id);
@@ -58,8 +58,8 @@ export default async function ServicePage({ params }: { params: Params }) {
           ]),
         ]}
       />
-      <ServiceHero service={service} videoUrl={cms.videoUrl} />
-      <ServiceTestimonials items={cms.testimonials} ui={ui.testimonials} locale={locale} />
+      <ServiceHero service={service} />
+      <ServiceTestimonials items={testimonials} ui={ui.testimonials} locale={locale} />
       <ServiceWhat content={service.what} />
       <ServiceSession content={service.session} />
       <ServiceHelps content={service.helps} conditions={conditions} linkLabel={ui.conditionLink} />

@@ -10,7 +10,7 @@ import {
   staticQuoteStories,
   staticVideoStories,
 } from "@/components/pages/testimonials";
-import { getAllCmsTestimonials } from "@/lib/cms";
+import { getAllCmsTestimonials, getCms } from "@/lib/cms";
 import { NAV_SERVICES } from "@/components/layout/nav";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbs } from "@/components/seo/schema";
@@ -37,7 +37,8 @@ export default async function TestimonialsPage({ params }: Props) {
     const s = NAV_SERVICES.find((n) => n.slug === t.services[0]);
     return s ? { label: s[locale], href: `/servicii/${s.slug}` } : undefined;
   });
-  const videos = [...cms.videos, ...staticVideoStories(videoTestimonials(), page, locale)];
+  const { media } = await getCms();
+  const videos = [...cms.videos, ...staticVideoStories(videoTestimonials(), page, locale, media)];
   const quotes = [...cms.quotes, ...staticQuoteStories(quoteTestimonials(), page, locale)];
   return (
     <>

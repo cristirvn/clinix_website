@@ -5,8 +5,8 @@ import {
   deleteTestimonial,
   logout,
   moveTestimonial,
-  saveServiceVideo,
   saveTestimonial,
+  saveVideo,
   setTestimonialVisible,
   type ActionResult,
   type TestimonialInput,
@@ -14,6 +14,8 @@ import {
 import { LogoMark } from "@/components/layout/Logo";
 import type { CmsData, CmsTestimonial } from "@/lib/cms/types";
 import type { ServiceSlug } from "@/content/services/types";
+import { VIDEOS, type VideoKey } from "@/content/media";
+import { VIDEO_GROUPS, VIDEO_SLOTS } from "@/lib/cms/slots";
 import { autoPoster, vimeoId, youtubeId } from "@/lib/video";
 import { btn, card, field, hint, label } from "./ui";
 
@@ -21,17 +23,18 @@ export interface AdminService {
   slug: ServiceSlug;
   name: string;
   short: string;
-  /** The video set in the code (`content/media.ts`), used when nothing is set here. */
-  defaultVideo: string;
+  /** Its explainer video's key in `content/media.ts`. */
+  video: VideoKey;
 }
 
-type View = ServiceSlug | "all";
+type View = ServiceSlug | "all" | "videos";
 type Toast = { kind: "ok" | "error"; text: string } | null;
 
 /**
  * /admin — one screen. Pick a service page at the top; below it, that page's
- * explainer video and its testimonials. Every button saves straight away and
- * says so; nothing to "publish".
+ * explainer video and its testimonials. "Toate videoclipurile" lists every
+ * video place on the site (landing pages included). Every button saves
+ * straight away and says so; nothing to "publish".
  */
 export function AdminApp({
   initial,
@@ -69,7 +72,10 @@ export function AdminApp({
       }
     });
 
-  const service = view === "all" ? null : services.find((s) => s.slug === view)!;
+  const service = services.find((s) => s.slug === view) ?? null;
+  const videosSet = Object.keys(data.media).length;
+  const onSaveVideo = (key: VideoKey) => (url: string) =>
+    run(() => saveVideo(key, url), url ? "Video salvat. Apare acum pe site." : "Video scos de pe site.");
   const nameOf = (slug: ServiceSlug) => services.find((s) => s.slug === slug)?.name ?? slug;
   const countFor = (slug: ServiceSlug) => data.testimonials.filter((t) => t.services.includes(slug)).length;
 
@@ -79,7 +85,7 @@ export function AdminApp({
     detail: { ro: "", en: "" },
     videoUrl: "",
     quote: { ro: "", en: "" },
-    services: view === "all" ? [] : [view],
+    services: service ? [service.slug] : [],
     visible: true,
   });
 
@@ -121,13 +127,16 @@ export function AdminApp({
           <h1 id="pick" className="text-[1.6rem] sm:text-[2rem]">
             Ce pagină vrei să modifici?
           </h1>
-          <p className="mt-1 text-ink-soft">Fiecare serviciu are video-ul lui și testimonialele lui.</p>
+          <p className="mt-1 text-ink-soft">Fiecare serviciu are video-ul lui și testimonialele lui. Landing page-urile sunt la „Toate videoclipurile”.</p>
           <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Pagini">
             {services.map((s) => (
               <Chip key={s.slug} active={view === s.slug} onClick={() => setView(s.slug)} count={countFor(s.slug)}>
                 {s.name}
               </Chip>
             ))}
+            <Chip active={view === "videos"} onClick={() => setView("videos")} count={`${videosSet}/${Object.keys(VIDEOS).length}`}>
+              Toate videoclipurile
+            </Chip>
             <Chip active={view === "all"} onClick={() => setView("all")} count={data.testimonials.length}>
               Toate testimonialele
             </Chip>
@@ -148,12 +157,11 @@ export function AdminApp({
 
             <VideoCard
               key={service.slug}
-              service={service}
-              current={data.videos[service.slug] ?? ""}
+              videoKey={service.video}
+              title="Video explicativ"
+              current={data.media[service.video] ?? ""}
               pending={pending}
-              onSave={(url) =>
-                run(() => saveServiceVideo(service.slug, url), url ? "Video salvat. Apare acum pe pagină." : "Video scos de pe pagină.")
-              }
+              onSave={onSaveVideo(service.video)}
             />
 
             <section className={card} aria-labelledby="t-title">
@@ -182,6 +190,39 @@ export function AdminApp({
                 onDelete={(t) => run(() => deleteTestimonial(t.id), "Testimonial șters.")}
               />
             </section>
+          </>
+        ) : view === "videos" ? (
+          <>
+            <div className="border-t border-line pt-6">
+              <h2 className="text-[1.9rem] sm:text-[2.3rem]">Toate videoclipurile</h2>
+              <p className="text-ink-soft">
+                Fiecare loc de pe site unde apare un video, grupat pe pagini. Lipește linkul și salvează: apare pe toate paginile scrise sub titlu.
+              </p>
+              <nav aria-label="Grupuri" className="mt-4 flex flex-wrap gap-2">
+                {VIDEO_GROUPS.map((g, i) => (
+                  <a key={g.title} href={`#grup-${i}`} className={btn.small}>
+                    {g.title}
+                  </a>
+                ))}
+              </nav>
+            </div>
+            {VIDEO_GROUPS.map((g, i) => (
+              <section key={g.title} id={`grup-${i}`} aria-labelledby={`grup-${i}-t`} className="scroll-mt-24 space-y-4">
+                <h3 id={`grup-${i}-t`} className="pt-4 text-[1.5rem] sm:text-[1.7rem]">
+                  {g.title}
+                </h3>
+                {g.keys.map((k) => (
+                  <VideoCard
+                    key={k}
+                    videoKey={k}
+                    title={VIDEO_SLOTS[k].label}
+                    current={data.media[k] ?? ""}
+                    pending={pending}
+                    onSave={onSaveVideo(k)}
+                  />
+                ))}
+              </section>
+            ))}
           </>
         ) : (
           <section className={card} aria-labelledby="all-title">
@@ -250,7 +291,7 @@ function Notice({ children, tone = "info" }: { children: React.ReactNode; tone?:
   );
 }
 
-function Chip({ active, onClick, count, children }: { active: boolean; onClick: () => void; count: number; children: React.ReactNode }) {
+function Chip({ active, onClick, count, children }: { active: boolean; onClick: () => void; count: number | string; children: React.ReactNode }) {
   return (
     <button
       type="button"
@@ -268,27 +309,40 @@ function Chip({ active, onClick, count, children }: { active: boolean; onClick: 
 
 // ── Explainer video ───────────────────────────────────────────────────────────
 
+/** One video place on the site: its link, where it shows, and what plays there now. */
 function VideoCard({
-  service,
+  videoKey,
+  title,
   current,
   pending,
   onSave,
 }: {
-  service: AdminService;
+  videoKey: VideoKey;
+  title: string;
   current: string;
   pending: boolean;
   onSave: (url: string) => void;
 }) {
   const [url, setUrl] = useState(current);
   const changed = url.trim() !== current;
-  const shown = current || service.defaultVideo;
+  const fallback = VIDEOS[videoKey].src;
+  const shown = current || fallback;
+  const slot = VIDEO_SLOTS[videoKey];
+  const id = `v-${videoKey}`;
 
   return (
-    <section className={card} aria-labelledby="v-title">
-      <h3 id="v-title" className="text-[1.45rem]">
-        Video explicativ
-      </h3>
-      <p className={hint}>Apare sus, pe pagina serviciului.</p>
+    <section className={card} aria-labelledby={`${id}-title`}>
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div className="min-w-0">
+          <h3 id={`${id}-title`} className="text-[1.3rem] sm:text-[1.45rem]">
+            {title}
+          </h3>
+          <p className={hint}>Apare pe: {slot.where}</p>
+        </div>
+        <a href={slot.href} target="_blank" rel="noopener" className={`${btn.small} flex-none`}>
+          Vezi pe site ↗
+        </a>
+      </div>
 
       <div className="mt-5 grid gap-6 md:grid-cols-[1fr_16rem]">
         <form
@@ -297,11 +351,11 @@ function VideoCard({
             onSave(url.trim());
           }}
         >
-          <label htmlFor="video-url" className={label}>
+          <label htmlFor={`${id}-url`} className={label}>
             Link video
           </label>
           <input
-            id="video-url"
+            id={`${id}-url`}
             type="url"
             inputMode="url"
             placeholder="https://www.youtube.com/watch?v=…"
@@ -333,7 +387,7 @@ function VideoCard({
           <p className={label}>Acum pe site</p>
           <VideoThumb url={shown} />
           <p className={hint}>
-            {current ? "Video pus din panou." : service.defaultVideo ? "Video-ul inițial al site-ului." : "Încă nu e video: pagina arată un cadru gol."}
+            {current ? "Video pus din panou." : fallback ? "Video-ul inițial al site-ului." : "Încă nu e video: pagina arată un cadru gol."}
           </p>
         </div>
       </div>

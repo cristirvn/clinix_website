@@ -5,9 +5,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath, updateTag } from "next/cache";
 import { endSession, isAdmin, passwordMatches, startSession } from "@/lib/cms/auth";
 import { CMS_TAG, readCmsFresh, writeCms } from "@/lib/cms/store";
-import { isAcceptedVideoUrl, isServiceSlug, normalizeCms, type CmsData, type CmsTestimonial } from "@/lib/cms/types";
-import { SERVICE_SLUGS } from "@/content/services/types";
-import { LOCALES } from "@/lib/i18n";
+import { isAcceptedVideoUrl, isServiceSlug, isVideoKey, normalizeCms, type CmsData, type CmsTestimonial } from "@/lib/cms/types";
 
 /**
  * Every /admin change goes through here. Each action checks the session,
@@ -38,11 +36,8 @@ async function mutate(change: (data: CmsData) => CmsData | string): Promise<Acti
     const saved = normalizeCms({ ...next, updatedAt: new Date().toISOString() });
     await writeCms(saved);
     updateTag(CMS_TAG);
-    // Only the pages that show /admin content, by their concrete (internal) paths.
-    for (const locale of LOCALES) {
-      revalidatePath(`/${locale}/testimoniale`);
-      for (const slug of SERVICE_SLUGS) revalidatePath(`/${locale}/servicii/${slug}`);
-    }
+    // Every page: the site layout hands the video links to every player.
+    revalidatePath("/[locale]", "layout");
     return { ok: true, data: saved };
   } catch (err) {
     console.error("[admin]", err);
@@ -68,15 +63,16 @@ export async function logout() {
   redirect("/admin");
 }
 
-// ── Service videos ──────────────────────────────────────────────────────────
+// ── Videos (any key in content/media.ts) ────────────────────────────────────
 
-export async function saveServiceVideo(slug: string, url: string): Promise<ActionResult> {
+/** Sets the link for one video place on the site; an empty link goes back to the default. */
+export async function saveVideo(key: string, url: string): Promise<ActionResult> {
   const clean = url.trim();
-  if (!isServiceSlug(slug)) return { ok: false, error: ERR.generic };
+  if (!isVideoKey(key)) return { ok: false, error: ERR.generic };
   if (!isAcceptedVideoUrl(clean)) return { ok: false, error: ERR.video };
   return mutate((d) => {
-    if (clean) d.videos[slug] = clean;
-    else delete d.videos[slug];
+    if (clean) d.media[key] = clean;
+    else delete d.media[key];
     return d;
   });
 }

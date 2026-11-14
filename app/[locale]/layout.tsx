@@ -5,6 +5,8 @@ import "../globals.css";
 import { LOCALES, SITE_URLS, isLocale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionary";
 import { LocaleProvider } from "@/components/layout/LocaleProvider";
+import { VideoOverridesProvider } from "@/components/layout/VideoOverrides";
+import { getCms } from "@/lib/cms";
 import { Analytics } from "@/components/layout/Analytics";
 import { SiteLoader } from "@/components/layout/SiteLoader";
 import { CookieConsent } from "@/components/layout/CookieConsent";
@@ -62,6 +64,8 @@ export default async function LocaleLayout({
   const { locale } = await params;
   if (!isLocale(locale)) notFound();
   const dict = getDictionary(locale);
+  // Video links set in /admin, for every player on the site.
+  const { media } = await getCms();
 
   return (
     <html
@@ -74,13 +78,15 @@ export default async function LocaleLayout({
         </noscript>
         <JsonLd data={siteGraph(locale)} />
         <LocaleProvider locale={locale} dict={dict}>
-          <SiteLoader />
-          <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-surface focus:p-3">
-            {dict.skipToContent}
-          </a>
-          {children}
-          <CookieConsent />
-          <Analytics />
+          <VideoOverridesProvider value={media}>
+            <SiteLoader />
+            <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:bg-surface focus:p-3">
+              {dict.skipToContent}
+            </a>
+            {children}
+            <CookieConsent />
+            <Analytics />
+          </VideoOverridesProvider>
         </LocaleProvider>
       </body>
     </html>

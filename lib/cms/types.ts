@@ -1,8 +1,10 @@
 import { SERVICE_SLUGS, type ServiceSlug } from "@/content/services/types";
+import { VIDEOS, type VideoKey } from "@/content/media";
 
 /**
  * Content the clinic edits itself in `/admin` (no deploy needed):
- *  - the explainer video at the top of each service page;
+ *  - any video on the site (every key in `content/media.ts`: landing pages,
+ *    service pages, "how it works", about, children, testimonials);
  *  - testimonials (video or text), each shown on one or more service pages
  *    and on /testimoniale.
  *
@@ -31,17 +33,19 @@ export interface CmsTestimonial {
 }
 
 export interface CmsData {
-  /** Service page explainer video (YouTube / Vimeo / .mp4). Empty → the default from `content/media.ts`. */
-  videos: Partial<Record<ServiceSlug, string>>;
+  /** Video links by `content/media.ts` key (YouTube / Vimeo / .mp4). Missing → that key's default. */
+  media: Partial<Record<VideoKey, string>>;
   /** In display order. */
   testimonials: CmsTestimonial[];
   updatedAt: string | null;
 }
 
-export const EMPTY_CMS: CmsData = { videos: {}, testimonials: [], updatedAt: null };
+export const EMPTY_CMS: CmsData = { media: {}, testimonials: [], updatedAt: null };
 
 export const isServiceSlug = (v: unknown): v is ServiceSlug =>
   typeof v === "string" && (SERVICE_SLUGS as readonly string[]).includes(v);
+
+export const isVideoKey = (v: unknown): v is VideoKey => typeof v === "string" && Object.prototype.hasOwnProperty.call(VIDEOS, v);
 
 /** Accepts YouTube, Vimeo or a direct https video file. Empty string = "no video". */
 export function isAcceptedVideoUrl(url: string): boolean {
@@ -68,11 +72,11 @@ export function normalizeCms(raw: unknown): CmsData {
     return { ro: str(o.ro, max), en: str(o.en, max) };
   };
 
-  const videos: CmsData["videos"] = {};
-  if (r.videos && typeof r.videos === "object") {
-    for (const [k, v] of Object.entries(r.videos as Record<string, unknown>)) {
+  const media: CmsData["media"] = {};
+  if (r.media && typeof r.media === "object") {
+    for (const [k, v] of Object.entries(r.media as Record<string, unknown>)) {
       const url = str(v, 500);
-      if (isServiceSlug(k) && url && isAcceptedVideoUrl(url)) videos[k] = url;
+      if (isVideoKey(k) && url && isAcceptedVideoUrl(url)) media[k] = url;
     }
   }
 
@@ -98,7 +102,7 @@ export function normalizeCms(raw: unknown): CmsData {
     }
   }
 
-  return { videos, testimonials, updatedAt: typeof r.updatedAt === "string" ? r.updatedAt : null };
+  return { media, testimonials, updatedAt: typeof r.updatedAt === "string" ? r.updatedAt : null };
 }
 
 /** The visitor's language, falling back to Romanian when the English field is empty. */

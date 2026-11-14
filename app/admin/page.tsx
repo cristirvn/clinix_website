@@ -2,13 +2,12 @@ import { adminConfigured, isAdmin } from "@/lib/cms/auth";
 import { readCmsFresh, storageMode } from "@/lib/cms/store";
 import { EMPTY_CMS } from "@/lib/cms/types";
 import { getServiceList } from "@/content/services";
-import { VIDEOS } from "@/content/media";
 import { AdminApp } from "@/components/admin/AdminApp";
 import { LoginForm } from "@/components/admin/LoginForm";
 
 export const dynamic = "force-dynamic";
 
-/** `/admin` — the clinic's control panel: service videos + testimonials. */
+/** `/admin` — the clinic's control panel: every video on the site + testimonials. */
 export default async function AdminPage() {
   if (!adminConfigured()) {
     return (
@@ -25,6 +24,6 @@ export default async function AdminPage() {
     console.error("[admin]", err);
     loadError = true;
   }
-  const services = getServiceList("ro").map((s) => ({ slug: s.slug, name: s.card.name, short: s.card.short, defaultVideo: VIDEOS[s.video].src }));
+  const services = getServiceList("ro").map((s) => ({ slug: s.slug, name: s.card.name, short: s.card.short, video: s.video }));
   return <AdminApp initial={data} services={services} storage={storageMode()} loadError={loadError} />;
 }

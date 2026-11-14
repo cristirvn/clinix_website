@@ -1,12 +1,14 @@
 "use client";
 
 import { useState } from "react";
-import { VIDEOS, type MediaVideo, type VideoKey } from "@/content/media";
+import type { MediaVideo, VideoKey } from "@/content/media";
 import { useLocale } from "@/components/layout/LocaleProvider";
-import { autoPoster, embedUrl } from "@/lib/video";
+import { useVideoOverrides } from "@/components/layout/VideoOverrides";
+import { autoPoster, embedUrl, resolveVideo } from "@/lib/video";
 
 /**
- * 16:9 video. Pass a key from `content/media.ts` (shared by both languages).
+ * 16:9 video. Pass a key from `content/media.ts` (shared by both languages);
+ * a link set for that key in /admin wins over the default.
  * Click-to-load (no third-party player until the visitor presses play). With
  * no `src` yet it renders a branded placeholder frame.
  */
@@ -20,8 +22,9 @@ export function VideoPlayer({
   className?: string;
 }) {
   const { locale, dict } = useLocale();
+  const overrides = useVideoOverrides();
   const [playing, setPlaying] = useState(false);
-  const media: MediaVideo = typeof video === "string" ? VIDEOS[video] : video;
+  const media: MediaVideo = typeof video === "string" ? resolveVideo(video, overrides) : video;
   const src = (locale === "en" && media.en) || media.src;
   const embed = embedUrl(src);
   const poster = media.poster ?? autoPoster(src);

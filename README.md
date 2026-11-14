@@ -100,11 +100,16 @@ tag → email/SMS nurture sequence → follow-up task.
 
 ## Control panel (`/admin`)
 
-The clinic edits, without a deploy: the explainer video of each service page
-and the testimonials (video or text) shown under it and on `/testimoniale`.
+The clinic edits, without a deploy: every video on the site (each key in
+`content/media.ts` — landing pages, service pages, how it works, about,
+children, testimonials) and the testimonials (video or text) shown on the
+service pages and on `/testimoniale`. A link set in `/admin` wins over the
+default in `content/media.ts`; a new video key must also be described in
+`lib/cms/slots.ts` (the build fails otherwise) so it shows up in the panel.
 
 1. Vercel → project → **Storage** → **Upstash for Redis** → Create → Connect
-   to this project (it adds `KV_REST_API_URL` + `KV_REST_API_TOKEN`).
+   to this project with Custom Prefix `KV` (it adds `KV_REST_API_URL` +
+   `KV_REST_API_TOKEN`).
 2. Vercel → Settings → Environment Variables → `ADMIN_PASSWORD` (long).
 3. Redeploy once. Open `https://emmanuelclinix.ro/admin`.
 
