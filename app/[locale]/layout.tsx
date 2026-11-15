@@ -12,6 +12,7 @@ import { SiteLoader } from "@/components/layout/SiteLoader";
 import { CookieConsent } from "@/components/layout/CookieConsent";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteGraph } from "@/components/seo/schema";
+import { PALETTE_BOOT_SCRIPT, PaletteSwitch } from "@/components/layout/PaletteSwitch";
 
 // latin-ext for the Romanian diacritics (ă â î ș ț). ONE typeface for the whole
 // site (client request): headlines and body text are both Instrument Sans.
@@ -71,8 +72,11 @@ export default async function LocaleLayout({
     <html
       lang={locale}
       className={body.variable}
+      // The palette preview script sets data-palette before React hydrates.
+      suppressHydrationWarning
     >
       <body className="flex min-h-screen flex-col">
+        <script dangerouslySetInnerHTML={{ __html: PALETTE_BOOT_SCRIPT }} />
         <noscript>
           <style>{`.reveal,.rise-in{opacity:1!important;transform:none!important;animation:none!important}.trace-draw{animation:none!important;stroke-dashoffset:0!important}.site-loader{display:none!important}`}</style>
         </noscript>
@@ -85,6 +89,7 @@ export default async function LocaleLayout({
             </a>
             {children}
             <CookieConsent />
+            <PaletteSwitch />
             <Analytics />
           </VideoOverridesProvider>
         </LocaleProvider>

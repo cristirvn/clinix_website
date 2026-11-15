@@ -694,3 +694,93 @@ html:has(.site-loader:not(.is-done)) {
     }
   }
 }
+
+/*
+ * ─── "Turcoaz" palette (preview) ───────────────────────────────────────────
+ * The logo's turquoise in place of the navy + royal blue: lighter, airier.
+ * Switched on with <html data-palette="aqua"> (components/layout/PaletteSwitch).
+ * Only tokens and the few navy-specific surfaces change; layouts stay the same.
+ *  - Light pages: white + a pale aqua tint, deep-teal ink, teal links/ticks.
+ *  - Main button: the logo turquoise with dark ink text (white on turquoise
+ *    fails contrast; dark ink on it is 6:1).
+ *  - The navy bands (page heroes, closing bands, footer) turn pale aqua with
+ *    dark text — the "on-dark" tokens flip inside them.
+ *  - Photo panels (home hero, service tiles) keep a dark veil, in deep petrol
+ *    instead of navy, so white text on photos still reads.
+ * Unlayered, so it beats the layered defaults above.
+ */
+:root[data-palette="aqua"] {
+  --bg-alt: #eff9fb;
+  --ink: #0c2f38;
+  --ink-soft: #4b6670;
+  --line: #d9ebef;
+  --primary: #00788f;
+  --accent: #00788f;
+  --cta: #12bdd6;
+  --on-cta: #072a32;
+  --lime: #12bdd6;
+  --on-lime: #072a32;
+  --dark: #0c3a44;
+  --on-dark-soft: #cde6eb;
+  --shadow-soft: 0 40px 90px -40px rgb(12 58 68 / 0.24);
+  --shadow-card: 0 1px 2px rgb(12 58 68 / 0.04), 0 18px 40px -22px rgb(12 58 68 / 0.16);
+}
+:root[data-palette="aqua"] :is([data-tone="dark"], .bg-dark) {
+  --accent: #7fe0ee;
+  --on-accent: #072a32;
+}
+:root[data-palette="aqua"] .bg-vital {
+  --on-dark: #0c2f38;
+  --on-dark-soft: #4b6670;
+  --accent: #00788f;
+  --on-accent: #ffffff;
+  --line: rgb(12 47 56 / 0.12);
+  background-color: #eaf7fa;
+  background-image:
+    radial-gradient(80% 110% at 100% 0%, rgb(5 188 215 / 0.2) 0%, rgb(5 188 215 / 0) 60%),
+    radial-gradient(70% 90% at 0% 100%, rgb(255 255 255 / 0.9) 0%, rgb(255 255 255 / 0) 60%);
+  color: var(--on-dark);
+}
+/* Glass inside the pale bands is white-frosted, like on the light pages. */
+:root[data-palette="aqua"] .bg-vital :is(.lg-clear, .lg-smoke) {
+  --lg-sheen: 0.7;
+  --lg-fill: linear-gradient(180deg, rgb(255 255 255 / 0.82), rgb(255 255 255 / 0.55));
+  --lg-rim: linear-gradient(150deg, rgb(255 255 255 / 1), rgb(255 255 255 / 0.3) 40%, rgb(255 255 255 / 0.1) 60%, rgb(255 255 255 / 0.9));
+  --lg-depth:
+    inset 0 0 0 1px rgb(12 47 56 / 0.1),
+    inset 0 -10px 18px -14px rgb(12 47 56 / 0.12),
+    0 1px 2px rgb(12 47 56 / 0.06),
+    0 10px 24px -14px rgb(12 47 56 / 0.24);
+  color: var(--ink);
+}
+:root[data-palette="aqua"] .bg-vital .liquid-glass {
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.86), rgb(255 255 255 / 0.66));
+  box-shadow:
+    inset 0 0 0 1px rgb(12 47 56 / 0.08),
+    0 24px 50px -30px rgb(12 58 68 / 0.35);
+  color: var(--ink);
+}
+:root[data-palette="aqua"] .lg-tint {
+  --lg-depth:
+    inset 0 1px 0 rgb(255 255 255 / 0.5),
+    inset 0 -1px 0 rgb(255 255 255 / 0.16),
+    inset 0 -14px 22px -16px rgb(255 255 255 / 0.55),
+    0 1px 2px rgb(12 58 68 / 0.14),
+    0 12px 26px -12px color-mix(in srgb, var(--cta) 70%, transparent);
+}
+/* The footer turns pale: swap to the logo with dark lettering. */
+.logo-aqua {
+  display: none;
+}
+:root[data-palette="aqua"] .logo-aqua {
+  display: block;
+}
+:root[data-palette="aqua"] .logo-classic {
+  display: none;
+}
+/* A pale closing band and the pale footer would melt together: give the footer its own flat tint and a hairline. */
+:root[data-palette="aqua"] footer.bg-vital {
+  background-color: var(--bg-alt);
+  background-image: none;
+  border-top: 1px solid var(--line);
+}

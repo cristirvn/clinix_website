@@ -38,7 +38,8 @@ export function Footer({ locale }: { locale: Locale }) {
 
         <div className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
           <div className="space-y-5 lg:col-span-4">
-            <Logo onDark className="h-14" />
+            <Logo onDark className="logo-classic h-14" />
+            <Logo className="logo-aqua h-14" />
             <p className="max-w-xs text-on-dark-soft">{dict.footer.description}</p>
           </div>
 
