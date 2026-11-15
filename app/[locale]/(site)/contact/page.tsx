@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Card, Eyebrow, Section } from "@/components/ui/primitives";
+import { Card, Section } from "@/components/ui/primitives";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { getContact } from "@/content/pages/contact";
 import { alternatesFor, type Locale } from "@/lib/i18n";
@@ -33,7 +33,6 @@ export default async function ContactPage({ params }: Props) {
   return (
     <Section>
       <div className="max-w-3xl">
-        <Eyebrow>{c.eyebrow}</Eyebrow>
         <h1 className="text-[2.6rem] sm:text-6xl lg:text-7xl">{c.title}</h1>
         <p className="mt-6 text-lg text-ink-soft sm:text-xl">{c.lead}</p>
       </div>

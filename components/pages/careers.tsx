@@ -7,7 +7,7 @@ import type { CareersContent } from "@/content/careers/types";
 export function CareersWhy({ content }: { content: CareersContent["why"] }) {
   return (
     <Section>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <ul className="grid gap-6 sm:grid-cols-2">
         {content.items.map((item, i) => (
           <li key={item.title}>
@@ -29,7 +29,7 @@ export function CareersRoles({ content }: { content: CareersContent["roles"] }) 
   const mailto = `mailto:${CLINIC.email}`;
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       {content.items.length > 0 ? (
         <ul className="space-y-6">
           {content.items.map((role) => (

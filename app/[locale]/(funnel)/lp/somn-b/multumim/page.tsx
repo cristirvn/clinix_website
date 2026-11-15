@@ -89,7 +89,7 @@ export default async function LpSomnBThankYouPage({ params }: Props) {
       {/* LETTER */}
       <Section narrow>
         <Reveal>
-          <SectionHead eyebrow={letter.kicker} title={letter.title} />
+          <SectionHead title={letter.title} />
         </Reveal>
         <Reveal>
           <div className="rounded-[var(--radius)] border border-line bg-surface p-7 text-lg leading-relaxed text-ink sm:p-12 sm:text-xl">
@@ -109,7 +109,7 @@ export default async function LpSomnBThankYouPage({ params }: Props) {
       {/* WHAT HAPPENS NEXT + HOMEWORK */}
       <Section tone="alt" narrow>
         <Reveal>
-          <SectionHead eyebrow={next.kicker} title={next.title} />
+          <SectionHead title={next.title} />
         </Reveal>
         <ol className="space-y-10">
           {next.steps.map((s, i) => (
@@ -120,7 +120,7 @@ export default async function LpSomnBThankYouPage({ params }: Props) {
         </ol>
 
         <Reveal className="mt-20">
-          <SectionHead eyebrow={homework.kicker} title={homework.title} lead={homework.text} />
+          <SectionHead title={homework.title} lead={homework.text} />
         </Reveal>
         <ul className="space-y-10">
           <StepRow marker={PencilIcon} title={homework.write.title}>

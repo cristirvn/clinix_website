@@ -7,16 +7,9 @@ export const HOME_EN: HomeContent = {
       "See what is really happening in your brain with BrainMap: a 30-minute scan, no radiation, no needles, explained in the same visit. Then you decide.",
   },
   hero: {
-    eyebrow: "BrainMap · your brain map",
-    title: "See what's happening in your brain",
-    subtitle: "And optimise it",
-    benefits: [
-      "Results and interpretation on the spot.",
-      "Non-invasive: no needles, no radiation, no pain.",
-      "See your brain map on screen.",
-    ],
+    title: "Your brain map, in one hour.",
+    benefits: ["No needles", "No radiation", "Results on the spot"],
     cta: "I want my brain map",
-    note: "1,200 RON · one hour at the clinic, in Bucharest",
     phoneLabel: "Call us",
     stats: [
       { value: 15, suffix: "+", label: "conditions treated" },
@@ -25,9 +18,7 @@ export const HOME_EN: HomeContent = {
     ],
   },
   services: {
-    eyebrow: "Services",
     title: "Five methods. *One plan.*",
-    lead: "We start from the map of your brain. Then we choose together what helps.",
     more: "Find out more",
     featuredBadge: "Start here",
     items: [
@@ -36,35 +27,30 @@ export const HOME_EN: HomeContent = {
         image: "scan",
         eyebrow: "qEEG assessment",
         title: "BrainMap",
-        text: "A map of your brain's activity, explained on the spot.",
       },
       {
         slug: "tavns",
         image: "tavns",
         eyebrow: "Vagus nerve stimulation",
         title: "taVNS",
-        text: "Gentle pulses through the ear that ease the body out of alert mode.",
       },
       {
         slug: "tpbm",
         image: "tpbm",
         eyebrow: "Photobiomodulation",
         title: "tPBM",
-        text: "Near-infrared light that supports your brain's energy.",
       },
       {
         slug: "ces",
         image: "portrait",
         eyebrow: "Cranial electrotherapy",
         title: "CES",
-        text: "Very weak micro-currents for calm and better sleep.",
       },
       {
         slug: "psihoterapie",
         image: "consultCouch",
         eyebrow: "Psychological counselling",
         title: "Psychotherapy",
-        text: "Talking with a psychologist, so the change lasts.",
       },
     ],
   },
@@ -78,7 +64,6 @@ export const HOME_EN: HomeContent = {
   },
   final: {
     title: "No one has ever shown you what's going on.",
-    lead: "BrainMap · 1,200 RON · one hour, in Bucharest.",
     cta: "I want my brain map",
     note: "If you start treatment with us, the full amount is deducted.",
     reach: "Where to find us",

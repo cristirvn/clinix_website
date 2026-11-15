@@ -155,7 +155,7 @@ export function QuoteStoryGrid({ items, locale }: { items: QuoteStory[]; locale:
 export function VideoTestimonials({ items, page }: { items: VideoStory[]; page: TestimonialsPageContent }) {
   return (
     <Section>
-      <SectionHead eyebrow={page.videos.eyebrow} title={page.videos.title} />
+      <SectionHead title={page.videos.title} />
       {items.length === 0 ? <p className="text-lg text-ink-soft">{page.empty}</p> : <VideoStoryGrid items={items} playLabel={page.playLabel} />}
     </Section>
   );
@@ -166,7 +166,7 @@ export function QuoteTestimonials({ items, page, locale }: { items: QuoteStory[]
   if (items.length === 0) return null;
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={page.quotes.eyebrow} title={page.quotes.title} />
+      <SectionHead title={page.quotes.title} />
       <QuoteStoryGrid items={items} locale={locale} />
       <p className="mt-10 text-sm text-ink-soft">{page.note}</p>
     </Section>
@@ -187,7 +187,7 @@ export function ServiceTestimonials({
   const { videos, quotes } = cmsToStories(items, locale);
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={ui.eyebrow} title={ui.title} />
+      <SectionHead title={ui.title} />
       <div className="space-y-12">
         {videos.length > 0 && <VideoStoryGrid items={videos} playLabel={ui.play} />}
         {quotes.length > 0 && <QuoteStoryGrid items={quotes} locale={locale} />}

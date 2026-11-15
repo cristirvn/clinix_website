@@ -16,7 +16,6 @@ export const CHILDREN_EN: ChildrenContent = {
   signs: {
     eyebrow: "What parents notice",
     title: "Do you recognise any of these?",
-    lead: "Usually one thing keeps coming back and doesn’t go away.",
     items: [
       { title: "Attention", text: "Gets up from homework after five minutes, forgets what they were told, loses things." },
       { title: "Sleep", text: "Struggles to fall asleep, wakes in the night or is tired in the morning." },

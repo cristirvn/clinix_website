@@ -29,7 +29,8 @@ export interface ServiceContent {
   helps: {
     eyebrow: string;
     title: string;
-    lead: string;
+    /** Optional one line under the title — most pages leave it out so the condition cards speak for themselves. */
+    lead?: string;
     /** Linked to `/afectiuni-tratate#<id>`. */
     conditions: ConditionId[];
     note: string;

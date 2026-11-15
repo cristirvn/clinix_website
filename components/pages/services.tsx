@@ -1,4 +1,4 @@
-import { Card, CheckItem, Eyebrow, Faq, HeroPanel, Section, SectionHead } from "@/components/ui/primitives";
+import { Card, CheckItem, Faq, HeroPanel, Section, SectionHead } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { L } from "@/components/ui/L";
@@ -23,7 +23,6 @@ import type { ServiceContent, ServicesIndexContent } from "@/content/services/ty
 export function ServiceHero({ service }: { service: ServiceContent }) {
   return (
     <HeroPanel narrow>
-      <Eyebrow className="rise-in">{service.hero.eyebrow}</Eyebrow>
       <h1 className="rise-in text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-7xl" style={{ animationDelay: "90ms" }}>
         {service.hero.title}
       </h1>
@@ -40,7 +39,7 @@ export function ServiceHero({ service }: { service: ServiceContent }) {
 export function ServiceWhat({ content }: { content: ServiceContent["what"] }) {
   return (
     <Section narrow>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <div className="space-y-5 text-lg text-ink-soft sm:text-xl">
         {content.paragraphs.map((p) => (
           <p key={p}>{p}</p>
@@ -53,7 +52,7 @@ export function ServiceWhat({ content }: { content: ServiceContent["what"] }) {
 export function ServiceSession({ content }: { content: ServiceContent["session"] }) {
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
         <ol className="space-y-8">
           {content.steps.map((step, i) => (
@@ -97,7 +96,7 @@ export function ServiceHelps({
 }) {
   return (
     <Section>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} lead={content.lead} />
+      <SectionHead title={content.title} lead={content.lead} />
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
         {conditions.map((c) => (
           <li key={c.id}>
@@ -122,7 +121,7 @@ export function ServiceHelps({
 export function ServiceSafety({ content }: { content: ServiceContent["safety"] }) {
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
         <ul className="space-y-4 text-lg">
           {content.points.map((p) => (
@@ -149,7 +148,7 @@ export function ServiceSafety({ content }: { content: ServiceContent["safety"] }
 export function ServiceFaq({ content }: { content: ServiceContent["faq"] }) {
   return (
     <Section narrow>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <Faq items={content.items} openFirst />
     </Section>
   );

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Eyebrow, Section, SectionHead } from "@/components/ui/primitives";
+import { Section, SectionHead } from "@/components/ui/primitives";
 import { L } from "@/components/ui/L";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
@@ -13,7 +13,6 @@ export function Mission({ content }: { content: AboutContent["mission"] }) {
     <Section tone="alt">
       <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
         <div>
-          <Eyebrow>{content.eyebrow}</Eyebrow>
           <h2 className="text-[2.1rem] sm:text-5xl">{content.title}</h2>
         </div>
         <div className="space-y-5 text-lg text-ink-soft sm:text-xl lg:pt-10">
@@ -29,7 +28,7 @@ export function Mission({ content }: { content: AboutContent["mission"] }) {
 export function Differentiators({ content }: { content: AboutContent["different"] }) {
   return (
     <Section>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <ul className="grid gap-x-12 gap-y-10 sm:grid-cols-2">
         {content.items.map((item, i) => (
           <li key={item.title} className="border-t border-line pt-6">
@@ -50,7 +49,7 @@ export function Differentiators({ content }: { content: AboutContent["different"
 export function ClinicSpace({ content }: { content: AboutContent["space"] }) {
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={content.eyebrow} title={content.title} lead={content.lead} />
+      <SectionHead title={content.title} lead={content.lead} />
       <div className="grid gap-5 sm:grid-cols-3">
         {content.photos.map((photo, i) =>
           photo.src ? (
@@ -78,7 +77,7 @@ export function ClinicSpace({ content }: { content: AboutContent["space"] }) {
 export function Testimonials({ content }: { content: AboutContent["testimonials"] }) {
   return (
     <Section>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} lead={content.lead} />
+      <SectionHead title={content.title} lead={content.lead} />
       <ul className="grid gap-8 md:grid-cols-3">
         {content.items.map((t) => (
           <li key={t.name}>
@@ -94,7 +93,6 @@ export function Testimonials({ content }: { content: AboutContent["testimonials"
 export function RecommendedBy({ content }: { content: AboutContent["recommended"] }) {
   return (
     <Section tone="alt">
-      <Eyebrow>{content.eyebrow}</Eyebrow>
       <h2 className="mb-8 text-3xl sm:text-4xl">{content.title}</h2>
       <RecommendedStrip names={content.names} placeholderLabel={content.placeholderLabel} />
     </Section>

@@ -7,16 +7,9 @@ export const HOME_RO: HomeContent = {
       "Vezi ce se întâmplă, de fapt, în creierul tău cu BrainMap: o scanare de 30 de minute, fără radiații, fără ace, cu interpretare în aceeași vizită. Apoi decizi.",
   },
   hero: {
-    eyebrow: "BrainMap · harta creierului",
-    title: "Află ce se întâmplă în creierul tău",
-    subtitle: "Și optimizează-l",
-    benefits: [
-      "Rezultate și interpretare pe loc.",
-      "Non-invaziv: fără ace, fără radiații, fără durere.",
-      "Îți vezi harta creierului pe ecran.",
-    ],
+    title: "Harta creierului tău, într-o oră.",
+    benefits: ["Fără ace", "Fără radiații", "Rezultate pe loc"],
     cta: "Vreau harta creierului meu",
-    note: "1.200 lei · o oră în clinică, în București",
     phoneLabel: "Sună-ne",
     stats: [
       { value: 15, suffix: "+", label: "probleme tratate" },
@@ -25,9 +18,7 @@ export const HOME_RO: HomeContent = {
     ],
   },
   services: {
-    eyebrow: "Servicii",
     title: "Cinci metode. *Un singur plan.*",
-    lead: "Pornim de la harta creierului tău. Apoi alegem împreună ce te ajută.",
     more: "Află mai multe",
     featuredBadge: "Începe de aici",
     items: [
@@ -36,35 +27,30 @@ export const HOME_RO: HomeContent = {
         image: "scan",
         eyebrow: "Evaluare qEEG",
         title: "BrainMap",
-        text: "Harta activității creierului tău, explicată pe loc.",
       },
       {
         slug: "tavns",
         image: "tavns",
         eyebrow: "Stimularea nervului vag",
         title: "taVNS",
-        text: "Impulsuri blânde, prin ureche, care scot corpul din alertă.",
       },
       {
         slug: "tpbm",
         image: "tpbm",
         eyebrow: "Fotobiomodulare",
         title: "tPBM",
-        text: "Lumină infraroșie care susține energia creierului.",
       },
       {
         slug: "ces",
         image: "portrait",
         eyebrow: "Stimulare electrică craniană",
         title: "CES",
-        text: "Microcurenți foarte slabi, pentru liniște și somn mai bun.",
       },
       {
         slug: "psihoterapie",
         image: "consultCouch",
         eyebrow: "Consiliere psihologică",
         title: "Psihoterapie",
-        text: "Discuții cu un psiholog, ca schimbarea să rămână.",
       },
     ],
   },
@@ -78,7 +64,6 @@ export const HOME_RO: HomeContent = {
   },
   final: {
     title: "Nimeni nu ți-a arătat, concret, ce se întâmplă.",
-    lead: "BrainMap · 1.200 lei · o oră, în București.",
     cta: "Vreau harta creierului meu",
     note: "Dacă începi tratamentul cu noi, suma se scade integral.",
     reach: "Ne găsești aici",

@@ -10,10 +10,10 @@ import { CLINIC } from "@/lib/site";
 
 /**
  * Section 1 — BrainMap. An inset, rounded photo panel (it sits inside the
- * page like a framed picture, not edge to edge). Left: a glass label, the
- * two-voice headline, three short ticks, the main action + the phone, both
+ * page like a framed picture, not edge to edge). Left: one short headline,
+ * three two-word facts in a single row, the main action + the phone, both
  * on refracting liquid glass. Bottom: the three clinic facts on glass tiles.
- * On a phone the headline, ticks and main button fit the first screen.
+ * On a phone the headline, facts and main button fit the first screen.
  */
 export function HomeHero({ hero, locale }: { hero: HomeContent["hero"]; locale: Locale }) {
   return (
@@ -27,39 +27,20 @@ export function HomeHero({ hero, locale }: { hero: HomeContent["hero"]; locale: 
 
         <Container className="flex min-h-[calc(100svh-var(--header-h)-0.5rem)] flex-col !px-5 pb-6 pt-9 sm:!px-10 sm:pb-10 sm:pt-16 lg:min-h-[min(calc(100svh-var(--header-h)-0.75rem),54rem)] lg:!px-16 lg:pb-8 lg:pt-10">
           <div className="max-w-[40rem] lg:max-w-[46rem]">
-            <p
-              className="liquid-glass rise-in inline-flex items-center gap-2.5 whitespace-nowrap rounded-full py-2 pl-3 pr-4 text-[0.875rem] font-semibold uppercase tracking-[0.1em] sm:tracking-[0.16em]"
-              style={{ animationDelay: "60ms" }}
-            >
-              <span aria-hidden="true" className="relative flex h-2 w-2">
-                <span className="absolute inset-0 animate-ping rounded-full bg-accent opacity-60 motion-reduce:hidden" />
-                <span className="relative h-2 w-2 rounded-full bg-accent" />
-              </span>
-              {hero.eyebrow}
-            </p>
-
-            <h1 className="rise-in mt-7 text-[2.6rem] leading-[1.02] sm:mt-8 sm:text-6xl lg:mt-6 lg:text-7xl" style={{ animationDelay: "140ms" }}>
+            <h1 className="rise-in mt-6 text-[2.75rem] leading-[1.02] sm:mt-10 sm:text-6xl lg:mt-14 lg:text-7xl" style={{ animationDelay: "120ms" }}>
               {hero.title}
             </h1>
-            <p
-              className="rise-in mt-1 font-display text-[2.6rem] leading-[1.02] sm:text-6xl lg:text-7xl"
-              style={{ animationDelay: "240ms" }}
-            >
-              {hero.subtitle}
-            </p>
 
-            <ul className="rise-in mt-8 space-y-3 text-[1.05rem] sm:mt-9 sm:text-lg lg:mt-7 lg:space-y-2.5" style={{ animationDelay: "340ms" }}>
+            <ul className="rise-in mt-7 flex flex-wrap gap-x-5 gap-y-2 text-[1.05rem] sm:mt-8 sm:text-lg" style={{ animationDelay: "260ms" }}>
               {hero.benefits.map((b) => (
-                <li key={b} className="flex items-start gap-3.5">
-                  <span aria-hidden="true" className="mt-[0.2rem] flex h-6 w-6 flex-none items-center justify-center rounded-full bg-accent text-on-accent">
-                    <TickIcon />
-                  </span>
+                <li key={b} className="flex items-center gap-2 whitespace-nowrap">
+                  <TickIcon className="flex-none text-accent" />
                   <span className="text-on-dark/95">{b}</span>
                 </li>
               ))}
             </ul>
 
-            <div className="rise-in mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row lg:mt-8 sm:items-center sm:gap-4" style={{ animationDelay: "440ms" }}>
+            <div className="rise-in mt-9 flex flex-col gap-3 sm:mt-10 sm:flex-row sm:items-center sm:gap-4" style={{ animationDelay: "400ms" }}>
               <ButtonLink href="/brainmap" size="lg" refract className="group w-full !px-5 sm:w-auto sm:!px-9">
                 {hero.cta}
                 <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -70,9 +51,6 @@ export function HomeHero({ hero, locale }: { hero: HomeContent["hero"]; locale: 
                 <span className="whitespace-nowrap tabular-nums">{CLINIC.phone}</span>
               </a>
             </div>
-            <p className="rise-in mt-4 text-center text-base text-on-dark-soft sm:text-left" style={{ animationDelay: "520ms" }}>
-              {hero.note}
-            </p>
           </div>
 
           {/* Three facts on liquid glass, the EEG line running quietly behind them. */}

@@ -1,4 +1,4 @@
-import { Container, Eyebrow } from "@/components/ui/primitives";
+import { Container } from "@/components/ui/primitives";
 import type { LegalDoc } from "@/content/pages/legal";
 
 /** Long-form legal text: narrow measure, generous line height, clear section headings. */
@@ -7,7 +7,6 @@ export function LegalArticle({ doc }: { doc: LegalDoc }) {
     <>
       <section data-tone="alt" className="bg-bg-alt pb-14 pt-16 text-ink sm:pb-20 sm:pt-24">
         <Container narrow>
-          <Eyebrow>{doc.eyebrow}</Eyebrow>
           <h1 className="text-[2.1rem] [overflow-wrap:anywhere] min-[400px]:text-[2.4rem] sm:text-6xl">{doc.title}</h1>
         </Container>
       </section>

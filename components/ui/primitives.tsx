@@ -82,23 +82,18 @@ export function Eyebrow({ children, className = "", index }: { children: ReactNo
 
 /** Section heading block: eyebrow + H2 + optional lead paragraph. */
 export function SectionHead({
-  eyebrow,
   title,
   lead,
   center = false,
   className = "",
-  index,
 }: {
-  eyebrow?: ReactNode;
   title: ReactNode;
   lead?: ReactNode;
   center?: boolean;
   className?: string;
-  index?: string;
 }) {
   return (
     <div className={`mb-12 max-w-3xl sm:mb-16 ${center ? "mx-auto text-center" : ""} ${className}`}>
-      {eyebrow && <Eyebrow index={index}>{eyebrow}</Eyebrow>}
       <h2 className="text-[2.4rem] leading-[1.05] sm:text-[3.4rem] lg:text-[4rem]">{title}</h2>
       {lead && <p className={`mt-6 max-w-2xl text-lg opacity-85 sm:text-xl ${center ? "mx-auto" : ""}`}>{lead}</p>}
     </div>

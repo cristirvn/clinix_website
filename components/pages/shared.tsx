@@ -1,4 +1,4 @@
-import { ButtonLink, Container, Eyebrow, HeroPanel } from "@/components/ui/primitives";
+import { ButtonLink, Container, HeroPanel } from "@/components/ui/primitives";
 import { Photo } from "@/components/ui/Photo";
 import { EegTrace } from "@/components/home/EegTrace";
 import type { ImageKey } from "@/content/media";
@@ -11,7 +11,6 @@ export function PageHero({ content, image, locale }: { content: PageHeroContent;
     <HeroPanel>
       <div className={image ? "grid items-center gap-12 lg:grid-cols-12 lg:gap-16" : ""}>
         <div className={image ? "lg:col-span-7" : "max-w-4xl"}>
-          <Eyebrow className="rise-in">{content.eyebrow}</Eyebrow>
           <h1 className="rise-in text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]" style={{ animationDelay: "90ms" }}>
             {content.title}
           </h1>
@@ -44,10 +43,14 @@ export function PageHero({ content, image, locale }: { content: PageHeroContent;
   );
 }
 
-/** Closing dark band with the page's single next step. */
+/**
+ * Closing dark band with the page's single next step. It replaces the
+ * footer's own call-to-action band (`data-final-cta`, see globals.css), so
+ * the page ends once instead of with two navy closes back to back.
+ */
 export function CtaBand({ content }: { content: CtaBandContent }) {
   return (
-    <section data-tone="dark" className="bg-vital py-20 text-on-dark sm:py-28">
+    <section data-final-cta data-tone="dark" className="bg-vital py-20 text-on-dark sm:py-28">
       <Container narrow className="text-center">
         <EegTrace className="mx-auto mb-10 w-48 sm:w-56" strokeWidth={1.6} />
         <h2 className="text-[2.2rem] leading-[1.06] sm:text-[3.4rem]">{content.title}</h2>

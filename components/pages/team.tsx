@@ -7,7 +7,7 @@ import type { TeamContent } from "@/content/pages/ro/team";
 export function TeamGrid({ content }: { content: TeamContent["members"] }) {
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <ul className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
         {content.items.map((m, i) => (
           <li key={`${m.role}-${i}`}>
@@ -42,7 +42,7 @@ export function TeamGrid({ content }: { content: TeamContent["members"] }) {
 export function WorkTogether({ content }: { content: TeamContent["together"] }) {
   return (
     <Section>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <ul className="grid gap-10 md:grid-cols-3 md:gap-12">
         {content.points.map((p, i) => (
           <li key={p.title} className="border-t border-line pt-6">

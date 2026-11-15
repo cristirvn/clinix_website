@@ -8,7 +8,7 @@ import type { ServicesLocale } from "./types";
 // who it helps, contraindications, psychotherapy pricing).
 export const SERVICES_EN: ServicesLocale = {
   ui: {
-    conditionLink: "See the condition →",
+    conditionLink: "See the condition",
     breadcrumb: "Services",
     testimonials: { eyebrow: "Testimonials", title: "What patients say", play: "Play testimonial" },
   },
@@ -77,7 +77,6 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it helps",
-        lead: "Sleep, stress, focus and mood all show up on a map of your brain activity.",
         conditions: ["anxietate", "panica", "somn", "burnout", "focus", "dispozitie", "migrene", "stres", "adictii"],
         note: "BrainMap is an initial assessment tool and is not a medical diagnosis.",
       },
@@ -177,7 +176,6 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "As part of a plan, when the body seems stuck on ‘alert’.",
         conditions: ["anxietate", "panica", "stres", "somn", "burnout", "migrene"],
         note: "After the assessment, we’ll tell you honestly whether taVNS makes sense for you.",
       },
@@ -278,7 +276,6 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "As support, when mental fatigue or brain fog come first.",
         conditions: ["focus", "dispozitie", "burnout"],
         note: "After the assessment, we’ll tell you honestly whether tPBM makes sense for you.",
       },
@@ -379,7 +376,6 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "As part of a plan, when your mind won’t switch off and sleep suffers.",
         conditions: ["anxietate", "somn", "stres"],
         note: "After the assessment, we’ll tell you honestly whether CES makes sense for you.",
       },
@@ -467,7 +463,6 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "When you can’t cope alone, or the same pattern keeps repeating.",
         conditions: ["anxietate", "panica", "dispozitie", "stres", "burnout", "adictii"],
         note: "Psychotherapy does not replace medical treatment when that is needed.",
       },
@@ -568,7 +563,6 @@ export const SERVICES_EN: ServicesLocale = {
       helps: {
         eyebrow: "Who it is for",
         title: "Who it may help",
-        lead: "When the brain seems stuck in a rhythm that wears you out.",
         conditions: ["anxietate", "panica", "somn", "focus", "stres", "burnout", "dispozitie"],
         note: "After your BrainMap we tell you honestly whether neurofeedback makes sense for you.",
       },

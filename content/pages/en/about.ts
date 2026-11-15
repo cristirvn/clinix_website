@@ -46,7 +46,6 @@ export const about: AboutContent = {
   space: {
     eyebrow: "The clinic",
     title: "A calm place in Bucharest.",
-    lead: "Everything in one place, in a single visit.",
     mapsLabel: "View on map →",
     photos: [
       { label: "A BrainMap scan: the brain map, explained on the spot", src: "/photos/brainmap-sesiune.webp" },
@@ -57,7 +56,6 @@ export const about: AboutContent = {
   testimonials: {
     eyebrow: "Proof",
     title: "You don’t have to take our word for it",
-    lead: "They started exactly where you are now.",
     items: [
       { name: "Ernesto", video: "testimonialErnesto" },
       { name: "Gabriela", video: "testimonialGabriela" },

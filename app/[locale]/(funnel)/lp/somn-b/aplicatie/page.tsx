@@ -51,7 +51,7 @@ export default async function LpSomnBApplicationPage({ params }: Props) {
       {/* TESTIMONIALS */}
       <Section tone="alt">
         <Reveal>
-          <SectionHead eyebrow={proof.kicker} title={proof.title} />
+          <SectionHead title={proof.title} />
         </Reveal>
         <Proof videos={proof.videos} reviews={proof.reviews} locale={locale} />
       </Section>

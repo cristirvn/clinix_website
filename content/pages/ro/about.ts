@@ -18,7 +18,7 @@ export interface AboutContent {
   space: {
     eyebrow: string;
     title: string;
-    lead: string;
+    lead?: string;
     /** Address comes from `lib/site.ts`; this labels the Google Maps link. */
     mapsLabel: string;
     /** Photo slots. `src` empty → neutral placeholder with `label`. */
@@ -27,7 +27,7 @@ export interface AboutContent {
   testimonials: {
     eyebrow: string;
     title: string;
-    lead: string;
+    lead?: string;
     items: Array<{ name: string; video: VideoKey }>;
   };
   recommended: {
@@ -86,7 +86,6 @@ export const about: AboutContent = {
   space: {
     eyebrow: "Clinica",
     title: "Un loc liniștit, în București.",
-    lead: "Totul în același loc, într-o singură vizită.",
     mapsLabel: "Vezi pe hartă →",
     photos: [
       { label: "Scanare BrainMap: harta creierului, explicată pe loc", src: "/photos/brainmap-sesiune.webp" },
@@ -97,7 +96,6 @@ export const about: AboutContent = {
   testimonials: {
     eyebrow: "Dovezi",
     title: "Nu trebuie să ne crezi pe cuvânt",
-    lead: "Au început exact de unde ești tu acum.",
     items: [
       { name: "Ernesto", video: "testimonialErnesto" },
       { name: "Gabriela", video: "testimonialGabriela" },

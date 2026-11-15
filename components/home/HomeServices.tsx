@@ -1,4 +1,4 @@
-import { Container, Eyebrow, buttonClass } from "@/components/ui/primitives";
+import { Container, buttonClass } from "@/components/ui/primitives";
 import { L } from "@/components/ui/L";
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
@@ -12,23 +12,16 @@ type Service = HomeContent["services"]["items"][number];
 /**
  * Section 2 — five services, picture-led. BrainMap is the tall featured card
  * (everyone starts there); the four treatments are photo tiles beside it,
- * 2×2. Each tile carries only its name, a plain-words subtitle and (on large
- * screens) one short line — the detail lives on the service page.
+ * 2×2. Each tile carries only its name — the detail lives on the service page.
  */
 export function HomeServices({ services, locale }: { services: HomeContent["services"]; locale: Locale }) {
   const [featured, ...rest] = services.items;
   return (
     <section id="servicii" className="scroll-mt-24 bg-bg py-24 text-ink sm:py-32">
       <Container>
-        <div className="mb-12 flex flex-col gap-6 sm:mb-16 lg:flex-row lg:items-end lg:justify-between">
-          <div>
-            <Eyebrow>{services.eyebrow}</Eyebrow>
-            <h2 className="text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[4rem]">
-              <Emph text={services.title} />
-            </h2>
-          </div>
-          <p className="max-w-sm text-lg text-ink-soft sm:text-xl lg:pb-2 lg:text-right">{services.lead}</p>
-        </div>
+        <h2 className="mb-12 text-[2.4rem] leading-[1.04] sm:mb-16 sm:text-[3.4rem] lg:text-[4rem]">
+          <Emph text={services.title} />
+        </h2>
 
         <div className="grid grid-cols-1 gap-3 sm:gap-5 lg:grid-cols-12">
           <Reveal className="min-w-0 lg:col-span-5">
@@ -67,7 +60,6 @@ function FeaturedCard({ service, badge, more, locale }: { service: Service; badg
 
       <p className="text-base text-on-dark-soft">{service.eyebrow}</p>
       <h3 className="mt-1 text-[3rem] leading-none sm:text-[4rem]">{service.title}</h3>
-      <p className="mt-4 max-w-sm text-lg text-on-dark/90">{service.text}</p>
       <span className={buttonClass("cta", "md", "mt-7 self-start")}>
         {more}
         <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -94,8 +86,6 @@ function ServiceTile({ service, more, locale }: { service: Service; more: string
       </span>
 
       <h3 className="text-[1.4rem] leading-none min-[400px]:text-[1.6rem] sm:text-[2.4rem]">{service.title}</h3>
-      <p className="mt-1.5 text-[0.95rem] leading-snug text-on-dark-soft sm:text-base">{service.eyebrow}</p>
-      <p className="mt-3 hidden max-w-xs text-base leading-snug text-on-dark/90 xl:block">{service.text}</p>
     </L>
   );
 }

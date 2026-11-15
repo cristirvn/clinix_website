@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { getQuizHub } from "@/content/quizzes";
 import { alternatesFor, type Locale } from "@/lib/i18n";
-import { Eyebrow, Section, HeroPanel } from "@/components/ui/primitives";
+import { Section, HeroPanel } from "@/components/ui/primitives";
 import { QuizGrid } from "@/components/quiz/QuizGrid";
 
 type Params = Promise<{ locale: string }>;
@@ -25,7 +25,6 @@ export default async function ChestionarePage({ params }: { params: Params }) {
     <>
       <HeroPanel>
           <div className="max-w-3xl">
-            <Eyebrow>{hub.hero.eyebrow}</Eyebrow>
             <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">{hub.hero.title}</h1>
             <p className="mt-6 text-lg text-on-dark-soft sm:text-xl">{hub.hero.subtitle}</p>
           </div>

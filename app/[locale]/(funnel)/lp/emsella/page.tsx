@@ -62,7 +62,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* SEMNELE */}
       <Section tone="alt" id="semnele">
-        <SectionHead eyebrow={c.signs.eyebrow} title={c.signs.title} center />
+        <SectionHead title={c.signs.title} center />
         <div className="grid gap-5 md:grid-cols-3">
           {c.signs.cards.map((card, i) => (
             <Reveal key={card.tag} delay={i * 80}>
@@ -80,7 +80,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* CAUZA */}
       <Section id="cauza" narrow>
-        <SectionHead eyebrow={c.cause.eyebrow} title={c.cause.title} className="mb-10 sm:mb-12" />
+        <SectionHead title={c.cause.title} className="mb-10 sm:mb-12" />
         <div className="space-y-6 text-lg sm:text-xl">
           {c.cause.paragraphs.map((p) =>
             p.highlight ? (
@@ -98,7 +98,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* MECANISMUL */}
       <Section tone="dark" id="mecanismul">
-        <SectionHead eyebrow={c.mechanism.eyebrow} title={c.mechanism.title} />
+        <SectionHead title={c.mechanism.title} />
         <ol className="divide-y divide-on-dark/15 border-y border-on-dark/15">
           {c.mechanism.steps.map((s) => (
             <li key={s.title} className="grid gap-3 py-8 sm:grid-cols-[16rem_1fr] sm:gap-10 sm:py-10">
@@ -115,7 +115,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* ACELAȘI MUȘCHI */}
       <Section tone="alt" id="acelasi-muschi">
-        <SectionHead eyebrow={c.muscle.eyebrow} title={c.muscle.title} center />
+        <SectionHead title={c.muscle.title} center />
         <div className="grid gap-5 md:grid-cols-2">
           {c.muscle.columns.map((col) => (
             <Reveal key={col.title}>
@@ -135,7 +135,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* PROCES */}
       <Section id="asteptari">
-        <SectionHead eyebrow={c.process.eyebrow} title={c.process.title} />
+        <SectionHead title={c.process.title} />
         <ol className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
           {c.process.steps.map((s, i) => (
             <li key={s.title} className="rounded-[var(--radius)] border border-line bg-surface p-7">
@@ -149,7 +149,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* BENEFICII */}
       <Section tone="alt" id="beneficii">
-        <SectionHead eyebrow={c.benefits.eyebrow} title={c.benefits.title} center />
+        <SectionHead title={c.benefits.title} center />
         <ul className="mx-auto grid max-w-4xl gap-x-10 gap-y-5 text-lg sm:grid-cols-2 sm:text-xl">
           {c.benefits.items.map((b) => (
             <CheckItem key={b}>{b}</CheckItem>
@@ -162,7 +162,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* CE PRIMEȘTI */}
       <Section id="ce-primesti">
-        <SectionHead eyebrow={c.offer.eyebrow} title={c.offer.title} center />
+        <SectionHead title={c.offer.title} center />
         <ul className="mx-auto max-w-3xl space-y-5 text-lg">
           {c.offer.items.map((it) => (
             <CheckItem key={it.lead}>
@@ -197,7 +197,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* DOVADA */}
       <Section tone="dark" id="rezultate">
-        <SectionHead eyebrow={c.proof.eyebrow} title={c.proof.title} lead={c.proof.lead} center />
+        <SectionHead title={c.proof.title} lead={c.proof.lead} center />
         <Reveal className="mx-auto max-w-3xl">
           <VideoPlayer video="lpEmsellaTestimonial" title={`${c.proof.name} · ${c.proof.role}`} />
         </Reveal>
@@ -205,7 +205,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* PENTRU CINE E / NU E */}
       <Section id="pentru-cine-nu-e">
-        <SectionHead eyebrow={c.fit.eyebrow} title={c.fit.title} center />
+        <SectionHead title={c.fit.title} center />
         <div className="grid gap-5 md:grid-cols-2">
           <Card className="h-full">
             <h3 className="text-2xl">{c.fit.forTitle}</h3>
@@ -231,7 +231,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* PROMISIUNE */}
       <Section tone="dark" id="promisiune" narrow>
-        <SectionHead eyebrow={c.promise.eyebrow} title={c.promise.title} center />
+        <SectionHead title={c.promise.title} center />
         <div className="space-y-6">
           {c.promise.rows.map((r) => (
             <div key={r.lead} className="rounded-[var(--radius)] border border-on-dark/15 p-7 sm:p-8">
@@ -247,7 +247,7 @@ export default async function LpEmsellaPage({ params }: Props) {
 
       {/* FAQ */}
       <Section tone="alt" id="faq" narrow>
-        <SectionHead eyebrow={c.faq.eyebrow} title={c.faq.title} center />
+        <SectionHead title={c.faq.title} center />
         <Faq items={c.faq.items} />
         <div className="mt-12 text-center">
           <Cta label={c.cta} />

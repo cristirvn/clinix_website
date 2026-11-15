@@ -8,7 +8,7 @@ import type { HowItWorksContent } from "@/content/pages/ro/how-it-works";
 export function JourneySteps({ content }: { content: HowItWorksContent["journey"] }) {
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <ol className="grid gap-10 lg:grid-cols-5 lg:gap-6">
         {content.steps.map((step, i) => (
           <li key={step.title}>
@@ -67,7 +67,7 @@ function ServiceBlock({ service, feelsTitle, flip }: { service: Service; feelsTi
 export function ServiceBlocks({ content }: { content: HowItWorksContent["services"] }) {
   return (
     <Section>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} lead={content.lead} />
+      <SectionHead title={content.title} lead={content.lead} />
       <div className="space-y-24 sm:space-y-32">
         {content.items.map((service, i) => (
           <ServiceBlock key={service.id} service={service} feelsTitle={content.feelsTitle} flip={i % 2 === 1} />
@@ -82,7 +82,6 @@ export function AboutTeaser({ content }: { content: HowItWorksContent["about"] }
     <Section tone="alt">
       <div className="grid gap-10 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:gap-16">
         <div>
-          <Eyebrow>{content.eyebrow}</Eyebrow>
           <h2 className="text-[2.1rem] sm:text-5xl">{content.title}</h2>
           <p className="mt-5 text-lg text-ink-soft sm:text-xl">{content.text}</p>
           <ButtonLink href={content.link.href} variant="ghost" className="mt-8 text-lg">

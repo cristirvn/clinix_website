@@ -78,7 +78,7 @@ export default async function LpSomnBPage({ params }: Props) {
       {/* WHAT WE DO */}
       <Section>
         <Reveal>
-          <SectionHead eyebrow={whatWeDo.kicker} title={whatWeDo.title} lead={whatWeDo.text} />
+          <SectionHead title={whatWeDo.title} lead={whatWeDo.text} />
         </Reveal>
         <Reveal>
           <ul className="grid gap-x-10 gap-y-5 text-lg sm:grid-cols-2 sm:text-xl">
@@ -92,7 +92,7 @@ export default async function LpSomnBPage({ params }: Props) {
       {/* STORY — before / after */}
       <Section tone="alt">
         <Reveal>
-          <SectionHead eyebrow={story.kicker} title={story.title} />
+          <SectionHead title={story.title} />
         </Reveal>
         <Reveal className="max-w-3xl space-y-5">
           <p className="text-xl font-medium sm:text-2xl">{story.lead}</p>
@@ -128,7 +128,7 @@ export default async function LpSomnBPage({ params }: Props) {
       {/* WHAT BRAINMAP IS */}
       <Section tone="dark">
         <Reveal>
-          <SectionHead eyebrow={brainmap.kicker} title={brainmap.title} lead={brainmap.text} />
+          <SectionHead title={brainmap.title} lead={brainmap.text} />
         </Reveal>
         <ol className="grid gap-px overflow-hidden rounded-[var(--radius)] border border-on-dark/15 bg-on-dark/15 sm:grid-cols-2 lg:grid-cols-4">
           {brainmap.steps.map((s, i) => (
@@ -150,7 +150,7 @@ export default async function LpSomnBPage({ params }: Props) {
       {/* SOCIAL PROOF */}
       <Section>
         <Reveal>
-          <SectionHead eyebrow={proof.kicker} title={proof.title} />
+          <SectionHead title={proof.title} />
         </Reveal>
         <Proof videos={proof.videos} reviews={proof.reviews} locale={locale} />
       </Section>
@@ -158,7 +158,7 @@ export default async function LpSomnBPage({ params }: Props) {
       {/* WHO IT'S NOT FOR */}
       <Section tone="alt" narrow>
         <Reveal>
-          <SectionHead eyebrow={notFor.kicker} title={notFor.title} />
+          <SectionHead title={notFor.title} />
         </Reveal>
         <Reveal>
           <ul className="space-y-5 text-lg">
@@ -174,7 +174,7 @@ export default async function LpSomnBPage({ params }: Props) {
       {/* FAQ */}
       <Section narrow>
         <Reveal>
-          <SectionHead eyebrow={faq.kicker} title={faq.title} />
+          <SectionHead title={faq.title} />
         </Reveal>
         <Faq items={faq.items} />
         <div className="mt-12 text-center">

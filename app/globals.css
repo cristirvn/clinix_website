@@ -576,7 +576,7 @@
   }
 }
 
-/* A page that ends with its own closing band (home) hides the footer's band, so the page ends once. Unlayered, so it beats the `grid` utility. */
+/* A page that ends with its own closing band (home's FinalCta, every CtaBand) hides the footer's band, so the page ends once. Unlayered, so it beats the `grid` utility. */
 main:has([data-final-cta]) + footer .footer-cta {
   display: none;
 }

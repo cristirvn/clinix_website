@@ -13,7 +13,7 @@ export interface HowItWorksContent {
   services: {
     eyebrow: string;
     title: string;
-    lead: string;
+    lead?: string;
     feelsTitle: string;
     items: Array<{
       id: string;
@@ -81,7 +81,6 @@ export const howItWorks: HowItWorksContent = {
   services: {
     eyebrow: "Aparatura și serviciile",
     title: "Vezi totul înainte să vii.",
-    lead: "Un video scurt pentru fiecare serviciu.",
     feelsTitle: "Cum se simte",
     items: [
       {

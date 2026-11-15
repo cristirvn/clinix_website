@@ -9,7 +9,7 @@ import type { ServicesLocale } from "./types";
 // who it helps, contraindications, psychotherapy pricing).
 export const SERVICES_RO: ServicesLocale = {
   ui: {
-    conditionLink: "Vezi afecțiunea →",
+    conditionLink: "Vezi afecțiunea",
     breadcrumb: "Servicii",
     testimonials: { eyebrow: "Testimoniale", title: "Ce spun pacienții", play: "Pornește testimonialul" },
   },
@@ -83,7 +83,6 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Pentru cine e util",
-        lead: "Somnul, stresul, concentrarea, starea de spirit se văd pe o hartă a activității creierului tău.",
         conditions: ["anxietate", "panica", "somn", "burnout", "focus", "dispozitie", "migrene", "stres", "adictii"],
         note: "BrainMap este un instrument de evaluare inițială și nu constituie diagnostic medical.",
       },
@@ -188,7 +187,6 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "Ca parte dintr-un plan, când corpul pare blocat în „alertă”.",
         conditions: ["anxietate", "panica", "stres", "somn", "burnout", "migrene"],
         note: "Îți spunem sincer, după evaluare, dacă taVNS are sens pentru tine.",
       },
@@ -297,7 +295,6 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "Ca sprijin, când oboseala mentală sau ceața din minte sunt pe primul plan.",
         conditions: ["focus", "dispozitie", "burnout"],
         note: "Îți spunem sincer, după evaluare, dacă tPBM are sens pentru tine.",
       },
@@ -403,7 +400,6 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "Ca parte dintr-un plan, când mintea nu se oprește și somnul suferă.",
         conditions: ["anxietate", "somn", "stres"],
         note: "Îți spunem sincer, după evaluare, dacă CES are sens pentru tine.",
       },
@@ -508,7 +504,6 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "Când nu mai faci față singur sau același tipar se tot repetă.",
         conditions: ["anxietate", "panica", "dispozitie", "stres", "burnout", "adictii"],
         note: "Psihoterapia nu înlocuiește tratamentul medical, atunci când acesta este necesar.",
       },
@@ -612,7 +607,6 @@ export const SERVICES_RO: ServicesLocale = {
       helps: {
         eyebrow: "Pentru cine",
         title: "Cui îi poate fi de folos",
-        lead: "Când creierul pare blocat într-un ritm care te obosește.",
         conditions: ["anxietate", "panica", "somn", "focus", "stres", "burnout", "dispozitie"],
         note: "Îți spunem sincer, după BrainMap, dacă neurofeedback-ul are sens pentru tine.",
       },

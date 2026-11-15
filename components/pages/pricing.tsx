@@ -37,7 +37,7 @@ export function FeaturedOffer({ content }: { content: PricingContent["featured"]
 export function PriceList({ content }: { content: PricingContent["list"] }) {
   return (
     <Section tone="alt">
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <ul className="divide-y divide-line border-y border-line">
         {content.items.map((item) => (
           <li key={item.name} className="grid gap-4 py-8 sm:grid-cols-[1fr_auto] sm:gap-10 sm:py-10">
@@ -76,7 +76,7 @@ export function PriceList({ content }: { content: PricingContent["list"] }) {
 export function PricingFaq({ content }: { content: PricingContent["faq"] }) {
   return (
     <Section narrow>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <Faq items={content.items} />
     </Section>
   );

@@ -16,7 +16,6 @@ export const CHILDREN_RO: ChildrenContent = {
   signs: {
     eyebrow: "Ce observă părinții",
     title: "Recunoști ceva din astea?",
-    lead: "De obicei, un singur lucru se repetă și nu trece.",
     items: [
       { title: "Atenția", text: "Se ridică de la teme după cinci minute, uită ce i s-a spus, pierde lucrurile." },
       { title: "Somnul", text: "Adoarme greu, se trezește noaptea sau e obosit dimineața." },

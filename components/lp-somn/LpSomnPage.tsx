@@ -66,7 +66,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* PROBLEM */}
       <Section tone="alt" id="problema">
-        <SectionHead eyebrow={c.problem.eyebrow} title={c.problem.title} center />
+        <SectionHead title={c.problem.title} center />
         <div className="grid gap-6 md:grid-cols-3">
           {c.problem.cards.map((card, i) => (
             <Reveal key={card.tag} delay={i * 80}>
@@ -113,7 +113,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* MECHANISM */}
       <Section id="mecanismul">
-        <SectionHead eyebrow={c.mechanism.eyebrow} title={c.mechanism.title} />
+        <SectionHead title={c.mechanism.title} />
         <ol className="divide-y divide-line border-y border-line">
           {c.mechanism.steps.map((s) => (
             <li key={s.title}>
@@ -134,7 +134,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* WHAT TO EXPECT */}
       <Section tone="alt" id="asteptari">
-        <SectionHead eyebrow={c.expect.eyebrow} title={c.expect.title} />
+        <SectionHead title={c.expect.title} />
         <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {c.expect.steps.map((s, i) => (
             <li key={s.num}>
@@ -154,7 +154,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* BENEFITS */}
       <Section id="beneficii">
-        <SectionHead eyebrow={c.benefits.eyebrow} title={c.benefits.title} center />
+        <SectionHead title={c.benefits.title} center />
         <ul className="mx-auto grid max-w-4xl gap-4 sm:grid-cols-2">
           {c.benefits.items.map((b) => (
             <li key={b}>
@@ -175,7 +175,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* WHAT THE VISIT INCLUDES */}
       <Section tone="alt" id="ce-include" narrow>
-        <SectionHead eyebrow={c.includes.eyebrow} title={c.includes.title} center />
+        <SectionHead title={c.includes.title} center />
         <Reveal>
           <ul className="space-y-5 text-lg">
             {c.includes.items.map((it) => (
@@ -197,7 +197,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* RESULTS */}
       <Section id="rezultate">
-        <SectionHead eyebrow={c.results.eyebrow} title={c.results.title} center />
+        <SectionHead title={c.results.title} center />
         <div className="-mx-5 flex snap-x snap-mandatory gap-5 overflow-x-auto px-5 pb-4 sm:mx-0 sm:grid sm:grid-cols-3 sm:overflow-visible sm:px-0 sm:pb-0">
           {c.results.videos.map((v) => (
             <Reveal key={v.name} className="w-[85%] flex-none snap-center sm:w-auto">
@@ -237,7 +237,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* WHO IT IS / ISN'T FOR */}
       <Section tone="alt" id="pentru-cine-nu-e">
-        <SectionHead eyebrow={c.qualify.eyebrow} title={c.qualify.title} center />
+        <SectionHead title={c.qualify.title} center />
         <div className="grid gap-6 md:grid-cols-2">
           <Reveal>
             <Card className="h-full">
@@ -266,7 +266,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* PROMISE */}
       <Section tone="dark" narrow>
-        <SectionHead eyebrow={c.promise.eyebrow} title={c.promise.title} center />
+        <SectionHead title={c.promise.title} center />
         <div className="space-y-6">
           {c.promise.rows.map((r) => (
             <Reveal key={r.bold}>
@@ -281,7 +281,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
 
       {/* FAQ */}
       <Section id="faq" narrow>
-        <SectionHead eyebrow={c.faq.eyebrow} title={c.faq.title} center />
+        <SectionHead title={c.faq.title} center />
         <div className="divide-y divide-line border-y border-line">
           {c.faq.items.map((f) => (
             <details key={f.q} open={f.open} className="group py-2">

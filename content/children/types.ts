@@ -5,7 +5,7 @@ import type { CtaBandContent, FaqEntry, PageHeroContent, PageSeo } from "@/conte
 export interface ChildrenContent {
   seo: PageSeo;
   hero: PageHeroContent;
-  signs: { eyebrow: string; title: string; lead: string; items: Array<{ title: string; text: string }> };
+  signs: { eyebrow: string; title: string; lead?: string; items: Array<{ title: string; text: string }> };
   check: {
     eyebrow: string;
     title: string;

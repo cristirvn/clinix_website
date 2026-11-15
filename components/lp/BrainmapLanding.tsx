@@ -49,7 +49,7 @@ export function BrainmapLanding({
 
   const vsl = (
     <Section tone="dark" id="video">
-      <SectionHead center eyebrow={f.vsl.eyebrow} title={f.vsl.title} lead={f.vsl.lede} />
+      <SectionHead center title={f.vsl.title} lead={f.vsl.lede} />
       <Reveal className="mx-auto max-w-4xl">
         <VideoPlayer video="brainmapVsl" title={f.vsl.playerTitle} />
       </Reveal>
@@ -105,7 +105,7 @@ export function BrainmapLanding({
 
       {/* 2 · IDENTIFICARE */}
       <Section tone={vslFirst ? "default" : "alt"}>
-        <SectionHead center eyebrow={f.identificare.eyebrow} title={f.identificare.title} />
+        <SectionHead center title={f.identificare.title} />
         <div className="grid gap-5 md:grid-cols-3">
           {lp.identificare.cards.map((card, i) => (
             <Reveal key={card.tag} delay={i * 90}>
@@ -141,7 +141,6 @@ export function BrainmapLanding({
       <Section>
         <SectionHead
           center
-          eyebrow={f.mechanism.eyebrow}
           title={
             <>
               {f.mechanism.title[0]}
@@ -168,7 +167,7 @@ export function BrainmapLanding({
 
       {/* 6 · CE INCLUDE VIZITA */}
       <Section tone="alt" narrow>
-        <SectionHead center eyebrow={f.visit.eyebrow} title={f.visit.title} />
+        <SectionHead center title={f.visit.title} />
         <div className="overflow-hidden rounded-[var(--radius)] border border-line bg-surface text-ink">
           <ul className="divide-y divide-line">
             {f.visit.rows.map((row) => (
@@ -194,13 +193,13 @@ export function BrainmapLanding({
 
       {/* 7 · DOVEZI */}
       <Section id="rezultate">
-        <SectionHead center eyebrow={f.proof.eyebrow} title={f.proof.title} lead={f.proof.lede} />
+        <SectionHead center title={f.proof.title} lead={f.proof.lede} />
         <Testimonials copy={f.proof} />
       </Section>
 
       {/* 8 · CALIFICARE */}
       <Section tone="alt">
-        <SectionHead center eyebrow={f.qualify.eyebrow} title={f.qualify.title} />
+        <SectionHead center title={f.qualify.title} />
         <div className="grid gap-5 md:grid-cols-2">
           <QualifyList title={f.qualify.fitsTitle} rows={[...lp.qualify.fits, ...f.qualify.fitsFixed]} />
           <QualifyList
@@ -213,7 +212,7 @@ export function BrainmapLanding({
 
       {/* 9 · CE PROMITEM ȘI CE NU */}
       <Section tone="dark">
-        <SectionHead center eyebrow={f.promise.eyebrow} title={f.promise.title} />
+        <SectionHead center title={f.promise.title} />
         <div className="mx-auto max-w-4xl space-y-5">
           {f.promise.bands.map((b) => (
             <div key={b.strong} className="flex gap-5 rounded-[var(--radius)] border border-on-dark/15 p-6 sm:p-8">
@@ -231,14 +230,14 @@ export function BrainmapLanding({
 
       {/* 10 · FAQ */}
       <Section tone="alt" id="faq" narrow>
-        <SectionHead center eyebrow={f.faq.eyebrow} title={f.faq.title} />
+        <SectionHead center title={f.faq.title} />
         <Faq items={[...lp.faq, ...f.faq.items]} />
         <JsonLd data={faqPage([...lp.faq, ...f.faq.items])} />
       </Section>
 
       {/* 11 · FORMULAR */}
       <Section id={FORM_ID} narrow>
-        <SectionHead center eyebrow={f.formSection.eyebrow} title={lp.form.title} lead={f.formSection.lede} />
+        <SectionHead center title={lp.form.title} lead={f.formSection.lede} />
         <ol className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {f.formSection.flow.map((s) => (
             <li key={s.n} className="rounded-[var(--radius)] border border-line bg-bg-alt p-4 text-center">

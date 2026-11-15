@@ -42,7 +42,6 @@ export const howItWorks: HowItWorksContent = {
   services: {
     eyebrow: "Equipment and services",
     title: "See it all before you come.",
-    lead: "A short video for each service.",
     feelsTitle: "What it feels like",
     items: [
       {

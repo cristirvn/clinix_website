@@ -9,15 +9,12 @@ export type ServiceSlug = "brainmap" | "tavns" | "tpbm" | "ces" | "psihoterapie"
 /** Home page copy — one object per language (`ro/home.ts`, `en/home.ts`). */
 export interface HomeContent {
   seo: { title: string; description: string };
-  /** 1 · Hero over a photo: BrainMap promise, ticks, main action + phone, three glass facts. */
+  /** 1 · Hero over a photo: one short BrainMap promise, three short facts in one row, main action + phone, three glass stats. */
   hero: {
-    eyebrow: string;
     title: string;
-    subtitle: string;
+    /** Two or three words each — they sit in one row under the headline. */
     benefits: string[];
     cta: string;
-    /** Small line next to the main button (price / duration). */
-    note: string;
     /** Accessible label of the phone button next to the main action. */
     phoneLabel: string;
     /** Big number + label. `value` is counted up on screen; `decimals` keeps "99,7". */
@@ -25,17 +22,16 @@ export interface HomeContent {
   };
   /** 2 · Services: BrainMap first (featured), then the four treatments. */
   services: {
-    eyebrow: string;
     title: string;
-    lead: string;
     more: string;
     featuredBadge: string;
-    items: Array<{ slug: ServiceSlug; image: ImageKey; eyebrow: string; title: string; text: string }>;
+    /** `eyebrow` shows only on the featured BrainMap card; on the tiles it is the link's accessible description. */
+    items: Array<{ slug: ServiceSlug; image: ImageKey; eyebrow: string; title: string }>;
   };
   /** 3 · Quiz start: the first question inline (options come from `getTriage`). */
   quiz: { eyebrow: string; title: string; lead: string; step: string; next: string; pickFirst: string };
   /** 4 · Closing band: one action + how to reach us. */
-  final: { title: string; lead: string; cta: string; note: string; reach: string; address: string };
+  final: { title: string; cta: string; note: string; reach: string; address: string };
   /**
    * Approved FAQ. No longer shown on the home page (kept short on purpose),
    * but the website assistant still answers from it (lib/chat/knowledge.ts).

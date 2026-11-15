@@ -28,7 +28,6 @@ export function FinalCta({ final, locale }: { final: HomeContent["final"]; local
           <div className="relative z-10 flex flex-col px-5 pb-10 pt-12 sm:px-12 sm:pb-16 sm:pt-20 lg:px-16 lg:py-24">
             <EegTrace draw className="mb-10 w-40 opacity-90 sm:w-48" strokeWidth={2} />
             <h2 className="max-w-xl text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[3.8rem]">{final.title}</h2>
-            <p className="mt-6 text-lg text-on-dark-soft sm:text-xl">{final.lead}</p>
             <div className="mt-10">
               <ButtonLink href="/brainmap" size="lg" className="group w-full !px-4 max-[420px]:!text-base sm:w-auto sm:!px-9">
                 {final.cta}

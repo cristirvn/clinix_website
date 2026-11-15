@@ -1,4 +1,4 @@
-import { Card, CheckItem, Eyebrow, Section, SectionHead } from "@/components/ui/primitives";
+import { Card, CheckItem, Section, SectionHead } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import type { ChildrenContent } from "@/content/children/types";
@@ -6,7 +6,7 @@ import type { ChildrenContent } from "@/content/children/types";
 export function ChildSigns({ content }: { content: ChildrenContent["signs"] }) {
   return (
     <Section>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} lead={content.lead} />
+      <SectionHead title={content.title} lead={content.lead} />
       <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {content.items.map((item, i) => (
           <li key={item.title}>
@@ -28,7 +28,6 @@ export function ChildCheck({ content }: { content: ChildrenContent["check"] }) {
     <Section tone="alt">
       <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
         <div>
-          <Eyebrow>{content.eyebrow}</Eyebrow>
           <h2 className="text-[2.1rem] sm:text-5xl">{content.title}</h2>
           <div className="mt-6 space-y-4 text-lg text-ink-soft">
             {content.paragraphs.map((p) => (
@@ -52,7 +51,7 @@ export function ChildCheck({ content }: { content: ChildrenContent["check"] }) {
 export function ChildParents({ content }: { content: ChildrenContent["parents"] }) {
   return (
     <Section>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
         {content.steps.map((step, i) => (
           <li key={step.title}>
@@ -78,7 +77,7 @@ export function ChildParents({ content }: { content: ChildrenContent["parents"] 
 export function ChildSafety({ content }: { content: ChildrenContent["safety"] }) {
   return (
     <Section tone="alt" narrow>
-      <SectionHead eyebrow={content.eyebrow} title={content.title} />
+      <SectionHead title={content.title} />
       <ul className="space-y-4 text-lg">
         {content.points.map((p) => (
           <CheckItem key={p}>{p}</CheckItem>
