@@ -36,6 +36,8 @@ export const VIDEOS = {
   testimonialErnesto: { src: "", duration: "2:14" },
   testimonialGabriela: { src: "", duration: "1:47" },
   testimonialPaulina: { src: "", duration: "3:02" },
+  /** /neurofit — the NeuroFit programme video (VSL). */
+  neurofitVsl: { src: "", duration: "" },
   /** /lp/emsella — EmSella VSL + the EmSella testimonial (Paulina, 2:40 in the old build). */
   lpEmsellaVsl: { src: "", duration: "4:30" },
   lpEmsellaTestimonial: { src: "", duration: "2:40" },
@@ -134,6 +136,14 @@ export const IMAGES = {
     alt: {
       ro: "Pacientă în timpul unei ședințe tPBM, cu casca iMediSync și tableta cu protocolul",
       en: "A patient during a tPBM session, wearing the iMediSync headset, the protocol on the tablet",
+    },
+  },
+  /** The iMediSync headset, seen from behind, the session on a tablet (NeuroFit; no staff in frame). */
+  helmet: {
+    src: "/photos/imedisync-casca.webp",
+    alt: {
+      ro: "Casca iMediSync în timpul unei sesiuni, cu tableta în fundal",
+      en: "The iMediSync headset during a session, the tablet in the background",
     },
   },
   /** EmSella chair and its console. */

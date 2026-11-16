@@ -18,9 +18,11 @@ const BRAINMAP_LPS = "/brainmap și cele 8 landing pages BrainMap (/lp/anxietate
 
 export const VIDEO_SLOTS: Record<VideoKey, VideoSlot> = {
   brainmapVsl: { label: "Video principal BrainMap (VSL)", where: BRAINMAP_LPS, href: "/brainmap" },
-  testimonialErnesto: { label: "Testimonial video — Ernesto", where: "Landing pages BrainMap, Despre noi, Testimoniale", href: "/brainmap" },
-  testimonialGabriela: { label: "Testimonial video — Gabriela", where: "Landing pages BrainMap, Despre noi, Testimoniale", href: "/brainmap" },
-  testimonialPaulina: { label: "Testimonial video — Paulina", where: "Landing pages BrainMap, Despre noi, Testimoniale", href: "/brainmap" },
+  testimonialErnesto: { label: "Testimonial video — Ernesto", where: "Acasă, landing pages BrainMap, Despre noi, Testimoniale", href: "/brainmap" },
+  testimonialGabriela: { label: "Testimonial video — Gabriela", where: "Acasă, landing pages BrainMap, Despre noi, Testimoniale", href: "/brainmap" },
+  testimonialPaulina: { label: "Testimonial video — Paulina", where: "Acasă, landing pages BrainMap, Despre noi, Testimoniale", href: "/brainmap" },
+
+  neurofitVsl: { label: "Video principal NeuroFit (VSL)", where: "/neurofit", href: "/neurofit" },
 
   lpEmsellaVsl: { label: "Video principal EmSella (VSL)", where: "/lp/emsella", href: "/lp/emsella" },
   lpEmsellaTestimonial: { label: "Testimonial video EmSella", where: "/lp/emsella, Testimoniale", href: "/lp/emsella" },

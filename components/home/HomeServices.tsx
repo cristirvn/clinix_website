@@ -10,18 +10,22 @@ import type { Locale } from "@/lib/i18n";
 type Service = HomeContent["services"]["items"][number];
 
 /**
- * Section 2 — five services, picture-led. BrainMap is the tall featured card
- * (everyone starts there); the four treatments are photo tiles beside it,
- * 2×2. Each tile carries only its name — the detail lives on the service page.
+ * Section 3 — the methods ("the tools"), picture-led. Neurofeedback is the
+ * tall featured card (brain training); the four other methods are photo
+ * tiles beside it, 2×2: the name, plus one plain line from the tablet up.
+ * BrainMap has its own section next ("how to start").
  */
 export function HomeServices({ services, locale }: { services: HomeContent["services"]; locale: Locale }) {
   const [featured, ...rest] = services.items;
   return (
     <section id="servicii" className="scroll-mt-24 bg-bg py-24 text-ink sm:py-32">
       <Container>
-        <h2 className="mb-12 text-[2.4rem] leading-[1.04] sm:mb-16 sm:text-[3.4rem] lg:text-[4rem]">
-          <Emph text={services.title} />
-        </h2>
+        <div className="mb-12 max-w-3xl sm:mb-16">
+          <h2 className="text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[4rem]">
+            <Emph text={services.title} />
+          </h2>
+          <p className="mt-5 max-w-2xl text-lg text-ink-soft sm:text-xl">{services.lead}</p>
+        </div>
 
         <div className="grid grid-cols-1 gap-3 sm:gap-5 lg:grid-cols-12">
           <Reveal className="min-w-0 lg:col-span-5">
@@ -37,6 +41,17 @@ export function HomeServices({ services, locale }: { services: HomeContent["serv
             ))}
           </ul>
         </div>
+
+        <p className="mt-10 flex flex-col gap-2 text-lg sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4">
+          <span className="text-ink-soft">{services.toolsLine}</span>
+          <L
+            href="/neurofit"
+            className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition hover:decoration-primary"
+          >
+            {services.toolsLink}
+            <ArrowIcon size={16} />
+          </L>
+        </p>
       </Container>
     </section>
   );
@@ -58,8 +73,8 @@ function FeaturedCard({ service, badge, more, locale }: { service: Service; badg
         {badge}
       </span>
 
-      <p className="text-base text-on-dark-soft">{service.eyebrow}</p>
-      <h3 className="mt-1 text-[3rem] leading-none sm:text-[4rem]">{service.title}</h3>
+      <h3 className="text-[2.1rem] leading-none min-[400px]:text-[2.4rem] sm:text-[3.4rem] lg:text-[3rem] xl:text-[3.5rem]">{service.title}</h3>
+      <p className="mt-3 text-lg text-on-dark/90">{service.eyebrow}</p>
       <span className={buttonClass("cta", "md", "mt-7 self-start")}>
         {more}
         <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
@@ -85,7 +100,8 @@ function ServiceTile({ service, more, locale }: { service: Service; more: string
         <ArrowIcon size={17} className="-rotate-45 transition-transform duration-500 group-hover:rotate-0" />
       </span>
 
-      <h3 className="text-[1.4rem] leading-none min-[400px]:text-[1.6rem] sm:text-[2.4rem]">{service.title}</h3>
+      <h3 className="text-[1.2rem] leading-none min-[400px]:text-[1.5rem] sm:text-[2.4rem]">{service.title}</h3>
+      <p className="mt-2 hidden text-base leading-snug text-on-dark/85 sm:block">{service.eyebrow}</p>
     </L>
   );
 }

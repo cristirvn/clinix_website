@@ -9,6 +9,7 @@ export const ro = {
   switchToShort: "EN",
   skipToContent: "Sari la conținut",
   nav: {
+    neurofit: "NeuroFit",
     howItWorks: "Cum funcționează",
     howItWorksOverview: "Tot procesul, pe scurt",
     pickService: "Alege serviciul despre care vrei să afli",

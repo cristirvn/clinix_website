@@ -1,11 +1,13 @@
 /**
  * Main menu. Keys are `dict.nav.*` labels, hrefs are INTERNAL (Romanian) paths.
  *
- * Top level: how it works · conditions we treat · for children · About us ▾
+ * Top level: how it works ▾ · NeuroFit (its own product page) · conditions we
+ * treat · for children · About us ▾
  * "About us" opens a small panel with the clinic's own pages.
  */
 export const NAV_MAIN = [
   { key: "howItWorks", href: "/cum-functioneaza" },
+  { key: "neurofit", href: "/neurofit" },
   { key: "conditions", href: "/afectiuni-tratate" },
   { key: "children", href: "/pentru-copii" },
 ] as const;

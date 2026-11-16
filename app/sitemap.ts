@@ -19,6 +19,7 @@ import { articleSlugs, getArticle } from "@/content/articles";
 const STATIC_PAGES: Array<{ path: string; priority: number; changeFrequency: "weekly" | "monthly" }> = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
   { path: "/brainmap", priority: 0.9, changeFrequency: "monthly" },
+  { path: "/neurofit", priority: 0.9, changeFrequency: "monthly" },
   { path: "/servicii", priority: 0.8, changeFrequency: "monthly" },
   { path: "/afectiuni-tratate", priority: 0.8, changeFrequency: "monthly" },
   { path: "/cum-functioneaza", priority: 0.7, changeFrequency: "monthly" },

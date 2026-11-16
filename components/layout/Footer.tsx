@@ -46,7 +46,7 @@ export function Footer({ locale }: { locale: Locale }) {
           <nav aria-label={dict.footer.clinic} className="lg:col-span-3">
             <h2 className={`${HEAD} font-body`}>{dict.footer.clinic}</h2>
             <ul>
-              {[...NAV_MAIN, ...NAV_ABOUT].map((item) => (
+              {[...NAV_MAIN.filter((item) => item.key !== "neurofit"), ...NAV_ABOUT].map((item) => (
                 <li key={item.key}>
                   <L href={item.href} className={LINK}>
                     {dict.nav[item.key]}
@@ -66,6 +66,11 @@ export function Footer({ locale }: { locale: Locale }) {
                   </L>
                 </li>
               ))}
+              <li>
+                <L href="/neurofit" className={LINK}>
+                  {dict.nav.neurofit}
+                </L>
+              </li>
             </ul>
           </nav>
 

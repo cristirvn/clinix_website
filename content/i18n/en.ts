@@ -7,6 +7,7 @@ export const en: Dictionary = {
   switchToShort: "RO",
   skipToContent: "Skip to content",
   nav: {
+    neurofit: "NeuroFit",
     howItWorks: "How it works",
     howItWorksOverview: "The whole process, in short",
     pickService: "Choose a service to learn about",

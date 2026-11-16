@@ -4,9 +4,10 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * Which GoHighLevel webhook a form goes to (see `.env.example`):
- *  quiz → the 9 tests · brainmap → /brainmap + /lp/* · emsella → /lp/emsella · contact → everything else
+ *  quiz → the 9 tests · brainmap → /brainmap + /lp/* · emsella → /lp/emsella ·
+ *  neurofit → /neurofit · contact → everything else
  */
-export type LeadGroup = "quiz" | "brainmap" | "emsella" | "contact";
+export type LeadGroup = "quiz" | "brainmap" | "emsella" | "neurofit" | "contact";
 
 export interface LeadPayload {
   group: LeadGroup;

@@ -10,13 +10,14 @@ import { isPlausibleEmail, isPlausiblePhone, isValidEmailShape } from "@/lib/con
  *
  * Webhook per group (falls back to GHL_WEBHOOK_URL):
  *   quiz → GHL_WEBHOOK_URL_QUIZ · brainmap → GHL_WEBHOOK_URL_BRAINMAP
- *   emsella → GHL_WEBHOOK_URL_EMSELLA · contact → GHL_WEBHOOK_URL_CONTACT
+ *   emsella → GHL_WEBHOOK_URL_EMSELLA · neurofit → GHL_WEBHOOK_URL_NEUROFIT
+ *   contact → GHL_WEBHOOK_URL_CONTACT
  *
  * Demo mode: with no webhook configured the lead is validated, logged and
  * accepted, so every funnel is clickable before the CRM is connected.
  */
 const leadSchema = z.object({
-  group: z.enum(["quiz", "brainmap", "emsella", "contact"]),
+  group: z.enum(["quiz", "brainmap", "emsella", "neurofit", "contact"]),
   form: z.string().trim().min(1).max(60).regex(/^[a-z0-9-]+$/),
   locale: z.enum(["ro", "en"]),
   name: z.string().trim().min(2).max(120),
@@ -48,6 +49,7 @@ const WEBHOOK_ENV = {
   quiz: "GHL_WEBHOOK_URL_QUIZ",
   brainmap: "GHL_WEBHOOK_URL_BRAINMAP",
   emsella: "GHL_WEBHOOK_URL_EMSELLA",
+  neurofit: "GHL_WEBHOOK_URL_NEUROFIT",
   contact: "GHL_WEBHOOK_URL_CONTACT",
 } as const;
 

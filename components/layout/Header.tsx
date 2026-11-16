@@ -7,6 +7,7 @@ import { L } from "@/components/ui/L";
 import { buttonClass } from "@/components/ui/primitives";
 import { ArrowIcon, ChevronIcon, PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/layout/Logo";
+import { NeuroFitMark } from "@/components/neurofit/brand";
 import { LangSwitch } from "@/components/layout/LangSwitch";
 import { useLocale } from "@/components/layout/LocaleProvider";
 import { CLINIC } from "@/lib/site";
@@ -43,7 +44,7 @@ export function Header() {
   };
 
   const linkClass = (href: string) =>
-    `relative py-2 text-[0.98rem] font-medium transition hover:text-primary after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-accent after:transition-transform after:duration-300 ${
+    `relative whitespace-nowrap py-2 text-[0.95rem] font-medium transition hover:text-primary after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-accent after:transition-transform after:duration-300 ${
       isActivePath(pathname, href) ? "text-ink after:scale-x-100" : "text-ink-soft after:scale-x-0 hover:after:scale-x-100"
     }`;
 
@@ -53,24 +54,25 @@ export function Header() {
         scrolled ? "border-line shadow-[0_14px_34px_-24px_rgb(11_27_51_/_0.35)]" : "border-transparent"
       }`}
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-8">
+      <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 xl:gap-3">
         <L href="/" aria-label="Emmanuel CliniX" className="flex-none">
           <Logo eager />
         </L>
 
-        <nav className="hidden items-center gap-8 xl:flex" aria-label={dict.nav.menu}>
+        <nav className="hidden items-center gap-6 whitespace-nowrap xl:flex 2xl:gap-8" aria-label={dict.nav.menu}>
           <ServicesMenu pathname={pathname} />
           {NAV_PLAIN.map((item) => (
-            <L key={item.key} href={item.href} className={linkClass(item.href)} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
+            <L key={item.key} href={item.href} className={`${linkClass(item.href)} flex items-center gap-2`} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
+              {item.key === "neurofit" && <NeuroFitMark size={12} />}
               {dict.nav[item.key]}
             </L>
           ))}
           <AboutMenu pathname={pathname} />
         </nav>
 
-        <div className="hidden items-center gap-3 xl:flex">
+        <div className="hidden items-center gap-2.5 xl:flex">
           <LangSwitch />
-          <L href="/brainmap" className={buttonClass("cta", "md", "!min-h-11 !px-6 !py-2.5 text-[0.95rem]")}>
+          <L href="/brainmap" className={buttonClass("cta", "md", "!min-h-11 whitespace-nowrap !px-5 !py-2.5 text-[0.95rem]")}>
             {dict.nav.cta}
           </L>
         </div>
@@ -197,7 +199,7 @@ function NavDisclosure({
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen((v) => !v)}
-        className={`flex items-center gap-1.5 py-2 text-[0.98rem] font-medium transition hover:text-primary ${active || open ? "text-ink" : "text-ink-soft"}`}
+        className={`flex items-center gap-1.5 whitespace-nowrap py-2 text-[0.95rem] font-medium transition hover:text-primary ${active || open ? "text-ink" : "text-ink-soft"}`}
       >
         {label}
         <ChevronIcon className={`transition-transform duration-300 ${open ? "rotate-180" : ""}`} />
@@ -408,7 +410,10 @@ function MobileMenu({ pathname, onClose }: { pathname: string; onClose: () => vo
           {NAV_PLAIN.map((item) => (
             <li key={item.key}>
               <L href={item.href} onClick={onClose} className={row} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
-                {dict.nav[item.key]}
+                <span className="flex items-center gap-3">
+                  {item.key === "neurofit" && <NeuroFitMark size={18} />}
+                  {dict.nav[item.key]}
+                </span>
                 <ArrowIcon size={22} className="flex-none text-accent" />
               </L>
             </li>

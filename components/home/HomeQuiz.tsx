@@ -9,14 +9,14 @@ import type { HomeContent } from "@/content/pages/home";
 import type { Locale } from "@/lib/i18n";
 
 /**
- * Section 3 — the self-check starts right here: question 1 of the triage
+ * Section 5 — the self-check starts right here: question 1 of the triage
  * ("Cu ce te confrunți cel mai des?") as one centred quiz card. The answer
  * opens the matching test at its next question.
  */
 export function HomeQuiz({ quiz, locale }: { quiz: HomeContent["quiz"]; locale: Locale }) {
   const triage = getTriage(locale);
   return (
-    <section id="diagnostic" className="scroll-mt-24 bg-bg-alt py-24 text-ink sm:py-32">
+    <section id="diagnostic" className="scroll-mt-24 bg-bg py-24 text-ink sm:py-32">
       <Container>
         <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
           <Eyebrow>{quiz.eyebrow}</Eyebrow>

@@ -5,13 +5,14 @@ import { SITE_URLS } from "@/lib/i18n";
 
 /**
  * TEMPORARY — lets the clinic compare the current navy palette with the
- * "Turcoaz" one (app/globals.css, `data-palette="aqua"`) on the same page, on
- * their phone, with one tap. Remove this file, its two uses in
+ * "Turcoaz" one (`data-palette="aqua"`) and the "Mix" one (navy site,
+ * turquoise buttons and coloured text: `data-palette="mix"`), all in
+ * app/globals.css, on the same page, on their phone, with one tap. Remove this file, its two uses in
  * app/[locale]/layout.tsx and the losing palette once they have chosen.
  *
  * Shown on preview deployments only — never on the live domains. The choice
- * is remembered per browser; `?tema=turcoaz` / `?tema=actual` in a link opens
- * the page straight in that palette.
+ * is remembered per browser; `?tema=turcoaz` / `?tema=mix` / `?tema=actual`
+ * in a link opens the page straight in that palette.
  */
 const STORAGE_KEY = "ec-palette";
 const LIVE_HOSTS = Object.values(SITE_URLS).flatMap((u) => {
@@ -20,12 +21,13 @@ const LIVE_HOSTS = Object.values(SITE_URLS).flatMap((u) => {
 });
 
 /** Runs before first paint (inline in <body>), so the page never flashes the other palette. */
-export const PALETTE_BOOT_SCRIPT = `(function(){try{if(${JSON.stringify(LIVE_HOSTS)}.indexOf(location.hostname)>-1)return;var q=new URLSearchParams(location.search).get("tema");var p=q==="turcoaz"?"aqua":q==="actual"?"classic":localStorage.getItem("${STORAGE_KEY}");if(q)localStorage.setItem("${STORAGE_KEY}",p);if(p==="aqua")document.documentElement.setAttribute("data-palette","aqua")}catch(e){}})();`;
+export const PALETTE_BOOT_SCRIPT = `(function(){try{if(${JSON.stringify(LIVE_HOSTS)}.indexOf(location.hostname)>-1)return;var q=new URLSearchParams(location.search).get("tema");var p=q==="turcoaz"?"aqua":q==="mix"?"mix":q==="actual"?"classic":localStorage.getItem("${STORAGE_KEY}");if(q)localStorage.setItem("${STORAGE_KEY}",p);if(p==="aqua"||p==="mix")document.documentElement.setAttribute("data-palette",p)}catch(e){}})();`;
 
-type Palette = "classic" | "aqua";
+type Palette = "classic" | "aqua" | "mix";
 const OPTIONS: Array<{ value: Palette; label: string; swatch: string }> = [
   { value: "classic", label: "Actual", swatch: "#1d5fd1" },
   { value: "aqua", label: "Turcoaz", swatch: "#12bdd6" },
+  { value: "mix", label: "Mix", swatch: "linear-gradient(135deg, #1d5fd1 50%, #12bdd6 50%)" },
 ];
 
 export function PaletteSwitch() {
@@ -34,15 +36,16 @@ export function PaletteSwitch() {
   useEffect(() => {
     if (LIVE_HOSTS.includes(window.location.hostname)) return;
     // Read the palette the boot script already applied (external DOM state, read once on mount).
+    const current = document.documentElement.dataset.palette;
     // eslint-disable-next-line react-hooks/set-state-in-effect
-    setPalette(document.documentElement.dataset.palette === "aqua" ? "aqua" : "classic");
+    setPalette(current === "aqua" || current === "mix" ? current : "classic");
   }, []);
 
   if (!palette) return null;
 
   const choose = (p: Palette) => {
     setPalette(p);
-    if (p === "aqua") document.documentElement.setAttribute("data-palette", "aqua");
+    if (p !== "classic") document.documentElement.setAttribute("data-palette", p);
     else document.documentElement.removeAttribute("data-palette");
     try {
       localStorage.setItem(STORAGE_KEY, p);
