@@ -19,17 +19,6 @@ export const HOME_RO: HomeContent = {
       { value: "Lunar", label: "rutină de antrenament cu NeuroFit" },
     ],
   },
-  // PROVISIONAL copy (client's draft) — the client is writing the final text.
-  neurofit: {
-    eyebrow: "NeuroFit by Emmanuel CliniX",
-    title: "Îți antrenezi corpul. *Acum și creierul are sala lui.*",
-    text: "Sesiuni regulate, non-invazive, pe aparatura clinicii. Alegi cum vrei să te simți, iar grija pentru creier devine o rutină, la fel de firească precum antrenamentul.",
-    experiences: ["Relax", "Focus", "Reset", "Longevity"],
-    audienceTitle: "Pentru cine e",
-    audience: ["Antreprenori", "Joburi solicitante", "Sportivi"],
-    note: "Abonament lunar. Poți continua cu NeuroFit și după un protocol de tratament.",
-    cta: "Descoperă NeuroFit",
-  },
   services: {
     title: "Metodele prin care creierul funcționează mai bine",
     lead: "Fiecare plan pornește de la datele tale și folosește doar metodele de care ai nevoie.",

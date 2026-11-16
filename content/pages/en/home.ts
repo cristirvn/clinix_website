@@ -19,17 +19,6 @@ export const HOME_EN: HomeContent = {
       { value: "Monthly", label: "training routine with NeuroFit" },
     ],
   },
-  // PROVISIONAL copy (client's draft) — the client is writing the final text.
-  neurofit: {
-    eyebrow: "NeuroFit by Emmanuel CliniX",
-    title: "You train your body. *Now your brain has a gym too.*",
-    text: "Regular, non-invasive sessions on the clinic's equipment. You choose how you want to feel, and looking after your brain becomes a routine, as natural as a workout.",
-    experiences: ["Relax", "Focus", "Reset", "Longevity"],
-    audienceTitle: "Who it's for",
-    audience: ["Business owners", "Demanding jobs", "Athletes"],
-    note: "A monthly membership. You can carry on with NeuroFit after a treatment programme, too.",
-    cta: "Discover NeuroFit",
-  },
   services: {
     title: "The methods that help your brain work better",
     lead: "Every plan starts from your data and uses only the methods you need.",

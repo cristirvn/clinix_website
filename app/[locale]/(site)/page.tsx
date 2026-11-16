@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import { HomeHero } from "@/components/home/HomeHero";
-import { HomeNeuroFit } from "@/components/home/HomeNeuroFit";
 import { HomeServices } from "@/components/home/HomeServices";
 import { HomeStart } from "@/components/home/HomeStart";
 import { HomeQuiz } from "@/components/home/HomeQuiz";
@@ -27,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 /**
  * Home, in the client's order (Nov 2026):
- * hero → NeuroFit → methods → how to start (BrainMap) → quiz →
+ * hero → methods → how to start (BrainMap) → quiz →
  * complex situations → testimonials → one short close.
  */
 export default async function HomePage({ params }: Props) {
@@ -48,7 +47,6 @@ export default async function HomePage({ params }: Props) {
   return (
     <>
       <HomeHero hero={c.hero} locale={locale} />
-      <HomeNeuroFit neurofit={c.neurofit} locale={locale} />
       <HomeServices services={c.services} locale={locale} />
       <HomeStart start={c.start} locale={locale} />
       <HomeQuiz quiz={c.quiz} locale={locale} />

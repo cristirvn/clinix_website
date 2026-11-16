@@ -7,8 +7,8 @@ import type { ServiceSlug } from "@/content/services/types";
 
 /**
  * Home page copy — one object per language (`ro/home.ts`, `en/home.ts`).
- * Order on the page (client's structure, Nov 2026): hero → NeuroFit →
- * methods → how to start (BrainMap) → quiz → complex situations →
+ * Order on the page (client's structure, Nov 2026; NeuroFit has its own
+ * page, /neurofit): hero → methods → how to start (BrainMap) → quiz → complex situations →
  * testimonials → closing band.
  */
 export interface HomeContent {
@@ -25,18 +25,6 @@ export interface HomeContent {
     phoneLabel: string;
     /** Big value ("30 min") + one short line. */
     stats: Array<{ value: string; label: string }>;
-  };
-  /** 2 · NeuroFit teaser, in NeuroFit's own black + gold. */
-  neurofit: {
-    eyebrow: string;
-    /** `*…*` marks the part shown in gold. */
-    title: string;
-    text: string;
-    experiences: string[];
-    audienceTitle: string;
-    audience: string[];
-    note: string;
-    cta: string;
   };
   /** 3 · Methods: neurofeedback featured, then the four other tools. */
   services: {
