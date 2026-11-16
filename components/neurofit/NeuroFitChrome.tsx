@@ -18,7 +18,8 @@ export function NeuroFitHeader({ nav }: { nav: NeuroFitContent["nav"] }) {
   return (
     <header className="sticky top-0 z-50 h-[var(--header-h)] border-b border-line bg-bg/85 text-ink backdrop-blur-xl">
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-2 px-5 sm:gap-4 sm:px-8">
-        <L href="/neurofit" aria-label="NeuroFit by Emmanuel CliniX" className="flex-none">
+        {/* The logo takes the visitor back to the clinic's main site. */}
+        <L href="/" aria-label={nav.back} className="flex-none">
           <NeuroFitWordmark />
         </L>
 

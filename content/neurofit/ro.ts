@@ -21,37 +21,16 @@ export const NEUROFIT_RO: NeuroFitContent = {
   hero: {
     eyebrow: "Brain wellness în București",
     title: "Îți antrenezi corpul. *Acum și creierul are sala lui.*",
-    lead: "Stres care nu se mai oprește, oboseală mentală, focus pierdut printre notificări? Sesiuni non-invazive de brain wellness, construite pentru cum vrei să te simți.",
+    sub: "Sesiuni regulate, non-invazive, pentru o minte mai calmă, mai limpede și mai odihnită.",
+    videoTitle: "Prezentarea NeuroFit",
+    videoNote: "Câteva minute despre program, despre spațiu și despre ce simți după.",
     cta: "Rezervă prima experiență",
-    secondary: "Vezi experiențele",
-    stats: [
-      { value: "4", label: "experiențe · Relax, Focus, Reset, Longevity" },
-      { value: "5", label: "tehnologii non-invazive, într-un singur circuit" },
-      { value: "Lunar", label: "abonament, fără angajament anual" },
-    ],
-  },
-  vsl: {
-    eyebrow: "NeuroFit, pe scurt",
-    title: "Vezi cum arată o sesiune",
-    lead: "Câteva minute despre program, despre spațiu și despre ce simți după.",
-    playerTitle: "Prezentarea NeuroFit",
-  },
-  concept: {
-    eyebrow: "Conceptul",
-    title: "Corpul are sala lui. *De acum și creierul are una.*",
-    paragraphs: [
-      "Mergem la sală. Ne urmărim somnul. Avem grijă ce mâncăm și ne facem timp să ne refacem. Creierul rămâne, de cele mai multe ori, pe dinafară.",
-      "NeuroFit este clubul în care creierul își are, în sfârșit, rutina lui. Vii regulat, alegi cum vrei să te simți și faci din grija pentru minte un obicei la fel de firesc ca antrenamentul.",
-    ],
-  },
-  audience: {
-    eyebrow: "Pentru cine e",
-    title: "Pentru oamenii care cer mult de la mintea lor",
-    items: [
-      { title: "Antreprenori", text: "Decizii multe, presiune constantă, puțin timp de refacere." },
-      { title: "Joburi solicitante", text: "Zile lungi, ecrane, notificări. Seara, mintea încă merge." },
-      { title: "Sportivi", text: "Corpul e antrenat. Concentrarea și refacerea fac diferența." },
-      { title: "După un protocol", text: "Ai terminat un program la clinică? Rezultatele se păstrează printr-o rutină." },
+    ctaSub: "Lași numărul, te sunăm noi.",
+    facts: [
+      "Sesiuni non-invazive, pe aparatura clinicii",
+      "4 experiențe: Relax, Focus, Reset, Longevity",
+      "Abonament lunar, fără angajament anual",
+      "Screening de siguranță înainte de prima sesiune",
     ],
   },
   experiences: {
@@ -66,15 +45,6 @@ export const NEUROFIT_RO: NeuroFitContent = {
       { name: "Longevity", line: "Un creier ager, peste ani.", situations: ["Vrei să rămâi ager peste ani"] },
     ],
     note: "Program de brain wellness. Ai un diagnostic? Discută mai întâi cu un specialist.",
-  },
-  tech: {
-    eyebrow: "Cum te ajutăm",
-    title: "Tehnologie reală, construită în jurul tău",
-    items: [
-      { title: "Screening de siguranță", text: "Verificăm eligibilitatea înainte de prima sesiune." },
-      { title: "Circuit non-invaziv", text: "taVNS, CES, tDCS, tPBM și neurofeedback, într-un singur circuit." },
-      { title: "Rutină constantă", text: "Abonament lunar, pe credite, în ritmul tău." },
-    ],
   },
   membership: {
     eyebrow: "Abonamentul",

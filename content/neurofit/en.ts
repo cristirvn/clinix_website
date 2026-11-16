@@ -21,37 +21,16 @@ export const NEUROFIT_EN: NeuroFitContent = {
   hero: {
     eyebrow: "Brain wellness in Bucharest",
     title: "You train your body. *Now your brain has a gym too.*",
-    lead: "Stress that never switches off, mental fatigue, focus lost among notifications? Non-invasive brain wellness sessions, built around how you want to feel.",
+    sub: "Regular, non-invasive sessions for a calmer, clearer, better-rested mind.",
+    videoTitle: "Introducing NeuroFit",
+    videoNote: "A few minutes on the programme, the space and how you feel afterwards.",
     cta: "Book your first experience",
-    secondary: "See the experiences",
-    stats: [
-      { value: "4", label: "experiences · Relax, Focus, Reset, Longevity" },
-      { value: "5", label: "non-invasive technologies in one circuit" },
-      { value: "Monthly", label: "membership, no annual commitment" },
-    ],
-  },
-  vsl: {
-    eyebrow: "NeuroFit in brief",
-    title: "See what a session looks like",
-    lead: "A few minutes on the programme, the space and how you feel afterwards.",
-    playerTitle: "Introducing NeuroFit",
-  },
-  concept: {
-    eyebrow: "The idea",
-    title: "Your body has its gym. *Now your brain has one too.*",
-    paragraphs: [
-      "We go to the gym. We track our sleep. We watch what we eat and make time to recover. The brain, more often than not, is left out.",
-      "NeuroFit is the club where your brain finally gets a routine of its own. You come regularly, choose how you want to feel, and make looking after your mind a habit as natural as a workout.",
-    ],
-  },
-  audience: {
-    eyebrow: "Who it's for",
-    title: "For people who ask a lot of their minds",
-    items: [
-      { title: "Business owners", text: "Endless decisions, constant pressure, little time to recover." },
-      { title: "Demanding jobs", text: "Long days, screens, notifications. In the evening, your mind is still running." },
-      { title: "Athletes", text: "Your body is trained. Focus and recovery make the difference." },
-      { title: "After a programme", text: "Finished a programme at the clinic? A routine helps the results last." },
+    ctaSub: "Leave your number and we'll call you.",
+    facts: [
+      "Non-invasive sessions on the clinic's equipment",
+      "4 experiences: Relax, Focus, Reset, Longevity",
+      "Monthly membership, no annual commitment",
+      "Safety screening before your first session",
     ],
   },
   experiences: {
@@ -66,15 +45,6 @@ export const NEUROFIT_EN: NeuroFitContent = {
       { name: "Longevity", line: "A sharp brain, for years to come.", situations: ["You want to stay sharp as the years go by"] },
     ],
     note: "A brain wellness programme. Have a diagnosis? Talk to a specialist first.",
-  },
-  tech: {
-    eyebrow: "How we help",
-    title: "Real technology, built around you",
-    items: [
-      { title: "Safety screening", text: "We check you're eligible before your first session." },
-      { title: "A non-invasive circuit", text: "taVNS, CES, tDCS, tPBM and neurofeedback, in a single circuit." },
-      { title: "A steady routine", text: "A monthly membership, on credits, at your own pace." },
-    ],
   },
   membership: {
     eyebrow: "The membership",

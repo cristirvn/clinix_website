@@ -879,7 +879,8 @@ html:has(.site-loader:not(.is-done)) {
   color-scheme: dark;
 }
 /* The NeuroFit page (`.nf-page`) is dark end to end: no white flash past the edges or under the page-load curtain. */
-html:has(.nf-page) {
+html:has(.nf-page),
+html:has(.nf-page) body {
   background: #0c0b09;
 }
 html:has(.nf-page) .site-loader {
