@@ -1,4 +1,4 @@
-import { ButtonLink, Container, TickIcon, buttonClass } from "@/components/ui/primitives";
+import { ButtonLink, Container, TickIcon, buttonClass, keepHyphenated } from "@/components/ui/primitives";
 import { Photo } from "@/components/ui/Photo";
 import { GlassRefraction } from "@/components/ui/GlassRefraction";
 import { ArrowIcon, PhoneIcon } from "@/components/ui/icons";
@@ -83,15 +83,3 @@ export function HomeHero({ hero, locale }: { hero: HomeContent["hero"]; locale: 
   );
 }
 
-/** Never break a hyphenated word ("non-invazivă") across two lines. */
-function keepHyphenated(text: string) {
-  return text.split(/(\S+-\S+)/).map((part, i) =>
-    i % 2 ? (
-      <span key={i} className="whitespace-nowrap">
-        {part}
-      </span>
-    ) : (
-      part
-    ),
-  );
-}

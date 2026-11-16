@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Section, SectionHead, Eyebrow, CheckItem, Card, buttonClass, HeroPanel } from "@/components/ui/primitives";
+import { Section, SectionHead, Eyebrow, CheckItem, Card, buttonClass, HeroPanel, keepHyphenated } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { FunnelFooter } from "@/components/layout/FunnelChrome";
@@ -99,7 +99,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
           </Reveal>
           <Reveal>
             <p className="border-l-4 border-accent py-1 pl-5 font-display text-2xl text-on-dark sm:text-3xl">
-              {c.why.highlight}
+              {keepHyphenated(c.why.highlight)}
             </p>
           </Reveal>
           <Reveal>

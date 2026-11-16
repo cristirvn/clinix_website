@@ -30,7 +30,7 @@ export function Footer({ locale }: { locale: Locale }) {
               {dict.nav.cta}
               <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
             </ButtonLink>
-            <a href={CLINIC.phoneHref} className="inline-flex min-h-11 items-center justify-center text-lg font-semibold text-on-dark/90 hover:underline sm:justify-start lg:justify-end">
+            <a href={CLINIC.phoneHref} className="inline-flex min-h-11 items-center justify-center gap-x-[0.3em] text-lg font-semibold text-on-dark/90 hover:underline sm:justify-start lg:justify-end">
               {dict.common.callUs} · <span className="whitespace-nowrap">{CLINIC.phone}</span>
             </a>
           </div>

@@ -62,7 +62,7 @@ function FeaturedCard({ service, badge, more, locale }: { service: Service; badg
     <L
       href={`/servicii/${service.slug}`}
       data-tone="dark"
-      className="group relative isolate flex h-full min-h-[27rem] flex-col justify-end overflow-hidden rounded-[var(--radius)] bg-dark p-6 text-on-dark sm:min-h-[36rem] sm:p-10"
+      className="group @container relative isolate flex h-full min-h-[27rem] flex-col justify-end overflow-hidden rounded-[var(--radius)] bg-dark p-6 text-on-dark sm:min-h-[36rem] sm:p-10"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-20">
         <Photo image={service.image} locale={locale} width={1100} className="zoom-media object-[60%_center]" />
@@ -73,7 +73,8 @@ function FeaturedCard({ service, badge, more, locale }: { service: Service; badg
         {badge}
       </span>
 
-      <h3 className="text-[2.1rem] leading-none min-[400px]:text-[2.4rem] sm:text-[3.4rem] lg:text-[3rem] xl:text-[3.5rem]">{service.title}</h3>
+      {/* From 1024px the card is narrow: the title scales with it, so "Neurofeedback" never splits mid-word. */}
+      <h3 className="text-[2.1rem] leading-none min-[400px]:text-[2.4rem] sm:text-[3.4rem] lg:text-[length:min(3.5rem,13.5cqi)]">{service.title}</h3>
       <p className="mt-3 text-lg text-on-dark/90">{service.eyebrow}</p>
       <span className={buttonClass("cta", "md", "mt-7 self-start")}>
         {more}
@@ -89,7 +90,7 @@ function ServiceTile({ service, more, locale }: { service: Service; more: string
       href={`/servicii/${service.slug}`}
       data-tone="dark"
       aria-label={`${service.title} — ${service.eyebrow}. ${more}`}
-      className="group relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-[var(--radius)] bg-dark p-3.5 text-on-dark sm:aspect-auto sm:h-full sm:min-h-[17rem] sm:p-6"
+      className="group @container relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-[var(--radius)] bg-dark p-3.5 text-on-dark sm:aspect-auto sm:h-full sm:min-h-[17rem] sm:p-6"
     >
       <div aria-hidden="true" className="absolute inset-0 -z-20">
         <Photo image={service.image} locale={locale} width={700} className="zoom-media" />
@@ -100,7 +101,7 @@ function ServiceTile({ service, more, locale }: { service: Service; more: string
         <ArrowIcon size={17} className="-rotate-45 transition-transform duration-500 group-hover:rotate-0" />
       </span>
 
-      <h3 className="text-[1.2rem] leading-none min-[400px]:text-[1.5rem] sm:text-[2.4rem]">{service.title}</h3>
+      <h3 className="text-[1.2rem] leading-none min-[400px]:text-[1.5rem] sm:text-[length:min(2.4rem,16.5cqi)]">{service.title}</h3>
       <p className="mt-2 hidden text-base leading-snug text-on-dark/85 sm:block">{service.eyebrow}</p>
     </L>
   );

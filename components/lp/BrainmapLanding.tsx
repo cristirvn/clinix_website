@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { Container, Eyebrow, Faq, Section, SectionHead, buttonClass, HeroPanel } from "@/components/ui/primitives";
+import { Container, Eyebrow, Faq, Section, SectionHead, buttonClass, HeroPanel, keepHyphenated } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { Photo } from "@/components/ui/Photo";
@@ -128,7 +128,7 @@ export function BrainmapLanding({
           <p className="text-ink-soft">{lp.why.assumption}</p>
           <p className="text-ink-soft">{lp.why.cost}</p>
         </div>
-        <p className="my-12 border-l-4 border-accent pl-6 font-display text-3xl sm:text-4xl">{f.why.kicker}</p>
+        <p className="my-12 border-l-4 border-accent pl-6 font-display text-3xl sm:text-4xl">{keepHyphenated(f.why.kicker)}</p>
         <div className="space-y-6 text-lg sm:text-xl">
           <p className="text-ink-soft">{lp.why.analogy}</p>
           <p className="font-semibold">{f.why.closing}</p>

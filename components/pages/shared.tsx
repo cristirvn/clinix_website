@@ -1,4 +1,4 @@
-import { ButtonLink, Container, HeroPanel } from "@/components/ui/primitives";
+import { ButtonLink, Container, HeroPanel, keepHyphenated } from "@/components/ui/primitives";
 import { Photo } from "@/components/ui/Photo";
 import { EegTrace } from "@/components/home/EegTrace";
 import type { ImageKey } from "@/content/media";
@@ -12,10 +12,10 @@ export function PageHero({ content, image, locale }: { content: PageHeroContent;
       <div className={image ? "grid items-center gap-12 lg:grid-cols-12 lg:gap-16" : ""}>
         <div className={image ? "lg:col-span-7" : "max-w-4xl"}>
           <h1 className="rise-in text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]" style={{ animationDelay: "90ms" }}>
-            {content.title}
+            {keepHyphenated(content.title)}
           </h1>
           <p className="rise-in mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl" style={{ animationDelay: "180ms" }}>
-            {content.lead}
+            {keepHyphenated(content.lead)}
           </p>
           {content.primary && (
             <div className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center sm:gap-4">
@@ -53,8 +53,8 @@ export function CtaBand({ content }: { content: CtaBandContent }) {
     <section data-final-cta data-tone="dark" className="bg-vital py-20 text-on-dark sm:py-28">
       <Container narrow className="text-center">
         <EegTrace className="mx-auto mb-10 w-48 sm:w-56" strokeWidth={1.6} />
-        <h2 className="text-[2.2rem] leading-[1.06] sm:text-[3.4rem]">{content.title}</h2>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{content.text}</p>
+        <h2 className="text-[2.2rem] leading-[1.06] sm:text-[3.4rem]">{keepHyphenated(content.title)}</h2>
+        <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{keepHyphenated(content.text)}</p>
         <div className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row">
           <ButtonLink href={content.primary.href} variant="light" size="lg" className="w-full sm:w-auto">
             {content.primary.label}

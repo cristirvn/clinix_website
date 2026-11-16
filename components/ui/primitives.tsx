@@ -66,6 +66,24 @@ export function HeroPanel({
 }
 
 /**
+ * Never break a hyphenated word ("într-o", "s-a", "ți-a", "non-invazivă")
+ * across two lines: browsers break right after a hyphen, which reads badly in
+ * Romanian. Strings only; anything else is returned as it is.
+ */
+export function keepHyphenated(text: ReactNode): ReactNode {
+  if (typeof text !== "string" || !text.includes("-")) return text;
+  return text.split(/(\S+-\S+)/).map((part, i) =>
+    i % 2 ? (
+      <span key={i} className="whitespace-nowrap">
+        {part}
+      </span>
+    ) : (
+      part
+    ),
+  );
+}
+
+/**
  * Small caps label above a heading, followed by a short hairline. An optional
  * `index` ("01") gives long pages a quiet editorial rhythm.
  */
@@ -75,7 +93,7 @@ export function Eyebrow({ children, className = "", index }: { children: ReactNo
       className={`eyebrow-rule mb-5 inline-flex items-center gap-3 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent ${className}`}
     >
       {index && <span className="font-display text-[0.95rem] font-medium normal-case tracking-normal tabular-nums">{index}</span>}
-      {children}
+      <span>{keepHyphenated(children)}</span>
     </p>
   );
 }
@@ -94,8 +112,8 @@ export function SectionHead({
 }) {
   return (
     <div className={`mb-12 max-w-3xl sm:mb-16 ${center ? "mx-auto text-center" : ""} ${className}`}>
-      <h2 className="text-[2.4rem] leading-[1.05] sm:text-[3.4rem] lg:text-[4rem]">{title}</h2>
-      {lead && <p className={`mt-6 max-w-2xl text-lg opacity-85 sm:text-xl ${center ? "mx-auto" : ""}`}>{lead}</p>}
+      <h2 className="text-[2.4rem] leading-[1.05] sm:text-[3.4rem] lg:text-[4rem]">{keepHyphenated(title)}</h2>
+      {lead && <p className={`mt-6 max-w-2xl text-lg opacity-85 sm:text-xl ${center ? "mx-auto" : ""}`}>{keepHyphenated(lead)}</p>}
     </div>
   );
 }
