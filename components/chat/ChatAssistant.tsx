@@ -10,6 +10,7 @@ import { ConsentCheckbox, Honeypot, SubmitError, TextField } from "@/components/
 import { submitLead } from "@/lib/lead";
 import { isPlausiblePhone } from "@/lib/contact-validation";
 import { CLINIC } from "@/lib/site";
+import { OPEN_CHAT_EVENT } from "@/components/layout/MobileDock";
 
 /** Must match CONTACT_FORM_MARKER in lib/chat/knowledge.ts (server-only, so not imported here). */
 const FORM_MARKER = "[[CONTACT_FORM]]";
@@ -43,6 +44,13 @@ export function ChatAssistant() {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // The phone action bar (MobileDock) opens the assistant with an event.
+  useEffect(() => {
+    const onOpen = () => setOpen(true);
+    window.addEventListener(OPEN_CHAT_EVENT, onOpen);
+    return () => window.removeEventListener(OPEN_CHAT_EVENT, onOpen);
   }, []);
 
   useEffect(() => {
@@ -111,7 +119,8 @@ export function ChatAssistant() {
     <>
       {!open && (
         // Two quiet floating actions, bottom-right: WhatsApp (small, round) above the assistant (labelled pill).
-        <div className={`fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[56] flex flex-col items-end gap-3 transition duration-300 sm:bottom-6 sm:right-6 print:hidden ${scrolled ? "" : "max-sm:pointer-events-none max-sm:translate-y-3 max-sm:opacity-0"}`}>
+        // On phones both live in the bottom action bar (MobileDock) instead.
+        <div className={`fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[56] flex flex-col items-end gap-3 transition duration-300 max-md:hidden sm:bottom-6 sm:right-6 print:hidden ${scrolled ? "" : "max-sm:pointer-events-none max-sm:translate-y-3 max-sm:opacity-0"}`}>
           <a
             href={CLINIC.whatsappHref}
             target="_blank"

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { createPortal } from "react-dom";
+import { Drawer } from "vaul";
 import { usePathname } from "next/navigation";
 import { L } from "@/components/ui/L";
 import { buttonClass } from "@/components/ui/primitives";
@@ -20,28 +20,31 @@ const SERVICE_HREFS = [HOW_HREF, ...NAV_SERVICES.map((s) => `/servicii/${s.slug}
 const NAV_PLAIN = NAV_MAIN.filter((item) => item.href !== HOW_HREF);
 
 /**
- * Site header: logo · "Cum funcționează" panel (one row per service) · two
- * plain links · "Despre noi" panel · language · one action. Below 1280px everything moves into a calm full-screen menu with big
- * tap targets (the desktop row would otherwise crowd).
+ * Site header. At the top of the page it is a plain white bar; once the page
+ * scrolls it lifts into a floating glass "island" (rounded, blurred, a soft
+ * shadow), like a native app bar. Desktop: logo · "Cum funcționează" panel ·
+ * plain links · "Despre noi" panel · language · one action. Below 1280px the
+ * menu opens as a bottom sheet (Vaul): drag it down or tap outside to close.
  */
 export function Header() {
   const { dict } = useLocale();
   const pathname = internalizePath(usePathname() ?? "/");
   const [open, setOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const menuButton = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const closeMobile = () => {
+  // Close the sheet when the route changes (state adjusted during render, React-recommended).
+  const [lastPath, setLastPath] = useState(pathname);
+  if (lastPath !== pathname) {
+    setLastPath(pathname);
     setOpen(false);
-    menuButton.current?.focus();
-  };
+  }
 
   const linkClass = (href: string) =>
     `relative whitespace-nowrap py-2 text-[0.95rem] font-medium transition hover:text-primary after:absolute after:inset-x-0 after:-bottom-0.5 after:h-px after:origin-left after:bg-accent after:transition-transform after:duration-300 ${
@@ -50,13 +53,17 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 h-[var(--header-h)] border-b text-ink backdrop-blur-xl transition-[background-color,border-color] duration-300 ${
-        scrolled ? "border-line bg-bg" : "border-transparent bg-bg/90"
-      }`}
+      className={`sticky top-0 z-50 h-[var(--header-h)] text-ink transition-[background-color] duration-500 ${scrolled ? "bg-transparent" : "bg-bg"}`}
     >
-      <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 xl:gap-3">
+      <div
+        className={`flex items-center justify-between gap-4 border transition-[margin,height,padding,background-color,border-color,box-shadow,border-radius,max-width] duration-500 ease-[var(--ease-out)] xl:gap-3 ${
+          scrolled
+            ? "mx-2 mt-2 h-[calc(var(--header-h)-1rem)] max-w-[calc(80rem-1rem)] rounded-full border-line bg-bg/80 pl-4 pr-1.5 shadow-[var(--shadow-float)] backdrop-blur-xl backdrop-saturate-150 sm:mx-3 sm:pl-6 sm:pr-2 xl:mx-auto"
+            : "mx-auto h-full max-w-7xl rounded-none border-transparent px-5 sm:px-8"
+        }`}
+      >
         <L href="/" aria-label="Emmanuel CliniX" className="flex-none">
-          <Logo eager />
+          <Logo eager className={`w-auto transition-[height] duration-500 ${scrolled ? "h-8 sm:h-10" : "h-10 sm:h-12"}`} />
         </L>
 
         <nav className="hidden items-center gap-6 whitespace-nowrap xl:flex 2xl:gap-8" aria-label={dict.nav.menu}>
@@ -82,23 +89,9 @@ export function Header() {
           <L href="/brainmap" className={buttonClass("cta", "md", "max-md:!hidden !min-h-11 !px-5 !py-2 text-[0.95rem]")}>
             {dict.nav.cta}
           </L>
-          <button
-            ref={menuButton}
-            type="button"
-            onClick={() => setOpen(true)}
-            className="lg lg-tint flex h-11 items-center gap-2.5 rounded-full px-4 font-semibold sm:px-5"
-            aria-expanded={open}
-            aria-haspopup="dialog"
-          >
-            <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
-              <path d="M0 1h18M0 6h18M0 11h18" stroke="currentColor" strokeWidth="1.8" />
-            </svg>
-            <span className="text-[0.95rem]">{dict.nav.menu}</span>
-          </button>
+          <MobileMenu pathname={pathname} open={open} onOpenChange={setOpen} />
         </div>
       </div>
-
-      {open && createPortal(<MobileMenu pathname={pathname} onClose={closeMobile} />, document.body)}
     </header>
   );
 }
@@ -304,161 +297,141 @@ function AboutMenu({ pathname }: { pathname: string }) {
   );
 }
 
-/** Full-screen menu for phones, tablets and small laptops. Big rows, plain words, the three ways to reach us at the bottom. */
-function MobileMenu({ pathname, onClose }: { pathname: string; onClose: () => void }) {
+/**
+ * Menu for phones, tablets and small laptops: a bottom sheet (Vaul) that
+ * rises from the thumb's side of the screen. The services are big two-column
+ * tiles, the other pages big rows, the three ways to reach us at the foot.
+ * Drag down, tap outside or Esc to close; focus is trapped while open.
+ */
+function MobileMenu({ pathname, open, onOpenChange }: { pathname: string; open: boolean; onOpenChange: (open: boolean) => void }) {
   const { dict, locale } = useLocale();
   const [aboutOpen, setAboutOpen] = useState(() => NAV_ABOUT.some((i) => isActivePath(pathname, i.href)));
-  const [howOpen, setHowOpen] = useState(() => SERVICE_HREFS.some((h) => isActivePath(pathname, h)));
-  const howId = useId();
-  const closeRef = useRef<HTMLButtonElement>(null);
-  const dialogRef = useRef<HTMLDivElement>(null);
   const aboutId = useId();
+  const close = () => onOpenChange(false);
 
-  // Latest onClose without re-running the open effect (which moves focus) on every parent render.
-  const onCloseRef = useRef(onClose);
-  useEffect(() => {
-    onCloseRef.current = onClose;
-  });
-
-  useEffect(() => {
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    closeRef.current?.focus();
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onCloseRef.current();
-      if (e.key !== "Tab" || !dialogRef.current) return;
-      // Keep Tab inside the open menu.
-      const items = Array.from(dialogRef.current.querySelectorAll<HTMLElement>("a[href], button:not([disabled])")).filter((el) => el.offsetParent !== null);
-      const first = items[0];
-      const last = items[items.length - 1];
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault();
-        last?.focus();
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault();
-        first?.focus();
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    return () => {
-      document.body.style.overflow = prev;
-      window.removeEventListener("keydown", onKey);
-    };
-  }, []);
-
-  const row = "flex min-h-16 w-full items-center justify-between gap-4 border-b border-line py-4 text-left font-display text-[1.75rem] leading-tight sm:text-[2rem]";
+  const row = "press flex min-h-[3.75rem] w-full items-center justify-between gap-4 border-b border-line py-3 text-left text-[1.35rem] font-semibold leading-tight tracking-[-0.015em]";
 
   return (
-    <div ref={dialogRef} className="animate-menu-in fixed inset-0 z-[70] flex flex-col overflow-y-auto bg-bg text-ink xl:hidden" role="dialog" aria-modal="true" aria-label={dict.nav.menu}>
-      <div className="flex h-[var(--header-h)] flex-none items-center justify-between px-5 sm:px-8">
-        <Logo />
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          className="flex h-11 items-center gap-2 rounded-full border border-ink/20 pl-4 pr-4 font-semibold transition hover:border-ink/50"
+    <Drawer.Root open={open} onOpenChange={onOpenChange} repositionInputs={false}>
+      <Drawer.Trigger
+        className="lg lg-tint flex h-11 items-center gap-2.5 rounded-full px-4 font-semibold sm:px-5"
+        aria-haspopup="dialog"
+      >
+        <svg width="18" height="12" viewBox="0 0 18 12" aria-hidden="true">
+          <path d="M0 1h18M0 6h18M0 11h18" stroke="currentColor" strokeWidth="1.8" />
+        </svg>
+        <span className="text-[0.95rem]">{dict.nav.menu}</span>
+      </Drawer.Trigger>
+      <Drawer.Portal>
+        <Drawer.Overlay className="fixed inset-0 z-[70] bg-dark/55 backdrop-blur-[2px] xl:hidden" />
+        <Drawer.Content
+          aria-describedby={undefined}
+          className="fixed inset-x-0 bottom-0 z-[71] flex max-h-[94svh] flex-col rounded-t-[var(--radius-panel)] bg-bg text-ink shadow-[var(--shadow-float)] outline-none xl:hidden"
         >
-          <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-            <path d="M1.5 1.5l11 11M12.5 1.5l-11 11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
-          </svg>
-          {dict.nav.close}
-        </button>
-      </div>
+          <Drawer.Handle className="!mt-3 !h-1.5 !w-12 !bg-line" />
+          <div className="flex flex-none items-center justify-between px-5 pb-2 pt-3 sm:px-8">
+            <Drawer.Title className="sr-only">{dict.nav.menu}</Drawer.Title>
+            <L href="/" onClick={close} aria-label="Emmanuel CliniX">
+              <Logo className="h-9" />
+            </L>
+            <Drawer.Close className="press flex h-11 items-center gap-2 rounded-full border border-ink/15 px-4 font-semibold transition hover:border-ink/40">
+              <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M1.5 1.5l11 11M12.5 1.5l-11 11" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+              </svg>
+              {dict.nav.close}
+            </Drawer.Close>
+          </div>
 
-      <nav className="mx-auto w-full max-w-2xl flex-1 px-5 pt-4 sm:px-8" aria-label={dict.nav.menu}>
-        <ul>
-          <li>
-            <button type="button" className={row} aria-expanded={howOpen} aria-controls={howId} onClick={() => setHowOpen((v) => !v)}>
-              {dict.nav.howItWorks}
-              <span className={`flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line transition-transform duration-300 ${howOpen ? "rotate-180" : ""}`}>
-                <ChevronIcon size={16} />
-              </span>
-            </button>
-            <div id={howId} hidden={!howOpen} className="border-b border-line pb-3 pt-1">
-              <p className="pb-1 pt-2 text-[0.95rem] text-ink-soft">{dict.nav.pickService}</p>
-              <ul>
-                {NAV_SERVICES.map((s) => {
-                  const href = `/servicii/${s.slug}`;
-                  return (
-                    <li key={s.slug}>
-                      <L
-                        href={href}
-                        onClick={onClose}
-                        aria-current={isActivePath(pathname, href) ? "page" : undefined}
-                        className="flex min-h-16 items-center justify-between gap-4 py-2.5 pl-1"
-                      >
-                        <span className="flex flex-col">
-                          <span className="text-[1.2rem] font-semibold leading-tight">{s[locale]}</span>
-                          <span className="text-[0.95rem] leading-snug text-ink-soft">{s.sub[locale]}</span>
-                        </span>
-                        <ArrowIcon size={18} className="flex-none text-accent" />
-                      </L>
-                    </li>
-                  );
-                })}
-              </ul>
-              <L
-                href={HOW_HREF}
-                onClick={onClose}
-                className="mt-2 flex min-h-12 items-center justify-between gap-3 rounded-[10px] bg-bg-alt px-4 py-3 font-semibold text-primary"
-              >
-                {dict.nav.howItWorksOverview}
-                <ArrowIcon size={16} className="flex-none" />
-              </L>
-            </div>
-          </li>
-          {NAV_PLAIN.map((item) => (
-            <li key={item.key}>
-              <L href={item.href} onClick={onClose} className={row} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
-                <span className="flex items-center gap-3">
-                  {item.key === "neurofit" && <NeuroFitMark size={18} />}
-                  {dict.nav[item.key]}
-                </span>
-                <ArrowIcon size={22} className="flex-none text-accent" />
-              </L>
-            </li>
-          ))}
-          <li>
-            <button type="button" className={row} aria-expanded={aboutOpen} aria-controls={aboutId} onClick={() => setAboutOpen((v) => !v)}>
-              {dict.nav.about}
-              <span className={`flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line transition-transform duration-300 ${aboutOpen ? "rotate-180" : ""}`}>
-                <ChevronIcon size={16} />
-              </span>
-            </button>
-            <ul id={aboutId} hidden={!aboutOpen} className="border-b border-line py-2">
-              {NAV_ABOUT.map((item) => (
+          <nav className="min-h-0 flex-1 overflow-y-auto overscroll-contain px-5 pb-4 sm:px-8" aria-label={dict.nav.menu}>
+            <p className="pb-3 pt-3 text-[0.95rem] text-ink-soft">{dict.nav.pickService}</p>
+            <ul className="grid grid-cols-2 gap-2">
+              {NAV_SERVICES.map((s) => {
+                const href = `/servicii/${s.slug}`;
+                const current = isActivePath(pathname, href);
+                return (
+                  <li key={s.slug}>
+                    <L
+                      href={href}
+                      onClick={close}
+                      aria-current={current ? "page" : undefined}
+                      className={`press flex h-full min-h-[5.25rem] flex-col justify-between gap-2 rounded-[var(--radius)] border p-3.5 ${current ? "border-primary bg-primary/[0.06]" : "border-line bg-bg-alt/60"}`}
+                    >
+                      <span className="flex items-center justify-between gap-2 text-[1.08rem] font-semibold leading-tight">
+                        {s[locale]}
+                        <ArrowIcon size={15} className="flex-none text-accent" />
+                      </span>
+                      <span className="text-[0.88rem] leading-snug text-ink-soft">{s.sub[locale]}</span>
+                    </L>
+                  </li>
+                );
+              })}
+            </ul>
+            <L
+              href={HOW_HREF}
+              onClick={close}
+              aria-current={isActivePath(pathname, HOW_HREF) ? "page" : undefined}
+              className="press mt-2 flex min-h-12 items-center justify-between gap-3 rounded-[var(--radius)] bg-bg-alt px-4 py-3 font-semibold text-primary"
+            >
+              {dict.nav.howItWorksOverview}
+              <ArrowIcon size={16} className="flex-none" />
+            </L>
+
+            <ul className="mt-4">
+              {NAV_PLAIN.map((item) => (
                 <li key={item.key}>
-                  <L
-                    href={item.href}
-                    onClick={onClose}
-                    aria-current={isActivePath(pathname, item.href) ? "page" : undefined}
-                    className="flex min-h-14 items-center gap-3 py-2 pl-1 text-[1.15rem] font-medium text-ink-soft transition hover:text-ink aria-[current=page]:text-ink"
-                  >
-                    <span aria-hidden="true" className="h-px w-5 bg-accent" />
-                    {dict.nav[item.key]}
+                  <L href={item.href} onClick={close} className={row} aria-current={isActivePath(pathname, item.href) ? "page" : undefined}>
+                    <span className="flex items-center gap-3">
+                      {item.key === "neurofit" && <NeuroFitMark size={16} />}
+                      {dict.nav[item.key]}
+                    </span>
+                    <ArrowIcon size={20} className="flex-none text-accent" />
                   </L>
                 </li>
               ))}
+              <li>
+                <button type="button" className={row} aria-expanded={aboutOpen} aria-controls={aboutId} onClick={() => setAboutOpen((v) => !v)}>
+                  {dict.nav.about}
+                  <span className={`flex h-9 w-9 flex-none items-center justify-center rounded-full border border-line transition-transform duration-300 ${aboutOpen ? "rotate-180" : ""}`}>
+                    <ChevronIcon size={16} />
+                  </span>
+                </button>
+                <ul id={aboutId} hidden={!aboutOpen} className="grid grid-cols-2 gap-x-4 border-b border-line py-2">
+                  {NAV_ABOUT.map((item) => (
+                    <li key={item.key}>
+                      <L
+                        href={item.href}
+                        onClick={close}
+                        aria-current={isActivePath(pathname, item.href) ? "page" : undefined}
+                        className="flex min-h-12 items-center gap-2.5 py-2 text-[1.05rem] font-medium text-ink-soft transition hover:text-ink aria-[current=page]:text-ink"
+                      >
+                        <span aria-hidden="true" className="h-1.5 w-1.5 flex-none rounded-full bg-accent" />
+                        {dict.nav[item.key]}
+                      </L>
+                    </li>
+                  ))}
+                </ul>
+              </li>
             </ul>
-          </li>
-        </ul>
-      </nav>
+          </nav>
 
-      <div className="mx-auto w-full max-w-2xl flex-none space-y-3 px-5 pb-[calc(1.25rem+env(safe-area-inset-bottom))] pt-8 sm:px-8">
-        <L href="/brainmap" onClick={onClose} className={buttonClass("cta", "lg", "w-full")}>
-          {dict.nav.cta}
-        </L>
-        <div className="grid grid-cols-2 gap-3">
-          <a href={CLINIC.phoneHref} className={buttonClass("outline", "lg", "w-full !px-4 text-primary")}>
-            <PhoneIcon size={19} />
-            {dict.common.callUs}
-          </a>
-          <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" className={buttonClass("outline", "lg", "w-full !px-4 text-primary")}>
-            <WhatsAppIcon size={20} />
-            WhatsApp
-          </a>
-        </div>
-      </div>
-    </div>
+          <div className="flex-none space-y-2.5 border-t border-line bg-bg px-5 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 sm:px-8">
+            <L href="/brainmap" onClick={close} className={buttonClass("cta", "lg", "btn-shine w-full")}>
+              {dict.nav.cta}
+              <ArrowIcon />
+            </L>
+            <div className="grid grid-cols-2 gap-2.5">
+              <a href={CLINIC.phoneHref} className={buttonClass("outline", "md", "w-full !px-3 text-primary")}>
+                <PhoneIcon size={19} />
+                {dict.common.callUs}
+              </a>
+              <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" className={buttonClass("outline", "md", "w-full !px-3 text-primary")}>
+                <WhatsAppIcon size={20} />
+                WhatsApp
+              </a>
+            </div>
+          </div>
+        </Drawer.Content>
+      </Drawer.Portal>
+    </Drawer.Root>
   );
 }

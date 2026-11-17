@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, type FormEvent } from "react";
+import { toast } from "sonner";
 import { ConsentCheckbox, Honeypot, SubmitError, TextArea, TextField } from "@/components/forms/fields";
 import { buttonClass } from "@/components/ui/primitives";
 import { useLocale } from "@/components/layout/LocaleProvider";
 import { submitLead } from "@/lib/lead";
 import { isPlausiblePhone, isValidEmailShape } from "@/lib/contact-validation";
 import type { ContactContent } from "@/content/pages/contact";
+import { CLINIC } from "@/lib/site";
 
 type Errors = Partial<Record<"name" | "phone" | "email" | "consent", string>>;
 
@@ -51,6 +53,9 @@ export function ContactForm({ copy }: { copy: ContactContent["form"] }) {
       website,
     });
     setStatus(ok ? "done" : "error");
+    // A toast confirms it at the top of the screen too (Sonner), where nothing covers it.
+    if (ok) toast.success(copy.successTitle, { description: copy.successText });
+    else toast.error(dict.form.error, { description: CLINIC.phone });
   }
 
   if (status === "done") {

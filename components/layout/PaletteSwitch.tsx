@@ -58,7 +58,7 @@ export function PaletteSwitch() {
     <div
       role="radiogroup"
       aria-label="Paletă de culori (previzualizare)"
-      className="fixed left-3 z-[60] flex gap-0.5 rounded-full border border-line bg-surface p-0.5 text-ink shadow-[var(--shadow-card)] sm:left-5"
+      className="palette-switch fixed left-3 z-[60] flex gap-0.5 rounded-full border border-line bg-surface p-0.5 text-ink shadow-[var(--shadow-card)] sm:left-5"
       style={{ bottom: "calc(env(safe-area-inset-bottom, 0px) + 1rem)" }}
     >
       {OPTIONS.map((o) => {

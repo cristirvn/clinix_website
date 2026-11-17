@@ -2,7 +2,7 @@ import { L } from "@/components/ui/L";
 import { ButtonLink } from "@/components/ui/primitives";
 import { ArrowIcon } from "@/components/ui/icons";
 import { Logo } from "@/components/layout/Logo";
-import { EegTrace } from "@/components/home/EegTrace";
+import { EegLive } from "@/components/home/EegTrace";
 import { NAV_ABOUT, NAV_MAIN, NAV_SERVICES } from "@/components/layout/nav";
 import { getDictionary } from "@/lib/dictionary";
 import type { Locale } from "@/lib/i18n";
@@ -18,15 +18,15 @@ export function Footer({ locale }: { locale: Locale }) {
   const year = new Date().getFullYear();
 
   return (
-    <footer data-tone="dark" className="bg-vital text-on-dark">
+    <footer data-tone="dark" className="bg-vital grain relative isolate overflow-hidden text-on-dark">
       <div className="mx-auto max-w-7xl px-5 pt-16 sm:px-8 sm:pt-24">
         <div className="footer-cta grid gap-10 border-b border-line pb-14 lg:grid-cols-12 lg:items-end lg:pb-20">
           <div className="lg:col-span-8">
-            <EegTrace className="mb-8 w-48 sm:w-60" strokeWidth={1.8} />
+            <EegLive className="mb-8 h-12 w-56 sm:h-14 sm:w-72" strokeWidth={1.8} speed={10} />
             <p className="font-display text-[2.4rem] leading-[1.04] tracking-[-0.02em] sm:text-6xl lg:text-[4.4rem]">{dict.footer.statement}</p>
           </div>
           <div className="flex flex-col gap-4 lg:col-span-4 lg:items-end">
-            <ButtonLink href="/brainmap" size="lg" className="group w-full sm:w-auto">
+            <ButtonLink href="/brainmap" size="lg" className="btn-shine group w-full sm:w-auto">
               {dict.nav.cta}
               <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
             </ButtonLink>
@@ -36,14 +36,14 @@ export function Footer({ locale }: { locale: Locale }) {
           </div>
         </div>
 
-        <div className="grid gap-10 py-14 sm:grid-cols-2 lg:grid-cols-12 lg:gap-8">
-          <div className="space-y-5 lg:col-span-4">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 py-14 lg:grid-cols-12 lg:gap-8">
+          <div className="col-span-2 space-y-5 lg:col-span-4">
             <Logo onDark className="logo-classic h-14" />
             <Logo className="logo-aqua h-14" />
             <p className="max-w-xs text-on-dark-soft">{dict.footer.description}</p>
           </div>
 
-          <nav aria-label={dict.footer.clinic} className="lg:col-span-3">
+          <nav aria-label={dict.footer.clinic} className="min-w-0 lg:col-span-3">
             <h2 className={`${HEAD} font-body`}>{dict.footer.clinic}</h2>
             <ul>
               {[...NAV_MAIN.filter((item) => item.key !== "neurofit"), ...NAV_ABOUT].map((item) => (
@@ -56,7 +56,7 @@ export function Footer({ locale }: { locale: Locale }) {
             </ul>
           </nav>
 
-          <nav aria-label={dict.footer.services} className="lg:col-span-2">
+          <nav aria-label={dict.footer.services} className="min-w-0 lg:col-span-2">
             <h2 className={`${HEAD} font-body`}>{dict.footer.services}</h2>
             <ul>
               {NAV_SERVICES.map((s) => (
@@ -74,7 +74,7 @@ export function Footer({ locale }: { locale: Locale }) {
             </ul>
           </nav>
 
-          <div className="lg:col-span-3">
+          <div className="col-span-2 lg:col-span-3">
             <h2 className={`${HEAD} font-body`}>{dict.footer.contact}</h2>
             <ul className="[overflow-wrap:anywhere]">
               <li>
