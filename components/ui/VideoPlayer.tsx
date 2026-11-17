@@ -31,7 +31,7 @@ export function VideoPlayer({
 
   return (
     <div
-      className={`relative aspect-video w-full overflow-hidden rounded-[var(--radius)] bg-ink text-on-dark ring-1 ring-on-dark/10 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] ${className}`}
+      className={`relative aspect-video w-full overflow-hidden rounded-[var(--radius)] bg-ink text-on-dark ring-1 ring-on-dark/10 shadow-none ${className}`}
     >
       {playing && embed ? (
         embed.kind === "iframe" ? (
@@ -75,7 +75,7 @@ export function VideoPlayer({
               <path d="M2 1 L21 13 L2 25 Z" fill="currentColor" />
             </svg>
           </span>
-          <span className="relative px-6 text-center text-sm font-semibold uppercase tracking-[0.16em] opacity-80">
+          <span className="relative px-6 text-center text-sm font-semibold opacity-80">
             {embed ? title : dict.common.videoSoon}
             {media.duration ? ` · ${media.duration}` : ""}
           </span>

@@ -21,7 +21,7 @@ function ConditionCard({
       <p className="mt-4 text-lg text-ink-soft">{description}</p>
       {item.services.length > 0 && (
         <div className="mt-6">
-          <p className="text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{ui.servicesLabel}</p>
+          <p className="text-[0.875rem] font-semibold text-accent">{ui.servicesLabel}</p>
           <ul className="mt-3 flex flex-wrap gap-2">
             {item.services.map((s) => (
               <li key={s}>

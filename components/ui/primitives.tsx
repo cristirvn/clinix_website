@@ -1,6 +1,5 @@
 import type { ReactNode } from "react";
 import { L } from "@/components/ui/L";
-import { GlassRefraction } from "@/components/ui/GlassRefraction";
 
 /**
  * Layout + typography building blocks. Every page is built from these so the
@@ -84,36 +83,59 @@ export function keepHyphenated(text: ReactNode): ReactNode {
 }
 
 /**
- * Small caps label above a heading, followed by a short hairline. An optional
- * `index` ("01") gives long pages a quiet editorial rhythm.
+ * Label above a heading: sentence case, the accent colour, a small dot in
+ * front. An optional `index` ("01") gives long pages a quiet editorial rhythm.
  */
 export function Eyebrow({ children, className = "", index }: { children: ReactNode; className?: string; index?: string }) {
   return (
-    <p
-      className={`eyebrow-rule mb-5 inline-flex items-center gap-3 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent ${className}`}
-    >
-      {index && <span className="font-display text-[0.95rem] font-medium normal-case tracking-normal tabular-nums">{index}</span>}
+    <p className={`eyebrow-rule mb-5 inline-flex items-center gap-2.5 text-[0.95rem] font-semibold leading-snug text-accent ${className}`}>
+      {index ? (
+        <span className="tabular-nums opacity-70">{index}</span>
+      ) : (
+        <span aria-hidden="true" className="h-1.5 w-1.5 flex-none rounded-full bg-current" />
+      )}
       <span>{keepHyphenated(children)}</span>
     </p>
   );
 }
 
-/** Section heading block: eyebrow + H2 + optional lead paragraph. */
+/**
+ * Section heading block: H2 + optional lead. Always left-aligned (`center`
+ * only for closing bands / landing pages). With a lead, large screens set it
+ * "split": title on the left (7 cols), lead on the right (5 cols), bottoms
+ * aligned. `stacked` keeps the lead under the title.
+ */
 export function SectionHead({
   title,
   lead,
   center = false,
+  stacked = false,
   className = "",
 }: {
   title: ReactNode;
   lead?: ReactNode;
   center?: boolean;
+  stacked?: boolean;
   className?: string;
 }) {
+  if (lead && !center && !stacked) {
+    return (
+      <div className={`mb-12 grid gap-6 sm:mb-16 lg:grid-cols-12 lg:items-end lg:gap-12 ${className}`}>
+        <h2 className="t-h2 max-w-3xl lg:col-span-7">{keepHyphenated(title)}</h2>
+        <p className="t-lead max-w-[62ch] text-ink-soft lg:col-span-5 lg:pb-1 [[data-tone=dark]_&]:text-on-dark-soft">
+          {keepHyphenated(lead)}
+        </p>
+      </div>
+    );
+  }
   return (
     <div className={`mb-12 max-w-3xl sm:mb-16 ${center ? "mx-auto text-center" : ""} ${className}`}>
-      <h2 className="text-[2.4rem] leading-[1.05] sm:text-[3.4rem] lg:text-[4rem]">{keepHyphenated(title)}</h2>
-      {lead && <p className={`mt-6 max-w-2xl text-lg opacity-85 sm:text-xl ${center ? "mx-auto" : ""}`}>{keepHyphenated(lead)}</p>}
+      <h2 className="t-h2">{keepHyphenated(title)}</h2>
+      {lead && (
+        <p className={`t-lead mt-6 max-w-[62ch] text-ink-soft [[data-tone=dark]_&]:text-on-dark-soft ${center ? "mx-auto" : ""}`}>
+          {keepHyphenated(lead)}
+        </p>
+      )}
     </div>
   );
 }
@@ -121,12 +143,11 @@ export function SectionHead({
 type ButtonVariant = "cta" | "outline" | "light" | "ghost" | "glass";
 
 /*
- * Buttons are liquid glass (see `.lg` in app/globals.css):
- *  cta / light — glass tinted with the brand blue, the one obvious action;
- *  outline     — clear glass on light pages, smoky glass inside dark bands;
- *  glass       — always smoky glass (for photos);
- *  ghost       — an underlined text link with a big tap area.
- * Add <GlassRefraction /> as the first child for real refraction (hero only).
+ * Buttons are flat (see `.lg` in app/globals.css):
+ *  cta / light — solid --cta, the one obvious action;
+ *  outline     — 1px outline on light pages, light outline inside dark bands;
+ *  glass       — dark frosted fill, for buttons over photos only;
+ *  ghost       — a text link with a drawn underline and a big tap area.
  */
 const BTN_BASE =
   "inline-flex items-center justify-center gap-2.5 text-center font-semibold leading-tight disabled:cursor-not-allowed disabled:opacity-60";
@@ -135,7 +156,7 @@ const BTN_VARIANTS: Record<ButtonVariant, string> = {
   light: "lg lg-tint",
   outline: "lg lg-clear",
   glass: "lg lg-smoke",
-  ghost: "min-h-11 py-2 underline decoration-1 underline-offset-[6px] transition hover:opacity-70",
+  ghost: "link-draw min-h-11 py-2",
 };
 const BTN_SIZES = {
   md: "min-h-12 px-7 py-3 text-base",
@@ -153,19 +174,15 @@ export function ButtonLink({
   variant = "cta",
   size = "md",
   className = "",
-  refract = false,
 }: {
   href: string;
   children: ReactNode;
   variant?: ButtonVariant;
   size?: "md" | "lg";
   className?: string;
-  /** Real SVG refraction of what is behind (Chromium; others keep the frosted glass). Use on 1–2 key CTAs over photos only. */
-  refract?: boolean;
 }) {
   return (
     <L href={href} className={buttonClass(variant, size, className)}>
-      {refract && <GlassRefraction />}
       {children}
     </L>
   );
@@ -188,13 +205,8 @@ export function TickIcon({ negative = false, className = "" }: { negative?: bool
 export function CheckItem({ children, negative = false }: { children: ReactNode; negative?: boolean }) {
   return (
     <li className="flex gap-3.5">
-      <span
-        aria-hidden="true"
-        className={`mt-[0.3rem] flex h-6 w-6 flex-none items-center justify-center rounded-full ${
-          negative ? "bg-danger/12 text-danger" : "bg-accent text-on-accent"
-        }`}
-      >
-        <TickIcon negative={negative} />
+      <span aria-hidden="true" className={`mt-[0.45rem] flex h-4 w-4 flex-none items-center justify-center ${negative ? "text-danger" : "text-accent"}`}>
+        <TickIcon negative={negative} className="h-4 w-4" />
       </span>
       <span>{children}</span>
     </li>
@@ -214,18 +226,15 @@ export function Faq({
   return (
     <div className={`divide-y divide-line border-b border-line ${className}`}>
       {items.map((item, i) => (
-        <details key={item.q} className="group py-2" open={openFirst && i === 0}>
-          <summary className="flex items-center justify-between gap-6 py-5 text-lg font-semibold sm:text-xl">
+        <details key={item.q} className="faq-item group" open={openFirst && i === 0}>
+          <summary className="flex items-start justify-between gap-6 py-6 text-lg font-semibold transition-colors hover:text-accent sm:text-xl">
             <span>{item.q}</span>
-            <span
-              aria-hidden="true"
-              className="relative flex h-9 w-9 flex-none items-center justify-center rounded-full border border-current/40 transition group-open:bg-primary group-open:text-on-primary group-open:border-primary"
-            >
-              <span className="absolute h-[1.5px] w-3.5 bg-current" />
-              <span className="absolute h-3.5 w-[1.5px] bg-current transition group-open:scale-y-0" />
+            <span aria-hidden="true" className="relative mt-[0.4em] flex h-4 w-4 flex-none items-center justify-center text-accent">
+              <span className="absolute h-[1.5px] w-4 bg-current" />
+              <span className="absolute h-4 w-[1.5px] bg-current transition-transform duration-300 group-open:scale-y-0" />
             </span>
           </summary>
-          <div className="max-w-3xl pb-6 pr-12 text-ink-soft">{item.a}</div>
+          <div className="max-w-3xl pb-7 pr-10 text-ink-soft">{item.a}</div>
         </details>
       ))}
     </div>
@@ -236,7 +245,7 @@ export function Faq({
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`rounded-[var(--radius)] border border-line bg-surface p-7 text-ink shadow-[var(--shadow-card)] sm:p-9 ${className}`}
+      className={`rounded-[var(--radius)] border border-line bg-surface p-7 text-ink sm:p-9 ${className}`}
     >
       {children}
     </div>

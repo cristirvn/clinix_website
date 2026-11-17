@@ -24,14 +24,14 @@ export function FinalCta({ final, locale }: { final: HomeContent["final"]; local
   return (
     <section data-final-cta className="bg-bg py-20 sm:py-28">
       <Container>
-        <div data-tone="dark" className="bg-vital relative isolate grid overflow-hidden rounded-[28px] text-on-dark sm:rounded-[36px] lg:grid-cols-2">
+        <div data-tone="dark" className="bg-vital relative isolate grid overflow-hidden rounded-[var(--radius-media)] text-on-dark lg:grid-cols-2">
           <div className="relative z-10 flex flex-col px-5 pb-10 pt-12 sm:px-12 sm:pb-16 sm:pt-20 lg:px-16 lg:py-24">
             <EegTrace draw className="mb-10 w-40 opacity-90 sm:w-48" strokeWidth={2} />
-            <h2 className="max-w-xl text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[3.8rem]">{final.title}</h2>
+            <h2 className="t-h2 max-w-xl">{final.title}</h2>
             <div className="mt-10">
-              <ButtonLink href="/brainmap" size="lg" className="group w-full !px-4 max-[420px]:!text-base sm:w-auto sm:!px-9">
+              <ButtonLink href="/brainmap" size="lg" className="w-full !px-4 max-[420px]:!text-base sm:w-auto sm:!px-9">
                 {final.cta}
-                <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowIcon />
               </ButtonLink>
             </div>
             <p className="mt-5 text-base text-on-dark-soft">{final.note}</p>
@@ -43,15 +43,15 @@ export function FinalCta({ final, locale }: { final: HomeContent["final"]; local
               <Photo image="consult" locale={locale} width={1200} />
             </div>
 
-            <div className="liquid-glass rounded-[22px] p-4 sm:p-6 lg:ml-auto lg:max-w-md">
-              <p className="px-2 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{final.reach}</p>
+            <div className="liquid-glass rounded-[var(--radius)] p-4 sm:p-6 lg:ml-auto lg:max-w-md">
+              <p className="label px-2 text-accent">{final.reach}</p>
               <ul className="mt-2">
                 {reach.map((r) => (
                   <li key={r.href}>
                     <a
                       href={r.href}
                       {...(r.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                      className={`flex min-h-12 items-center gap-3 rounded-[14px] px-2 py-2 transition hover:bg-on-dark/10 ${r.strong ? "text-lg font-semibold" : "text-on-dark/90"}`}
+                      className={`flex min-h-12 items-center gap-3 rounded-[10px] px-2 py-2 transition-colors hover:bg-on-dark/10 ${r.strong ? "text-lg font-semibold" : "text-on-dark/90"}`}
                     >
                       {r.icon}
                       <span>

@@ -25,7 +25,7 @@ export default async function ChestionarePage({ params }: { params: Params }) {
     <>
       <HeroPanel>
           <div className="max-w-3xl">
-            <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">{hub.hero.title}</h1>
+            <h1 className="t-h1">{hub.hero.title}</h1>
             <p className="mt-6 text-lg text-on-dark-soft sm:text-xl">{hub.hero.subtitle}</p>
           </div>
           <ul className="mt-14 grid gap-8 border-t border-line pt-10 sm:grid-cols-3">

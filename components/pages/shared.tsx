@@ -11,10 +11,10 @@ export function PageHero({ content, image, locale }: { content: PageHeroContent;
     <HeroPanel>
       <div className={image ? "grid items-center gap-12 lg:grid-cols-12 lg:gap-16" : ""}>
         <div className={image ? "lg:col-span-7" : "max-w-4xl"}>
-          <h1 className="rise-in text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]" style={{ animationDelay: "90ms" }}>
+          <h1 className="t-h1 rise-in" style={{ animationDelay: "90ms" }}>
             {keepHyphenated(content.title)}
           </h1>
-          <p className="rise-in mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl" style={{ animationDelay: "180ms" }}>
+          <p className="t-lead rise-in mt-6 max-w-[62ch] text-on-dark-soft" style={{ animationDelay: "180ms" }}>
             {keepHyphenated(content.lead)}
           </p>
           {content.primary && (
@@ -31,8 +31,8 @@ export function PageHero({ content, image, locale }: { content: PageHeroContent;
           )}
         </div>
         {image && locale && (
-          <div className="liquid-glass rise-in rounded-[calc(var(--radius)+10px)] p-2 lg:col-span-5" style={{ animationDelay: "240ms" }}>
-            <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius)] lg:aspect-[4/5]">
+          <div className="rise-in lg:col-span-5" style={{ animationDelay: "240ms" }}>
+            <div className="aspect-[4/3] overflow-hidden rounded-[var(--radius-media)] lg:aspect-[4/5]">
               <Photo image={image} locale={locale} width={900} priority />
             </div>
           </div>
@@ -53,8 +53,8 @@ export function CtaBand({ content }: { content: CtaBandContent }) {
     <section data-final-cta data-tone="dark" className="bg-vital py-20 text-on-dark sm:py-28">
       <Container narrow className="text-center">
         <EegTrace className="mx-auto mb-10 w-48 sm:w-56" strokeWidth={1.6} />
-        <h2 className="text-[2.2rem] leading-[1.06] sm:text-[3.4rem]">{keepHyphenated(content.title)}</h2>
-        <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{keepHyphenated(content.text)}</p>
+        <h2 className="t-h2">{keepHyphenated(content.title)}</h2>
+        <p className="t-lead mx-auto mt-6 max-w-2xl text-on-dark-soft">{keepHyphenated(content.text)}</p>
         <div className="mt-10 flex flex-col items-center justify-center gap-5 sm:flex-row">
           <ButtonLink href={content.primary.href} variant="light" size="lg" className="w-full sm:w-auto">
             {content.primary.label}
@@ -97,7 +97,7 @@ export function PhotoPlaceholder({
         <circle cx="12" cy="12" r="3.2" stroke="currentColor" strokeWidth="1.4" />
         <path d="M8 5l1.5-2h5L16 5" stroke="currentColor" strokeWidth="1.4" strokeLinejoin="round" />
       </svg>
-      <span className="px-4 text-center text-sm font-semibold uppercase tracking-[0.14em]">{label}</span>
+      <span className="px-4 text-center text-sm font-semibold">{label}</span>
     </div>
   );
 }
@@ -113,11 +113,11 @@ export function RecommendedStrip({ names, placeholderLabel }: { names: string[];
       {tiles.map((name, i) => (
         <li
           key={name || i}
-          className={`flex min-h-20 items-center justify-center rounded-[calc(var(--radius)*0.75)] border px-4 py-5 text-center font-display text-xl ${
+          className={`flex min-h-20 items-center justify-center rounded-[var(--radius)] border px-4 py-5 text-center font-display text-xl ${
             name ? "border-line bg-surface text-ink" : "border-dashed border-line text-ink-soft"
           }`}
         >
-          {name || <span className="font-body text-sm font-semibold uppercase tracking-[0.14em] opacity-70">{placeholderLabel}</span>}
+          {name || <span className="font-body text-sm font-semibold opacity-70">{placeholderLabel}</span>}
         </li>
       ))}
     </ul>

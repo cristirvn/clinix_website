@@ -27,7 +27,7 @@ export function HomeTestimonials({
         <div className="mb-12 flex flex-col gap-6 sm:mb-14 lg:flex-row lg:items-end lg:justify-between">
           <div className="max-w-3xl">
             <Eyebrow>{t.eyebrow}</Eyebrow>
-            <h2 className="text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[3.8rem]">{t.title}</h2>
+            <h2 className="t-h2">{t.title}</h2>
           </div>
           <GoogleRatingBadge locale={locale} label={t.ratingLabel} className="self-start lg:self-auto" />
         </div>
@@ -42,7 +42,7 @@ export function HomeTestimonials({
 
         <L
           href="/testimoniale"
-          className="mt-8 inline-flex min-h-11 items-center gap-1.5 text-lg font-semibold text-primary underline decoration-primary/30 underline-offset-4 transition hover:decoration-primary"
+          className="link-draw mt-8 inline-flex min-h-11 items-center gap-1.5 text-lg font-semibold text-primary"
         >
           {t.all}
           <ArrowIcon size={16} />

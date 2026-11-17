@@ -6,9 +6,9 @@ export function FeaturedOffer({ content }: { content: PricingContent["featured"]
   return (
     <section className="bg-bg pb-20 text-ink sm:pb-28">
       <div className="mx-auto w-full max-w-6xl px-5 sm:px-8">
-        <div className="grid overflow-hidden rounded-[calc(var(--radius)+8px)] bg-surface shadow-[var(--shadow-soft)] ring-1 ring-line lg:grid-cols-[1fr_1.1fr]">
+        <div className="grid overflow-hidden rounded-[var(--radius-media)] bg-surface ring-1 ring-line lg:grid-cols-[1fr_1.1fr]">
           <div className="p-8 sm:p-12">
-            <span className="inline-block rounded-full bg-accent px-4 py-1.5 text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-on-accent">
+            <span className="inline-block rounded-full bg-accent px-4 py-1.5 text-[0.875rem] font-semibold text-on-accent">
               {content.badge}
             </span>
             <h2 className="mt-6 text-4xl sm:text-5xl">{content.name}</h2>
@@ -20,7 +20,7 @@ export function FeaturedOffer({ content }: { content: PricingContent["featured"]
             </ButtonLink>
           </div>
           <div className="border-t border-line bg-bg-alt p-8 sm:p-12 lg:border-l lg:border-t-0">
-            <h3 className="font-body text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{content.includesTitle}</h3>
+            <h3 className="font-body text-[0.875rem] font-semibold text-accent">{content.includesTitle}</h3>
             <ul className="mt-6 space-y-5 text-lg">
               {content.includes.map((item) => (
                 <CheckItem key={item}>{item}</CheckItem>

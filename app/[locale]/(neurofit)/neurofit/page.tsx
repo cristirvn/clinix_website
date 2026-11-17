@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 /** Small gold caps label (NeuroFit's eyebrow). */
 function Label({ children, center = false }: { children: ReactNode; center?: boolean }) {
   return (
-    <p className={`mb-4 flex items-center gap-3 text-[0.8rem] font-semibold uppercase tracking-[0.22em] text-accent sm:text-[0.875rem] ${center ? "justify-center" : ""}`}>
+    <p className={`mb-4 flex items-center gap-3 text-[0.875rem] font-semibold text-accent ${center ?"justify-center":""}`}>
       {children}
     </p>
   );
@@ -77,7 +77,7 @@ export default async function NeuroFitPage({ params }: Props) {
       <section className="nf-glow border-b border-line bg-bg-alt pb-16 pt-9 sm:pb-24 sm:pt-16">
         <Container>
           <div className="mx-auto max-w-4xl text-center">
-            <p className="rise-in flex items-center justify-center gap-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-accent sm:text-[0.875rem] sm:tracking-[0.24em]">
+            <p className="rise-in flex items-center justify-center gap-2.5 text-[0.875rem] font-semibold text-accent">
               <NeuroFitMark size={14} />
               {c.hero.eyebrow}
             </p>
@@ -122,7 +122,7 @@ export default async function NeuroFitPage({ params }: Props) {
                     <h3 className="nf-gold text-[2rem] leading-none sm:text-[2.3rem]">{x.name}</h3>
                     <p className="mt-3 text-lg">{x.line}</p>
                     <div className="nf-rule my-5" />
-                    <p className="text-[0.75rem] font-semibold uppercase tracking-[0.2em] text-ink-soft">{c.experiences.forWhen}</p>
+                    <p className="text-[0.875rem] font-semibold text-ink-soft">{c.experiences.forWhen}</p>
                     <ul className="mt-2.5 space-y-1.5">
                       {x.situations.map((s) => (
                         <li key={s} className="flex gap-3 text-base text-ink-soft">
@@ -160,7 +160,7 @@ export default async function NeuroFitPage({ params }: Props) {
               </li>
             ))}
           </ol>
-          <div className="mx-auto mt-10 flex max-w-3xl flex-col gap-3 rounded-[20px] border border-accent/30 bg-surface px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8">
+          <div className="mx-auto mt-10 flex max-w-3xl flex-col gap-3 rounded-[var(--radius)] border border-accent/30 bg-surface px-6 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8">
             <p className="text-lg">{c.membership.note}</p>
             <a href={CLINIC.phoneHref} className="inline-flex min-h-11 items-center gap-2.5 whitespace-nowrap text-lg font-semibold text-accent">
               <PhoneIcon size={18} />
@@ -193,7 +193,7 @@ export default async function NeuroFitPage({ params }: Props) {
       {/* REZERVĂ */}
       <section id={FORM_ID} className={`${BAND} bg-bg`}>
         <Container narrow>
-          <div className="nf-glow rounded-[28px] bg-bg-alt px-5 py-10 ring-1 ring-accent/30 sm:rounded-[36px] sm:px-12 sm:py-14">
+          <div className="nf-glow rounded-[var(--radius-media)] bg-bg-alt px-5 py-10 ring-1 ring-accent/30 sm:px-12 sm:py-14">
             <div className="mb-9 text-center">
               <Label center>{c.book.eyebrow}</Label>
               <h2 className="text-[2.1rem] leading-[1.08] sm:text-[2.8rem]">

@@ -36,7 +36,7 @@ export default async function LpSomnBPage({ params }: Props) {
       <HeroPanel>
         <div className="mx-auto max-w-4xl text-center">
           <Eyebrow>{hero.eyebrow}</Eyebrow>
-          <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
+          <h1 className="t-h1">
             {hero.titleBefore}
             <em>{hero.titleEm}</em>
             {hero.titleAfter}
@@ -50,7 +50,7 @@ export default async function LpSomnBPage({ params }: Props) {
         </div>
 
         <div className="mx-auto mt-12 max-w-4xl">
-          <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-on-dark-soft">
+          <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-sm font-semibold text-on-dark-soft">
             <span>{hero.videoTag}</span>
             <span>{hero.videoLen}</span>
           </div>
@@ -101,7 +101,7 @@ export default async function LpSomnBPage({ params }: Props) {
 
         <Reveal className="mt-12 grid gap-6 md:grid-cols-2">
           <div className="rounded-[var(--radius)] border border-line bg-surface p-7 text-ink sm:p-8">
-            <p className="mb-5 text-sm font-bold uppercase tracking-[0.16em] text-danger">{story.beforeTag}</p>
+            <p className="mb-5 text-sm font-semibold text-danger">{story.beforeTag}</p>
             <ul className="space-y-4 text-lg">
               {story.before.map((x) => (
                 <CheckItem key={x} negative>
@@ -111,7 +111,7 @@ export default async function LpSomnBPage({ params }: Props) {
             </ul>
           </div>
           <div className="rounded-[var(--radius)] border-2 border-accent bg-surface p-7 text-ink sm:p-8">
-            <p className="mb-5 text-sm font-bold uppercase tracking-[0.16em] text-accent">{story.afterTag}</p>
+            <p className="mb-5 text-sm font-semibold text-accent">{story.afterTag}</p>
             <ul className="space-y-4 text-lg">
               {story.after.map((x) => (
                 <CheckItem key={x}>{x}</CheckItem>

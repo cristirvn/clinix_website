@@ -186,7 +186,7 @@ export function ScoredQuiz({ quiz }: { quiz: ScoredQuizType }) {
           <div key={`${phase}-${index}`} className="mx-auto max-w-2xl">
             <p className="text-base font-semibold text-ink-soft">{quiz.hero.title}</p>
             <div className="mt-4">
-              <div className="flex items-center justify-between text-sm font-bold uppercase tracking-[0.12em] text-ink-soft">
+              <div className="flex items-center justify-between text-sm font-semibold text-ink-soft">
                 <span>{progressLabel}</span>
                 <span>{pct}%</span>
               </div>
@@ -218,8 +218,8 @@ export function ScoredQuiz({ quiz }: { quiz: ScoredQuizType }) {
                     type="button"
                     onClick={() => setSelected(i)}
                     aria-pressed={active}
-                    className={`flex min-h-16 w-full items-center gap-4 rounded-[18px] border-2 px-5 py-4 text-left text-lg font-medium transition sm:text-xl ${
-                      active ? "border-primary bg-primary/[0.06] text-ink" : "border-line bg-surface text-ink hover:border-primary/40"
+                    className={`flex min-h-16 w-full items-center gap-4 rounded-[var(--radius)] border px-5 py-4 text-left text-lg font-medium transition-colors sm:text-xl ${
+                      active ? "border-primary bg-primary/[0.05] text-ink ring-1 ring-primary" : "border-line bg-surface text-ink hover:border-ink/40"
                     }`}
                   >
                     <span

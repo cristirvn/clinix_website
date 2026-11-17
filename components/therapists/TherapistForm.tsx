@@ -97,7 +97,7 @@ export function TherapistForm({
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="relative space-y-6 rounded-[var(--radius)] border border-line bg-surface p-6 text-ink shadow-[0_30px_80px_-40px_rgba(0,0,0,0.35)] sm:p-10"
+      className="relative space-y-6 rounded-[var(--radius)] border border-line bg-surface p-6 text-ink sm:p-10"
     >
       <Honeypot value={website} onChange={setWebsite} />
       <TextField

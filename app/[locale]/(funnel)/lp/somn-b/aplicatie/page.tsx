@@ -41,7 +41,7 @@ export default async function LpSomnBApplicationPage({ params }: Props) {
           <h1 className="text-[2.6rem] leading-[1.05] sm:text-6xl">{intro.title}</h1>
           <p className="mt-5 text-lg text-ink-soft sm:text-xl">{intro.text}</p>
         </div>
-        <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-sm font-semibold uppercase tracking-[0.14em] text-ink-soft">
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-2 text-sm font-semibold text-ink-soft">
           <span>{intro.videoTag}</span>
           <span>{intro.videoLen}</span>
         </div>
@@ -58,7 +58,7 @@ export default async function LpSomnBApplicationPage({ params }: Props) {
 
       {/* APPLICATION FORM */}
       <Section tone="dark" id="aplicatie">
-        <div className="mx-auto max-w-3xl rounded-[var(--radius)] bg-surface p-6 text-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] sm:p-12">
+        <div className="mx-auto max-w-3xl rounded-[var(--radius)] bg-surface p-6 text-ink shadow-none sm:p-12">
           <h2 className="text-[2.1rem] sm:text-5xl">{formBox.title}</h2>
           <p className="mb-10 mt-4 text-lg text-ink-soft sm:text-xl">{formBox.sub}</p>
           <ApplyForm copy={c.form} />

@@ -10,39 +10,40 @@ import type { Locale } from "@/lib/i18n";
 
 /**
  * Section 5 — the self-check starts right here: question 1 of the triage
- * ("Cu ce te confrunți cel mai des?") as one centred quiz card. The answer
- * opens the matching test at its next question.
+ * ("Cu ce te confrunți cel mai des?"). Heading left (like every section),
+ * the quiz card right on large screens. The answer opens the matching test
+ * at its next question.
  */
 export function HomeQuiz({ quiz, locale }: { quiz: HomeContent["quiz"]; locale: Locale }) {
   const triage = getTriage(locale);
   return (
     <section id="diagnostic" className="scroll-mt-24 bg-bg py-24 text-ink sm:py-32">
       <Container>
-        <div className="mx-auto mb-10 max-w-2xl text-center sm:mb-14">
-          <Eyebrow>{quiz.eyebrow}</Eyebrow>
-          <h2 className="text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[4rem]">
-            <Emph text={quiz.title} />
-          </h2>
-          <p className="mx-auto mt-5 max-w-xl text-lg text-ink-soft sm:text-xl">{quiz.lead}</p>
+        <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
+          <div className="lg:col-span-4 lg:pt-4">
+            <Eyebrow>{quiz.eyebrow}</Eyebrow>
+            <h2 className="t-h2">
+              <Emph text={quiz.title} />
+            </h2>
+            <p className="t-lead mt-5 max-w-xl text-ink-soft">{quiz.lead}</p>
+
+            <p className="mt-8 hidden max-w-sm border-t border-line pt-6 text-ink-soft lg:block">
+              {triage.direct.text}{" "}
+              <L href={triage.direct.href} className="link-draw inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary">
+                {triage.direct.button.replace(/\s*→\s*$/, "")}
+                <ArrowIcon size={15} />
+              </L>
+            </p>
+          </div>
+
+          <Reveal className="min-w-0 lg:col-span-8">
+            <QuizStart question={triage.question} help={triage.help} options={triage.options} step={quiz.step} next={quiz.next} pickFirst={quiz.pickFirst} />
+          </Reveal>
         </div>
 
-        <Reveal className="mx-auto max-w-4xl">
-          <QuizStart
-            question={triage.question}
-            help={triage.help}
-            options={triage.options}
-            step={quiz.step}
-            next={quiz.next}
-            pickFirst={quiz.pickFirst}
-          />
-        </Reveal>
-
-        <p className="mx-auto mt-8 max-w-xl text-center text-ink-soft">
+        <p className="mt-8 max-w-xl text-ink-soft lg:hidden">
           {triage.direct.text}{" "}
-          <L
-            href={triage.direct.href}
-            className="inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
-          >
+          <L href={triage.direct.href} className="link-draw inline-flex min-h-11 items-center gap-1.5 font-semibold text-primary">
             {triage.direct.button.replace(/\s*→\s*$/, "")}
             <ArrowIcon size={15} />
           </L>

@@ -76,7 +76,7 @@ export default async function LpSomnBThankYouPage({ params }: Props) {
             </svg>
           </span>
           <Eyebrow>{hero.eyebrow}</Eyebrow>
-          <h1 className="text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl">{hero.title}</h1>
+          <h1 className="t-h1">{hero.title}</h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">
             {hero.subLine}
             <br />
@@ -100,7 +100,7 @@ export default async function LpSomnBThankYouPage({ params }: Props) {
             </div>
             <div className="mt-10 border-t border-line pt-6">
               <p className="font-display text-2xl">{letter.signName}</p>
-              <p className="mt-1 text-sm uppercase tracking-[0.16em] text-ink-soft">{letter.signTag}</p>
+              <p className="mt-1 text-sm text-ink-soft">{letter.signTag}</p>
             </div>
           </div>
         </Reveal>

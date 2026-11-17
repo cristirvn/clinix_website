@@ -17,12 +17,12 @@ export function HomeStart({ start, locale }: { start: HomeContent["start"]; loca
       <Container>
         <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-16">
           <Reveal className="lg:col-span-5">
-            <div data-tone="dark" className="relative isolate aspect-[4/3] overflow-hidden rounded-[var(--radius)] bg-dark text-on-dark sm:aspect-[16/10] lg:aspect-[4/5]">
+            <div data-tone="dark" className="relative isolate aspect-[4/3] overflow-hidden rounded-[var(--radius-media)] bg-dark text-on-dark sm:aspect-[16/10] lg:aspect-[4/5]">
               <div aria-hidden="true" className="absolute inset-0 -z-20">
                 <Photo image="scan" locale={locale} width={1100} className="object-[50%_35%]" />
               </div>
               <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-dark/55 via-dark/0 to-dark/0" />
-              <span className="liquid-glass absolute left-4 top-4 rounded-full px-4 py-2 text-[0.8rem] font-semibold uppercase tracking-[0.16em] sm:left-6 sm:top-6 sm:text-[0.875rem]">
+              <span className="media-chip absolute left-4 top-4 sm:left-6 sm:top-6">
                 {start.badge}
               </span>
             </div>
@@ -30,17 +30,15 @@ export function HomeStart({ start, locale }: { start: HomeContent["start"]; loca
 
           <div className="lg:col-span-7">
             <Eyebrow>{start.eyebrow}</Eyebrow>
-            <h2 className="text-[2.4rem] leading-[1.04] sm:text-[3.4rem] lg:text-[3.8rem]">{start.title}</h2>
+            <h2 className="t-h2">{start.title}</h2>
 
-            <ol className="mt-10 space-y-3 sm:space-y-4">
+            {/* Three steps as a ruled list: big numbers, hairlines between, no boxes. */}
+            <ol className="mt-10 border-t border-line">
               {start.steps.map((step, i) => (
-                <li key={step.title}>
+                <li key={step.title} className="border-b border-line">
                   <Reveal delay={i * 90}>
-                    <div className="flex gap-4 rounded-[20px] border border-line bg-surface p-5 shadow-[var(--shadow-card)] sm:gap-5 sm:p-6">
-                      <span
-                        aria-hidden="true"
-                        className="flex h-10 w-10 flex-none items-center justify-center rounded-full bg-bg-alt font-display text-base font-semibold tabular-nums text-accent ring-1 ring-line"
-                      >
+                    <div className="grid grid-cols-[3rem_1fr] gap-4 py-6 sm:grid-cols-[4rem_1fr] sm:gap-5">
+                      <span aria-hidden="true" className="font-display text-[1.6rem] font-semibold leading-none tabular-nums text-accent sm:text-[2rem]">
                         {String(i + 1).padStart(2, "0")}
                       </span>
                       <div>
@@ -54,9 +52,9 @@ export function HomeStart({ start, locale }: { start: HomeContent["start"]; loca
             </ol>
 
             <div className="mt-9">
-              <ButtonLink href="/brainmap" size="lg" className="group w-full !px-5 sm:w-auto sm:!px-9">
+              <ButtonLink href="/brainmap" size="lg" className="w-full !px-5 sm:w-auto sm:!px-9">
                 {start.cta}
-                <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowIcon />
               </ButtonLink>
             </div>
             <p className="mt-4 max-w-lg text-base text-ink-soft">{start.note}</p>

@@ -20,7 +20,7 @@ export function LpSomnThanks({ c, locale }: { c: LpSomnContent; locale: Locale }
               <path d="M20 6L9 17l-5-5" />
             </svg>
           </span>
-          <h1 className="text-[2.6rem] leading-[1.05] sm:text-6xl lg:text-7xl">{t.title}</h1>
+          <h1 className="t-h1">{t.title}</h1>
         </Reveal>
         <Reveal delay={80}>
           <p className="mx-auto mt-8 max-w-2xl text-lg sm:text-xl">{t.p1}</p>

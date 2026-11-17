@@ -85,7 +85,7 @@ function TopicTag({ tag }: { tag: Tag }) {
   return (
     <L
       href={tag.href}
-      className="inline-flex min-h-9 items-center rounded-full border border-line px-3.5 text-sm font-semibold uppercase tracking-[0.14em] text-ink-soft transition hover:border-primary hover:text-primary"
+      className="inline-flex min-h-9 items-center rounded-full border border-line px-3.5 text-sm font-semibold text-ink-soft transition hover:border-primary hover:text-primary"
     >
       {tag.label}
     </L>

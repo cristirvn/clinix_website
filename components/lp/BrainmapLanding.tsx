@@ -81,7 +81,7 @@ export function BrainmapLanding({
           </div>
           <div className="max-w-3xl">
             <h1
-              className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]"
+              className="t-h1"
               // Client copy (static content file), not user input.
               dangerouslySetInnerHTML={{ __html: lp.hero.titleHtml }}
             />
@@ -111,7 +111,7 @@ export function BrainmapLanding({
           {lp.identificare.cards.map((card, i) => (
             <Reveal key={card.tag} delay={i * 90}>
               <div className="h-full rounded-[var(--radius)] border border-line bg-surface p-7 text-ink sm:p-8">
-                <span className="text-[0.875rem] font-bold uppercase tracking-[0.18em] text-accent">{card.tag}</span>
+                <span className="text-[0.875rem] font-semibold text-accent">{card.tag}</span>
                 <p className="mt-4 text-xl leading-relaxed">{card.text}</p>
               </div>
             </Reveal>
@@ -153,7 +153,7 @@ export function BrainmapLanding({
         <ol className="mx-auto max-w-4xl divide-y divide-line border-y border-line">
           {f.mechanism.steps.map((s) => (
             <li key={s.title} className="grid gap-4 py-8 sm:grid-cols-[10rem_1fr] sm:gap-10 sm:py-10">
-              <span className="self-start justify-self-start rounded-full border-2 border-accent px-4 py-1.5 text-sm font-bold uppercase tracking-[0.12em] text-accent">
+              <span className="self-start justify-self-start rounded-full border-2 border-accent px-4 py-1.5 text-sm font-semibold text-accent">
                 {s.badge}
               </span>
               <div>
@@ -302,10 +302,10 @@ function PageNav({ f }: { f: BrainmapFixed }) {
       <Container className="flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between">
         <div>
           <p className="font-display text-xl">{CLINIC.name}</p>
-          <p className="mt-1 text-sm uppercase tracking-[0.16em] text-ink-soft">{f.footer.tagline}</p>
+          <p className="mt-1 text-sm text-ink-soft">{f.footer.tagline}</p>
         </div>
         <div>
-          <p className="text-sm font-bold uppercase tracking-[0.16em] text-ink-soft">{f.footer.pageTitle}</p>
+          <p className="text-sm font-semibold text-ink-soft">{f.footer.pageTitle}</p>
           <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-semibold">
             {links.map(([href, label]) => (
               <li key={href}>

@@ -66,7 +66,7 @@ export function TherapistCarousel({ items, prev, next }: { items: TherapistCard[
               </div>
               <div className="flex flex-1 flex-col p-6 sm:p-7">
                 <h3 className="text-[1.7rem] leading-tight">{t.name}</h3>
-                <p className="mt-1.5 text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-accent">{t.role}</p>
+                <p className="mt-1.5 text-[0.875rem] font-semibold text-accent">{t.role}</p>
                 <p className="mt-3 text-ink-soft">{t.short}</p>
                 {t.focus.length > 0 && (
                   <ul className="mt-4 flex flex-wrap gap-1.5">

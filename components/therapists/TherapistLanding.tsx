@@ -46,15 +46,15 @@ export function TherapistLanding({
       <HeroPanel id={HERO_ID}>
         <div className="grid items-center gap-10 lg:grid-cols-[1fr_1.15fr] lg:gap-14">
           <div>
-            <p className="mb-5 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{t.role}</p>
-            <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-7xl">{t.name}</h1>
+            <p className="mb-5 text-[0.875rem] font-semibold text-accent">{t.role}</p>
+            <h1 className="t-h1">{t.name}</h1>
             <p className="mt-6 max-w-xl text-lg text-on-dark-soft sm:text-xl">{t.hero.lede}</p>
             <div className="mt-10 hidden flex-col gap-4 lg:flex lg:items-start">
               {cta()}
               <p className="text-base text-on-dark-soft">{ui.heroMicro}</p>
             </div>
           </div>
-          <div id="video" className="liquid-glass scroll-mt-24 rounded-[calc(var(--radius)+8px)] p-2">
+          <div id="video" className="liquid-glass scroll-mt-24 rounded-[var(--radius-media)] p-2">
             <VideoPlayer video={t.video} title={n(ui.videoTitle)} />
           </div>
           {/* On phones the button comes after the video. */}
@@ -173,10 +173,10 @@ export function TherapistLanding({
         <Container className="flex flex-col gap-6 py-10 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <p className="font-display text-xl">{CLINIC.name}</p>
-            <p className="mt-1 text-sm uppercase tracking-[0.16em] text-ink-soft">{t.name}</p>
+            <p className="mt-1 text-sm text-ink-soft">{t.name}</p>
           </div>
           <div>
-            <p className="text-sm font-bold uppercase tracking-[0.16em] text-ink-soft">{ui.pageNav.title}</p>
+            <p className="text-sm font-semibold text-ink-soft">{ui.pageNav.title}</p>
             <ul className="mt-3 flex flex-wrap gap-x-6 gap-y-2 font-semibold">
               {(
                 [

@@ -52,15 +52,15 @@ export function ChildParents({ content }: { content: ChildrenContent["parents"] 
   return (
     <Section>
       <SectionHead title={content.title} />
-      <ol className="grid gap-10 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
+      <ol className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
         {content.steps.map((step, i) => (
-          <li key={step.title}>
+          <li key={step.title} className="border-t border-line pt-6">
             <Reveal delay={i * 60} className="flex gap-5 lg:block">
               <span
                 aria-hidden="true"
-                className="flex h-12 w-12 flex-none items-center justify-center rounded-full border border-accent/50 bg-surface font-display text-[1.4rem] text-accent lg:mb-5"
+                className="w-11 flex-none pt-0.5 font-display text-[1.6rem] font-semibold leading-none tabular-nums text-accent lg:mb-5 lg:block"
               >
-                {i + 1}
+                {String(i + 1).padStart(2, "0")}
               </span>
               <div>
                 <h3 className="text-xl sm:text-2xl">{step.title}</h3>

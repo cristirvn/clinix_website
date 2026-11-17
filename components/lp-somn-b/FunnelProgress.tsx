@@ -8,7 +8,7 @@ export function FunnelProgress({ step, progress }: { step: 2 | 3; progress: LpSo
   return (
     <div className="border-b border-line bg-surface text-ink">
       <div className="mx-auto max-w-3xl px-5 py-5 sm:px-8">
-        <p className="mb-3 text-center text-sm font-bold uppercase tracking-[0.16em] text-accent">
+        <p className="mb-3 text-center text-sm font-semibold text-accent">
           {progress.stepOf.replace("{n}", String(step))}
         </p>
         <ol aria-label={progress.aria} className="flex items-center">

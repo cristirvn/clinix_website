@@ -39,7 +39,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
       <HeroPanel>
         <div className="mx-auto w-full max-w-5xl text-center">
           <Reveal>
-            <h1 className="mx-auto max-w-4xl text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
+            <h1 className="mx-auto max-w-4xl t-h1">
               {c.hero.titleStart}
               {c.hero.titleEm}
             </h1>
@@ -119,7 +119,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
           {c.mechanism.steps.map((s) => (
             <li key={s.title}>
               <Reveal className="grid gap-3 py-8 sm:grid-cols-[11rem_1fr] sm:gap-10 sm:py-10">
-                <p className="text-sm font-bold uppercase tracking-[0.16em] text-accent sm:pt-2">{s.label}</p>
+                <p className="text-sm font-semibold text-accent sm:pt-2">{s.label}</p>
                 <div>
                   <h3 className="text-2xl sm:text-3xl">{s.title}</h3>
                   <p className="mt-3 text-lg text-ink-soft">{s.text}</p>
@@ -188,7 +188,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
         </Reveal>
         <Reveal>
           <div className="mt-10 rounded-[var(--radius)] bg-dark p-8 text-center text-on-dark sm:p-10">
-            <p className="text-base uppercase tracking-[0.14em] text-on-dark-soft">{c.includes.priceLabel}</p>
+            <p className="text-base text-on-dark-soft">{c.includes.priceLabel}</p>
             <p className="mt-3 font-display text-5xl sm:text-6xl">{c.includes.price}</p>
           </div>
           <p className="mt-5 text-center text-base text-ink-soft">{c.includes.note}</p>
@@ -305,7 +305,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
       {/* APPLICATION FORM */}
       <Section tone="alt" id={FORM_ID}>
         <div className="mx-auto max-w-2xl">
-          <div className="rounded-[var(--radius)] border border-line bg-surface p-6 text-ink shadow-[0_30px_80px_-40px_rgba(0,0,0,0.35)] sm:p-10">
+          <div className="rounded-[var(--radius)] border border-line bg-surface p-6 text-ink sm:p-10">
             <h2 className="text-[2rem] leading-tight sm:text-4xl">{c.apply.title}</h2>
             <p className="mt-3 text-lg text-ink-soft">{c.apply.sub}</p>
             <div className="mt-8">

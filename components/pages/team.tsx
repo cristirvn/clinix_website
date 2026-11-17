@@ -21,7 +21,7 @@ export function TeamGrid({ content }: { content: TeamContent["members"] }) {
                 <PhotoPlaceholder label={content.photoPlaceholder} aspect="aspect-[4/5]" surface />
               )}
               <h3 className="mt-6 text-[1.7rem] leading-tight">{m.name}</h3>
-              <p className="mt-1.5 text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-accent">{m.role}</p>
+              <p className="mt-1.5 text-[0.875rem] font-semibold text-accent">{m.role}</p>
               <p className="mt-3 text-ink-soft">{m.bio}</p>
               {m.focus && m.focus.length > 0 && (
                 <ul className="mt-4 flex flex-wrap gap-1.5" aria-label={content.focusLabel}>

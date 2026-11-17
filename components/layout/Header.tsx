@@ -50,8 +50,8 @@ export function Header() {
 
   return (
     <header
-      className={`sticky top-0 z-50 h-[var(--header-h)] border-b bg-bg/90 text-ink backdrop-blur-xl transition-[box-shadow,border-color] duration-300 ${
-        scrolled ? "border-line shadow-[0_14px_34px_-24px_rgb(11_27_51_/_0.35)]" : "border-transparent"
+      className={`sticky top-0 z-50 h-[var(--header-h)] border-b text-ink backdrop-blur-xl transition-[background-color,border-color] duration-300 ${
+        scrolled ? "border-line bg-bg" : "border-transparent bg-bg/90"
       }`}
     >
       <div className="mx-auto flex h-full max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 xl:gap-3">
@@ -207,7 +207,7 @@ function NavDisclosure({
 
       {/* Invisible bridge so the pointer can travel from the button to the panel without closing it. */}
       <div id={panelId} hidden={!open} className={`absolute top-full pt-4 ${align === "right" ? "right-0" : "-left-6"}`}>
-        <div className={`animate-menu-in overflow-hidden rounded-[24px] bg-surface p-2 text-ink shadow-[var(--shadow-soft)] ring-1 ring-line ${panelClass}`}>
+        <div className={`animate-menu-in overflow-hidden rounded-[var(--radius-media)] bg-surface p-2 text-ink shadow-[var(--shadow-soft)] ring-1 ring-line ${panelClass}`}>
           {children}
         </div>
       </div>
@@ -226,7 +226,7 @@ function ServicesMenu({ pathname }: { pathname: string }) {
       align="left"
       panelClass="w-[36rem]"
     >
-      <p className="px-4 pb-1 pt-3 text-[0.8rem] font-semibold uppercase tracking-[0.14em] text-ink-soft">{dict.nav.pickService}</p>
+      <p className="px-4 pb-1 pt-3 text-[0.875rem] font-semibold text-ink-soft">{dict.nav.pickService}</p>
       <ul className="grid grid-cols-2 gap-0.5">
         {NAV_SERVICES.map((s) => {
           const href = `/servicii/${s.slug}`;
@@ -236,7 +236,7 @@ function ServicesMenu({ pathname }: { pathname: string }) {
               <L
                 href={href}
                 aria-current={current ? "page" : undefined}
-                className={`group flex min-h-14 flex-col justify-center rounded-[16px] px-4 py-2.5 transition hover:bg-bg-alt focus-visible:bg-bg-alt ${current ? "bg-bg-alt" : ""}`}
+                className={`group flex min-h-14 flex-col justify-center rounded-[10px] px-4 py-2.5 transition hover:bg-bg-alt focus-visible:bg-bg-alt ${current ? "bg-bg-alt" : ""}`}
               >
                 <span className="flex items-center gap-2 text-[1.02rem] font-semibold">
                   {s[locale]}
@@ -251,7 +251,7 @@ function ServicesMenu({ pathname }: { pathname: string }) {
       <L
         href={HOW_HREF}
         aria-current={isActivePath(pathname, HOW_HREF) ? "page" : undefined}
-        className="mt-2 flex items-center justify-between gap-3 rounded-[16px] bg-bg-alt px-4 py-3.5 text-[0.95rem] font-semibold text-primary transition hover:bg-line/60"
+        className="mt-2 flex items-center justify-between gap-3 rounded-[10px] bg-bg-alt px-4 py-3.5 text-[0.95rem] font-semibold text-primary transition hover:bg-line/60"
       >
         {dict.nav.howItWorksOverview}
         <ArrowIcon size={16} />
@@ -278,7 +278,7 @@ function AboutMenu({ pathname }: { pathname: string }) {
               <L
                 href={item.href}
                 aria-current={current ? "page" : undefined}
-                className="group flex min-h-12 items-center justify-between gap-4 rounded-[16px] px-4 py-2.5 text-[1.02rem] font-medium transition hover:bg-bg-alt focus-visible:bg-bg-alt"
+                className="group flex min-h-12 items-center justify-between gap-4 rounded-[10px] px-4 py-2.5 text-[1.02rem] font-medium transition hover:bg-bg-alt focus-visible:bg-bg-alt"
               >
                 <span className="flex items-center gap-3">
                   <span aria-hidden="true" className={`h-1.5 w-1.5 rounded-full ${current ? "bg-accent" : "bg-line group-hover:bg-accent"}`} />
@@ -292,7 +292,7 @@ function AboutMenu({ pathname }: { pathname: string }) {
       </ul>
       <a
         href={CLINIC.phoneHref}
-        className="mt-2 flex items-center justify-between gap-3 rounded-[16px] bg-bg-alt px-4 py-3.5 text-[0.95rem] transition hover:bg-line/60"
+        className="mt-2 flex items-center justify-between gap-3 rounded-[10px] bg-bg-alt px-4 py-3.5 text-[0.95rem] transition hover:bg-line/60"
       >
         <span className="text-ink-soft">{dict.common.callUs}</span>
         <span className="flex items-center gap-2 font-semibold text-primary">
@@ -400,7 +400,7 @@ function MobileMenu({ pathname, onClose }: { pathname: string; onClose: () => vo
               <L
                 href={HOW_HREF}
                 onClick={onClose}
-                className="mt-2 flex min-h-12 items-center justify-between gap-3 rounded-[16px] bg-bg-alt px-4 py-3 font-semibold text-primary"
+                className="mt-2 flex min-h-12 items-center justify-between gap-3 rounded-[10px] bg-bg-alt px-4 py-3 font-semibold text-primary"
               >
                 {dict.nav.howItWorksOverview}
                 <ArrowIcon size={16} className="flex-none" />

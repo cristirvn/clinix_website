@@ -52,7 +52,7 @@ export default async function LpEmsellaPage({ params }: Props) {
       {/* HERO */}
       <HeroPanel>
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-[4.6rem]">
+            <h1 className="t-h1">
               {c.hero.titleLead} <em>{c.hero.titleEm}</em>
             </h1>
             <p className="mx-auto mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{c.hero.sub}</p>
@@ -79,7 +79,7 @@ export default async function LpEmsellaPage({ params }: Props) {
           {c.signs.cards.map((card, i) => (
             <Reveal key={card.tag} delay={i * 80}>
               <Card className="h-full">
-                <p className="text-[0.875rem] font-bold uppercase tracking-[0.18em] text-accent">{card.tag}</p>
+                <p className="text-[0.875rem] font-semibold text-accent">{card.tag}</p>
                 <p className="mt-4 text-lg">{card.text}</p>
               </Card>
             </Reveal>
@@ -190,7 +190,7 @@ export default async function LpEmsellaPage({ params }: Props) {
                 i === c.offer.prices.length - 1 ? "border-dark bg-dark text-on-dark" : "border-line bg-surface"
               }`}
             >
-              <p className={`text-sm font-bold uppercase tracking-[0.14em] ${i === c.offer.prices.length - 1 ? "text-on-dark-soft" : "text-ink-soft"}`}>
+              <p className={`text-sm font-semibold ${i === c.offer.prices.length - 1 ?"text-on-dark-soft":"text-ink-soft"}`}>
                 {p.label}
               </p>
               <p className="mt-3 font-display text-4xl sm:text-[2.6rem]">{p.amount}</p>
@@ -274,7 +274,7 @@ export default async function LpEmsellaPage({ params }: Props) {
             <h2 className="text-[2.1rem] sm:text-5xl">{c.apply.title}</h2>
             <p className="mx-auto mt-5 max-w-2xl text-lg text-on-dark-soft sm:text-xl">{c.apply.sub}</p>
           </div>
-          <div className="rounded-[var(--radius)] bg-surface p-6 text-ink shadow-[0_30px_80px_-30px_rgba(0,0,0,0.55)] sm:p-10">
+          <div className="rounded-[var(--radius)] bg-surface p-6 text-ink shadow-none sm:p-10">
             <EmsellaApply form={c.form} calendar={c.calendar} />
           </div>
           <p className="mt-6 text-center text-on-dark-soft">{c.apply.note}</p>

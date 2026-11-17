@@ -2,7 +2,7 @@
 
 import { useId, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import { buttonClass } from "@/components/ui/primitives";
+import { TickIcon, buttonClass } from "@/components/ui/primitives";
 import { ArrowIcon } from "@/components/ui/icons";
 import { useLocale } from "@/components/layout/LocaleProvider";
 import { localizePath } from "@/lib/i18n";
@@ -48,18 +48,18 @@ export function QuizStart({
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-[30px] bg-surface p-5 text-ink shadow-[var(--shadow-soft)] ring-1 ring-line sm:p-10 lg:p-12"
+      className="rounded-[var(--radius-media)] border border-line bg-surface p-5 text-ink sm:p-10"
       aria-describedby={`${id}-help`}
     >
       <div className="flex items-center gap-4">
-        <span className="text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent">{step}</span>
-        <span aria-hidden="true" className="h-1 flex-1 overflow-hidden rounded-full bg-bg-alt">
+        <span className="label tabular-nums text-accent">{step}</span>
+        <span aria-hidden="true" className="h-[3px] flex-1 overflow-hidden rounded-full bg-bg-alt">
           <span className="block h-full w-[12%] rounded-full bg-primary" />
         </span>
       </div>
 
       <fieldset className="mt-6">
-        <legend className="font-display text-[1.9rem] leading-[1.1] sm:text-[2.4rem]">{question}</legend>
+        <legend className="font-display text-[1.75rem] leading-[1.12] sm:text-[2.2rem]">{question}</legend>
         <p id={`${id}-help`} className="mt-3 text-ink-soft">
           {help}
         </p>
@@ -70,10 +70,8 @@ export function QuizStart({
             return (
               <label
                 key={o.slug}
-                className={`group flex min-h-14 cursor-pointer items-center gap-4 rounded-[18px] border px-4 py-3 transition duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent sm:px-5 ${
-                  checked
-                    ? "border-primary bg-primary/[0.07] shadow-[0_12px_26px_-18px_var(--primary)]"
-                    : "border-line hover:-translate-y-px hover:border-primary/45 hover:bg-bg-alt/50"
+                className={`group flex min-h-14 cursor-pointer items-center gap-4 rounded-[var(--radius)] border px-4 py-3 transition-colors duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent sm:px-5 ${
+                  checked ? "border-primary bg-primary/[0.05] ring-1 ring-primary" : "border-line hover:border-ink/40"
                 }`}
               >
                 <input
@@ -89,11 +87,11 @@ export function QuizStart({
                 />
                 <span
                   aria-hidden="true"
-                  className={`flex h-6 w-6 flex-none items-center justify-center rounded-full border-2 transition ${
-                    checked ? "border-primary" : "border-line group-hover:border-primary/50"
+                  className={`flex h-6 w-6 flex-none items-center justify-center rounded-full border-[1.5px] transition-colors duration-200 ${
+                    checked ? "border-primary bg-primary text-on-primary" : "border-ink/25 text-transparent group-hover:border-ink/50"
                   }`}
                 >
-                  <span className={`h-2.5 w-2.5 rounded-full bg-primary transition ${checked ? "scale-100" : "scale-0"}`} />
+                  <TickIcon className={`transition-transform duration-200 ${checked ? "scale-100" : "scale-50"}`} />
                 </span>
                 <span className="text-[1.05rem] font-medium leading-snug">{o.label}</span>
               </label>
@@ -106,9 +104,9 @@ export function QuizStart({
         <p role="status" className={`text-[0.95rem] ${nudge ? "font-semibold text-danger" : "text-ink-soft"}`}>
           {nudge ? pickFirst : ""}
         </p>
-        <button type="submit" disabled={leaving} className={buttonClass("cta", "lg", "group w-full sm:w-auto")}>
+        <button type="submit" disabled={leaving} className={buttonClass("cta", "lg", "w-full sm:w-auto")}>
           {next}
-          <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-1" />
+          <ArrowIcon />
         </button>
       </div>
     </form>

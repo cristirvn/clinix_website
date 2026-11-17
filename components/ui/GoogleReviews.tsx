@@ -19,7 +19,7 @@ export function Stars({ className = "" }: { className?: string }) {
 export function GoogleRatingBadge({ locale, label, className = "" }: { locale: Locale; label: string; className?: string }) {
   const score = GOOGLE_RATING.score[locale];
   return (
-    <div className={`inline-flex items-center gap-4 rounded-[20px] border border-line bg-surface px-5 py-3.5 shadow-[var(--shadow-card)] ${className}`}>
+    <div className={`inline-flex items-center gap-4 border-l border-line py-1 pl-5 ${className}`}>
       <span className="font-display text-[2.4rem] leading-none tabular-nums">{score}</span>
       <span className="flex flex-col gap-1">
         <Stars className="text-accent" />
@@ -42,7 +42,7 @@ export function GoogleReviewCards({ locale, source }: { locale: Locale; source: 
       {GOOGLE_REVIEWS.map((r, i) => (
         <li key={r.name}>
           <Reveal delay={i * 70} className="h-full">
-            <figure className="flex h-full flex-col rounded-[var(--radius)] border border-line bg-surface p-6 text-ink shadow-[var(--shadow-card)] sm:p-7">
+            <figure className="flex h-full flex-col rounded-[var(--radius)] border border-line bg-surface p-6 text-ink sm:p-7">
               <Stars className="text-accent" />
               <blockquote className="mt-4 flex-1 text-lg leading-snug">
                 {open}

@@ -10,7 +10,7 @@ import { CLINIC } from "@/lib/site";
 import { CookieSettingsButton } from "@/components/layout/CookieConsent";
 
 const LINK = "inline-flex min-h-11 items-center py-1.5 text-on-dark/85 transition hover:text-on-dark hover:underline underline-offset-4";
-const HEAD = "mb-4 text-[0.875rem] font-semibold uppercase tracking-[0.18em] text-accent";
+const HEAD = "mb-4 text-[0.875rem] font-semibold text-accent";
 
 /** Navy footer: the clinic's one-line belief, one action, then plain link columns. */
 export function Footer({ locale }: { locale: Locale }) {

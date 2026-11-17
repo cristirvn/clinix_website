@@ -24,13 +24,13 @@ import type { ServiceContent, ServicesIndexContent } from "@/content/services/ty
 export function ServiceHero({ service }: { service: ServiceContent }) {
   return (
     <HeroPanel narrow>
-      <h1 className="rise-in text-[2.6rem] leading-[1.04] sm:text-6xl lg:text-7xl" style={{ animationDelay: "90ms" }}>
+      <h1 className="rise-in t-h1" style={{ animationDelay: "90ms" }}>
         {service.hero.title}
       </h1>
       <p className="rise-in mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl" style={{ animationDelay: "180ms" }}>
         {service.hero.lead}
       </p>
-      <div className="liquid-glass rise-in mt-10 rounded-[calc(var(--radius)+8px)] p-2 sm:mt-12" style={{ animationDelay: "260ms" }}>
+      <div className="liquid-glass rise-in mt-10 rounded-[var(--radius-media)] p-2 sm:mt-12" style={{ animationDelay: "260ms" }}>
         <VideoPlayer video={service.video} title={service.hero.videoTitle} />
       </div>
     </HeroPanel>
@@ -55,15 +55,15 @@ export function ServiceSession({ content }: { content: ServiceContent["session"]
     <Section tone="alt">
       <SectionHead title={content.title} />
       <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-        <ol className="space-y-8">
+        <ol className="border-t border-line">
           {content.steps.map((step, i) => (
-            <li key={step.title}>
+            <li key={step.title} className="border-b border-line py-6">
               <Reveal delay={i * 60} className="flex gap-5">
                 <span
                   aria-hidden="true"
-                  className="flex h-12 w-12 flex-none items-center justify-center rounded-full border border-accent/50 bg-surface font-display text-[1.4rem] text-accent"
+                  className="w-11 flex-none pt-0.5 font-display text-[1.6rem] font-semibold leading-none tabular-nums text-accent lg:mb-5 lg:block"
                 >
-                  {i + 1}
+                  {String(i + 1).padStart(2, "0")}
                 </span>
                 <div>
                   <h3 className="text-xl sm:text-2xl">{step.title}</h3>
@@ -175,7 +175,7 @@ export function ServiceCards({ index, services, locale }: { index: ServicesIndex
                   </div>
                 )}
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
-                  <p className="text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-accent">{s.hero.eyebrow}</p>
+                  <p className="text-[0.875rem] font-semibold text-accent">{s.hero.eyebrow}</p>
                   <h2 className="mt-2 text-[2.1rem] leading-none">{s.card.name}</h2>
                   <p className="mt-3 flex-1 text-ink-soft">{s.card.short}</p>
                   <span className="mt-7 inline-flex min-h-11 items-center gap-2 self-start rounded-full border border-primary/30 px-5 py-2 font-semibold text-primary transition group-hover:border-primary group-hover:bg-primary group-hover:text-on-primary">
@@ -189,12 +189,15 @@ export function ServiceCards({ index, services, locale }: { index: ServicesIndex
         ))}
       </ul>
       {index.elsewhere && (
-      <p className="mt-12 text-lg text-ink-soft">
-        {index.elsewhere.text}{" "}
-        <L href={index.elsewhere.link.href} className="font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary">
-          {index.elsewhere.link.label}
-        </L>
-      </p>
+        <p className="mt-12 text-lg text-ink-soft">
+          {index.elsewhere.text}{" "}
+          <L
+            href={index.elsewhere.link.href}
+            className="font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
+          >
+            {index.elsewhere.link.label}
+          </L>
+        </p>
       )}
     </Section>
   );

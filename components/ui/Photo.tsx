@@ -30,7 +30,7 @@ export function Photo({
       alt={alt[locale]}
       loading={priority ? "eager" : "lazy"}
       decoding="async"
-      className={`h-full w-full object-cover ${className}`}
+      className={`photo-grade h-full w-full object-cover ${className}`}
     />
   );
 }

@@ -17,7 +17,7 @@ export function TriageOptions({ locale }: { locale: Locale }) {
         <li key={option.slug}>
           <L
             href={`/chestionare/${option.slug}`}
-            className="group flex h-full min-h-16 items-center justify-between gap-4 rounded-[18px] border border-line bg-surface px-5 py-4 text-ink transition duration-200 hover:border-primary/50 hover:shadow-[var(--shadow-card)]"
+            className="group flex h-full min-h-16 items-center justify-between gap-4 rounded-[var(--radius)] border border-line bg-surface px-5 py-4 text-ink transition-colors duration-200 hover:border-ink/40"
           >
             <span className="text-[1.05rem] font-medium leading-snug">{option.label}</span>
             <span

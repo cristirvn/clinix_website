@@ -62,7 +62,7 @@ export function ArticleCards({
                 </div>
               )}
               <div className="flex flex-1 flex-col p-7">
-                <p className="text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-accent">{a.category}</p>
+                <p className="text-[0.875rem] font-semibold text-accent">{a.category}</p>
                 <Heading className="mt-3 text-[1.75rem] leading-[1.12] sm:text-[1.9rem]">{a.title}</Heading>
                 <p className="mt-3 flex-1 text-ink-soft">{a.description}</p>
                 <p className="mt-6 flex items-center justify-between gap-4 border-t border-line pt-5 text-sm text-ink-soft">

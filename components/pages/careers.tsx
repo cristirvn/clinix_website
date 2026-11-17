@@ -37,7 +37,7 @@ export function CareersRoles({ content }: { content: CareersContent["roles"] }) 
               <Card className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <h3 className="text-2xl sm:text-3xl">{role.title}</h3>
-                  <p className="mt-2 text-[0.875rem] font-semibold uppercase tracking-[0.16em] text-accent">{role.meta}</p>
+                  <p className="mt-2 text-[0.875rem] font-semibold text-accent">{role.meta}</p>
                   <p className="mt-3 max-w-2xl text-ink-soft">{role.text}</p>
                 </div>
                 <ButtonLink href="#aplica" className="flex-none">
