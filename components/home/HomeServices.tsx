@@ -1,7 +1,9 @@
-import { Container, SectionHead, buttonClass } from "@/components/ui/primitives";
+import { Container, SectionHead } from "@/components/ui/primitives";
 import { L } from "@/components/ui/L";
 import { Photo } from "@/components/ui/Photo";
 import { Reveal } from "@/components/ui/Reveal";
+import { Rail } from "@/components/ui/Rail";
+import { SpotRim } from "@/components/ui/PointerSpotlight";
 import { Emph } from "@/components/ui/Emph";
 import { ArrowIcon } from "@/components/ui/icons";
 import type { HomeContent } from "@/content/pages/home";
@@ -9,40 +11,44 @@ import type { Locale } from "@/lib/i18n";
 
 type Service = HomeContent["services"]["items"][number];
 
+/*
+ * Bento placement from 1024px (6 columns × 3 rows): Neurofeedback is the big
+ * square, two tall tiles beside it, two wide tiles along the foot.
+ */
+const BENTO = [
+  "lg:col-span-4 lg:row-span-2",
+  "lg:col-span-2",
+  "lg:col-span-2",
+  "lg:col-span-3",
+  "lg:col-span-3",
+];
+
 /**
- * Section 3 — the methods ("the tools"), picture-led. Neurofeedback is the
- * tall featured card (brain training); the four other methods are photo
- * tiles beside it, 2×2: the name, plus one plain line from the tablet up.
- * BrainMap has its own section next ("how to start").
+ * Section 2 — the methods ("the tools"), picture-led.
+ * Phones: a swipeable rail of big photo cards (the next one peeks in), with
+ * a progress pill. From 1024px: a bento grid; the cards carry a light that
+ * follows the mouse (spotlight + rim) and the photo leans in on hover.
  */
 export function HomeServices({ services, locale }: { services: HomeContent["services"]; locale: Locale }) {
-  const [featured, ...rest] = services.items;
   return (
-    <section id="servicii" className="scroll-mt-24 bg-bg py-24 text-ink sm:py-32">
+    <section id="servicii" className="relative isolate scroll-mt-24 overflow-hidden bg-bg py-24 text-ink sm:py-32">
+      <div aria-hidden="true" className="dot-grid absolute inset-x-0 top-0 -z-10 h-[34rem]" />
       <Container>
         <SectionHead title={<Emph text={services.title} />} lead={services.lead} />
 
-        <div className="grid grid-cols-1 gap-3 sm:gap-5 lg:grid-cols-12">
-          <Reveal className="min-w-0 lg:col-span-5">
-            <FeaturedCard service={featured} badge={services.featuredBadge} more={services.more} locale={locale} />
-          </Reveal>
-          <ul className="grid min-w-0 grid-cols-2 gap-3 sm:gap-5 lg:col-span-7">
-            {rest.map((s, i) => (
-              <li key={s.slug} className="min-w-0">
-                <Reveal delay={i * 80} className="h-full">
-                  <ServiceTile service={s} more={services.more} locale={locale} />
-                </Reveal>
+        <Reveal>
+          <Rail label={services.title.replace(/\*/g, "")} className="lg:!m-0 lg:grid lg:auto-rows-[17.5rem] lg:grid-cols-6 lg:gap-4 lg:overflow-visible lg:!p-0 xl:auto-rows-[19rem]" dotsClassName="lg:hidden">
+            {services.items.map((s, i) => (
+              <li key={s.slug} className={`w-[80%] min-[480px]:w-[58%] sm:w-[44%] lg:w-auto ${BENTO[i] ?? "lg:col-span-2"}`}>
+                <ServiceCard service={s} featured={i === 0} badge={services.featuredBadge} more={services.more} locale={locale} />
               </li>
             ))}
-          </ul>
-        </div>
+          </Rail>
+        </Reveal>
 
-        <p className="mt-10 flex flex-col gap-2 border-t border-line pt-6 text-lg sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-4">
+        <p className="mt-10 flex flex-col gap-2 rounded-[var(--radius-media)] border border-line bg-bg-alt/60 px-6 py-5 text-lg sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-x-6">
           <span className="text-ink-soft">{services.toolsLine}</span>
-          <L
-            href="/neurofit"
-            className="link-draw inline-flex min-h-11 items-center gap-1.5 self-start font-semibold text-primary"
-          >
+          <L href="/neurofit" className="link-draw inline-flex min-h-11 items-center gap-1.5 self-start font-semibold text-primary sm:self-auto">
             {services.toolsLink}
             <ArrowIcon size={16} />
           </L>
@@ -52,55 +58,35 @@ export function HomeServices({ services, locale }: { services: HomeContent["serv
   );
 }
 
-function FeaturedCard({ service, badge, more, locale }: { service: Service; badge: string; more: string; locale: Locale }) {
+function ServiceCard({ service, featured, badge, more, locale }: { service: Service; featured: boolean; badge: string; more: string; locale: Locale }) {
   return (
     <L
       href={`/servicii/${service.slug}`}
       data-tone="dark"
-      className="group @container relative isolate flex h-full min-h-[27rem] flex-col justify-end overflow-hidden rounded-[var(--radius-media)] bg-dark p-6 text-on-dark sm:min-h-[36rem] sm:p-10"
+      className="spotlight group press @container relative isolate flex aspect-[4/5] h-full flex-col justify-end overflow-hidden rounded-[var(--radius-media)] bg-dark p-5 text-on-dark shadow-[var(--shadow-lift)] sm:p-7 lg:aspect-auto"
     >
+      <SpotRim />
       <div aria-hidden="true" className="absolute inset-0 -z-20">
-        <Photo image={service.image} locale={locale} width={1100} className="zoom-media object-[60%_center]" />
-      </div>
-      <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-dark via-dark/55 to-dark/5" />
-
-      <span className="media-chip absolute left-5 top-5 sm:left-8 sm:top-8">
-        {badge}
-      </span>
-
-      {/* From 1024px the card is narrow: the title scales with it, so "Neurofeedback" never splits mid-word. */}
-      <h3 className="text-[2.1rem] leading-none min-[400px]:text-[2.4rem] sm:text-[3.4rem] lg:text-[length:min(3.5rem,13.5cqi)]">{service.title}</h3>
-      <p className="mt-3 text-lg text-on-dark/90">{service.eyebrow}</p>
-      <span className={buttonClass("cta", "md", "mt-7 self-start")}>
-        {more}
-        <ArrowIcon className="transition-transform duration-300 group-hover:translate-x-[3px]" />
-      </span>
-    </L>
-  );
-}
-
-function ServiceTile({ service, more, locale }: { service: Service; more: string; locale: Locale }) {
-  return (
-    <L
-      href={`/servicii/${service.slug}`}
-      data-tone="dark"
-      aria-label={`${service.title} — ${service.eyebrow}. ${more}`}
-      className="group @container relative isolate flex aspect-[4/5] flex-col justify-end overflow-hidden rounded-[var(--radius-media)] bg-dark p-3.5 text-on-dark sm:aspect-auto sm:h-full sm:min-h-[17rem] sm:p-6"
-    >
-      <div aria-hidden="true" className="absolute inset-0 -z-20">
-        <Photo image={service.image} locale={locale} width={700} className="zoom-media" />
+        <Photo image={service.image} locale={locale} width={featured ? 1200 : 800} className="zoom-media object-[60%_center]" />
       </div>
       <div aria-hidden="true" className="absolute inset-0 -z-10 bg-linear-to-t from-dark via-dark/45 to-dark/0" />
 
-      <span
-        aria-hidden="true"
-        className="absolute right-3 top-3 flex h-9 w-9 items-center justify-center rounded-full border border-white/30 bg-dark/30 backdrop-blur-sm transition-colors duration-300 group-hover:border-white/70 sm:right-5 sm:top-5"
-      >
-        <ArrowIcon size={15} className="-rotate-45 transition-transform duration-500 group-hover:rotate-0" />
-      </span>
+      <div className="absolute inset-x-5 top-5 flex items-start justify-between gap-3 sm:inset-x-7 sm:top-7">
+        {featured ? <span className="media-chip">{badge}</span> : <span />}
+        <span
+          aria-hidden="true"
+          className="flex h-11 w-11 flex-none items-center justify-center rounded-full border border-white/30 bg-dark/30 backdrop-blur-md transition-[background-color,border-color,color] duration-300 group-hover:border-transparent group-hover:bg-cta group-hover:text-on-cta"
+        >
+          <ArrowIcon size={17} className="-rotate-45 transition-transform duration-500 group-hover:rotate-0" />
+        </span>
+      </div>
 
-      <h3 className="text-[1.2rem] leading-none min-[400px]:text-[1.5rem] sm:text-[length:min(2.4rem,16.5cqi)]">{service.title}</h3>
-      <p className="mt-2 hidden text-base leading-snug text-on-dark/85 sm:block">{service.eyebrow}</p>
+      <h3 className={`leading-none tracking-[-0.03em] ${featured ? "text-[length:min(4.6rem,12.5cqi)]" : "text-[length:min(2.4rem,15cqi)]"}`}>{service.title}</h3>
+      <p className={`mt-2.5 max-w-sm leading-snug text-on-dark/85 ${featured ? "text-lg sm:text-xl" : "text-base sm:text-lg"}`}>{service.eyebrow}</p>
+      <span className="mt-4 inline-flex items-center gap-1.5 text-base font-semibold text-accent lg:sr-only">
+        {more}
+        <ArrowIcon size={15} />
+      </span>
     </L>
   );
 }

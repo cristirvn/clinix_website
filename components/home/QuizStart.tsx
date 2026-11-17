@@ -48,13 +48,14 @@ export function QuizStart({
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-[var(--radius-media)] border border-line bg-surface p-5 text-ink sm:p-10"
+      className="relative rounded-[var(--radius-media)] border border-line bg-surface p-5 text-ink shadow-[var(--shadow-float)] [--beam-r:var(--radius-media)] sm:p-10"
       aria-describedby={`${id}-help`}
     >
+      <span aria-hidden="true" className="beam" />
       <div className="flex items-center gap-4">
         <span className="label tabular-nums text-accent">{step}</span>
         <span aria-hidden="true" className="h-[3px] flex-1 overflow-hidden rounded-full bg-bg-alt">
-          <span className="block h-full w-[12%] rounded-full bg-primary" />
+          <span className={`block h-full rounded-full bg-primary transition-[width] duration-700 ease-[var(--ease-out)] ${choice ? "w-[24%]" : "w-[12%]"}`} />
         </span>
       </div>
 
@@ -70,8 +71,8 @@ export function QuizStart({
             return (
               <label
                 key={o.slug}
-                className={`group flex min-h-14 cursor-pointer items-center gap-4 rounded-[var(--radius)] border px-4 py-3 transition-colors duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent sm:px-5 ${
-                  checked ? "border-primary bg-primary/[0.05] ring-1 ring-primary" : "border-line hover:border-ink/40"
+                className={`press group flex min-h-[3.75rem] cursor-pointer items-center gap-4 rounded-[var(--radius)] border px-4 py-3 transition-[background-color,border-color,box-shadow,transform] duration-200 has-[:focus-visible]:outline has-[:focus-visible]:outline-3 has-[:focus-visible]:outline-offset-2 has-[:focus-visible]:outline-accent sm:px-5 ${
+                  checked ? "border-primary bg-primary/[0.06] shadow-[var(--shadow-lift)] ring-1 ring-primary" : "border-line bg-bg hover:border-ink/40 hover:shadow-[var(--shadow-lift)]"
                 }`}
               >
                 <input
@@ -104,7 +105,7 @@ export function QuizStart({
         <p role="status" className={`text-[0.95rem] ${nudge ? "font-semibold text-danger" : "text-ink-soft"}`}>
           {nudge ? pickFirst : ""}
         </p>
-        <button type="submit" disabled={leaving} className={buttonClass("cta", "lg", "w-full sm:w-auto")}>
+        <button type="submit" disabled={leaving} className={buttonClass("cta", "lg", `w-full sm:w-auto ${choice ? "btn-shine" : ""}`)}>
           {next}
           <ArrowIcon />
         </button>

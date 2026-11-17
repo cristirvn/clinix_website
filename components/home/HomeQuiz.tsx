@@ -17,7 +17,8 @@ import type { Locale } from "@/lib/i18n";
 export function HomeQuiz({ quiz, locale }: { quiz: HomeContent["quiz"]; locale: Locale }) {
   const triage = getTriage(locale);
   return (
-    <section id="diagnostic" className="scroll-mt-24 bg-bg py-24 text-ink sm:py-32">
+    <section id="diagnostic" className="relative isolate scroll-mt-24 overflow-hidden bg-bg py-24 text-ink sm:py-32">
+      <div aria-hidden="true" className="dot-grid absolute inset-x-0 bottom-0 -z-10 h-[30rem]" />
       <Container>
         <div className="grid gap-10 lg:grid-cols-12 lg:gap-14">
           <div className="lg:col-span-4 lg:pt-4">
@@ -36,7 +37,9 @@ export function HomeQuiz({ quiz, locale }: { quiz: HomeContent["quiz"]; locale: 
             </p>
           </div>
 
-          <Reveal className="min-w-0 lg:col-span-8">
+          <Reveal className="relative min-w-0 lg:col-span-8">
+            {/* Soft palette light under the card. */}
+            <div aria-hidden="true" className="absolute inset-x-[8%] -bottom-6 top-[12%] -z-10 rounded-full bg-[rgb(var(--glow-a)/0.22)] blur-3xl" />
             <QuizStart question={triage.question} help={triage.help} options={triage.options} step={quiz.step} next={quiz.next} pickFirst={quiz.pickFirst} />
           </Reveal>
         </div>

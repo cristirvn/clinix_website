@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { ArrowIcon } from "@/components/ui/icons";
 import type { VideoStory } from "@/components/pages/testimonials";
@@ -24,6 +24,17 @@ export function VideoCarousel({
   play: string;
 }) {
   const track = useRef<HTMLUListElement>(null);
+  const [active, setActive] = useState(0);
+  useEffect(() => {
+    const el = track.current;
+    if (!el) return;
+    const onScroll = () => {
+      const max = el.scrollWidth - el.clientWidth;
+      setActive(max > 0 ? Math.round((el.scrollLeft / max) * (items.length - 1)) : 0);
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, [items.length]);
   const move = (dir: 1 | -1) => {
     const el = track.current;
     if (!el) return;
@@ -45,15 +56,12 @@ export function VideoCarousel({
           </button>
         </div>
       </div>
-      <ul
-        ref={track}
-        className="-mx-5 flex snap-x snap-mandatory gap-4 overflow-x-auto scroll-px-5 px-5 pb-4 [scrollbar-width:none] sm:mx-0 sm:scroll-px-0 sm:px-0 [&::-webkit-scrollbar]:hidden"
-      >
+      <ul ref={track} className="rail gap-4 pb-2 sm:!mx-0 sm:!px-0 sm:!scroll-px-0">
         {items.map((t) => (
-          <li key={t.id} className="w-[84%] flex-none snap-start sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.7rem)]">
-            <figure>
+          <li key={t.id} className="w-[84%] sm:w-[calc(50%-0.5rem)] lg:w-[calc(33.333%-0.7rem)]">
+            <figure className="rounded-[var(--radius-media)] border border-line bg-surface p-2 shadow-[var(--shadow-lift)]">
               <VideoPlayer video={t.video} title={`${play}: ${t.name}`} />
-              <figcaption className="mt-3">
+              <figcaption className="px-3 pb-2 pt-3">
                 <span className="block text-lg font-semibold">{t.name}</span>
                 {t.line && <span className="text-base text-ink-soft">{t.line}</span>}
               </figcaption>
@@ -61,6 +69,13 @@ export function VideoCarousel({
           </li>
         ))}
       </ul>
+      {items.length > 1 && (
+        <div aria-hidden="true" className="mt-4 flex justify-center gap-1.5 sm:hidden">
+          {items.map((t, i) => (
+            <span key={t.id} className={`h-1.5 rounded-full transition-[width,background-color] duration-500 ${i === active ? "w-7 bg-accent" : "w-1.5 bg-current/25"}`} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

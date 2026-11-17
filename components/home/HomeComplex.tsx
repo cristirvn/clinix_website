@@ -1,43 +1,47 @@
 import { Container, Eyebrow } from "@/components/ui/primitives";
 import { L } from "@/components/ui/L";
 import { Reveal } from "@/components/ui/Reveal";
+import { SpotRim } from "@/components/ui/PointerSpotlight";
 import { ArrowIcon } from "@/components/ui/icons";
 import type { HomeContent } from "@/content/pages/home";
 
 /**
- * Section 6 — complex situations (ADHD, autism, Parkinson …). No panel, no
- * photo: a hairline on top, the heading on the left; the plain explanation,
- * the conditions as tags and two links on the right. It is a reassurance,
- * not a sales block.
+ * Section 6 — complex situations (ADHD, autism, Parkinson …). A reassurance,
+ * not a sales block: one raised card — heading on the left; the plain
+ * explanation, the conditions as tags and two links (as big tappable rows)
+ * on the right. Light follows the mouse on desktop.
  */
 export function HomeComplex({ complex }: { complex: HomeContent["complex"] }) {
   return (
-    <section id="situatii-complexe" className="scroll-mt-24 bg-bg pb-24 text-ink sm:pb-32">
+    <section id="situatii-complexe" className="scroll-mt-24 bg-bg py-24 text-ink sm:py-32">
       <Container>
         <Reveal>
-          <div className="grid gap-8 border-t border-line pt-14 sm:pt-20 lg:grid-cols-12 lg:gap-14">
+          <div className="spotlight relative grid gap-8 overflow-hidden rounded-[var(--radius-panel)] border border-line bg-surface p-6 shadow-[var(--shadow-lift)] sm:p-12 lg:grid-cols-12 lg:gap-14 lg:p-16">
+            <SpotRim />
             <div className="lg:col-span-5">
               <Eyebrow>{complex.eyebrow}</Eyebrow>
               <h2 className="t-h2">{complex.title}</h2>
             </div>
-            <div className="lg:col-span-7 lg:pt-12">
+            <div className="relative z-[3] lg:col-span-7 lg:pt-14">
               <p className="t-lead max-w-[62ch]">{complex.text}</p>
               <ul className="mt-7 flex flex-wrap gap-2.5">
                 {complex.tags.map((t) => (
-                  <li key={t} className="rounded-full border border-line px-4 py-1.5 text-base font-medium">
+                  <li key={t} className="rounded-full bg-bg-alt px-4 py-2 text-base font-semibold text-primary">
                     {t}
                   </li>
                 ))}
               </ul>
-              <div className="mt-7 flex flex-wrap gap-x-8 gap-y-1">
+              <div className="mt-8 grid gap-2 border-t border-line pt-6 sm:grid-cols-2 sm:gap-3">
                 {complex.links.map((link) => (
                   <L
                     key={link.href}
                     href={link.href}
-                    className="link-draw inline-flex min-h-11 items-center gap-1.5 text-lg font-semibold text-primary"
+                    className="press group flex min-h-14 items-center justify-between gap-3 rounded-[var(--radius)] border border-line px-5 py-3 text-lg font-semibold text-ink transition-colors hover:border-primary hover:text-primary"
                   >
                     {link.label}
-                    <ArrowIcon size={16} />
+                    <span aria-hidden="true" className="flex h-9 w-9 flex-none items-center justify-center rounded-full bg-bg-alt text-primary transition-colors group-hover:bg-cta group-hover:text-on-cta">
+                      <ArrowIcon size={16} />
+                    </span>
                   </L>
                 ))}
               </div>
