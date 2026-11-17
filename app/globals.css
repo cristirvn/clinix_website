@@ -447,6 +447,8 @@
     inset: 0;
     border-radius: inherit;
     pointer-events: none;
+    /* The travelling light never widens the page (layout overflow), only the masked rim shows. */
+    overflow: hidden;
     padding: 1.5px;
     -webkit-mask:
       linear-gradient(#000 0 0) content-box,

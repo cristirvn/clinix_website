@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
-import { Card, Section } from "@/components/ui/primitives";
+import { Card, HeroPanel, Section, withArrowIcon } from "@/components/ui/primitives";
+import { BlurWords } from "@/components/ui/BlurWords";
+import { SpotRim } from "@/components/ui/PointerSpotlight";
+import { PhoneIcon, WhatsAppIcon } from "@/components/ui/icons";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { getContact } from "@/content/pages/contact";
 import { alternatesFor, type Locale } from "@/lib/i18n";
@@ -31,52 +34,75 @@ export default async function ContactPage({ params }: Props) {
   const d = c.details;
 
   return (
-    <Section>
-      <div className="max-w-3xl">
-        <h1 className="t-h1">{c.title}</h1>
-        <p className="mt-6 text-lg text-ink-soft sm:text-xl">{c.lead}</p>
-      </div>
+    <>
+      {/* Top: the lit inset panel, with the two fastest ways to reach us as big glass tiles. */}
+      <HeroPanel>
+        <div className="max-w-3xl">
+          <h1 className="t-h1">
+            <BlurWords text={c.title} delay={90} step={70} />
+          </h1>
+          <p className="rise-in mt-6 text-lg text-on-dark-soft sm:text-xl" style={{ animationDelay: "300ms" }}>
+            {c.lead}
+          </p>
+        </div>
+        <div className="rise-in mt-10 grid gap-3 sm:grid-cols-2 sm:gap-4 lg:max-w-4xl" style={{ animationDelay: "420ms" }}>
+          <a href={CLINIC.phoneHref} className="liquid-glass press spotlight group relative flex min-h-[6.5rem] items-center gap-4 rounded-[var(--radius-media)] p-5 sm:p-6">
+            <SpotRim />
+            <span aria-hidden="true" className="flex h-14 w-14 flex-none items-center justify-center rounded-full bg-cta text-on-cta shadow-[var(--glow-cta)]">
+              <PhoneIcon size={24} />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[0.95rem] font-semibold text-accent">{d.phoneLabel}</span>
+              <span className="block whitespace-nowrap font-display text-[1.6rem] font-semibold leading-tight tracking-[-0.02em] tabular-nums sm:text-[1.9rem]">{CLINIC.phone}</span>
+            </span>
+          </a>
+          <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" className="liquid-glass press spotlight group relative flex min-h-[6.5rem] items-center gap-4 rounded-[var(--radius-media)] p-5 sm:p-6">
+            <SpotRim />
+            <span aria-hidden="true" className="flex h-14 w-14 flex-none items-center justify-center rounded-full bg-success text-on-dark">
+              <WhatsAppIcon size={26} />
+            </span>
+            <span className="min-w-0">
+              <span className="block text-[0.95rem] font-semibold text-accent">{d.whatsappLabel}</span>
+              <span className="inline-flex items-center gap-2 text-[1.25rem] font-semibold leading-tight">{withArrowIcon(d.whatsappText)}</span>
+            </span>
+          </a>
+        </div>
+      </HeroPanel>
 
-      <div className="mt-16 grid gap-14 lg:mt-20 lg:grid-cols-12 lg:gap-16">
-        <div className="space-y-6 lg:col-span-5">
-          <Detail label={d.phoneLabel}>
-            <a href={CLINIC.phoneHref} className="font-display text-3xl hover:text-accent sm:text-4xl">
-              {CLINIC.phone}
-            </a>
-          </Detail>
-          <Detail label={d.whatsappLabel}>
-            <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" className={LINK}>
-              {d.whatsappText}
-            </a>
-          </Detail>
-          <Detail label={d.emailLabel}>
-            <a href={`mailto:${CLINIC.email}`} className={`${LINK} break-all`}>
-              {CLINIC.email}
-            </a>
-          </Detail>
-          <Detail label={d.addressLabel}>
-            <address className="not-italic">{CLINIC.address}</address>
-            <a href={CLINIC.mapsHref} target="_blank" rel="noopener noreferrer" className={`${LINK} mt-3 inline-flex min-h-11 items-center text-base`}>
-              {d.mapLink}
-            </a>
-          </Detail>
-          {d.hours.length > 0 && (
-            <Detail label={d.hoursLabel}>
-              <ul className="space-y-1">
-                {d.hours.map((h) => (
-                  <li key={h}>{h}</li>
-                ))}
-              </ul>
+      <Section className="!pt-16 sm:!pt-24">
+        <div className="grid gap-14 lg:grid-cols-12 lg:gap-16">
+          <div className="space-y-6 lg:col-span-5">
+            <Detail label={d.emailLabel}>
+              <a href={`mailto:${CLINIC.email}`} className={`${LINK} break-all`}>
+                {CLINIC.email}
+              </a>
             </Detail>
-          )}
-        </div>
+            <Detail label={d.addressLabel}>
+              <address className="not-italic">{CLINIC.address}</address>
+              <a href={CLINIC.mapsHref} target="_blank" rel="noopener noreferrer" className={`${LINK} mt-3 inline-flex min-h-11 items-center text-base`}>
+                {d.mapLink}
+              </a>
+            </Detail>
+            {d.hours.length > 0 && (
+              <Detail label={d.hoursLabel}>
+                <ul className="space-y-1">
+                  {d.hours.map((h) => (
+                    <li key={h}>{h}</li>
+                  ))}
+                </ul>
+              </Detail>
+            )}
+          </div>
 
-        <div className="lg:col-span-7" id="formular">
-          <Card className="sm:p-10">
-            <ContactForm copy={c.form} />
-          </Card>
+          <div className="relative lg:col-span-7" id="formular">
+            <div aria-hidden="true" className="absolute inset-x-[10%] -bottom-6 top-[15%] -z-10 rounded-full bg-[rgb(var(--glow-a)/0.18)] blur-3xl" />
+            <Card className="relative shadow-[var(--shadow-float)] [--beam-r:var(--radius-media)] sm:p-10">
+              <span aria-hidden="true" className="beam" />
+              <ContactForm copy={c.form} />
+            </Card>
+          </div>
         </div>
-      </div>
-    </Section>
+      </Section>
+    </>
   );
 }
