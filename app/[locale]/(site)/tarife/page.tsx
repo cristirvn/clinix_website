@@ -16,11 +16,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function PricingPage({ params }: Props) {
-  const c = content((await params).locale as Locale);
+  const locale = (await params).locale as Locale;
+  const c = content(locale);
   return (
     <>
       <PageHero content={c.hero} />
-      <FeaturedOffer content={c.featured} />
+      <FeaturedOffer content={c.featured} locale={locale} />
       <PriceList content={c.list} />
       <PricingFaq content={c.faq} />
       <CtaBand content={c.cta} />

@@ -11,9 +11,12 @@ import type { Locale } from "@/lib/i18n";
  * ("Lunar", "Monthly") render as they are.
  */
 export function StatNumber({ value, locale, delay = 0 }: { value: string; locale: Locale; delay?: number }) {
-  const match = /^(\d+(?:[.,]\d+)?)(.*)$/.exec(value.trim());
-  const target = match ? Number(match[1].replace(",", ".")) : 0;
-  const decimals = match && /[.,]/.test(match[1]) ? match[1].split(/[.,]/)[1].length : 0;
+  const match = /^(\d+(?:[.,]\d+)*)(.*)$/.exec(value.trim());
+  // "1.200" / "1,200" are thousands (grouped); "4,9" / "4.9" are decimals.
+  const grouped = !!match && /^\d{1,3}([.,]\d{3})+$/.test(match[1]);
+  const digits = match ? match[1] : "";
+  const target = !match ? 0 : grouped ? Number(digits.replace(/[.,]/g, "")) : Number(digits.replace(",", "."));
+  const decimals = match && !grouped && /[.,]/.test(digits) ? digits.split(/[.,]/)[1].length : 0;
   const ref = useRef<HTMLSpanElement>(null);
   const [shown, setShown] = useState(target);
 
@@ -50,7 +53,7 @@ export function StatNumber({ value, locale, delay = 0 }: { value: string; locale
         <NumberFlow
           value={shown}
           locales={locale === "ro" ? "ro-RO" : "en-GB"}
-          format={{ minimumFractionDigits: decimals, maximumFractionDigits: decimals }}
+          format={{ minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping: grouped ? "always" : false }}
           transformTiming={{ duration: 1100, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }}
           spinTiming={{ duration: 1400, easing: "cubic-bezier(0.22, 1, 0.36, 1)" }}
           className="tabular-nums"

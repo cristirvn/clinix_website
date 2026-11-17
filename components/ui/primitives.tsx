@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { L } from "@/components/ui/L";
 import { EegLive } from "@/components/home/EegTrace";
+import { ArrowIcon } from "@/components/ui/icons";
 
 /**
  * Layout + typography building blocks. Every page is built from these so the
@@ -62,7 +63,9 @@ export function HeroPanel({
   return (
     <section id={id} className="bg-bg px-2 pb-2 sm:px-3 sm:pb-3">
       <div data-tone="dark" className={`bg-vital grain relative isolate overflow-hidden rounded-[var(--radius-panel)] pb-20 pt-12 text-on-dark sm:pb-28 sm:pt-20 ${className}`}>
-        <Container narrow={narrow}>{children}</Container>
+        <Container narrow={narrow} className="sm:!px-10 lg:!px-16">
+          {children}
+        </Container>
         <EegLive className="absolute inset-x-0 bottom-5 -z-10 h-14 opacity-50 sm:bottom-8 sm:h-20" strokeWidth={1.4} speed={22} />
       </div>
     </section>
@@ -172,6 +175,21 @@ export function buttonClass(variant: ButtonVariant = "cta", size: "md" | "lg" = 
   return `${BTN_BASE} ${BTN_VARIANTS[variant]} ${variant === "ghost" ? "" : BTN_SIZES[size]} rounded-[var(--btn-radius)] ${extra}`;
 }
 
+/**
+ * Copy often ends a button label with a typed arrow ("Vreau BrainMap →").
+ * Buttons draw it as the site's own line icon instead (one icon style
+ * everywhere, and it slides on hover). Text content is unchanged.
+ */
+export function withArrowIcon(children: ReactNode): ReactNode {
+  if (typeof children !== "string" || !/\s*→\s*$/.test(children)) return children;
+  return (
+    <>
+      {children.replace(/\s*→\s*$/, "")}
+      <ArrowIcon />
+    </>
+  );
+}
+
 /** Link styled as a button. `href` is an INTERNAL path (see `L`). */
 export function ButtonLink({
   href,
@@ -188,7 +206,7 @@ export function ButtonLink({
 }) {
   return (
     <L href={href} className={buttonClass(variant, size, className)}>
-      {children}
+      {withArrowIcon(children)}
     </L>
   );
 }

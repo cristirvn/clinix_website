@@ -354,12 +354,9 @@ function MobileMenu({ pathname, open, onOpenChange }: { pathname: string; open: 
                       href={href}
                       onClick={close}
                       aria-current={current ? "page" : undefined}
-                      className={`press flex h-full min-h-[5.25rem] flex-col justify-between gap-2 rounded-[var(--radius)] border p-3.5 ${current ? "border-primary bg-primary/[0.06]" : "border-line bg-bg-alt/60"}`}
+                      className={`press flex h-full min-h-[5.25rem] flex-col justify-start gap-1.5 rounded-[var(--radius)] border p-3.5 ${current ? "border-primary bg-primary/[0.06]" : "border-line bg-bg-alt/60"}`}
                     >
-                      <span className="flex items-center justify-between gap-2 text-[1.08rem] font-semibold leading-tight">
-                        {s[locale]}
-                        <ArrowIcon size={15} className="flex-none text-accent" />
-                      </span>
+                      <span className="text-[1.08rem] font-semibold leading-tight">{s[locale]}</span>
                       <span className="text-[0.88rem] leading-snug text-ink-soft">{s.sub[locale]}</span>
                     </L>
                   </li>

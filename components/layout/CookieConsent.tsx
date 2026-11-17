@@ -31,20 +31,20 @@ export function CookieConsent() {
     <section
       role="region"
       aria-label={t.label}
-      className="animate-cookie-in fixed inset-x-3 bottom-3 z-[90] mx-auto max-w-xl rounded-[var(--radius)] border border-line bg-surface p-6 text-ink shadow-[var(--shadow-soft)] sm:inset-x-auto sm:left-6 sm:bottom-6 sm:p-7"
+      className="animate-cookie-in fixed inset-x-2 bottom-[calc(0.5rem+env(safe-area-inset-bottom))] z-[90] mx-auto max-w-xl rounded-[var(--radius-media)] border border-line bg-surface/95 p-4 text-ink shadow-[var(--shadow-float)] backdrop-blur-xl sm:inset-x-auto sm:left-6 sm:bottom-6 sm:p-7"
     >
-      <h2 className="font-display text-[1.7rem] leading-tight">{t.title}</h2>
-      <p className="mt-2 text-base text-ink-soft">
+      <h2 className="font-display text-[1.25rem] leading-tight sm:text-[1.7rem]">{t.title}</h2>
+      <p className="mt-1.5 text-base leading-snug text-ink-soft sm:mt-2 sm:leading-relaxed">
         {t.text}{" "}
         <L href="/politica-de-confidentialitate" className="font-semibold text-primary underline underline-offset-4">
           {t.policy}
         </L>
       </p>
-      <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-        <button type="button" onClick={() => choose("all")} className={buttonClass("cta", "md", "flex-1")}>
+      <div className="mt-3.5 grid grid-cols-2 gap-2 sm:mt-5 sm:gap-3">
+        <button type="button" onClick={() => choose("all")} className={buttonClass("cta", "md", "!px-3")}>
           {t.accept}
         </button>
-        <button type="button" onClick={() => choose("essential")} className={buttonClass("outline", "md", "flex-1")}>
+        <button type="button" onClick={() => choose("essential")} className={buttonClass("outline", "md", "!px-3")}>
           {t.essential}
         </button>
       </div>

@@ -4,6 +4,8 @@ import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { L } from "@/components/ui/L";
 import { Photo } from "@/components/ui/Photo";
 import { ArrowIcon } from "@/components/ui/icons";
+import { BlurWords } from "@/components/ui/BlurWords";
+import { SpotRim } from "@/components/ui/PointerSpotlight";
 import type { ImageKey } from "@/content/media";
 import type { Locale } from "@/lib/i18n";
 
@@ -24,13 +26,13 @@ import type { ServiceContent, ServicesIndexContent } from "@/content/services/ty
 export function ServiceHero({ service }: { service: ServiceContent }) {
   return (
     <HeroPanel narrow>
-      <h1 className="rise-in t-h1" style={{ animationDelay: "90ms" }}>
-        {service.hero.title}
+      <h1 className="t-h1">
+        <BlurWords text={service.hero.title} delay={90} step={60} />
       </h1>
       <p className="rise-in mt-6 max-w-2xl text-lg text-on-dark-soft sm:text-xl" style={{ animationDelay: "180ms" }}>
         {service.hero.lead}
       </p>
-      <div className="liquid-glass rise-in mt-10 rounded-[var(--radius-media)] p-2 sm:mt-12" style={{ animationDelay: "260ms" }}>
+      <div className="liquid-glass rise-in mt-10 rounded-[var(--radius-media)] p-2 shadow-[0_40px_80px_-30px_rgb(0_0_0/0.6)] sm:mt-12" style={{ animationDelay: "260ms" }}>
         <VideoPlayer video={service.video} title={service.hero.videoTitle} />
       </div>
     </HeroPanel>
@@ -55,17 +57,20 @@ export function ServiceSession({ content }: { content: ServiceContent["session"]
     <Section tone="alt">
       <SectionHead title={content.title} />
       <div className="grid gap-12 lg:grid-cols-[1.4fr_1fr] lg:gap-16">
-        <ol className="border-t border-line">
+        {/* Same timeline as the home page: numbered stops on a line that fills as you scroll. */}
+        <ol className="relative space-y-3 sm:space-y-4">
+          <span aria-hidden="true" className="absolute bottom-8 left-[1.4rem] top-8 w-[2px] rounded-full bg-line" />
+          <span aria-hidden="true" className="timeline-fill absolute bottom-8 left-[1.4rem] top-8 w-[2px] origin-top rounded-full bg-primary" />
           {content.steps.map((step, i) => (
-            <li key={step.title} className="border-b border-line py-6">
-              <Reveal delay={i * 60} className="flex gap-5">
+            <li key={step.title} className="relative">
+              <Reveal delay={i * 60} className="grid grid-cols-[2.85rem_1fr] items-start gap-4 sm:gap-5">
                 <span
                   aria-hidden="true"
-                  className="w-11 flex-none pt-0.5 font-display text-[1.6rem] font-semibold leading-none tabular-nums text-accent lg:mb-5 lg:block"
+                  className="relative z-10 flex h-[2.85rem] w-[2.85rem] items-center justify-center rounded-full bg-cta text-base font-semibold tabular-nums text-on-cta shadow-[var(--glow-cta)] ring-[5px] ring-bg-alt"
                 >
                   {String(i + 1).padStart(2, "0")}
                 </span>
-                <div>
+                <div className="rounded-[var(--radius-media)] border border-line bg-surface p-5 shadow-[var(--shadow-lift)] sm:p-6">
                   <h3 className="text-xl sm:text-2xl">{step.title}</h3>
                   <p className="mt-2 text-ink-soft">{step.text}</p>
                 </div>
@@ -103,8 +108,9 @@ export function ServiceHelps({
           <li key={c.id}>
             <L
               href={`/afectiuni-tratate#${c.id}`}
-              className="group flex h-full flex-col justify-between gap-4 rounded-[var(--radius)] border border-line bg-surface p-6 transition duration-300 hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-[var(--shadow-card)]"
+              className="card-hover spotlight group relative flex h-full flex-col justify-between gap-4 overflow-hidden rounded-[var(--radius-media)] border border-line bg-surface p-6 shadow-[var(--shadow-lift)]"
             >
+              <SpotRim />
               <span className="font-display text-[1.6rem] leading-tight">{c.title}</span>
               <span className="inline-flex items-center gap-2 font-semibold text-primary">
                 {linkLabel}
@@ -165,8 +171,9 @@ export function ServiceCards({ index, services, locale }: { index: ServicesIndex
             <Reveal delay={i * 60} className="h-full">
               <L
                 href={`/servicii/${s.slug}`}
-                className="group flex h-full flex-col overflow-hidden rounded-[var(--radius)] border border-line bg-surface text-ink transition duration-300 hover:-translate-y-1 hover:border-transparent hover:shadow-[var(--shadow-card)]"
+                className="card-hover spotlight group relative flex h-full flex-col overflow-hidden rounded-[var(--radius-media)] border border-line bg-surface text-ink shadow-[var(--shadow-lift)]"
               >
+                <SpotRim />
                 {SERVICE_IMAGES[s.slug] && (
                   <div className="relative aspect-[16/10] overflow-hidden bg-bg-alt">
                     <div className="absolute inset-0">
