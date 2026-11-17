@@ -119,8 +119,9 @@ export function ChatAssistant() {
     <>
       {!open && (
         // Two quiet floating actions, bottom-right: WhatsApp (small, round) above the assistant (labelled pill).
-        // On phones both live in the bottom action bar (MobileDock) instead.
-        <div className={`fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[56] flex flex-col items-end gap-3 transition duration-300 max-md:hidden sm:bottom-6 sm:right-6 print:hidden ${scrolled ? "" : "max-sm:pointer-events-none max-sm:translate-y-3 max-sm:opacity-0"}`}>
+        // On phones both live in the bottom action bar (MobileDock) instead. They wait until the
+        // first screen is scrolled past, so they never sit on the hero's facts or main button.
+        <div className={`fixed bottom-[calc(1rem+env(safe-area-inset-bottom))] right-4 z-[56] flex flex-col items-end gap-3 transition duration-300 max-md:hidden sm:bottom-6 sm:right-6 print:hidden ${scrolled ? "" : "pointer-events-none translate-y-3 opacity-0"}`}>
           <a
             href={CLINIC.whatsappHref}
             target="_blank"
