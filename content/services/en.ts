@@ -16,7 +16,7 @@ export const SERVICES_EN: ServicesLocale = {
     seo: {
       title: "Services and equipment",
       description:
-        "BrainMap (qEEG), neurofeedback, taVNS, tPBM, CES, psychotherapy and EmSella at Emmanuel CliniX in Bucharest. What each one is, how a session goes and who it helps.",
+        "BrainMap (qEEG), neurofeedback, taVNS, tPBM, CES, psychotherapy, psychiatry and EmSella at Emmanuel CliniX in Bucharest. What each one is, how a session goes and who it helps.",
     },
     hero: {
       eyebrow: "Services",
@@ -500,6 +500,92 @@ export const SERVICES_EN: ServicesLocale = {
       cta: {
         title: "Shall we talk?",
         text: "Leave us your number. We’ll call, listen, and find the first step together.",
+        primary: { label: "Request a call back →", href: "/contact" },
+        secondary: { label: "Or take a free test", href: "/chestionare" },
+      },
+    },
+
+    // PROVISIONAL copy (placeholder) — the clinic sends the final text and the video.
+    psihiatrie: {
+      slug: "psihiatrie",
+      schemaType: "MedicalTherapy",
+      seo: {
+        title: "Psychiatry in Bucharest",
+        description:
+          "Psychiatric consultation at Emmanuel CliniX in Bucharest: assessment, diagnosis and a treatment plan with a consultant psychiatrist. You can also start from your BrainMap data.",
+      },
+      card: {
+        name: "Psychiatry",
+        short: "A consultation with a psychiatrist: assessment, diagnosis and a treatment plan.",
+      },
+      hero: {
+        eyebrow: "Psychiatry",
+        title: "A doctor who hears you out.",
+        lead: "A consultation with a consultant psychiatrist. A careful assessment, a clear plan, no rush.",
+        videoTitle: "How a psychiatric consultation works at Emmanuel CliniX",
+      },
+      video: "servicePsihiatrie",
+      what: {
+        eyebrow: "What it is",
+        title: "In short",
+        paragraphs: [
+          "The psychiatrist looks at what you feel, for how long, and how much it affects your daily life. Then they explain what it means and what your options are.",
+          "When needed, they recommend a treatment and follow you over time. With us, the consultation can also start from your BrainMap data and can be combined with psychotherapy.",
+        ],
+      },
+      session: {
+        eyebrow: "How it goes",
+        title: "Step by step, explained clearly.",
+        steps: [
+          { title: "The consultation", text: "You tell us what brings you to us. The doctor asks questions and hears you out." },
+          { title: "The assessment", text: "You get a conclusion in plain words, not medical jargon." },
+          { title: "The plan", text: "You go through the options. You decide together with the doctor what comes next." },
+          { title: "Follow-ups", text: "You come back for follow-ups, to see what has changed and adjust the plan." },
+        ],
+        facts: [
+          "A consultation with a consultant psychiatrist",
+          "Everything stays confidential",
+          "No GP referral needed",
+          "Can be combined with psychotherapy",
+        ],
+      },
+      helps: {
+        eyebrow: "Who it is for",
+        title: "Who it may help",
+        conditions: ["anxietate", "panica", "dispozitie", "somn", "focus", "adictii"],
+        note: "A psychiatric consultation does not replace emergency services.",
+      },
+      safety: {
+        eyebrow: "Good to know",
+        title: "Is it for me?",
+        points: [
+          "Everything stays between you and the doctor.",
+          "You are not judged. You only say what you want to say.",
+          "You do not start any treatment without understanding why.",
+          "You can ask at any time what a diagnosis or a treatment means.",
+        ],
+        notTitle: "When you need something else first",
+        notFor: ["You are having thoughts of harming yourself: call 112 now", "You are in an acute crisis: go to the nearest emergency department"],
+      },
+      faq: {
+        eyebrow: "Questions",
+        title: "Frequently asked questions",
+        items: [
+          { q: "Do I need a referral to come?", a: "No." },
+          {
+            q: "Will I automatically be given medication?",
+            a: "No. The doctor only recommends a treatment if it is needed, and only after explaining why.",
+          },
+          {
+            q: "How much does a consultation cost?",
+            a: "We tell you the price on the phone, before the consultation. No hidden costs.",
+          },
+          { q: "What happens to what I say?", a: "It stays confidential. It is not passed on." },
+        ],
+      },
+      cta: {
+        title: "Would you like a psychiatric consultation?",
+        text: "Leave us your number. We’ll call and book an appointment together.",
         primary: { label: "Request a call back →", href: "/contact" },
         secondary: { label: "Or take a free test", href: "/chestionare" },
       },

@@ -12,6 +12,7 @@ import {
 } from "@/components/pages/testimonials";
 import { getAllCmsTestimonials, getCms } from "@/lib/cms";
 import { NAV_SERVICES } from "@/components/layout/nav";
+import { getTherapist } from "@/content/therapists";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbs } from "@/components/seo/schema";
 import { pageMetadata } from "@/components/seo/meta";
@@ -34,8 +35,11 @@ export default async function TestimonialsPage({ params }: Props) {
   const page = getTestimonialsPage(locale);
   const dict = getDictionary(locale);
   const cms = cmsToStories(await getAllCmsTestimonials(), locale, (t) => {
-    const s = NAV_SERVICES.find((n) => n.slug === t.services[0]);
-    return s ? { label: s[locale], href: `/servicii/${s.slug}` } : undefined;
+    // Tag = its first service page; one ticked only for a psychotherapist's page links to that page.
+    const s = NAV_SERVICES.find((n) => t.services.includes(n.slug));
+    if (s) return { label: s[locale], href: `/servicii/${s.slug}` };
+    const therapist = t.services.map((p) => getTherapist(locale, p)).find(Boolean);
+    return therapist ? { label: therapist.name, href: `/psihoterapeut/${therapist.slug}` } : undefined;
   });
   const { media } = await getCms();
   const videos = [...cms.videos, ...staticVideoStories(videoTestimonials(), page, locale, media)];

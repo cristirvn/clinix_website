@@ -7,6 +7,10 @@ import { EmsellaApply } from "@/components/lp-emsella/EmsellaApply";
 import { StickyApplyCta } from "@/components/lp-emsella/StickyApplyCta";
 import { getLpEmsella } from "@/content/lp-emsella";
 import { alternatesFor, type Locale } from "@/lib/i18n";
+import { RelatedArticles } from "@/components/pages/RelatedArticles";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { landingPageNode } from "@/components/seo/schema";
+import { getCondition } from "@/content/conditions";
 
 const PATH = "/lp/emsella";
 
@@ -18,7 +22,6 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: c.meta.title,
     description: c.meta.description,
-    robots: { index: false, follow: false },
     alternates: alternatesFor(PATH, locale),
   };
 }
@@ -37,6 +40,15 @@ export default async function LpEmsellaPage({ params }: Props) {
 
   return (
     <>
+      <JsonLd
+        data={landingPageNode({
+          path: PATH,
+          name: c.meta.title,
+          description: c.meta.description,
+          condition: getCondition(locale, "planseu-pelvin")?.title,
+          locale,
+        })}
+      />
       {/* HERO */}
       <HeroPanel>
           <div className="mx-auto max-w-4xl text-center">
@@ -268,6 +280,8 @@ export default async function LpEmsellaPage({ params }: Props) {
           <p className="mt-6 text-center text-on-dark-soft">{c.apply.note}</p>
         </Container>
       </section>
+
+      <RelatedArticles topics={["emsella", "planseu-pelvin"]} locale={locale} />
 
       <div className="bg-bg-alt pb-24 sm:pb-0">
         <FunnelFooter locale={locale} legal={c.legal} />

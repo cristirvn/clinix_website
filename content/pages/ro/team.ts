@@ -11,6 +11,8 @@ export interface TeamContent {
     photoPlaceholder: string;
     /** Screen-reader label for a member's focus tags. */
     focusLabel: string;
+    /** Link label under a member who has their own page (`href`). */
+    more: string;
     items: Array<{
       name: string;
       role: string;
@@ -19,6 +21,8 @@ export interface TeamContent {
       focus?: string[];
       /** /public path or absolute URL; empty → placeholder frame. */
       photo: string;
+      /** Their own page, when they have one (psychotherapists: `/psihoterapeut/<slug>`). */
+      href?: string;
     }>;
   };
   together: {
@@ -46,6 +50,7 @@ export const team: TeamContent = {
     title: "Echipa noastră",
     photoPlaceholder: "Fotografie în curând",
     focusLabel: "Arii de lucru",
+    more: "Află mai multe →",
     items: [
       {
         name: "Cristian Florin Cotorceanu",
@@ -60,6 +65,7 @@ export const team: TeamContent = {
         bio: "Peste 20 de ani de psihoterapie. Lucrează cu adulți, copii și adolescenți, într-un cadru sigur și empatic, integrând metode experiențiale, cognitiv-comportamentale și transpersonale.",
         focus: ["Psihoterapie experiențială", "Terapie cognitiv-comportamentală (CBT)", "Psihoterapie transpersonală", "Inteligență emoțională"],
         photo: "/photos/echipa/patricia-cihodaru.webp",
+        href: "/psihoterapeut/patricia-cihodaru",
       },
       {
         name: "Dr. Cristian Petrescu",
@@ -88,6 +94,7 @@ export const team: TeamContent = {
         bio: "Formată în psihoterapie cognitiv-comportamentală, psihoterapie de cuplu și familie și sexologie. Are 20 de ani de experiență cu adolescenți, adulți și cupluri.",
         focus: ["Psihoterapie cognitiv-comportamentală", "Psihoterapie de cuplu și familie", "Sexologie", "Dezvoltare personală"],
         photo: "/photos/echipa/aniela-sircu.webp",
+        href: "/psihoterapeut/aniela-sircu",
       },
       {
         name: "Dr. Ilie-Andrei Ticiu",

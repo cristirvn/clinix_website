@@ -1,4 +1,5 @@
 import { SERVICE_SLUGS, type ServiceSlug } from "@/content/services/types";
+import { THERAPIST_SLUGS, type TherapistSlug } from "@/content/therapists/types";
 import { VIDEOS, type VideoKey } from "@/content/media";
 
 /**
@@ -6,7 +7,7 @@ import { VIDEOS, type VideoKey } from "@/content/media";
  *  - any video on the site (every key in `content/media.ts`: landing pages,
  *    service pages, "how it works", about, children, testimonials);
  *  - testimonials (video or text), each shown on one or more service pages
- *    and on /testimoniale.
+ *    or psychotherapist pages (/psihoterapeut/<slug>), and on /testimoniale.
  *
  * Everything else on the site still lives in `content/`.
  */
@@ -26,8 +27,12 @@ export interface CmsTestimonial {
   videoUrl: string;
   /** kind = "text": what the patient said. */
   quote: Bilingual;
-  /** The service pages it appears on. */
-  services: ServiceSlug[];
+  /**
+   * The pages it appears on: service pages and psychotherapist pages. (Named
+   * `services` because that is how it is stored; psychotherapist slugs never
+   * clash with service slugs.)
+   */
+  services: TestimonialPage[];
   /** Hidden testimonials stay in the list but are not shown on the site. */
   visible: boolean;
 }
@@ -44,6 +49,12 @@ export const EMPTY_CMS: CmsData = { media: {}, testimonials: [], updatedAt: null
 
 export const isServiceSlug = (v: unknown): v is ServiceSlug =>
   typeof v === "string" && (SERVICE_SLUGS as readonly string[]).includes(v);
+
+/** A page a testimonial can be shown on: `/servicii/<slug>` or `/psihoterapeut/<slug>`. */
+export type TestimonialPage = ServiceSlug | TherapistSlug;
+
+export const isTestimonialPage = (v: unknown): v is TestimonialPage =>
+  isServiceSlug(v) || (typeof v === "string" && (THERAPIST_SLUGS as readonly string[]).includes(v));
 
 export const isVideoKey = (v: unknown): v is VideoKey => typeof v === "string" && Object.prototype.hasOwnProperty.call(VIDEOS, v);
 
@@ -96,7 +107,7 @@ export function normalizeCms(raw: unknown): CmsData {
         detail: bi(t.detail, 160),
         videoUrl: isAcceptedVideoUrl(videoUrl) ? videoUrl : "",
         quote: bi(t.quote, 2000),
-        services: Array.isArray(t.services) ? [...new Set(t.services.filter(isServiceSlug))] : [],
+        services: Array.isArray(t.services) ? [...new Set(t.services.filter(isTestimonialPage))] : [],
         visible: t.visible !== false,
       });
     }

@@ -17,7 +17,7 @@ export const SERVICES_RO: ServicesLocale = {
     seo: {
       title: "Servicii și aparatură",
       description:
-        "BrainMap (qEEG), neurofeedback, taVNS, tPBM, CES, psihoterapie și EmSella la Emmanuel CliniX, în București. Ce este fiecare, cum decurge o ședință și cui îi este de folos.",
+        "BrainMap (qEEG), neurofeedback, taVNS, tPBM, CES, psihoterapie, psihiatrie și EmSella la Emmanuel CliniX, în București. Ce este fiecare, cum decurge o ședință și cui îi este de folos.",
     },
     hero: {
       eyebrow: "Servicii",
@@ -544,6 +544,107 @@ export const SERVICES_RO: ServicesLocale = {
       cta: {
         title: "Vrei să vorbim?",
         text: "Lasă-ne numărul tău. Te sunăm, te ascultăm și găsim împreună primul pas.",
+        primary: { label: "Te sunăm noi →", href: "/contact" },
+        secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
+      },
+    },
+
+    // PROVISIONAL copy (placeholder) — the clinic sends the final text and the video.
+    psihiatrie: {
+      slug: "psihiatrie",
+      schemaType: "MedicalTherapy",
+      seo: {
+        title: "Psihiatrie în București",
+        description:
+          "Consult psihiatric la Emmanuel CliniX, în București: evaluare, diagnostic și plan de tratament cu un medic specialist psihiatru. Poți porni și de la datele din BrainMap.",
+      },
+      card: {
+        name: "Psihiatrie",
+        short: "Consult cu un medic psihiatru: evaluare, diagnostic și plan de tratament.",
+      },
+      hero: {
+        eyebrow: "Psihiatrie",
+        title: "Un medic care te ascultă până la capăt.",
+        lead: "Consult cu un medic specialist psihiatru. Evaluare atentă, plan clar, fără grabă.",
+        videoTitle: "Cum decurge consultul psihiatric la Emmanuel CliniX",
+      },
+      video: "servicePsihiatrie",
+      what: {
+        eyebrow: "Ce este",
+        title: "Pe scurt",
+        paragraphs: [
+          "Medicul psihiatru evaluează ce simți, de cât timp și cât de mult îți afectează viața de zi cu zi. Apoi îți explică ce înseamnă și ce opțiuni ai.",
+          "Când este nevoie, recomandă un tratament și te urmărește în timp. La noi, consultul poate porni și de la datele din BrainMap și se poate îmbina cu psihoterapia.",
+        ],
+      },
+      session: {
+        eyebrow: "Cum decurge",
+        title: "Pas cu pas, cu explicații clare.",
+        steps: [
+          {
+            title: "Consultul",
+            text: "Ne spui ce te aduce la noi. Medicul pune întrebări și ascultă până la capăt.",
+          },
+          {
+            title: "Evaluarea",
+            text: "Primești o concluzie pe înțelesul tău, nu în termeni medicali.",
+          },
+          {
+            title: "Planul",
+            text: "Discutați opțiunile. Decizi împreună cu medicul ce urmează.",
+          },
+          {
+            title: "Controalele",
+            text: "Revii la control, ca să vedeți ce s-a schimbat și să ajustați planul.",
+          },
+        ],
+        facts: [
+          "Consult cu un medic specialist psihiatru",
+          "Totul rămâne confidențial",
+          "Fără trimitere de la medicul de familie",
+          "Se poate îmbina cu psihoterapia",
+        ],
+      },
+      helps: {
+        eyebrow: "Pentru cine",
+        title: "Cui îi poate fi de folos",
+        conditions: ["anxietate", "panica", "dispozitie", "somn", "focus", "adictii"],
+        note: "Consultul psihiatric nu înlocuiește serviciile de urgență.",
+      },
+      safety: {
+        eyebrow: "Ce trebuie să știi",
+        title: "Este pentru mine?",
+        points: [
+          "Totul rămâne între tine și medic.",
+          "Nu ești judecat. Spui doar ce vrei să spui.",
+          "Nu începi niciun tratament fără să înțelegi de ce.",
+          "Poți întreba oricând ce înseamnă un diagnostic sau un tratament.",
+        ],
+        notTitle: "Când ai nevoie de altceva întâi",
+        notFor: ["Ai gânduri să îți faci rău: sună acum la 112", "Ești într-o criză acută: mergi la cea mai apropiată unitate de primiri urgențe"],
+      },
+      faq: {
+        eyebrow: "Întrebări",
+        title: "Întrebări frecvente",
+        items: [
+          { q: "Am nevoie de trimitere ca să vin?", a: "Nu." },
+          {
+            q: "Primesc automat medicamente?",
+            a: "Nu. Medicul recomandă un tratament doar dacă este nevoie și doar după ce ți-a explicat de ce.",
+          },
+          {
+            q: "Cât costă un consult?",
+            a: "Îți spunem prețul la telefon, înainte de consult. Fără costuri ascunse.",
+          },
+          {
+            q: "Ce se întâmplă cu ce spun?",
+            a: "Rămâne confidențial. Nu se transmite mai departe.",
+          },
+        ],
+      },
+      cta: {
+        title: "Vrei un consult psihiatric?",
+        text: "Lasă-ne numărul tău. Te sunăm și stabilim împreună o programare.",
         primary: { label: "Te sunăm noi →", href: "/contact" },
         secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
       },

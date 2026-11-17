@@ -30,6 +30,10 @@ export const VIDEOS = {
   serviceTpbm: { src: "", duration: "" },
   serviceCes: { src: "", duration: "" },
   servicePsihoterapie: { src: "", duration: "" },
+  servicePsihiatrie: { src: "", duration: "" },
+  /** /psihoterapeut/<slug> — each psychotherapist's VSL at the top of their page. */
+  therapistPatriciaVsl: { src: "", duration: "" },
+  therapistAnielaVsl: { src: "", duration: "" },
   /** /pentru-copii — short video for parents. */
   childrenIntro: { src: "", duration: "" },
   /** Testimonials (BrainMap LPs, home "who recommends us"). */

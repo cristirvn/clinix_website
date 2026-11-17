@@ -15,6 +15,7 @@ const SERVICE_IMAGES: Record<string, ImageKey> = {
   tpbm: "tpbm",
   ces: "portrait",
   psihoterapie: "consultCouch",
+  psihiatrie: "consultDesk",
   emsella: "emsella",
 };
 import type { ServiceContent, ServicesIndexContent } from "@/content/services/types";

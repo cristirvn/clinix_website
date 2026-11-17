@@ -20,7 +20,7 @@ const root = new URL("../../", import.meta.url).pathname;
 const jiti = createJiti(root, { alias: { "@": root.replace(/\/$/, "") } });
 const load = async (file, name) => (await jiti.import(root + file))[name];
 
-const SERVICE_NAMES = { brainmap: "BrainMap", tavns: "taVNS", tpbm: "tPBM", ces: "CES", psihoterapie: "Psihoterapie", neurofeedback: "Neurofeedback", emsella: "EmSella" };
+const SERVICE_NAMES = { brainmap: "BrainMap", tavns: "taVNS", tpbm: "tPBM", ces: "CES", psihoterapie: "Psihoterapie", psihiatrie: "Psihiatrie", neurofeedback: "Neurofeedback", emsella: "EmSella" };
 const services = await load("content/services/ro.ts", "SERVICES_RO");
 const dict = await load("content/i18n/ro.ts", "ro");
 const home = await load("content/pages/ro/home.ts", "HOME_RO");

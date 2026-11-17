@@ -3,6 +3,8 @@ import { LOCALES, SITE_URLS, localizePath, type Locale } from "@/lib/i18n";
 import { getServiceList } from "@/content/services";
 import { conditionDescription, getConditions } from "@/content/conditions";
 import { getArticles } from "@/content/articles";
+import { BRAINMAP_LP_SLUGS, getBrainmapFixed, getBrainmapLp } from "@/content/lps";
+import { getTherapistList } from "@/content/therapists";
 
 /**
  * `/llms-full.txt` — the whole site's facts as one plain Markdown file, for
@@ -42,6 +44,32 @@ function section(locale: Locale): string {
     out.push("");
   }
 
+  const therapists = getTherapistList(locale);
+  out.push(en ? "## Psychotherapists" : "## Psihoterapeuți", "");
+  for (const t of therapists) {
+    out.push(`### ${t.name} — ${t.role}`, "", t.hero.lede, "", `Page: ${url(locale, `/psihoterapeut/${t.slug}`)}`, "");
+    out.push(...t.about.paragraphs.flatMap((p) => [p, ""]));
+    out.push(`**${t.helps.title}**`, "");
+    for (const h of t.helps.items) out.push(`- ${h.title}: ${h.text}`);
+    out.push("", ...t.faq.flatMap((q) => [`- Q: ${q.q}`, `  A: ${q.a}`]), "");
+  }
+
+  // Condition landing pages (BrainMap campaign): what each one says, plus the FAQ they share.
+  const fixed = getBrainmapFixed(locale);
+  out.push(en ? "## Condition pages" : "## Pagini pe afecțiuni", "");
+  for (const slug of BRAINMAP_LP_SLUGS) {
+    const lp = getBrainmapLp(locale, slug);
+    if (!lp) continue;
+    const title = lp.hero.titleHtml.replace(/<[^>]+>/g, "");
+    out.push(`### ${title}`, "", lp.hero.lede, "", `Page: ${url(locale, `/lp/${slug}`)}`, "");
+    out.push(lp.why.tried, "", lp.why.assumption, "", lp.mapSentence, "");
+    for (const q of lp.faq) out.push(`- Q: ${q.q}`, `  A: ${q.a}`);
+    out.push("");
+  }
+  out.push(`**${fixed.faq.title}**`, "");
+  for (const q of fixed.faq.items) out.push(`- Q: ${q.q}`, `  A: ${q.a}`);
+  out.push("");
+
   const conditions = getConditions(locale);
   out.push(en ? "## Conditions we help with" : "## Afecțiuni cu care lucrăm", "");
   for (const c of conditions.items) {
@@ -73,7 +101,7 @@ export function GET() {
   const head = [
     "# Emmanuel CliniX",
     "",
-    "> Applied neuroscience clinic in Bucharest, Romania. We measure before we recommend: every plan starts from BrainMap, a qEEG map of the brain's electrical activity. Non-invasive methods: neurofeedback, taVNS, tPBM, CES, psychotherapy and EmSella.",
+    "> Applied neuroscience clinic in Bucharest, Romania. We measure before we recommend: every plan starts from BrainMap, a qEEG map of the brain's electrical activity. Non-invasive methods: neurofeedback, taVNS, tPBM, CES, psychotherapy, psychiatry and EmSella.",
     "",
     `- Address: ${CLINIC.address}, Romania`,
     `- Phone / WhatsApp: ${CLINIC.phone}`,

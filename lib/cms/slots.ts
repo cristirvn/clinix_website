@@ -38,6 +38,9 @@ export const VIDEO_SLOTS: Record<VideoKey, VideoSlot> = {
   lpSomnBTestimonialBogdan: { label: "Testimonial video — Bogdan", where: "/lp/somn-b, /lp/somn-b/aplicatie, Testimoniale", href: "/lp/somn-b" },
   lpSomnBTestimonialCorina: { label: "Testimonial video — Corina", where: "/lp/somn-b, /lp/somn-b/aplicatie, Testimoniale", href: "/lp/somn-b" },
 
+  therapistPatriciaVsl: { label: "Video principal — Patricia Cihodaru (VSL)", where: "/psihoterapeut/patricia-cihodaru", href: "/psihoterapeut/patricia-cihodaru" },
+  therapistAnielaVsl: { label: "Video principal — Aniela Sîrcu (VSL)", where: "/psihoterapeut/aniela-sircu", href: "/psihoterapeut/aniela-sircu" },
+
   childrenIntro: { label: "Video pentru părinți", where: "Pentru copii", href: "/pentru-copii" },
   serviceConsult: { label: "Video despre consult", where: "Cum funcționează", href: "/cum-functioneaza" },
 
@@ -48,6 +51,7 @@ export const VIDEO_SLOTS: Record<VideoKey, VideoSlot> = {
   serviceTpbm: { label: "Video explicativ tPBM", where: "Pagina serviciului tPBM", href: "/servicii/tpbm" },
   serviceCes: { label: "Video explicativ CES", where: "Pagina serviciului CES", href: "/servicii/ces" },
   servicePsihoterapie: { label: "Video explicativ Psihoterapie", where: "Pagina serviciului Psihoterapie", href: "/servicii/psihoterapie" },
+  servicePsihiatrie: { label: "Video explicativ Psihiatrie", where: "Pagina serviciului Psihiatrie", href: "/servicii/psihiatrie" },
 };
 
 /** The /admin "Toate videoclipurile" list, grouped by page. */
@@ -59,9 +63,10 @@ export const VIDEO_GROUPS: Array<{ title: string; keys: VideoKey[] }> = [
     title: "Landing page Somn B",
     keys: ["lpSomnBCaseStudy", "lpSomnBHowWeWork", "lpSomnBTestimonialMihaela", "lpSomnBTestimonialBogdan", "lpSomnBTestimonialCorina"],
   },
+  { title: "Psihoterapeuți", keys: ["therapistPatriciaVsl", "therapistAnielaVsl"] },
   { title: "Alte pagini", keys: ["childrenIntro", "serviceConsult"] },
   {
     title: "Pagini de servicii",
-    keys: ["serviceBrainmap", "serviceNeurofeedback", "serviceEmsella", "serviceTavns", "serviceTpbm", "serviceCes", "servicePsihoterapie"],
+    keys: ["serviceBrainmap", "serviceNeurofeedback", "serviceEmsella", "serviceTavns", "serviceTpbm", "serviceCes", "servicePsihoterapie", "servicePsihiatrie"],
   },
 ];

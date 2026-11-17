@@ -51,6 +51,7 @@ const RO_TO_EN: Record<string, string> = {
   articole: "articles",
   cariere: "careers",
   testimoniale: "testimonials",
+  psihoterapeut: "psychotherapist",
 };
 
 const EN_TO_RO: Record<string, string> = Object.fromEntries(

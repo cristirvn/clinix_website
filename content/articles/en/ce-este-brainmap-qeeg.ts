@@ -10,6 +10,7 @@ export const ARTICLE: Article = {
   readingMinutes: 4,
   author: "Emmanuel CliniX",
   image: "scan",
+  topics: ["brainmap"],
   body: [
     {
       type: "p",

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Section, SectionHead } from "@/components/ui/primitives";
 import { Reveal } from "@/components/ui/Reveal";
 import { PhotoPlaceholder } from "@/components/pages/shared";
+import { L } from "@/components/ui/L";
 import type { TeamContent } from "@/content/pages/ro/team";
 
 export function TeamGrid({ content }: { content: TeamContent["members"] }) {
@@ -30,6 +31,14 @@ export function TeamGrid({ content }: { content: TeamContent["members"] }) {
                     </li>
                   ))}
                 </ul>
+              )}
+              {m.href && (
+                <L
+                  href={m.href}
+                  className="mt-4 inline-flex min-h-11 items-center font-semibold text-primary underline decoration-primary/30 underline-offset-4 hover:decoration-primary"
+                >
+                  {content.more}
+                </L>
               )}
             </Reveal>
           </li>

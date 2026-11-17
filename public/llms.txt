@@ -1,6 +1,6 @@
 # Emmanuel CliniX
 
-> Applied neuroscience clinic in Bucharest, Romania. We measure before we recommend: every plan starts from BrainMap, a qEEG map of the brain's electrical activity (30 minutes, fully clothed, no radiation, no needles, interpreted in the same visit). Non-invasive methods: neurofeedback, taVNS, tPBM, CES, psychotherapy and EmSella. Romanian site: https://emmanuelclinix.ro — English site: https://emmanuelclinix.co.uk
+> Applied neuroscience clinic in Bucharest, Romania. We measure before we recommend: every plan starts from BrainMap, a qEEG map of the brain's electrical activity (30 minutes, fully clothed, no radiation, no needles, interpreted in the same visit). Non-invasive methods: neurofeedback, taVNS, tPBM, CES, psychotherapy, psychiatry and EmSella. Romanian site: https://emmanuelclinix.ro — English site: https://emmanuelclinix.co.uk
 
 Clinică de neuroștiință aplicată în București. Măsurăm înainte să recomandăm.
 
@@ -19,6 +19,7 @@ Clinică de neuroștiință aplicată în București. Măsurăm înainte să rec
 - [tPBM](https://emmanuelclinix.co.uk/services/tpbm): transcranial photobiomodulation with near-infrared light, no ionising radiation
 - [CES](https://emmanuelclinix.co.uk/services/ces): cranial electrotherapy stimulation, a very weak current through ear clips
 - [Psychotherapy](https://emmanuelclinix.co.uk/services/psihoterapie): regular sessions with a psychotherapist at the clinic
+- [Psychiatry](https://emmanuelclinix.co.uk/services/psihiatrie): a consultation with a consultant psychiatrist — assessment, diagnosis and a treatment plan
 - [EmSella](https://emmanuelclinix.co.uk/services/emsella): pelvic floor strengthening in a chair, 28 minutes, fully clothed (from 250 RON / session)
 - [How it works](https://emmanuelclinix.co.uk/how-it-works): the five-step patient journey
 - [Pricing](https://emmanuelclinix.co.uk/pricing)
@@ -29,6 +30,12 @@ Clinică de neuroștiință aplicată în București. Măsurăm înainte să rec
 - [For children and teenagers](https://emmanuelclinix.co.uk/children): attention, sleep, anxiety, learning, screen time
 - [Free self-assessment tests](https://emmanuelclinix.co.uk/tests): nine 2–3 minute tests with a score from 1 to 10
 - [Help me choose a test](https://emmanuelclinix.co.uk/assessment)
+- Condition pages: [anxiety](https://emmanuelclinix.co.uk/lp/anxiety) · [panic attacks](https://emmanuelclinix.co.uk/lp/panic) · [burnout](https://emmanuelclinix.co.uk/lp/burnout) · [focus](https://emmanuelclinix.co.uk/lp/focus) · [low mood](https://emmanuelclinix.co.uk/lp/mood) · [migraines](https://emmanuelclinix.co.uk/lp/migraines) · [chronic stress](https://emmanuelclinix.co.uk/lp/stress) · [habits and addictions](https://emmanuelclinix.co.uk/lp/addictions) · [sleep](https://emmanuelclinix.co.uk/lp/sleep) · [pelvic floor (EmSella)](https://emmanuelclinix.co.uk/lp/emsella)
+
+## Psychotherapists / Psihoterapeuți
+
+- Patricia Cihodaru, psychologist and psychotherapist: [EN](https://emmanuelclinix.co.uk/psychotherapist/patricia-cihodaru) · [RO](https://emmanuelclinix.ro/psihoterapeut/patricia-cihodaru)
+- Aniela Sîrcu, psychologist and psychotherapist: [EN](https://emmanuelclinix.co.uk/psychotherapist/aniela-sircu) · [RO](https://emmanuelclinix.ro/psihoterapeut/aniela-sircu)
 
 ## Servicii (Română)
 
@@ -38,6 +45,7 @@ Clinică de neuroștiință aplicată în București. Măsurăm înainte să rec
 - [tPBM](https://emmanuelclinix.ro/servicii/tpbm)
 - [CES](https://emmanuelclinix.ro/servicii/ces)
 - [Psihoterapie](https://emmanuelclinix.ro/servicii/psihoterapie)
+- [Psihiatrie](https://emmanuelclinix.ro/servicii/psihiatrie)
 - [EmSella](https://emmanuelclinix.ro/servicii/emsella)
 - [Cum funcționează](https://emmanuelclinix.ro/cum-functioneaza)
 - [Tarife](https://emmanuelclinix.ro/tarife)
@@ -48,6 +56,7 @@ Clinică de neuroștiință aplicată în București. Măsurăm înainte să rec
 - [Pentru copii](https://emmanuelclinix.ro/pentru-copii)
 - [Teste gratuite](https://emmanuelclinix.ro/chestionare)
 - [Ajută-mă să aleg un test](https://emmanuelclinix.ro/evaluare)
+- Pagini pe afecțiuni: [anxietate](https://emmanuelclinix.ro/lp/anxietate) · [atacuri de panică](https://emmanuelclinix.ro/lp/panica) · [burnout](https://emmanuelclinix.ro/lp/burnout) · [concentrare](https://emmanuelclinix.ro/lp/focus) · [dispoziție](https://emmanuelclinix.ro/lp/dispozitie) · [migrene](https://emmanuelclinix.ro/lp/migrene) · [stres](https://emmanuelclinix.ro/lp/stres) · [adicții](https://emmanuelclinix.ro/lp/adictii) · [somn](https://emmanuelclinix.ro/lp/somn) · [planșeu pelvin (EmSella)](https://emmanuelclinix.ro/lp/emsella)
 
 ## About / Despre
 
@@ -60,7 +69,7 @@ Clinică de neuroștiință aplicată în București. Măsurăm înainte să rec
 
 ## Optional
 
-- [Full text of the site for AI assistants (services, safety, FAQ, conditions, articles — RO + EN)](https://emmanuelclinix.ro/llms-full.txt)
+- [Full text of the site for AI assistants (services, psychotherapists, condition pages, safety, FAQ, conditions, articles — RO + EN)](https://emmanuelclinix.ro/llms-full.txt)
 
 - [Sitemap (RO)](https://emmanuelclinix.ro/sitemap.xml)
 - [Sitemap (EN)](https://emmanuelclinix.co.uk/sitemap.xml)

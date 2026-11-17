@@ -9,6 +9,7 @@ import { SITE_URLS, localizePath, type Locale } from "@/lib/i18n";
 import type { FaqEntry } from "@/content/pages/blocks";
 import type { Article } from "@/content/articles/types";
 import type { ServiceContent } from "@/content/services/types";
+import type { Therapist } from "@/content/therapists/types";
 import { IMAGES } from "@/content/media";
 
 type Node = Record<string, unknown>;
@@ -61,8 +62,8 @@ export function siteGraph(locale: Locale): Node {
         "@id": CLINIC_ID,
         name: CLINIC.name,
         description: en
-          ? "Applied neuroscience clinic in Bucharest. BrainMap (qEEG) brain mapping, neurofeedback, taVNS, tPBM, CES, psychotherapy and EmSella."
-          : "Clinică de neuroștiință aplicată în București. BrainMap (qEEG), neurofeedback, taVNS, tPBM, CES, psihoterapie și EmSella.",
+          ? "Applied neuroscience clinic in Bucharest. BrainMap (qEEG) brain mapping, neurofeedback, taVNS, tPBM, CES, psychotherapy, psychiatry and EmSella."
+          : "Clinică de neuroștiință aplicată în București. BrainMap (qEEG), neurofeedback, taVNS, tPBM, CES, psihoterapie, psihiatrie și EmSella.",
         url,
         logo: `${SITE_URLS[locale]}/brand/logo-full.png`,
         image: `${SITE_URLS[locale]}/brand/logo-full.png`,
@@ -74,7 +75,7 @@ export function siteGraph(locale: Locale): Node {
         availableLanguage: ["ro", "en"],
         ...(OPENING_HOURS.length ? { openingHoursSpecification: OPENING_HOURS } : {}),
         isAcceptingNewPatients: true,
-        knowsAbout: ["qEEG", "BrainMap", "Neurofeedback", "taVNS", "Transcranial photobiomodulation", "Cranial electrotherapy stimulation", "Psychotherapy"],
+        knowsAbout: ["qEEG", "BrainMap", "Neurofeedback", "taVNS", "Transcranial photobiomodulation", "Cranial electrotherapy stimulation", "Psychotherapy", "Psychiatry"],
       },
       {
         "@type": "WebSite",
@@ -141,9 +142,10 @@ export function serviceNodes(service: ServiceContent, locale: Locale): Node {
     name: service.card.name,
     description: service.seo.description,
     url,
-    ...(service.schemaType === "PsychologicalTreatment"
+    ...(service.schemaType === "PsychologicalTreatment" || service.schemaType === "MedicalTherapy"
       ? {}
       : { procedureType: "https://schema.org/NoninvasiveProcedure" }),
+    ...(service.slug === "psihiatrie" ? { relevantSpecialty: "https://schema.org/Psychiatric" } : {}),
     howPerformed: service.session.steps.map((s) => `${s.title}: ${s.text}`).join(" "),
   };
   return {
@@ -160,5 +162,55 @@ export function serviceNodes(service: ServiceContent, locale: Locale): Node {
         areaServed: { "@type": "City", name: locale === "en" ? "Bucharest" : "București" },
       },
     ],
+  };
+}
+
+/** A psychotherapist's page: the person, working at the clinic. */
+export function therapistNode(t: Therapist, locale: Locale): Node {
+  const url = absoluteUrl(`/psihoterapeut/${t.slug}`, locale);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${url}#person`,
+    name: t.name,
+    jobTitle: t.role,
+    description: t.seo.description,
+    url,
+    image: SITE_URLS[locale] + t.photo,
+    knowsAbout: t.card.focus,
+    worksFor: { "@id": CLINIC_ID },
+    workLocation: { "@id": CLINIC_ID },
+  };
+}
+
+/**
+ * A condition landing page (`/lp/<slug>`): a medical web page about that
+ * condition, published by the clinic. `condition` = its visible name.
+ */
+export function landingPageNode({
+  path,
+  name,
+  description,
+  condition,
+  locale,
+}: {
+  path: string;
+  name: string;
+  description: string;
+  condition?: string;
+  locale: Locale;
+}): Node {
+  const url = absoluteUrl(path, locale);
+  return {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "@id": `${url}#webpage`,
+    url,
+    name,
+    description,
+    inLanguage: locale === "en" ? "en-GB" : "ro-RO",
+    isPartOf: { "@id": `${SITE_URLS[locale]}/#website` },
+    publisher: { "@id": CLINIC_ID },
+    ...(condition ? { about: { "@type": "MedicalCondition", name: condition } } : {}),
   };
 }

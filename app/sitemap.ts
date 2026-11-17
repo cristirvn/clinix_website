@@ -4,6 +4,8 @@ import { SITE_URLS, isLocale, localeFromHost, localizePath, type Locale } from "
 import { QUIZ_SLUGS } from "@/content/quizzes";
 import { SERVICE_SLUGS } from "@/content/services";
 import { articleSlugs, getArticle } from "@/content/articles";
+import { BRAINMAP_LP_SLUGS } from "@/content/lps";
+import { THERAPIST_SLUGS } from "@/content/therapists";
 
 /**
  * `/sitemap.xml` — one per domain: emmanuelclinix.ro lists the Romanian URLs,
@@ -12,9 +14,10 @@ import { articleSlugs, getArticle } from "@/content/articles";
  * Console / Bing Webmaster property).
  *
  * Only INDEXABLE pages are listed. Left out on purpose because they are
- * `noindex` in their metadata: the paid-traffic LPs (/lp/*, incl. /lp/somn,
- * /lp/somn-b, /lp/emsella and their thank-you pages), privacy policy, terms.
- * If one of them becomes indexable, add it to STATIC_PAGES below.
+ * `noindex` in their metadata: /lp/somn-b (the B variant of /lp/somn) and
+ * every thank-you / application step, privacy policy, terms. The campaign
+ * LPs (/lp/<condition>, /lp/somn, /lp/emsella) are indexable since Nov 2026.
+ * If another page becomes indexable, add it below.
  */
 const STATIC_PAGES: Array<{ path: string; priority: number; changeFrequency: "weekly" | "monthly" }> = [
   { path: "/", priority: 1, changeFrequency: "weekly" },
@@ -33,6 +36,8 @@ const STATIC_PAGES: Array<{ path: string; priority: number; changeFrequency: "we
   { path: "/articole", priority: 0.6, changeFrequency: "weekly" },
   { path: "/contact", priority: 0.6, changeFrequency: "monthly" },
   { path: "/cariere", priority: 0.4, changeFrequency: "monthly" },
+  { path: "/lp/somn", priority: 0.7, changeFrequency: "monthly" },
+  { path: "/lp/emsella", priority: 0.6, changeFrequency: "monthly" },
 ];
 
 function url(path: string, locale: Locale): string {
@@ -61,6 +66,8 @@ function sitemapPaths(locale: Locale) {
   return [
     ...STATIC_PAGES.map((p) => ({ ...p, lastModified: undefined as string | undefined })),
     ...SERVICE_SLUGS.map((s) => ({ path: `/servicii/${s}`, priority: 0.8, changeFrequency: "monthly" as const, lastModified: undefined })),
+    ...BRAINMAP_LP_SLUGS.map((s) => ({ path: `/lp/${s}`, priority: 0.7, changeFrequency: "monthly" as const, lastModified: undefined })),
+    ...THERAPIST_SLUGS.map((s) => ({ path: `/psihoterapeut/${s}`, priority: 0.7, changeFrequency: "monthly" as const, lastModified: undefined })),
     ...QUIZ_SLUGS.map((s) => ({ path: `/chestionare/${s}`, priority: 0.6, changeFrequency: "monthly" as const, lastModified: undefined })),
     ...articleSlugs().map((s) => {
       const a = getArticle(locale, s);

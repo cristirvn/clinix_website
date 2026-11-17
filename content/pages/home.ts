@@ -7,9 +7,10 @@ import type { ServiceSlug } from "@/content/services/types";
 
 /**
  * Home page copy — one object per language (`ro/home.ts`, `en/home.ts`).
- * Order on the page (client's structure, Nov 2026; NeuroFit has its own
- * page, /neurofit): hero → methods → how to start (BrainMap) → quiz → complex situations →
- * testimonials → closing band.
+ * Order on the page (client's structure, Nov 2026): hero → methods → how to
+ * start (BrainMap) → quiz → NeuroFit (a teaser in the site's own colours; its
+ * black + gold stays on /neurofit) → complex situations → testimonials →
+ * closing band.
  */
 export interface HomeContent {
   seo: { title: string; description: string };
@@ -49,7 +50,19 @@ export interface HomeContent {
   };
   /** 5 · Quiz start: the first question inline (options come from `getTriage`). */
   quiz: { eyebrow: string; title: string; lead: string; step: string; next: string; pickFirst: string };
-  /** 6 · Complex situations (ADHD, autism …). */
+  /** 6 · NeuroFit teaser, in the site's colours — one action: its own page. */
+  neurofit: {
+    eyebrow: string;
+    /** `*…*` marks the emphasised part. */
+    title: string;
+    text: string;
+    experiences: string[];
+    audienceTitle: string;
+    audience: string[];
+    note: string;
+    cta: string;
+  };
+  /** 7 · Complex situations (ADHD, autism …). */
   complex: {
     eyebrow: string;
     title: string;

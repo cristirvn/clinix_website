@@ -3,6 +3,7 @@ import { HomeHero } from "@/components/home/HomeHero";
 import { HomeServices } from "@/components/home/HomeServices";
 import { HomeStart } from "@/components/home/HomeStart";
 import { HomeQuiz } from "@/components/home/HomeQuiz";
+import { HomeNeuroFit } from "@/components/home/HomeNeuroFit";
 import { HomeComplex } from "@/components/home/HomeComplex";
 import { HomeTestimonials } from "@/components/home/HomeTestimonials";
 import { FinalCta } from "@/components/home/FinalCta";
@@ -26,7 +27,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
 /**
  * Home, in the client's order (Nov 2026):
- * hero → methods → how to start (BrainMap) → quiz →
+ * hero → methods → how to start (BrainMap) → quiz → NeuroFit (site colours) →
  * complex situations → testimonials → one short close.
  */
 export default async function HomePage({ params }: Props) {
@@ -50,6 +51,7 @@ export default async function HomePage({ params }: Props) {
       <HomeServices services={c.services} locale={locale} />
       <HomeStart start={c.start} locale={locale} />
       <HomeQuiz quiz={c.quiz} locale={locale} />
+      <HomeNeuroFit neurofit={c.neurofit} locale={locale} />
       <HomeComplex complex={c.complex} />
       <HomeTestimonials testimonials={c.testimonials} videos={videos} locale={locale} />
       <FinalCta final={c.final} locale={locale} />

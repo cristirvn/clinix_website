@@ -1,5 +1,7 @@
 import type { ImageKey } from "@/content/media";
 import type { CtaBandContent, PageLink, PageSeo } from "@/content/pages/blocks";
+import type { ConditionId } from "@/content/conditions/types";
+import type { ServiceSlug } from "@/content/services/types";
 
 /**
  * Articles (`/articole/<slug>`). One file per article per language:
@@ -17,6 +19,14 @@ export type ArticleBlock =
   /** A short row of related links (tests, LPs). `href` is an internal path. */
   | { type: "links"; items: PageLink[] };
 
+/**
+ * What an article is about: a condition (`anxietate`, `somn`, …) and/or a
+ * service (`brainmap`, `psihoterapie`, …). Drives the internal links both ways:
+ * the article links to that condition's landing page / test / service page,
+ * and those pages list the article under "Citește mai mult".
+ */
+export type ArticleTopic = ConditionId | ServiceSlug;
+
 export interface Article {
   slug: string;
   title: string;
@@ -31,6 +41,8 @@ export interface Article {
   readingMinutes: number;
   author: string;
   image?: ImageKey;
+  /** At least one. Same in both languages. */
+  topics: ArticleTopic[];
   body: ArticleBlock[];
   /** The one next step at the end of the article. */
   cta: CtaBandContent;
@@ -46,4 +58,8 @@ export interface ArticlesPageContent {
   updated: string;
   back: string;
   disclaimer: string;
+  /** "Citește mai mult" block on landing pages, service and psychotherapist pages. */
+  related: { title: string; lead: string };
+  /** Box at the end of an article: its condition's landing page and test, its service page. */
+  topicLinks: { title: string; lp: string; test: string; service: string };
 }

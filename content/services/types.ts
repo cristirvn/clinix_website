@@ -7,7 +7,7 @@ import type { ConditionId } from "@/content/conditions/types";
  * Slugs are the same in both languages (`/services/tavns` in English).
  */
 /** Display order everywhere (menu, footer, /servicii). */
-export const SERVICE_SLUGS = ["brainmap", "neurofeedback", "tavns", "tpbm", "ces", "psihoterapie", "emsella"] as const;
+export const SERVICE_SLUGS = ["brainmap", "neurofeedback", "tavns", "tpbm", "ces", "psihoterapie", "psihiatrie", "emsella"] as const;
 export type ServiceSlug = (typeof SERVICE_SLUGS)[number];
 
 export interface ServiceContent {
@@ -45,7 +45,7 @@ export interface ServiceContent {
   faq: { eyebrow: string; title: string; items: FaqEntry[] };
   cta: CtaBandContent;
   /** schema.org type used in the JSON-LD for this page. */
-  schemaType: "DiagnosticProcedure" | "TherapeuticProcedure" | "PsychologicalTreatment";
+  schemaType: "DiagnosticProcedure" | "TherapeuticProcedure" | "PsychologicalTreatment" | "MedicalTherapy";
 }
 
 /** `/servicii` — the list of all services. */

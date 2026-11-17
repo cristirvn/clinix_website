@@ -10,6 +10,7 @@ import { StickyBar } from "@/components/lp/StickyBar";
 import { EegTrace } from "@/components/lp/EegTrace";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { faqPage } from "@/components/seo/schema";
+import { RelatedArticles } from "@/components/pages/RelatedArticles";
 import type { Locale } from "@/lib/i18n";
 import { CLINIC } from "@/lib/site";
 import type { BrainmapLp } from "@/content/lps/types";
@@ -252,6 +253,9 @@ export function BrainmapLanding({
         </ol>
         <BrainmapForm lp={lp} copy={f.form} formId={formId} />
       </Section>
+
+      {/* Articles on this condition (+ BrainMap) — after the form, so they never compete with it. */}
+      <RelatedArticles topics={lp.slug === "general" ? ["brainmap"] : [lp.slug, "brainmap"]} locale={locale} />
 
       <PageNav f={f} />
       <FunnelFooter locale={locale} legal={lp.legal} />

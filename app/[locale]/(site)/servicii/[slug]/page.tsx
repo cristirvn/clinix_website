@@ -7,6 +7,8 @@ import { getCondition } from "@/content/conditions";
 import { CtaBand } from "@/components/pages/shared";
 import { ServiceFaq, ServiceHelps, ServiceHero, ServiceSafety, ServiceSession, ServiceWhat } from "@/components/pages/services";
 import { ServiceTestimonials } from "@/components/pages/testimonials";
+import { TherapistsSection } from "@/components/therapists/TherapistsSection";
+import { getTherapistUi } from "@/content/therapists";
 import { getServiceTestimonials } from "@/lib/cms";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { breadcrumbs, faqPage, serviceNodes } from "@/components/seo/schema";
@@ -59,7 +61,14 @@ export default async function ServicePage({ params }: { params: Params }) {
         ]}
       />
       <ServiceHero service={service} />
-      <ServiceTestimonials items={testimonials} ui={ui.testimonials} locale={locale} />
+      {/* Psychotherapy: pick a psychotherapist first, then the testimonials (empty frames until the clinic adds some). */}
+      {slug === "psihoterapie" && <TherapistsSection locale={locale} />}
+      <ServiceTestimonials
+        items={testimonials}
+        ui={ui.testimonials}
+        locale={locale}
+        placeholder={slug === "psihoterapie" ? getTherapistUi(locale).testimonials.placeholder : undefined}
+      />
       <ServiceWhat content={service.what} />
       <ServiceSession content={service.session} />
       <ServiceHelps content={service.helps} conditions={conditions} linkLabel={ui.conditionLink} />

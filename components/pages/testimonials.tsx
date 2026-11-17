@@ -173,25 +173,50 @@ export function QuoteTestimonials({ items, page, locale }: { items: QuoteStory[]
   );
 }
 
-/** Service page — the testimonials the clinic added in /admin for this service. Nothing renders when there are none. */
+/**
+ * Service / psychotherapist page — the testimonials the clinic added in /admin
+ * for this page. With none yet: nothing renders, unless `placeholder` is given
+ * — then three empty video frames carry that label until the first one is added.
+ */
 export function ServiceTestimonials({
   items,
   ui,
   locale,
+  placeholder,
+  lead,
+  id,
+  tone = "alt",
 }: {
   items: CmsTestimonial[];
-  ui: { eyebrow: string; title: string; play: string };
+  ui: { title: string; play: string };
   locale: Locale;
+  placeholder?: string;
+  lead?: string;
+  id?: string;
+  tone?: "default" | "alt";
 }) {
-  if (items.length === 0) return null;
+  if (items.length === 0 && !placeholder) return null;
   const { videos, quotes } = cmsToStories(items, locale);
   return (
-    <Section tone="alt">
-      <SectionHead title={ui.title} />
-      <div className="space-y-12">
-        {videos.length > 0 && <VideoStoryGrid items={videos} playLabel={ui.play} />}
-        {quotes.length > 0 && <QuoteStoryGrid items={quotes} locale={locale} />}
-      </div>
+    <Section tone={tone} id={id}>
+      <SectionHead title={ui.title} lead={lead} />
+      {items.length === 0 && placeholder ? (
+        <ul className="grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
+          {[0, 1, 2].map((i) => (
+            <li key={i} className={i === 2 ? "max-lg:hidden" : undefined}>
+              <figure>
+                <VideoPlayer video={{ src: "" }} title={placeholder} />
+                <figcaption className="mt-4 text-ink-soft">{placeholder}</figcaption>
+              </figure>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <div className="space-y-12">
+          {videos.length > 0 && <VideoStoryGrid items={videos} playLabel={ui.play} />}
+          {quotes.length > 0 && <QuoteStoryGrid items={quotes} locale={locale} />}
+        </div>
+      )}
     </Section>
   );
 }

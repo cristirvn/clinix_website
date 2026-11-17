@@ -17,6 +17,7 @@ export const team: TeamContent = {
     title: "Our team",
     photoPlaceholder: "Photo coming soon",
     focusLabel: "Areas of work",
+    more: "Find out more →",
     items: [
       {
         name: "Cristian Florin Cotorceanu",
@@ -31,6 +32,7 @@ export const team: TeamContent = {
         bio: "More than 20 years of psychotherapy. She works with adults, children and teenagers in a safe, empathetic setting, combining experiential, cognitive-behavioural and transpersonal methods.",
         focus: ["Experiential psychotherapy", "Cognitive behavioural therapy (CBT)", "Transpersonal psychotherapy", "Emotional intelligence"],
         photo: "/photos/echipa/patricia-cihodaru.webp",
+        href: "/psihoterapeut/patricia-cihodaru",
       },
       {
         name: "Dr Cristian Petrescu",
@@ -59,6 +61,7 @@ export const team: TeamContent = {
         bio: "Trained in cognitive-behavioural psychotherapy, couple and family therapy and sexology. She has 20 years of experience with teenagers, adults and couples.",
         focus: ["Cognitive behavioural psychotherapy", "Couple and family therapy", "Sexology", "Personal development"],
         photo: "/photos/echipa/aniela-sircu.webp",
+        href: "/psihoterapeut/aniela-sircu",
       },
       {
         name: "Dr Ilie-Andrei Ticiu",

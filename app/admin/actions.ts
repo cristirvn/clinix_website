@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath, updateTag } from "next/cache";
 import { endSession, isAdmin, passwordMatches, startSession } from "@/lib/cms/auth";
 import { CMS_TAG, readCmsFresh, writeCms } from "@/lib/cms/store";
-import { isAcceptedVideoUrl, isServiceSlug, isVideoKey, normalizeCms, type CmsData, type CmsTestimonial } from "@/lib/cms/types";
+import { isAcceptedVideoUrl, isTestimonialPage, isVideoKey, normalizeCms, type CmsData, type CmsTestimonial } from "@/lib/cms/types";
 
 /**
  * Every /admin change goes through here. Each action checks the session,
@@ -88,7 +88,7 @@ export async function saveTestimonial(input: TestimonialInput): Promise<ActionRe
     videoUrl: input.videoUrl.trim(),
     detail: { ro: input.detail.ro.trim(), en: input.detail.en.trim() },
     quote: { ro: input.quote.ro.trim(), en: input.quote.en.trim() },
-    services: input.services.filter(isServiceSlug),
+    services: input.services.filter(isTestimonialPage),
   };
   if (!t.name) return { ok: false, error: ERR.name };
   if (t.kind === "video" && !t.videoUrl) return { ok: false, error: ERR.videoMissing };
@@ -128,7 +128,7 @@ export async function setTestimonialVisible(id: string, visible: boolean): Promi
 
 /**
  * Move one place up/down. With `slug`, "one place" means past the neighbouring
- * testimonial on THAT service page (others in between are skipped).
+ * testimonial on THAT service / psychotherapist page (others in between are skipped).
  */
 export async function moveTestimonial(id: string, direction: "up" | "down", slug?: string): Promise<ActionResult> {
   return mutate((d) => {
@@ -137,7 +137,7 @@ export async function moveTestimonial(id: string, direction: "up" | "down", slug
     if (i === -1) return ERR.notFound;
     const step = direction === "up" ? -1 : 1;
     let j = i + step;
-    while (j >= 0 && j < list.length && slug && isServiceSlug(slug) && !list[j].services.includes(slug)) j += step;
+    while (j >= 0 && j < list.length && slug && isTestimonialPage(slug) && !list[j].services.includes(slug)) j += step;
     if (j < 0 || j >= list.length) return d;
     [list[i], list[j]] = [list[j], list[i]];
     return d;

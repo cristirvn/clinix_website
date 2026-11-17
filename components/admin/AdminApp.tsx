@@ -12,22 +12,28 @@ import {
   type TestimonialInput,
 } from "@/app/admin/actions";
 import { LogoMark } from "@/components/layout/Logo";
-import type { CmsData, CmsTestimonial } from "@/lib/cms/types";
-import type { ServiceSlug } from "@/content/services/types";
+import type { CmsData, CmsTestimonial, TestimonialPage } from "@/lib/cms/types";
 import { VIDEOS, type VideoKey } from "@/content/media";
 import { VIDEO_GROUPS, VIDEO_SLOTS } from "@/lib/cms/slots";
 import { autoPoster, vimeoId, youtubeId } from "@/lib/video";
 import { btn, card, field, hint, label } from "./ui";
 
+/** A page with its own video + testimonials: a service page or a psychotherapist's page. */
 export interface AdminService {
-  slug: ServiceSlug;
+  slug: TestimonialPage;
   name: string;
   short: string;
-  /** Its explainer video's key in `content/media.ts`. */
+  /** Its main video's key in `content/media.ts`. */
   video: VideoKey;
+  /** Internal path of the page on the site. */
+  href: string;
+  /** Heading of its video card. */
+  videoTitle: string;
+  /** The testimonials section shows (with empty frames) even before any testimonial is added. */
+  alwaysShown: boolean;
 }
 
-type View = ServiceSlug | "all" | "videos";
+type View = TestimonialPage | "all" | "videos";
 type Toast = { kind: "ok" | "error"; text: string } | null;
 
 /**
@@ -76,8 +82,8 @@ export function AdminApp({
   const videosSet = Object.keys(data.media).length;
   const onSaveVideo = (key: VideoKey) => (url: string) =>
     run(() => saveVideo(key, url), url ? "Video salvat. Apare acum pe site." : "Video scos de pe site.");
-  const nameOf = (slug: ServiceSlug) => services.find((s) => s.slug === slug)?.name ?? slug;
-  const countFor = (slug: ServiceSlug) => data.testimonials.filter((t) => t.services.includes(slug)).length;
+  const nameOf = (slug: TestimonialPage) => services.find((s) => s.slug === slug)?.name ?? slug;
+  const countFor = (slug: TestimonialPage) => data.testimonials.filter((t) => t.services.includes(slug)).length;
 
   const newTestimonial = (): TestimonialInput => ({
     kind: "video",
@@ -127,7 +133,7 @@ export function AdminApp({
           <h1 id="pick" className="text-[1.6rem] sm:text-[2rem]">
             Ce pagină vrei să modifici?
           </h1>
-          <p className="mt-1 text-ink-soft">Fiecare serviciu are video-ul lui și testimonialele lui. Landing page-urile sunt la „Toate videoclipurile”.</p>
+          <p className="mt-1 text-ink-soft">Fiecare serviciu și fiecare psihoterapeut are video-ul lui și testimonialele lui. Landing page-urile sunt la „Toate videoclipurile”.</p>
           <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Pagini">
             {services.map((s) => (
               <Chip key={s.slug} active={view === s.slug} onClick={() => setView(s.slug)} count={countFor(s.slug)}>
@@ -150,7 +156,7 @@ export function AdminApp({
                 <h2 className="text-[1.9rem] sm:text-[2.3rem]">{service.name}</h2>
                 <p className="text-ink-soft">{service.short}</p>
               </div>
-              <a href={`/servicii/${service.slug}`} target="_blank" rel="noopener" className={btn.small}>
+              <a href={service.href} target="_blank" rel="noopener" className={btn.small}>
                 Vezi pagina pe site ↗
               </a>
             </div>
@@ -158,7 +164,7 @@ export function AdminApp({
             <VideoCard
               key={service.slug}
               videoKey={service.video}
-              title="Video explicativ"
+              title={service.videoTitle}
               current={data.media[service.video] ?? ""}
               pending={pending}
               onSave={onSaveVideo(service.video)}
@@ -183,7 +189,11 @@ export function AdminApp({
                 items={data.testimonials.filter((t) => t.services.includes(service.slug))}
                 nameOf={nameOf}
                 pending={pending}
-                empty="Încă nu sunt testimoniale pe această pagină. Secțiunea nu apare pe site până nu adaugi unul."
+                empty={
+                  service.alwaysShown
+                    ? "Încă nu sunt testimoniale pe această pagină. Până adaugi unul, pe site apar casete goale „Testimonial în curând”."
+                    : "Încă nu sunt testimoniale pe această pagină. Secțiunea nu apare pe site până nu adaugi unul."
+                }
                 onEdit={(t) => setEditing(structuredClone(t))}
                 onMove={(t, dir) => run(() => moveTestimonial(t.id, dir, service.slug), "Ordine salvată.")}
                 onVisible={(t, v) => run(() => setTestimonialVisible(t.id, v), v ? "Testimonialul apare pe site." : "Testimonialul e ascuns.")}
@@ -445,7 +455,7 @@ function TestimonialList({
   onDelete,
 }: {
   items: CmsTestimonial[];
-  nameOf: (s: ServiceSlug) => string;
+  nameOf: (s: TestimonialPage) => string;
   pending: boolean;
   empty: string;
   onEdit: (t: CmsTestimonial) => void;
@@ -570,7 +580,7 @@ function Editor({
     };
   }, []);
 
-  const toggleService = (slug: ServiceSlug) =>
+  const toggleService = (slug: TestimonialPage) =>
     set("services", t.services.includes(slug) ? t.services.filter((s) => s !== slug) : [...t.services, slug]);
 
   return (

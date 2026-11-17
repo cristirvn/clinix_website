@@ -35,6 +35,7 @@ export const NAV_SERVICES = [
   { slug: "tpbm", ro: "tPBM", en: "tPBM", sub: { ro: "Terapie cu lumină infraroșie", en: "Near-infrared light therapy" } },
   { slug: "ces", ro: "CES", en: "CES", sub: { ro: "Curent foarte slab, prin clipsuri pe urechi", en: "A very weak current, via ear clips" } },
   { slug: "psihoterapie", ro: "Psihoterapie", en: "Psychotherapy", sub: { ro: "Ședințe cu un psihoterapeut", en: "Sessions with a psychotherapist" } },
+  { slug: "psihiatrie", ro: "Psihiatrie", en: "Psychiatry", sub: { ro: "Consult cu un medic psihiatru", en: "A consultation with a psychiatrist" } },
   { slug: "emsella", ro: "EmSella", en: "EmSella", sub: { ro: "Întărirea planșeului pelvin", en: "Strengthening the pelvic floor" } },
 ] as const;
 

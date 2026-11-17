@@ -3,6 +3,7 @@ import { Section, SectionHead, Eyebrow, CheckItem, Card, buttonClass, HeroPanel,
 import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { FunnelFooter } from "@/components/layout/FunnelChrome";
+import { RelatedArticles } from "@/components/pages/RelatedArticles";
 import type { LpSomnContent } from "@/content/lp-somn";
 import type { Locale } from "@/lib/i18n";
 import { LpSomnApplyForm } from "./LpSomnApplyForm";
@@ -315,6 +316,7 @@ export function LpSomnPage({ c, locale }: { c: LpSomnContent; locale: Locale }) 
         </div>
       </Section>
 
+      <RelatedArticles topics={["somn"]} locale={locale} />
       <FunnelFooter locale={locale} legal={c.legal} />
       <StickyApplyCta label={c.ctaLabel} target={FORM_ID} />
     </div>

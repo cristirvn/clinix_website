@@ -54,6 +54,17 @@ export const HOME_RO: HomeContent = {
     next: "Următoarea întrebare",
     pickFirst: "Alege un răspuns ca să mergi mai departe.",
   },
+  // PROVISIONAL copy (client's draft) — the client is writing the final text.
+  neurofit: {
+    eyebrow: "NeuroFit by Emmanuel CliniX",
+    title: "Îți antrenezi corpul. *Acum și creierul are sala lui.*",
+    text: "Sesiuni regulate, non-invazive, pe aparatura clinicii. Alegi cum vrei să te simți, iar grija pentru creier devine o rutină, la fel de firească precum antrenamentul.",
+    experiences: ["Relax", "Focus", "Reset", "Longevity"],
+    audienceTitle: "Pentru cine e",
+    audience: ["Antreprenori", "Joburi solicitante", "Sportivi"],
+    note: "Abonament lunar. Poți continua cu NeuroFit și după un protocol de tratament.",
+    cta: "Descoperă NeuroFit",
+  },
   complex: {
     eyebrow: "Situații complexe",
     title: "Sprijin și pentru situațiile mai complexe",

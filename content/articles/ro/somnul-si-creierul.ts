@@ -11,6 +11,7 @@ export const ARTICLE: Article = {
   readingMinutes: 5,
   author: "Emmanuel CliniX",
   image: "sleep",
+  topics: ["somn"],
   body: [
     {
       type: "p",
