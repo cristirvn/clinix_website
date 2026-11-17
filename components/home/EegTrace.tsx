@@ -29,3 +29,35 @@ export function EegTrace({
     </svg>
   );
 }
+
+/**
+ * The same trace, live: it runs by endlessly like a monitor (two copies side
+ * by side slide by half), with a soft glow under the line and both ends
+ * fading out. Decorative; still under reduced motion.
+ */
+export function EegLive({
+  className = "",
+  strokeWidth = 1.6,
+  speed = 14,
+}: {
+  className?: string;
+  strokeWidth?: number;
+  /** Seconds per full pass. */
+  speed?: number;
+}) {
+  return (
+    <div
+      aria-hidden="true"
+      className={`pointer-events-none overflow-hidden [mask-image:linear-gradient(90deg,transparent,#000_18%,#000_82%,transparent)] ${className}`}
+    >
+      <svg className="eeg-scroll block h-full w-[200%]" viewBox="0 0 1520 96" preserveAspectRatio="none" fill="none" style={{ animationDuration: `${speed}s` }}>
+        {[0, 760].map((x) => (
+          <g key={x} transform={`translate(${x} 0)`}>
+            <path d={TRACE} stroke="var(--accent)" strokeOpacity={0.22} strokeWidth={strokeWidth * 5} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+            <path d={TRACE} stroke="var(--accent)" strokeWidth={strokeWidth} strokeLinecap="round" strokeLinejoin="round" vectorEffect="non-scaling-stroke" />
+          </g>
+        ))}
+      </svg>
+    </div>
+  );
+}

@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import { L } from "@/components/ui/L";
+import { EegLive } from "@/components/home/EegTrace";
 
 /**
  * Layout + typography building blocks. Every page is built from these so the
@@ -18,7 +19,7 @@ const TONES: Record<Tone, string> = {
   default: "bg-bg text-ink",
   alt: "bg-bg-alt text-ink",
   surface: "bg-surface text-ink",
-  dark: "bg-vital text-on-dark",
+  dark: "bg-vital grain relative isolate text-on-dark",
 };
 
 /** A full-width page band. `dark` sections flip text colours automatically. */
@@ -43,8 +44,9 @@ export function Section({
 }
 
 /**
- * Page-top petrol band right under the white header: full width, faint warm
- * light from the top-right. Text inside is light.
+ * Page-top hero: the same inset, rounded navy panel as the home hero (it sits
+ * inside the page like a framed picture), lit from inside, with film grain
+ * and the live EEG line running along its foot. Text inside is light.
  */
 export function HeroPanel({
   children,
@@ -58,8 +60,11 @@ export function HeroPanel({
   narrow?: boolean;
 }) {
   return (
-    <section id={id} data-tone="dark" className={`bg-vital relative isolate overflow-hidden pb-16 pt-14 sm:pb-24 sm:pt-20 ${className}`}>
-      <Container narrow={narrow}>{children}</Container>
+    <section id={id} className="bg-bg px-2 pb-2 sm:px-3 sm:pb-3">
+      <div data-tone="dark" className={`bg-vital grain relative isolate overflow-hidden rounded-[var(--radius-panel)] pb-20 pt-12 text-on-dark sm:pb-28 sm:pt-20 ${className}`}>
+        <Container narrow={narrow}>{children}</Container>
+        <EegLive className="absolute inset-x-0 bottom-5 -z-10 h-14 opacity-50 sm:bottom-8 sm:h-20" strokeWidth={1.4} speed={22} />
+      </div>
     </section>
   );
 }
@@ -83,12 +88,12 @@ export function keepHyphenated(text: ReactNode): ReactNode {
 }
 
 /**
- * Label above a heading: sentence case, the accent colour, a small dot in
- * front. An optional `index` ("01") gives long pages a quiet editorial rhythm.
+ * Label above a heading: a pill in the accent colour (sentence case, a small
+ * dot in front). An optional `index` ("01") replaces the dot.
  */
 export function Eyebrow({ children, className = "", index }: { children: ReactNode; className?: string; index?: string }) {
   return (
-    <p className={`eyebrow-rule mb-5 inline-flex items-center gap-2.5 text-[0.95rem] font-semibold leading-snug text-accent ${className}`}>
+    <p className={`chip eyebrow-rule mb-6 ${className}`}>
       {index ? (
         <span className="tabular-nums opacity-70">{index}</span>
       ) : (
@@ -227,14 +232,17 @@ export function Faq({
     <div className={`divide-y divide-line border-b border-line ${className}`}>
       {items.map((item, i) => (
         <details key={item.q} className="faq-item group" open={openFirst && i === 0}>
-          <summary className="flex items-start justify-between gap-6 py-6 text-lg font-semibold transition-colors hover:text-accent sm:text-xl">
+          <summary className="flex min-h-16 items-center justify-between gap-6 py-5 text-lg font-semibold transition-colors hover:text-accent sm:text-xl">
             <span>{item.q}</span>
-            <span aria-hidden="true" className="relative mt-[0.4em] flex h-4 w-4 flex-none items-center justify-center text-accent">
-              <span className="absolute h-[1.5px] w-4 bg-current" />
-              <span className="absolute h-4 w-[1.5px] bg-current transition-transform duration-300 group-open:scale-y-0" />
+            <span
+              aria-hidden="true"
+              className="relative flex h-10 w-10 flex-none items-center justify-center rounded-full border border-line text-accent transition-[background-color,border-color,transform] duration-300 group-open:rotate-180 group-open:border-transparent group-open:bg-accent group-open:text-on-accent"
+            >
+              <span className="absolute h-[1.5px] w-3.5 bg-current" />
+              <span className="absolute h-3.5 w-[1.5px] bg-current transition-transform duration-300 group-open:scale-y-0" />
             </span>
           </summary>
-          <div className="max-w-3xl pb-7 pr-10 text-ink-soft">{item.a}</div>
+          <div className="max-w-3xl pb-7 pr-14 text-ink-soft">{item.a}</div>
         </details>
       ))}
     </div>
@@ -245,7 +253,7 @@ export function Faq({
 export function Card({ children, className = "" }: { children: ReactNode; className?: string }) {
   return (
     <div
-      className={`rounded-[var(--radius)] border border-line bg-surface p-7 text-ink sm:p-9 ${className}`}
+      className={`rounded-[var(--radius-media)] border border-line bg-surface p-7 text-ink shadow-[var(--shadow-lift)] sm:p-9 ${className}`}
     >
       {children}
     </div>

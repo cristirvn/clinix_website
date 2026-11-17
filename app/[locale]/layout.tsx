@@ -13,6 +13,8 @@ import { CookieConsent } from "@/components/layout/CookieConsent";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { siteGraph } from "@/components/seo/schema";
 import { PALETTE_BOOT_SCRIPT, PaletteSwitch } from "@/components/layout/PaletteSwitch";
+import { PointerSpotlight } from "@/components/ui/PointerSpotlight";
+import { Toasts } from "@/components/ui/Toasts";
 
 // latin-ext for the Romanian diacritics (ă â î ș ț). ONE typeface for the whole
 // site (client request): headlines and body text are both Instrument Sans.
@@ -78,7 +80,7 @@ export default async function LocaleLayout({
       <body className="flex min-h-screen flex-col">
         <script dangerouslySetInnerHTML={{ __html: PALETTE_BOOT_SCRIPT }} />
         <noscript>
-          <style>{`.reveal,.rise-in{opacity:1!important;transform:none!important;animation:none!important}.trace-draw{animation:none!important;stroke-dashoffset:0!important}.site-loader{display:none!important}`}</style>
+          <style>{`.reveal,.rise-in,.blur-word{opacity:1!important;transform:none!important;filter:none!important;animation:none!important}.trace-draw{animation:none!important;stroke-dashoffset:0!important}.site-loader{display:none!important}`}</style>
         </noscript>
         <JsonLd data={siteGraph(locale)} />
         <LocaleProvider locale={locale} dict={dict}>
@@ -90,6 +92,8 @@ export default async function LocaleLayout({
             {children}
             <CookieConsent />
             <PaletteSwitch />
+            <PointerSpotlight />
+            <Toasts />
             <Analytics />
           </VideoOverridesProvider>
         </LocaleProvider>

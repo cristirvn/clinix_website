@@ -1,23 +1,25 @@
 @import "tailwindcss";
 
 /*
- * Design system — "the quiet clinic" (calm redesign, Nov 2026).
+ * Design system — "luminous clinic" (wow redesign, Nov 2026).
  *
- * Clean whites with pale-blue panels, deep navy for dark bands, one clear blue
- * for the main action and for small accents. ONE typeface everywhere
- * (client request): Instrument Sans, bolder for headlines, no italics.
+ * White and pale-blue pages, deep navy bands lit from inside (layered glow +
+ * a fine grain), one confident blue for the action. ONE typeface everywhere
+ * (client request): Instrument Sans, contrast from size / weight / spacing,
+ * never italics.
  *
- * Rules of the calm redesign (premium = decisions, not effects):
- *  - Flat surfaces. Definition comes from 1px hairlines, not shadows or glow.
- *  - The accent colour is spent on the action (and small markers) only.
- *  - One radius family: --radius (cards, fields), --radius-media (photos,
- *    panels). Buttons are pills.
- *  - Labels are sentence case, never letter-spaced capitals.
- *  - Motion is small and purposeful: hover, press, reveal, open.
+ * One recipe per concern, so every page reads as one product:
+ *  - Radius family: --radius (cards, fields) · --radius-media (photos,
+ *    tiles) · --radius-panel (inset hero / closing panels). Buttons are pills.
+ *  - Depth: --shadow-lift (resting card) · --shadow-float (menus, sheets,
+ *    hovered cards) · --glow-cta (the main button). Dark bands: .bg-vital
+ *    (palette glow, see --glow-a / --glow-b) + .grain.
+ *  - Motion: one curve (--ease-out); press = scale(.97); entrances =
+ *    blur-fade; everything off under prefers-reduced-motion.
  *
  * Every colour / font / radius is a CSS variable; components use ONLY these
- * tokens — never raw hex. Audience is 40–50+: 18px base text, high contrast,
- * big tap targets.
+ * tokens — never raw hex. Audience is 40–50+: 17–18px base text, high
+ * contrast, 44px+ tap targets.
  */
 
 @theme inline {
@@ -71,9 +73,11 @@
   --success: #0f7a40;
   --danger: #a3372e;
   /* Cards, fields, small panels. */
-  --radius: 14px;
-  /* Photos, video frames, large panels. */
-  --radius-media: 20px;
+  --radius: 18px;
+  /* Photos, video frames, tiles. */
+  --radius-media: 24px;
+  /* Inset hero / closing panels. */
+  --radius-panel: 30px;
   /* Height of the sticky header bar. */
   --header-h: 4.5rem;
   --btn-radius: 999px;
@@ -82,6 +86,17 @@
   /* Floating layers only (menus, dialogs). Content cards stay flat. */
   --shadow-soft: 0 24px 60px -28px rgb(11 27 51 / 0.32);
   --shadow-card: 0 1px 2px rgb(11 27 51 / 0.04);
+  /* Resting card: a hairline of shadow + a soft fall-off. */
+  --shadow-lift: 0 1px 2px rgb(11 27 51 / 0.05), 0 14px 34px -18px rgb(11 27 51 / 0.24);
+  /* Hovered cards, sheets, the floating header. */
+  --shadow-float: 0 2px 6px rgb(11 27 51 / 0.06), 0 34px 70px -30px rgb(11 27 51 / 0.42);
+  /* Light inside dark bands (RGB triplets so alpha can vary): the blue and a sky blue. */
+  --glow-a: 47 115 236;
+  --glow-b: 120 174 255;
+  /* The main button's own light. */
+  --glow-cta: 0 1px 0 rgb(255 255 255 / 0.28) inset, 0 12px 30px -12px rgb(29 95 209 / 0.75), 0 3px 8px -3px rgb(29 95 209 / 0.5);
+  /* Ground of the dark bands, a shade deeper at the foot. */
+  --dark-deep: #071224;
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   color-scheme: light;
 }
@@ -195,37 +210,84 @@
   backdrop-filter: blur(14px) saturate(160%);
 }
 
+/* Glass panel over a photo or a band (stat tiles, chips, the "find us" card). A utility so it takes breakpoints (lg:liquid-glass). */
+@utility liquid-glass {
+  position: relative;
+  isolation: isolate;
+  background: linear-gradient(180deg, color-mix(in srgb, var(--dark) 48%, transparent), color-mix(in srgb, var(--dark) 66%, transparent));
+  border: 1px solid rgb(255 255 255 / 0.16);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.14), 0 24px 50px -24px rgb(0 0 0 / 0.5);
+  -webkit-backdrop-filter: blur(18px) saturate(150%);
+  backdrop-filter: blur(18px) saturate(150%);
+  color: var(--on-dark);
+}
+
 /*
  * Custom classes live in the components layer, so Tailwind utilities on the
  * same element (absolute, sizes, colours …) always win over them.
  */
 @layer components {
-  /* The signature navy: deep and matte, one faint cool light from the top-right. */
+  /*
+   * The signature navy, lit from inside: a strong palette glow from the
+   * top-right, a softer sky glow from the bottom-left, the ground deepening
+   * toward the foot. Every dark band, panel and the footer use it.
+   */
   .bg-vital {
     background-color: var(--dark);
-    background-image: radial-gradient(70% 90% at 100% 0%, rgb(169 200 245 / 0.09) 0%, rgb(169 200 245 / 0) 62%);
+    background-image:
+      radial-gradient(62% 70% at 92% -8%, rgb(var(--glow-a) / 0.5) 0%, rgb(var(--glow-a) / 0) 62%),
+      radial-gradient(55% 60% at -6% 108%, rgb(var(--glow-b) / 0.2) 0%, rgb(var(--glow-b) / 0) 64%),
+      linear-gradient(180deg, var(--dark) 0%, var(--dark-deep) 100%);
     color: var(--on-dark);
   }
 
   /*
-   * BUTTONS — flat and precise (`.lg` + a variant; the class names stay from
-   * the old glass system so every caller keeps working).
-   *   .lg-tint  — the one action: solid --cta, no glow. Hover deepens it.
-   *   .lg-clear — secondary: 1px outline (light pages) / light outline (dark bands).
-   *   .lg-smoke — over photos only: a dark frosted fill so the label stays readable.
-   * Every button: same 1px border box (equal heights side by side), a short
-   * press, and a trailing arrow that slides 3px on hover.
+   * Fine film grain over a band (sits above the band's photo/glow, below its
+   * content). The element needs `relative isolate` — add them with it.
+   */
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    border-radius: inherit;
+    opacity: 0.16;
+    mix-blend-mode: soft-light;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 .9 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* A faint dotted grid that fades out — texture for light, tinted bands. */
+  .dot-grid {
+    background-image: radial-gradient(color-mix(in srgb, var(--ink) 13%, transparent) 1px, transparent 1.4px);
+    background-size: 22px 22px;
+    -webkit-mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+    mask-image: radial-gradient(70% 60% at 50% 40%, #000 0%, transparent 100%);
+  }
+
+  /*
+   * BUTTONS (`.lg` + a variant; the class names stay from the old system so
+   * every caller keeps working).
+   *   .lg-tint  — the one action: the CTA colour, lit from the top, its own
+   *               glow underneath and a light sweep across on hover.
+   *   .lg-clear — secondary: 1px outline (light pages) / light glass (dark bands).
+   *   .lg-smoke — over photos only: a dark frosted fill.
+   * Every button: same border box (equal heights side by side), a press to
+   * .97, and a trailing arrow that slides 3px on hover.
    */
   .lg {
     position: relative;
     isolation: isolate;
+    overflow: hidden;
     border: 1px solid transparent;
     transition:
       background-color 0.25s var(--ease-out),
       border-color 0.25s var(--ease-out),
+      box-shadow 0.3s var(--ease-out),
       color 0.25s var(--ease-out),
-      transform 0.18s var(--ease-out);
+      transform 0.2s var(--ease-out);
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
   .lg > svg:last-child {
     transition: transform 0.3s var(--ease-out);
@@ -236,25 +298,55 @@
     }
   }
   .lg:active {
-    transform: scale(0.98);
+    transform: scale(0.97);
   }
   .lg:disabled {
     transform: none;
   }
 
   .lg-tint {
-    background: var(--cta);
+    background-color: var(--cta);
+    background-image: linear-gradient(180deg, rgb(255 255 255 / 0.16) 0%, rgb(255 255 255 / 0) 52%, rgb(0 0 0 / 0.08) 100%);
     color: var(--on-cta);
+    box-shadow: var(--glow-cta);
+  }
+  /* The light sweep: a soft diagonal band crossing the button. */
+  .lg-tint::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    z-index: -1;
+    pointer-events: none;
+    background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.38) 46%, rgb(255 255 255 / 0.06) 54%, transparent 64%);
+    transform: translateX(-120%);
   }
   @media (hover: hover) {
     .lg-tint:hover {
-      background: color-mix(in srgb, var(--cta) 86%, var(--dark));
+      background-color: color-mix(in srgb, var(--cta) 90%, var(--dark));
+      transform: translateY(-1px);
+    }
+    .lg-tint:hover::after {
+      transform: translateX(120%);
+      transition: transform 0.9s var(--ease-out);
+    }
+  }
+  /* The hero's main button sweeps on its own every few seconds. */
+  .btn-shine::after {
+    animation: btn-shine 5.5s 1.6s var(--ease-out) infinite;
+  }
+  @keyframes btn-shine {
+    0% {
+      transform: translateX(-120%);
+    }
+    22%,
+    100% {
+      transform: translateX(120%);
     }
   }
 
   .lg-clear {
-    background: transparent;
-    border-color: color-mix(in srgb, var(--ink) 24%, transparent);
+    background: color-mix(in srgb, var(--surface) 70%, transparent);
+    border-color: color-mix(in srgb, var(--ink) 20%, transparent);
     color: var(--ink);
   }
   @media (hover: hover) {
@@ -266,26 +358,240 @@
 
   .lg-smoke,
   :is([data-tone="dark"], .bg-dark, .bg-vital) .lg-clear {
-    background: color-mix(in srgb, var(--dark) 28%, transparent);
-    border-color: rgb(255 255 255 / 0.34);
+    background: rgb(255 255 255 / 0.07);
+    border-color: rgb(255 255 255 / 0.26);
     color: var(--on-dark);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+  }
+  .lg-smoke {
+    background: color-mix(in srgb, var(--dark) 34%, transparent);
   }
   @media (hover: hover) {
     .lg-smoke:hover,
     :is([data-tone="dark"], .bg-dark, .bg-vital) .lg-clear:hover {
-      border-color: rgb(255 255 255 / 0.75);
-      background: color-mix(in srgb, var(--dark) 45%, transparent);
+      border-color: rgb(255 255 255 / 0.7);
+      background: rgb(255 255 255 / 0.13);
     }
   }
   /* White cards inside dark bands keep the light-page outline. */
   :is([data-tone="dark"], .bg-dark, .bg-vital) :is(.bg-surface, .bg-bg, .bg-bg-alt) .lg-clear {
     background: transparent;
-    border-color: color-mix(in srgb, var(--ink) 24%, transparent);
+    border-color: color-mix(in srgb, var(--ink) 20%, transparent);
     color: var(--ink);
+    box-shadow: none;
     -webkit-backdrop-filter: none;
     backdrop-filter: none;
+  }
+
+  /*
+   * Press feedback for anything tappable that is not a button (cards, tiles,
+   * dock items): a short squeeze, like a native app.
+   */
+  .press {
+    transition: transform 0.2s var(--ease-out);
+    -webkit-tap-highlight-color: transparent;
+  }
+  .press:active {
+    transform: scale(0.97);
+  }
+
+  /*
+   * SPOTLIGHT CARD (Aceternity / Magic UI "card spotlight", CSS-only): a soft
+   * light and a brighter rim follow the pointer (`--mx`/`--my`, set by
+   * components/ui/PointerSpotlight). Mouse only; touch screens never see it.
+   */
+  .spotlight {
+    --mx: 50%;
+    --my: -30%;
+  }
+  .spotlight::before,
+  .spotlight > .spot-rim {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.45s var(--ease-out);
+  }
+  .spotlight::before {
+    z-index: 1;
+    background: radial-gradient(520px circle at var(--mx) var(--my), rgb(var(--glow-b) / 0.16), transparent 55%);
+  }
+  @media (hover: hover) and (pointer: fine) {
+    .spotlight:hover::before,
+    .spotlight:hover > .spot-rim {
+      opacity: 1;
+    }
+  }
+  /* Rim: the same light, masked to a 1px border. */
+  .spot-rim {
+    z-index: 2;
+    padding: 1px;
+    background: radial-gradient(360px circle at var(--mx) var(--my), rgb(var(--glow-b) / 0.9), transparent 60%);
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+
+  /*
+   * BORDER BEAM (Magic UI): a short light travelling round the border of its
+   * parent, once every few seconds. Parent needs `relative` + a radius.
+   */
+  .beam {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    padding: 1.5px;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+  }
+  .beam::before {
+    content: "";
+    position: absolute;
+    width: 180px;
+    aspect-ratio: 1;
+    background: linear-gradient(to left, rgb(var(--glow-b)), rgb(var(--glow-a) / 0.6) 40%, transparent);
+    offset-path: rect(0 auto auto 0 round var(--beam-r, 24px));
+    offset-anchor: 90% 50%;
+    animation: beam-run 8s linear infinite;
+    opacity: 0;
+  }
+  @supports (offset-path: rect(0 auto auto 0)) {
+    .beam::before {
+      opacity: 1;
+    }
+  }
+  @keyframes beam-run {
+    from {
+      offset-distance: 0%;
+    }
+    to {
+      offset-distance: 100%;
+    }
+  }
+
+  /* Pill label (eyebrows on photos / bands): accent text on a faint accent wash. */
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55rem;
+    border-radius: 999px;
+    padding: 0.42rem 0.95rem 0.42rem 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    line-height: 1.25;
+    color: var(--accent);
+    background: color-mix(in srgb, var(--accent) 9%, transparent);
+    box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--accent) 22%, transparent);
+  }
+  /* A "live" dot: a ring pulses out of it. */
+  .live-dot {
+    position: relative;
+    width: 0.5rem;
+    height: 0.5rem;
+    flex: none;
+    border-radius: 999px;
+    background: currentColor;
+  }
+  .live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: currentColor;
+    animation: live-ping 2.4s var(--ease-out) infinite;
+  }
+  @keyframes live-ping {
+    from {
+      transform: scale(1);
+      opacity: 0.55;
+    }
+    70%,
+    to {
+      transform: scale(3.2);
+      opacity: 0;
+    }
+  }
+
+  /* Horizontal snap rail (phones): cards peek at the edge so it is obvious there are more. */
+  .rail {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scroll-padding-inline: 1.25rem;
+    padding-inline: 1.25rem;
+    margin-inline: -1.25rem;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .rail::-webkit-scrollbar {
+    display: none;
+  }
+  .rail > * {
+    scroll-snap-align: start;
+    flex: none;
+  }
+  @media (min-width: 640px) {
+    .rail {
+      scroll-padding-inline: 2rem;
+      padding-inline: 2rem;
+      margin-inline: -2rem;
+    }
+  }
+
+  /* Endless strip (reviews): the track holds the items twice and slides by half. */
+  .marquee {
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 7%, #000 93%, transparent);
+  }
+  .marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee 60s linear infinite;
+  }
+  @media (hover: hover) {
+    .marquee:hover .marquee-track {
+      animation-play-state: paused;
+    }
+  }
+
+  /* The live EEG line: the trace scrolls by like a monitor. */
+  @keyframes eeg-scroll {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  .eeg-scroll {
+    animation: eeg-scroll 14s linear infinite;
+  }
+
+  /* Headline words settle in one after another, out of a soft blur. */
+  @keyframes blur-in {
+    from {
+      opacity: 0;
+      filter: blur(10px);
+      transform: translateY(0.35em);
+    }
+    to {
+      opacity: 1;
+      filter: none;
+      transform: none;
+    }
+  }
+  .blur-word {
+    display: inline-block;
+    animation: blur-in 0.9s var(--ease-out) both;
   }
 
   /* Old refraction hooks (components/ui/GlassRefraction): kept inert. */
@@ -297,15 +603,6 @@
    * Panel over a photo (stat tiles, chips, the "find us" card): a quiet dark
    * frosted fill with a hairline edge. No glow, no sheen.
    */
-  .liquid-glass {
-    position: relative;
-    isolation: isolate;
-    background: color-mix(in srgb, var(--dark) 58%, transparent);
-    border: 1px solid rgb(255 255 255 / 0.14);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
-    backdrop-filter: blur(16px) saturate(140%);
-    color: var(--on-dark);
-  }
 
   /* No backdrop-filter (old browsers, some Android webviews): near-opaque fills keep the text readable. */
   @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
@@ -337,19 +634,6 @@
     background: color-mix(in srgb, var(--dark) 62%, transparent);
     -webkit-backdrop-filter: blur(10px);
     backdrop-filter: blur(10px);
-  }
-
-  /* Photo veil for the home hero: dense where the text sits, open where the photo speaks. */
-  .hero-veil {
-    background:
-      linear-gradient(180deg, color-mix(in srgb, var(--dark) 62%, transparent) 0%, color-mix(in srgb, var(--dark) 74%, transparent) 50%, color-mix(in srgb, var(--dark) 92%, transparent) 100%);
-  }
-  @media (min-width: 1024px) {
-    .hero-veil {
-      background:
-        linear-gradient(90deg, color-mix(in srgb, var(--dark) 92%, transparent) 0%, color-mix(in srgb, var(--dark) 74%, transparent) 40%, color-mix(in srgb, var(--dark) 18%, transparent) 76%, color-mix(in srgb, var(--dark) 6%, transparent) 100%),
-        linear-gradient(180deg, transparent 50%, color-mix(in srgb, var(--dark) 78%, transparent) 100%);
-    }
   }
 
   /* A photo that dissolves into the band around it: from the top on phones, from the left on large screens. */
@@ -387,19 +671,21 @@
    * Tailwind size utilities on the same element still win (utilities layer).
    */
   .t-h1 {
-    font-size: 2.6rem;
-    line-height: 1.02;
-    letter-spacing: -0.032em;
+    font-size: 2.65rem;
+    line-height: 1;
+    letter-spacing: -0.038em;
+    font-weight: 650;
   }
   .t-h2 {
     font-size: 2.3rem;
-    line-height: 1.05;
-    letter-spacing: -0.03em;
+    line-height: 1.04;
+    letter-spacing: -0.034em;
+    font-weight: 620;
   }
   .t-h3 {
     font-size: 1.35rem;
     line-height: 1.2;
-    letter-spacing: -0.014em;
+    letter-spacing: -0.016em;
   }
   .t-lead {
     font-size: 1.125rem;
@@ -407,10 +693,10 @@
   }
   @media (min-width: 640px) {
     .t-h1 {
-      font-size: 3.9rem;
+      font-size: 4.1rem;
     }
     .t-h2 {
-      font-size: 3.1rem;
+      font-size: 3.3rem;
     }
     .t-h3 {
       font-size: 1.5rem;
@@ -421,10 +707,27 @@
   }
   @media (min-width: 1024px) {
     .t-h1 {
-      font-size: 4.6rem;
+      font-size: 5.2rem;
     }
     .t-h2 {
-      font-size: 3.6rem;
+      font-size: 4rem;
+    }
+  }
+  /* The home hero's headline: the biggest type on the site. */
+  .t-display {
+    font-size: 2.85rem;
+    line-height: 0.98;
+    letter-spacing: -0.042em;
+    font-weight: 650;
+  }
+  @media (min-width: 640px) {
+    .t-display {
+      font-size: 4.6rem;
+    }
+  }
+  @media (min-width: 1024px) {
+    .t-display {
+      font-size: clamp(3.7rem, 5.6vw, 6rem);
     }
   }
 
@@ -476,18 +779,23 @@
     filter: saturate(0.9) contrast(1.04);
   }
 
-  /* Card that is a link: the hairline deepens and it rises 2px. */
+  /* Card that is a link: it lifts 3px, its shadow opens up; a press squeezes it. */
   .card-hover {
     transition:
       border-color 0.3s var(--ease-out),
+      box-shadow 0.4s var(--ease-out),
       transform 0.3s var(--ease-out),
       background-color 0.3s var(--ease-out);
   }
   @media (hover: hover) {
     .card-hover:hover {
-      border-color: color-mix(in srgb, var(--ink) 40%, transparent);
-      transform: translateY(-2px);
+      border-color: color-mix(in srgb, var(--accent) 35%, transparent);
+      box-shadow: var(--shadow-float);
+      transform: translateY(-3px);
     }
+  }
+  .card-hover:active {
+    transform: scale(0.98);
   }
 
   /* FAQ: the answer opens smoothly where the browser supports it (::details-content). */
@@ -572,21 +880,24 @@
     animation: rise-in 0.9s var(--ease-out) both;
   }
   /* Entrances wait while the page-load curtain is still up, so they are actually seen. */
-  html:has(.site-loader:not(.is-done)) :is(.rise-in, .trace-draw, .hero-settle) {
+  html:has(.site-loader:not(.is-done)) :is(.rise-in, .trace-draw, .hero-settle, .blur-word) {
     animation-play-state: paused;
   }
 
   /* Scroll reveal — content stays visible without JS (see components/ui/Reveal). */
   .reveal {
     opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(22px);
+    filter: blur(6px);
     transition:
-      opacity 0.7s var(--ease-out),
-      transform 0.7s var(--ease-out);
+      opacity 0.8s var(--ease-out),
+      transform 0.8s var(--ease-out),
+      filter 0.8s var(--ease-out);
   }
   .reveal.is-in {
     opacity: 1;
     transform: none;
+    filter: none;
   }
   @media (prefers-reduced-motion: reduce) {
     html {
@@ -595,13 +906,35 @@
     .reveal {
       opacity: 1;
       transform: none;
+      filter: none;
       transition: none;
     }
     .animate-float,
     .animate-marquee,
     .rise-in,
-    .hero-settle {
+    .hero-settle,
+    .blur-word,
+    .eeg-scroll,
+    .marquee-track,
+    .live-dot::after,
+    .btn-shine::after,
+    .beam::before {
       animation: none;
+    }
+    .beam {
+      display: none;
+    }
+    /* The review strip becomes a plain sideways list. */
+    .marquee {
+      overflow-x: auto;
+      -webkit-mask-image: none;
+      mask-image: none;
+    }
+    .marquee-track [data-dup] {
+      display: none;
+    }
+    .marquee-track {
+      padding-inline: 1.25rem;
     }
     .trace-draw {
       animation: none;
@@ -609,6 +942,8 @@
     }
     .zoom-media,
     .lg,
+    .lg::after,
+    .press,
     .lg > svg,
     .link-draw,
     .link-draw > svg,
@@ -617,6 +952,8 @@
     }
     .lg:hover,
     .lg:active,
+    .press:active,
+    .card-hover:active,
     .lg:hover > svg:last-child,
     .link-draw:hover > svg,
     .card-hover:hover {
@@ -777,9 +1114,16 @@ html:has(.site-loader:not(.is-done)) {
   --lime: #12bdd6;
   --on-lime: #062a32;
   --dark: #06343f;
+  --dark-deep: #032229;
   --on-dark-soft: #cfe7ec;
   --shadow-soft: 0 40px 90px -40px rgb(6 52 63 / 0.3);
   --shadow-card: 0 1px 2px rgb(6 52 63 / 0.04);
+  --shadow-lift: 0 1px 2px rgb(6 52 63 / 0.05), 0 14px 34px -18px rgb(6 52 63 / 0.24);
+  --shadow-float: 0 2px 6px rgb(6 52 63 / 0.06), 0 34px 70px -30px rgb(6 52 63 / 0.4);
+  /* Petrol bands lit by the logo turquoise, with the logo blue from below. */
+  --glow-a: 18 189 214;
+  --glow-b: 70 140 235;
+  --glow-cta: 0 1px 0 rgb(255 255 255 / 0.4) inset, 0 12px 30px -12px rgb(18 189 214 / 0.8), 0 3px 8px -3px rgb(18 189 214 / 0.5);
 }
 /* NeuroFit (black + gold) keeps its own colours: every rule below skips it. */
 :root[data-palette="aqua"] :is([data-tone="dark"], .bg-dark, .bg-vital):not(.theme-neurofit *) {
@@ -796,8 +1140,10 @@ html:has(.site-loader:not(.is-done)) {
   --line: #d6eaee;
 }
 :root[data-palette="aqua"] .bg-vital:not(.theme-neurofit *) {
-  background-color: var(--dark);
-  background-image: radial-gradient(70% 90% at 100% 0%, rgb(18 189 214 / 0.12) 0%, rgb(18 189 214 / 0) 62%);
+  background-image:
+    radial-gradient(62% 70% at 92% -8%, rgb(var(--glow-a) / 0.34) 0%, rgb(var(--glow-a) / 0) 62%),
+    radial-gradient(55% 60% at -6% 108%, rgb(var(--glow-b) / 0.22) 0%, rgb(var(--glow-b) / 0) 64%),
+    linear-gradient(180deg, var(--dark) 0%, var(--dark-deep) 100%);
 }
 /*
  * Glass panels (hero facts, the "find us" card, page-hero cards) carry more
@@ -820,8 +1166,8 @@ html:has(.site-loader:not(.is-done)) {
  */
 :root[data-palette="aqua"] section.bg-vital[data-final-cta]:not(.theme-neurofit *) {
   background-image:
-    radial-gradient(70% 90% at 100% 0%, rgb(18 189 214 / 0.12) 0%, rgb(18 189 214 / 0) 62%),
-    linear-gradient(180deg, rgb(4 42 51 / 0) 40%, #042a33 100%);
+    radial-gradient(62% 70% at 92% -8%, rgb(var(--glow-a) / 0.34) 0%, rgb(var(--glow-a) / 0) 62%),
+    linear-gradient(180deg, var(--dark) 30%, #042a33 100%);
 }
 :root[data-palette="aqua"] main:has(section.bg-vital[data-final-cta]) + footer.bg-vital:not(.theme-neurofit *) {
   background-image: none;
@@ -843,6 +1189,9 @@ html:has(.site-loader:not(.is-done)) {
  * Switched on with <html data-palette="mix"> (components/layout/PaletteSwitch).
  */
 :root[data-palette="mix"] {
+  /* Navy bands keep their blue light, with a turquoise one from below. */
+  --glow-b: 18 189 214;
+  --glow-cta: 0 1px 0 rgb(255 255 255 / 0.4) inset, 0 12px 30px -12px rgb(18 189 214 / 0.8), 0 3px 8px -3px rgb(18 189 214 / 0.5);
   --primary: #00788f;
   --accent: #00788f;
   --cta: #12bdd6;
@@ -862,23 +1211,27 @@ html:has(.site-loader:not(.is-done)) {
 }
 
 /*
- * ─── Home hero photo on large screens ──────────────────────────────────────
- * The photo is portrait (2:3). Stretched across a wide screen it was cropped
- * to a thin band and the specialist's face filled half the page. From 1024px
- * it sits in the right half only — shown almost whole, so people read at a
- * natural size — and dissolves into the navy on its left edge (a mask, no seam).
+ * ─── Home hero photo ───────────────────────────────────────────────────────
+ * Phones: the photo fills the lower part of the panel, under the text, and
+ * dissolves into the navy at its top edge. From 1024px it takes the right
+ * half, full height, dissolving at its left edge — the specialist at a
+ * natural size, never cropped to a band. Masks, so there is never a seam.
  */
+.hero-photo {
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
+}
+.hero-veil {
+  background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--dark) 70%, transparent) 100%);
+}
 @media (min-width: 1024px) {
   .hero-photo {
-    left: auto;
-    width: 54%;
-    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
-    mask-image: linear-gradient(90deg, transparent 0%, #000 34%);
+    -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 36%);
+    mask-image: linear-gradient(90deg, transparent 0%, #000 36%);
   }
   .hero-veil {
     background:
-      linear-gradient(90deg, color-mix(in srgb, var(--dark) 0%, transparent) 50%, color-mix(in srgb, var(--dark) 12%, transparent) 100%),
-      linear-gradient(180deg, transparent 58%, color-mix(in srgb, var(--dark) 72%, transparent) 100%);
+      linear-gradient(180deg, transparent 55%, color-mix(in srgb, var(--dark) 80%, transparent) 100%);
   }
 }
 
@@ -911,6 +1264,12 @@ html:has(.site-loader:not(.is-done)) {
   --on-dark-soft: #b8ae9c;
   --shadow-soft: 0 40px 90px -40px rgb(0 0 0 / 0.7);
   --shadow-card: 0 1px 0 rgb(255 255 255 / 0.03) inset;
+  --shadow-lift: 0 1px 0 rgb(255 255 255 / 0.04) inset, 0 20px 40px -24px rgb(0 0 0 / 0.8);
+  --shadow-float: 0 1px 0 rgb(255 255 255 / 0.05) inset, 0 40px 80px -36px rgb(0 0 0 / 0.9);
+  --glow-a: 212 176 115;
+  --glow-b: 241 223 184;
+  --glow-cta: 0 1px 0 rgb(255 255 255 / 0.35) inset, 0 12px 30px -14px rgb(212 176 115 / 0.7);
+  --dark-deep: #070605;
   --display-tracking: -0.028em;
   background: var(--bg);
   color: var(--ink);
@@ -927,12 +1286,13 @@ html:has(.nf-page) .site-loader {
 }
 /* The gold button: flat champagne; hover deepens it. */
 :root .theme-neurofit .lg-tint {
-  background: var(--cta);
+  background-color: var(--cta);
+  background-image: linear-gradient(180deg, #f1dfb8 0%, #d4b073 55%, #c29d60 100%);
   color: var(--on-cta);
 }
 @media (hover: hover) {
   :root .theme-neurofit .lg-tint:hover {
-    background: #c29d60;
+    background-image: linear-gradient(180deg, #ead3a2 0%, #c9a466 55%, #b8935a 100%);
   }
 }
 /* Secondary on black: a thin gold outline. */
@@ -974,4 +1334,27 @@ html:has(.nf-page) .site-loader {
 /* Photos inside NeuroFit are toned warm and low, so they sit in the black. */
 .nf-photo {
   filter: grayscale(0.55) sepia(0.35) brightness(0.72) contrast(1.05);
+}
+
+/* Phones: the palette preview switch sits above a bottom action bar. */
+@media (max-width: 767px) {
+  body:has([data-sticky-cta]) .palette-switch {
+    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.4rem) !important;
+  }
+}
+
+/* Home "how to start": the timeline line fills as the steps scroll by (no support / reduced motion = full line). */
+@keyframes timeline-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .timeline-fill {
+      animation: timeline-grow linear both;
+      animation-timeline: view();
+      animation-range: entry 30% cover 60%;
+    }
+  }
 }
