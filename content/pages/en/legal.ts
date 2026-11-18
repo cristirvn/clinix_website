@@ -67,7 +67,7 @@ export const LEGAL_EN: LegalContent = {
         // TODO(owner): nature of the BrainMap assessment, the indicative character of the results,
         // booking / cancellation conditions.
         paragraphs: [
-          "The BrainMap assessment costs 1,200 RON and includes the scan, the on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you start treatment with us, the full amount is deducted.",
+          "The BrainMap assessment costs 1,200 RON and includes the scan, the on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you start a programme with us, the full amount is deducted.",
           "Appointments are made by phone: we call you and find a time that suits you.",
         ],
       },

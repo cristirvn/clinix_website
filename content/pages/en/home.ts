@@ -9,7 +9,7 @@ export const HOME_EN: HomeContent = {
   hero: {
     eyebrow: "Wellness for the brain",
     title: "Your brain, at its best",
-    lead: "We measure how your brain works, then train it to work better: calmer, clearer, with more energy, today and in the years ahead.",
+    lead: "We measure how your brain works, then train it to work better.",
     benefits: ["Non-invasive", "Measured from the first step", "A plan built on your data"],
     cta: "Start with a BrainMap assessment",
     phoneLabel: "Call us",
@@ -62,7 +62,7 @@ export const HOME_EN: HomeContent = {
     experiences: ["Relax", "Focus", "Reset", "Longevity"],
     audienceTitle: "Who it's for",
     audience: ["Business owners", "Demanding jobs", "Athletes"],
-    note: "A monthly membership. You can carry on with NeuroFit after a treatment programme, too.",
+    note: "A monthly membership. You can carry on with NeuroFit after a programme at the clinic, too.",
     cta: "Discover NeuroFit",
   },
   complex: {
@@ -89,7 +89,7 @@ export const HOME_EN: HomeContent = {
   final: {
     title: "No one has ever shown you what's going on.",
     cta: "I want my brain map",
-    note: "If you start treatment with us, the full amount is deducted.",
+    note: "If you start a programme with us, the full amount is deducted.",
     reach: "Where to find us",
     address: "Address",
   },
@@ -111,7 +111,7 @@ export const HOME_EN: HomeContent = {
       },
       {
         q: "How much does it cost?",
-        a: "The assessment costs 1,200 RON and includes the scan, the on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you start treatment with us, the full amount is deducted.",
+        a: "The assessment costs 1,200 RON and includes the scan, the on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you start a programme with us, the full amount is deducted.",
       },
       { q: "Do I need a referral from my GP?", a: "No." },
       {

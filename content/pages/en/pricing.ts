@@ -4,7 +4,7 @@ export const pricing: PricingContent = {
   seo: {
     title: "Pricing",
     description:
-      "Emmanuel CliniX pricing: BrainMap 1,200 RON (scan, interpretation, psychological consultation, PDF), deducted in full if you start treatment. EmSella from 250 RON per session.",
+      "Emmanuel CliniX pricing: BrainMap 1,200 RON (scan, interpretation, psychological consultation, PDF), deducted in full if you start a programme. EmSella from 250 RON per session.",
   },
   hero: {
     eyebrow: "Pricing",
@@ -23,11 +23,11 @@ export const pricing: PricingContent = {
       "Psychological consultation, in the same visit",
       "A PDF by email or WhatsApp, with your interpretation and recommendations",
     ],
-    deduction: "If you start treatment with us, the full amount is deducted.",
+    deduction: "If you start a programme with us, the full amount is deducted.",
     cta: { label: "Book a BrainMap →", href: "/brainmap" },
   },
   list: {
-    eyebrow: "Treatments",
+    eyebrow: "Sessions",
     title: "Price per session",
     onRequest: "on request",
     items: [
@@ -64,10 +64,10 @@ export const pricing: PricingContent = {
     items: [
       {
         q: "What does BrainMap include?",
-        a: "The assessment costs 1,200 RON and includes the scan, on-the-spot interpretation, a psychological consultation and a PDF with recommendations. If you start treatment with us, the full amount is deducted.",
+        a: "The assessment costs 1,200 RON and includes the scan, on-the-spot interpretation, a psychological consultation and a PDF with recommendations. If you start a programme with us, the full amount is deducted.",
       },
       {
-        q: "Do I have to start treatment after BrainMap?",
+        q: "Do I have to continue after BrainMap?",
         a: "No. We talk through what the map shows and what your options are. You decide. The map and the PDF are yours to keep, whatever you choose to do next.",
       },
       {

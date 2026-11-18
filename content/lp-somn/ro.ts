@@ -180,7 +180,7 @@ export const lpSomnRo: LpSomnContent = {
       { q: "Cât durează până văd rezultate?", a: "De obicei 1-2 săptămâni." },
       {
         q: "Cât costă?",
-        a: "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi tratamentul cu noi, suma se scade integral.",
+        a: "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi un program cu noi, suma se scade integral.",
       },
       { q: "Am nevoie de trimitere de la medicul de familie?", a: "Nu." },
       {
@@ -241,7 +241,7 @@ export const lpSomnRo: LpSomnContent = {
         placeholder: "Somnifere, suplimente, medici, terapie... scrie pe scurt. Ne ajută să știm de unde pornim.",
       },
       priceNote:
-        "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi tratamentul cu noi, suma se scade integral.",
+        "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi un program cu noi, suma se scade integral.",
       priceConfirm: "Am citit și sunt de acord cu acest preț.",
       consent: "Sunt de acord să fiu contactat în legătură cu aplicarea mea.",
       privacyLink: "Politica de confidențialitate",

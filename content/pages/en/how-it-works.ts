@@ -30,7 +30,7 @@ export const howItWorks: HowItWorksContent = {
         text: "We explain your map in plain words, in the same visit.",
       },
       {
-        title: "Treatment sessions",
+        title: "Training sessions",
         text: "Neurofeedback, for example: painless sessions in which the brain learns a steadier rhythm.",
       },
       {

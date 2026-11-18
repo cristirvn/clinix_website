@@ -69,7 +69,7 @@ export const howItWorks: HowItWorksContent = {
         text: "Îți explicăm harta pe înțelesul tău, în aceeași vizită.",
       },
       {
-        title: "Ședințele de tratament",
+        title: "Ședințele de antrenament",
         text: "De exemplu neurofeedback: ședințe nedureroase, în care creierul învață un ritm mai stabil.",
       },
       {

@@ -37,7 +37,7 @@ export const team: TeamContent = {
   seo: {
     title: "Echipă",
     description:
-      "Echipa Emmanuel CliniX: oamenii care îți fac scanarea BrainMap, îți explică harta și te însoțesc în ședințele de tratament.",
+      "Echipa Emmanuel CliniX: oamenii care îți fac scanarea BrainMap, îți explică harta și te însoțesc în ședințele tale.",
   },
   hero: {
     eyebrow: "Echipă",

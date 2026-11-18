@@ -41,7 +41,7 @@ export const pricing: PricingContent = {
   seo: {
     title: "Tarife",
     description:
-      "Tarife Emmanuel CliniX: BrainMap 1.200 lei (scanare, interpretare, consult psihologic, PDF), dedus integral dacă începi tratamentul. EmSella de la 250 lei / ședință.",
+      "Tarife Emmanuel CliniX: BrainMap 1.200 lei (scanare, interpretare, consult psihologic, PDF), dedus integral dacă începi un program. EmSella de la 250 lei / ședință.",
   },
   hero: {
     eyebrow: "Tarife",
@@ -60,11 +60,11 @@ export const pricing: PricingContent = {
       "Consult psihologic, în aceeași vizită",
       "PDF pe mail sau pe WhatsApp, cu interpretarea și recomandările tale",
     ],
-    deduction: "Dacă începi tratamentul cu noi, suma se scade integral.",
+    deduction: "Dacă începi un program cu noi, suma se scade integral.",
     cta: { label: "Vreau BrainMap →", href: "/brainmap" },
   },
   list: {
-    eyebrow: "Tratamente",
+    eyebrow: "Ședințe",
     title: "Preț pe ședință",
     onRequest: "la cerere",
     items: [
@@ -101,10 +101,10 @@ export const pricing: PricingContent = {
     items: [
       {
         q: "Ce include BrainMap?",
-        a: "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi tratamentul cu noi, suma se scade integral.",
+        a: "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi un program cu noi, suma se scade integral.",
       },
       {
-        q: "Sunt obligat să încep tratamentul după BrainMap?",
+        q: "Sunt obligat să continui după BrainMap?",
         a: "Nu. Discutăm ce arată harta și ce opțiuni ai mai departe. Decizi tu. Harta și PDF-ul rămân ale tale, indiferent ce alegi să faci mai departe.",
       },
       {

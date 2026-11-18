@@ -5,7 +5,7 @@ export const TESTIMONIALS_PAGE_EN: TestimonialsPageContent = {
   seo: {
     title: "Testimonials",
     description:
-      "What people who have been through BrainMap and treatment at Emmanuel CliniX in Bucharest say. On video and in their own words.",
+      "What people who have been through BrainMap and the programmes at Emmanuel CliniX in Bucharest say. On video and in their own words.",
   },
   hero: {
     eyebrow: "Testimonials",

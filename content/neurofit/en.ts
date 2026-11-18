@@ -93,7 +93,7 @@ export const NEUROFIT_EN: NeuroFitContent = {
         a: "Package prices are given by phone or at the clinic. Leave us your number and we'll call you.",
       },
       {
-        q: "Can I carry on with NeuroFit after a treatment programme at the clinic?",
+        q: "Can I carry on with NeuroFit after a programme at the clinic?",
         a: "Yes. NeuroFit can follow on from a programme, so the results are supported by a steady routine.",
       },
     ],

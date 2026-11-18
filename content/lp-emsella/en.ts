@@ -105,7 +105,7 @@ export const lpEmsellaEn: LpEmsellaContent = {
         ],
       },
     ],
-    note: "They all have the same cause and are treated the same way: by strengthening the muscle.",
+    note: "They all have the same cause and are worked on the same way: by strengthening the muscle.",
   },
   process: {
     eyebrow: "The process",

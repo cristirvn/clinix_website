@@ -20,7 +20,7 @@ export const en: Dictionary = {
     close: "Close",
     home: "Home",
     services: "Services",
-    conditions: "Conditions we treat",
+    conditions: "How we help",
     children: "For children",
     articles: "Articles",
     careers: "Careers",

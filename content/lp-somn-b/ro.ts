@@ -275,7 +275,7 @@ export const lpSomnBRo: LpSomnBContent = {
       title: "De ce citim fiecare aplicație personal",
       paragraphs: [
         "Salut și îți mulțumesc din suflet că ai avut curajul să aplici.",
-        "Știu cum e. Ai mai auzit promisiuni. Ai încercat lucruri care n-au ținut. Poate o parte din tine se întreabă dacă merită să mai speri încă o dată. Te înțeleg — și de-asta nu tratăm pe nimeni „la grămadă\".",
+        "Știu cum e. Ai mai auzit promisiuni. Ai încercat lucruri care n-au ținut. Poate o parte din tine se întreabă dacă merită să mai speri încă o dată. Te înțeleg — și de-asta nu abordăm pe nimeni „la grămadă\".",
         "Rezultatul pe care l-ai văzut în studiul de caz este real. Dar la fel de important e cine merge cu tine pe drumul ăsta. Noi vrem să fim siguri că te putem ajuta cu adevărat înainte să-ți promitem ceva. De-asta citim fiecare aplicație cu atenție, cu mâna noastră, nu cu un robot.",
         "Dacă suntem potriviți unul pentru celălalt, o să-ți dăm tot ce avem mai bun. Iar dacă vezi mai jos, îți spun exact ce urmează și ce poți face chiar acum.",
       ],

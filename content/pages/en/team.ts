@@ -4,7 +4,7 @@ export const team: TeamContent = {
   seo: {
     title: "Team",
     description:
-      "The Emmanuel CliniX team: the people who run your BrainMap scan, explain your map and stay with you through your treatment sessions.",
+      "The Emmanuel CliniX team: the people who run your BrainMap scan, explain your map and stay with you through your sessions.",
   },
   hero: {
     eyebrow: "Team",

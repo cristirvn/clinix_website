@@ -22,7 +22,7 @@ export const ro = {
     close: "Închide",
     home: "Acasă",
     services: "Servicii",
-    conditions: "Afecțiuni tratate",
+    conditions: "Cu ce te ajutăm",
     children: "Pentru copii",
     articles: "Articole",
     careers: "Cariere",

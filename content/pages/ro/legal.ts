@@ -70,7 +70,7 @@ export const LEGAL_RO: LegalContent = {
         // TODO(owner): nature of the BrainMap assessment, the indicative character of the results,
         // booking / cancellation conditions. Interim text = approved facts only.
         paragraphs: [
-          "Evaluarea BrainMap costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi tratamentul cu noi, suma se scade integral.",
+          "Evaluarea BrainMap costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi un program cu noi, suma se scade integral.",
           "Programările se fac telefonic: te sunăm și găsim împreună o oră care ți se potrivește.",
         ],
       },

@@ -7,12 +7,12 @@ import type { ConditionsContent } from "./types";
 // PROVISIONAL copy — client to confirm (hero, condition names, which services help each one, pelvic-floor text).
 export const CONDITIONS_RO: ConditionsContent = {
   seo: {
-    title: "Afecțiuni tratate",
+    title: "Cu ce te ajutăm",
     description:
       "Anxietate, atacuri de panică, insomnie, burnout, concentrare, dispoziție, migrene, stres, dependențe și planșeu pelvin slăbit. Cum te putem ajuta la Emmanuel CliniX, în București.",
   },
   hero: {
-    eyebrow: "Afecțiuni tratate",
+    eyebrow: "Cu ce te ajutăm",
     title: "Cu ce te putem ajuta.",
     lead: "Alege ce te descrie. Fă testul gratuit sau vezi cum te ajutăm.",
   },

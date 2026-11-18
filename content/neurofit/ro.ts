@@ -93,7 +93,7 @@ export const NEUROFIT_RO: NeuroFitContent = {
         a: "Prețurile pachetelor le afli la telefon sau în clinică. Lasă-ne numărul și te sunăm noi.",
       },
       {
-        q: "Pot continua cu NeuroFit după un tratament la clinică?",
+        q: "Pot continua cu NeuroFit după un program la clinică?",
         a: "Da. NeuroFit poate continua după un protocol, ca rezultatele să fie susținute de o rutină constantă.",
       },
     ],

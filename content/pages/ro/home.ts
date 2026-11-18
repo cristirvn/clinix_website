@@ -9,7 +9,7 @@ export const HOME_RO: HomeContent = {
   hero: {
     eyebrow: "Wellness pentru creier",
     title: "Creierul tău, în cea mai bună formă",
-    lead: "Măsurăm cum funcționează creierul tău, apoi îl antrenăm să lucreze mai bine: mai calm, mai limpede, cu mai multă energie, azi și peste ani.",
+    lead: "Măsurăm cum funcționează creierul tău, apoi îl antrenăm să lucreze mai bine.",
     benefits: ["Non-invaziv", "Măsurat, de la primul pas", "Plan construit pe datele tale"],
     cta: "Începe cu evaluarea BrainMap",
     phoneLabel: "Sună-ne",
@@ -62,7 +62,7 @@ export const HOME_RO: HomeContent = {
     experiences: ["Relax", "Focus", "Reset", "Longevity"],
     audienceTitle: "Pentru cine e",
     audience: ["Antreprenori", "Joburi solicitante", "Sportivi"],
-    note: "Abonament lunar. Poți continua cu NeuroFit și după un protocol de tratament.",
+    note: "Abonament lunar. Poți continua cu NeuroFit și după un program la clinică.",
     cta: "Descoperă NeuroFit",
   },
   complex: {
@@ -89,7 +89,7 @@ export const HOME_RO: HomeContent = {
   final: {
     title: "Nimeni nu ți-a arătat, concret, ce se întâmplă.",
     cta: "Vreau harta creierului meu",
-    note: "Dacă începi tratamentul cu noi, suma se scade integral.",
+    note: "Dacă începi un program cu noi, suma se scade integral.",
     reach: "Ne găsești aici",
     address: "Adresa",
   },
@@ -111,7 +111,7 @@ export const HOME_RO: HomeContent = {
       },
       {
         q: "Cât costă?",
-        a: "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi tratamentul cu noi, suma se scade integral.",
+        a: "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi un program cu noi, suma se scade integral.",
       },
       { q: "Am nevoie de trimitere de la medicul de familie?", a: "Nu." },
       {

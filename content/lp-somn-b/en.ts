@@ -275,7 +275,7 @@ export const lpSomnBEn: LpSomnBContent = {
       title: "Why we read every application personally",
       paragraphs: [
         "Hello, and thank you from the bottom of our hearts for having the courage to apply.",
-        "We know how it is. You've heard promises before. You've tried things that didn't last. Perhaps part of you is wondering whether it's worth hoping one more time. We understand — and that's why we never treat anyone as \"just another case\".",
+        "We know how it is. You've heard promises before. You've tried things that didn't last. Perhaps part of you is wondering whether it's worth hoping one more time. We understand — and that's why we never see anyone as \"just another case\".",
         "The result you saw in the case study is real. But just as important is who walks this road with you. We want to be sure we can truly help you before we promise you anything. That's why we read every application carefully, ourselves, not with a robot.",
         "If we're a good fit for each other, we'll give you the very best we have. And below, we'll tell you exactly what happens next and what you can do right now.",
       ],

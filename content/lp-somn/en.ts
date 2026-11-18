@@ -180,7 +180,7 @@ export const lpSomnEn: LpSomnContent = {
       { q: "How long before I see results?", a: "Usually 1–2 weeks." },
       {
         q: "How much does it cost?",
-        a: "The assessment costs 1,200 RON and includes the scan, on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you start treatment with us, the full amount is deducted.",
+        a: "The assessment costs 1,200 RON and includes the scan, on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you start a programme with us, the full amount is deducted.",
       },
       { q: "Do I need a GP referral?", a: "No." },
       {
@@ -241,7 +241,7 @@ export const lpSomnEn: LpSomnContent = {
         placeholder: "Sleeping pills, supplements, doctors, therapy... keep it short. It helps us know where to start.",
       },
       priceNote:
-        "The assessment costs 1,200 RON and includes the scan, on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you start treatment with us, the full amount is deducted.",
+        "The assessment costs 1,200 RON and includes the scan, on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you start a programme with us, the full amount is deducted.",
       priceConfirm: "I have read and agree to this price.",
       consent: "I agree to be contacted about my application.",
       privacyLink: "Privacy policy",

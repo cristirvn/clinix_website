@@ -1219,9 +1219,10 @@ html:has(.site-loader:not(.is-done)) {
  * half, full height, dissolving at its left edge — the specialist at a
  * natural size, never cropped to a band. Masks, so there is never a seam.
  */
+/* Phones/tablets: the photo sits in the flow and fades into the navy at both ends. */
 .hero-photo {
-  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
-  mask-image: linear-gradient(180deg, transparent 0%, #000 38%);
+  -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 76%, transparent 100%);
+  mask-image: linear-gradient(180deg, transparent 0%, #000 24%, #000 76%, transparent 100%);
 }
 .hero-veil {
   background: linear-gradient(180deg, transparent 45%, color-mix(in srgb, var(--dark) 70%, transparent) 100%);
