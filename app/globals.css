@@ -1089,106 +1089,20 @@ html:has(.site-loader:not(.is-done)) {
   }
 }
 
-/*
- * ─── "Turcoaz" palette (preview) ───────────────────────────────────────────
- * "Deep lagoon": the logo's turquoise, set in deep petrol instead of navy.
- * Switched on with <html data-palette="aqua"> (components/layout/PaletteSwitch).
- * Only tokens and the few band surfaces change; layouts stay the same.
- *  - Light pages: clean white + a soft aqua tint for alternate sections,
- *    deep-teal ink, teal links/eyebrows/ticks (5:1 on white, 4.7:1 on the tint).
- *  - Dark bands (home hero, page heroes, closing bands, footer): deep petrol
- *    lit by a turquoise glow from the top-right and the logo's blue from the
- *    bottom-left. White text 8–13:1, light-aqua eyebrows/ticks >= 5.3:1.
- *  - Main button: luminous logo turquoise with dark petrol text (5.4–7.5:1),
- *    which glows on the petrol bands.
- *  - Photo veils and glass (buttons, stat tiles) use the petrol as their tint.
- * Unlayered, so it beats the layered defaults above.
- */
-:root[data-palette="aqua"] {
-  --bg-alt: #edf8fa;
-  --ink: #0b2e37;
-  --ink-soft: #46636d;
-  --line: #d6eaee;
-  --primary: #00788f;
-  --accent: #00788f;
-  --cta: #12bdd6;
-  --on-cta: #062a32;
-  --lime: #12bdd6;
-  --on-lime: #062a32;
-  --dark: #06343f;
-  --dark-deep: #032229;
-  --on-dark-soft: #cfe7ec;
-  --shadow-soft: 0 40px 90px -40px rgb(6 52 63 / 0.3);
-  --shadow-card: 0 1px 2px rgb(6 52 63 / 0.04);
-  --shadow-lift: 0 1px 2px rgb(6 52 63 / 0.05), 0 14px 34px -18px rgb(6 52 63 / 0.24);
-  --shadow-float: 0 2px 6px rgb(6 52 63 / 0.06), 0 34px 70px -30px rgb(6 52 63 / 0.4);
-  /* Petrol bands lit by the logo turquoise, with the logo blue from below. */
-  --glow-a: 18 189 214;
-  --glow-b: 70 140 235;
-  --glow-cta: 0 1px 0 rgb(255 255 255 / 0.4) inset, 0 12px 30px -12px rgb(18 189 214 / 0.8), 0 3px 8px -3px rgb(18 189 214 / 0.5);
-}
-/* NeuroFit (black + gold) keeps its own colours: every rule below skips it. */
-:root[data-palette="aqua"] :is([data-tone="dark"], .bg-dark, .bg-vital):not(.theme-neurofit *) {
-  --accent: #7fe0ee;
-  --on-accent: #062a32;
-  --line: rgb(127 224 238 / 0.18);
-}
-/* White cards placed on petrol get the light-page values back (not the default royal blue). */
-:root[data-palette="aqua"] :is([data-tone="dark"], .bg-dark, .bg-vital) :is(.bg-surface, .bg-bg, .bg-bg-alt):not(.theme-neurofit *) {
-  --accent: #00788f;
-  --on-accent: #ffffff;
-  --cta: #12bdd6;
-  --on-cta: #062a32;
-  --line: #d6eaee;
-}
-:root[data-palette="aqua"] .bg-vital:not(.theme-neurofit *) {
-  background-image:
-    radial-gradient(62% 70% at 92% -8%, rgb(var(--glow-a) / 0.34) 0%, rgb(var(--glow-a) / 0) 62%),
-    radial-gradient(55% 60% at -6% 108%, rgb(var(--glow-b) / 0.22) 0%, rgb(var(--glow-b) / 0) 64%),
-    linear-gradient(180deg, var(--dark) 0%, var(--dark-deep) 100%);
-}
-/*
- * Glass panels (hero facts, the "find us" card, page-hero cards) carry more
- * petrol than the default, so text on them stays readable even where the
- * photo behind is bright: white >= 5.5:1, light-aqua labels ~4:1+ at worst.
- */
-:root[data-palette="aqua"] .liquid-glass:not(.theme-neurofit *) {
-  background: color-mix(in srgb, var(--dark) 72%, transparent);
-}
-/* The footer sits a shade deeper than the bands, with a faint turquoise rim on top. */
-:root[data-palette="aqua"] footer.bg-vital:not(.theme-neurofit *) {
-  background-color: #042a33;
-  background-image: none;
-  box-shadow: inset 0 1px 0 rgb(127 224 238 / 0.12);
-}
-/*
- * A page that ends with a full-width closing band (CtaBand) runs straight into
- * the footer: the band settles into the footer's deeper petrol at its foot and
- * the footer drops its rim, so the two read as one closing block, no seam.
- */
-:root[data-palette="aqua"] section.bg-vital[data-final-cta]:not(.theme-neurofit *) {
-  background-image:
-    radial-gradient(62% 70% at 92% -8%, rgb(var(--glow-a) / 0.34) 0%, rgb(var(--glow-a) / 0) 62%),
-    linear-gradient(180deg, var(--dark) 30%, #042a33 100%);
-}
-:root[data-palette="aqua"] main:has(section.bg-vital[data-final-cta]) + footer.bg-vital:not(.theme-neurofit *) {
-  background-image: none;
-  box-shadow: none;
-}
 /* Logo variant for a pale footer (unused while every palette has a dark footer). */
 .logo-aqua {
   display: none;
 }
 
 /*
- * ─── "Mix" palette (preview) ───────────────────────────────────────────────
- * Client's third option: the navy + blue site stays as it is (backgrounds,
+ * ─── "Mix" palette (the site's palette, chosen by the client) ─────────────
+ * The navy + blue site stays as it is (backgrounds,
  * photo veils, glass buttons, navy bands, footer) and the logo's turquoise
  * is used for two things only:
  *  - the main action button, on every page (dark text on turquoise, 6:1);
  *  - coloured text: eyebrows, links, ticks (deep teal on white, 5:1;
  *    light turquoise on navy).
- * Switched on with <html data-palette="mix"> (components/layout/PaletteSwitch).
+ * Always on: <html data-palette="mix"> is set in app/[locale]/layout.tsx.
  */
 :root[data-palette="mix"] {
   /* Navy bands keep their blue light, with a turquoise one from below. */
@@ -1337,13 +1251,6 @@ html:has(.nf-page) .site-loader {
 /* Photos inside NeuroFit are toned warm and low, so they sit in the black. */
 .nf-photo {
   filter: grayscale(0.55) sepia(0.35) brightness(0.72) contrast(1.05);
-}
-
-/* Phones: the palette preview switch sits above a bottom action bar. */
-@media (max-width: 767px) {
-  body:has([data-sticky-cta]) .palette-switch {
-    bottom: calc(env(safe-area-inset-bottom, 0px) + 5.4rem) !important;
-  }
 }
 
 /* Home "how to start": the timeline line fills as the steps scroll by (no support / reduced motion = full line). */
