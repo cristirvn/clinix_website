@@ -3,15 +3,16 @@ import { Reveal } from "@/components/ui/Reveal";
 import { VideoPlayer } from "@/components/ui/VideoPlayer";
 import { L } from "@/components/ui/L";
 import type { MediaVideo, VideoKey } from "@/content/media";
-import { resolveVideo, type VideoOverrides } from "@/lib/video";
 import type { Locale } from "@/lib/i18n";
-import type { QuoteTestimonial, TestimonialName, TestimonialsPageContent, VideoTestimonial } from "@/content/testimonials/types";
-import { pick, type CmsTestimonial } from "@/lib/cms/types";
+import type { QuoteTestimonial, TestimonialName, TestimonialsPageContent } from "@/content/testimonials/types";
+import { nameOf, pick, type CmsTestimonial } from "@/lib/cms/types";
 
 /**
  * Testimonial cards. Two sources share the same cards:
- *  - the fixed list in `content/testimonials/items.ts` (landing pages);
- *  - the ones the clinic adds in /admin (`lib/cms`).
+ *  - video testimonials: all from /admin (`lib/cms`) — including the cards the
+ *    site started with, seeded from `content/testimonials/items.ts`;
+ *  - written quotes: the ones added in /admin, then the real Google reviews in
+ *    `content/testimonials/items.ts`.
  * Both are turned into `VideoStory` / `QuoteStory` first.
  */
 type Tag = { label: string; href?: string };
@@ -49,33 +50,13 @@ export function cmsToStories(items: CmsTestimonial[], locale: Locale, tagFor?: (
   const videos: VideoStory[] = [];
   const quotes: QuoteStory[] = [];
   for (const t of items) {
-    const base = { id: `cms-${t.id}`, name: t.name, line: pick(t.detail, locale), tag: tagFor?.(t) };
-    if (t.kind === "video") videos.push({ ...base, video: { src: t.videoUrl } });
-    else quotes.push({ ...base, initials: initialsOf(t.name), quote: pick(t.quote, locale) });
+    const name = nameOf(t, locale);
+    const base = { id: `cms-${t.id}`, name, line: pick(t.detail, locale), tag: tagFor?.(t) };
+    // No uploaded/pasted video yet → the site video slot it started from (set in "Toate videoclipurile"), else "Video în curând".
+    if (t.kind === "video") videos.push({ ...base, video: t.videoUrl ? { src: t.videoUrl } : (t.videoKey ?? { src: "" }) });
+    else quotes.push({ ...base, initials: initialsOf(name), quote: pick(t.quote, locale) });
   }
   return { videos, quotes };
-}
-
-/**
- * The fixed list → cards. On the home page (`home`) the line under the name is
- * the testimonial's subject (`home`, else `role`), without the duration.
- */
-export function staticVideoStories(
-  items: VideoTestimonial[],
-  page: TestimonialsPageContent,
-  locale: Locale,
-  overrides: VideoOverrides,
-  { home = false }: { home?: boolean } = {},
-): VideoStory[] {
-  return items.map((t) => ({
-    id: t.id,
-    name: nameIn(t.name, locale),
-    line: home
-      ? (t.home ?? t.role)[locale]
-      : [t.role[locale], resolveVideo(t.video, overrides).duration].filter(Boolean).join(" · "),
-    video: t.video,
-    tag: page.topics[t.topic],
-  }));
 }
 
 export function staticQuoteStories(items: QuoteTestimonial[], page: TestimonialsPageContent, locale: Locale): QuoteStory[] {

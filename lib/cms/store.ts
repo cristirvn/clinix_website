@@ -3,6 +3,7 @@ import { promises as fs } from "node:fs";
 import path from "node:path";
 import { getServiceList } from "@/content/services";
 import { EMPTY_CMS, isAcceptedVideoUrl, normalizeCms, type CmsData } from "./types";
+import { withSiteSeed } from "./seed";
 
 /**
  * Where `/admin` content is stored.
@@ -73,21 +74,21 @@ async function readFile(): Promise<CmsData> {
 export async function readCmsPublic(): Promise<CmsData> {
   try {
     const mode = storageMode();
-    if (mode === "redis") return await readRedis(true);
-    if (mode === "file") return await readFile();
-    return EMPTY_CMS;
+    if (mode === "redis") return withSiteSeed(await readRedis(true));
+    if (mode === "file") return withSiteSeed(await readFile());
+    return withSiteSeed(EMPTY_CMS);
   } catch (err) {
     console.error("[cms]", err);
-    return EMPTY_CMS;
+    return withSiteSeed(EMPTY_CMS);
   }
 }
 
 /** For /admin: always the latest version, errors surface. */
 export async function readCmsFresh(): Promise<CmsData> {
   const mode = storageMode();
-  if (mode === "redis") return readRedis(false);
-  if (mode === "file") return readFile();
-  return EMPTY_CMS;
+  if (mode === "redis") return withSiteSeed(await readRedis(false));
+  if (mode === "file") return withSiteSeed(await readFile());
+  return withSiteSeed(EMPTY_CMS);
 }
 
 export async function writeCms(data: CmsData): Promise<void> {

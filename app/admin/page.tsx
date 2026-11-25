@@ -1,5 +1,6 @@
 import { adminConfigured, isAdmin } from "@/lib/cms/auth";
 import { readCmsFresh, storageMode } from "@/lib/cms/store";
+import { uploadMode } from "@/lib/cms/upload";
 import { EMPTY_CMS } from "@/lib/cms/types";
 import { getServiceList } from "@/content/services";
 import { getTherapistList } from "@/content/therapists";
@@ -46,5 +47,5 @@ export default async function AdminPage() {
       alwaysShown: true,
     })),
   ];
-  return <AdminApp initial={data} services={services} storage={storageMode()} loadError={loadError} />;
+  return <AdminApp initial={data} services={services} storage={storageMode()} uploadMode={uploadMode()} loadError={loadError} />;
 }

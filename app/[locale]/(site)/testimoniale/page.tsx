@@ -1,16 +1,10 @@
 import type { Metadata } from "next";
 import type { Locale } from "@/lib/i18n";
 import { getDictionary } from "@/lib/dictionary";
-import { getTestimonialsPage, quoteTestimonials, videoTestimonials } from "@/content/testimonials";
+import { getTestimonialsPage, quoteTestimonials } from "@/content/testimonials";
 import { CtaBand, PageHero } from "@/components/pages/shared";
-import {
-  QuoteTestimonials,
-  VideoTestimonials,
-  cmsToStories,
-  staticQuoteStories,
-  staticVideoStories,
-} from "@/components/pages/testimonials";
-import { getAllCmsTestimonials, getCms } from "@/lib/cms";
+import { QuoteTestimonials, VideoTestimonials, cmsToStories, staticQuoteStories } from "@/components/pages/testimonials";
+import { getAllCmsTestimonials } from "@/lib/cms";
 import { NAV_SERVICES } from "@/components/layout/nav";
 import { getTherapist } from "@/content/therapists";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -26,23 +20,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 /**
- * `/testimoniale` — every testimonial: first the ones added in /admin (newest
- * first, tagged with their service), then the fixed list from
- * `content/testimonials/items.ts`.
+ * `/testimoniale` — every testimonial. Videos: all from /admin, in its order.
+ * Quotes: the ones added in /admin, then the Google reviews from
+ * `content/testimonials/items.ts`. Each card is tagged with its service.
  */
 export default async function TestimonialsPage({ params }: Props) {
   const locale = (await params).locale as Locale;
   const page = getTestimonialsPage(locale);
   const dict = getDictionary(locale);
   const cms = cmsToStories(await getAllCmsTestimonials(), locale, (t) => {
-    // Tag = its first service page; one ticked only for a psychotherapist's page links to that page.
-    const s = NAV_SERVICES.find((n) => t.services.includes(n.slug));
+    // Tag = the service chosen in /admin, else its first service page; one ticked only for a psychotherapist's page links to that page.
+    const s = NAV_SERVICES.find((n) => n.slug === t.topic) ?? NAV_SERVICES.find((n) => t.services.includes(n.slug));
     if (s) return { label: s[locale], href: `/servicii/${s.slug}` };
     const therapist = t.services.map((p) => getTherapist(locale, p)).find(Boolean);
     return therapist ? { label: therapist.name, href: `/psihoterapeut/${therapist.slug}` } : undefined;
   });
-  const { media } = await getCms();
-  const videos = [...cms.videos, ...staticVideoStories(videoTestimonials(), page, locale, media)];
+  const videos = cms.videos;
   const quotes = [...cms.quotes, ...staticQuoteStories(quoteTestimonials(), page, locale)];
   return (
     <>

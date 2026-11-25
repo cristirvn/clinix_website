@@ -12,11 +12,12 @@ import {
   type TestimonialInput,
 } from "@/app/admin/actions";
 import { LogoMark } from "@/components/layout/Logo";
-import type { CmsData, CmsTestimonial, TestimonialPage } from "@/lib/cms/types";
+import { isServiceSlug, type CmsData, type CmsTestimonial, type TestimonialPage } from "@/lib/cms/types";
 import { VIDEOS, type VideoKey } from "@/content/media";
 import { VIDEO_GROUPS, VIDEO_SLOTS } from "@/lib/cms/slots";
 import { autoPoster, vimeoId, youtubeId } from "@/lib/video";
 import { btn, card, field, hint, label } from "./ui";
+import { VideoUpload, type UploadMode } from "./VideoUpload";
 
 /** A page with its own video + testimonials: a service page or a psychotherapist's page. */
 export interface AdminService {
@@ -37,24 +38,28 @@ type View = TestimonialPage | "all" | "videos";
 type Toast = { kind: "ok" | "error"; text: string } | null;
 
 /**
- * /admin — one screen. Pick a service page at the top; below it, that page's
- * explainer video and its testimonials. "Toate videoclipurile" lists every
- * video place on the site (landing pages included). Every button saves
- * straight away and says so; nothing to "publish".
+ * /admin — one screen. It opens on "Testimoniale": every testimonial card on
+ * the site (home carousel + /testimoniale + service pages), each with its
+ * video (uploaded or linked), name and line. The chips switch to one service
+ * page (its explainer video + its testimonials) or "Toate videoclipurile"
+ * (every video place on the site, landing pages included). Every button
+ * saves straight away and says so; nothing to "publish".
  */
 export function AdminApp({
   initial,
   services,
   storage,
+  uploadMode,
   loadError,
 }: {
   initial: CmsData;
   services: AdminService[];
   storage: "redis" | "file" | "none";
+  uploadMode: UploadMode;
   loadError: boolean;
 }) {
   const [data, setData] = useState(initial);
-  const [view, setView] = useState<View>(services[0].slug);
+  const [view, setView] = useState<View>("all");
   const [editing, setEditing] = useState<TestimonialInput | null>(null);
   const [toast, setToast] = useState<Toast>(null);
   const [pending, startTransition] = useTransition();
@@ -85,11 +90,20 @@ export function AdminApp({
   const nameOf = (slug: TestimonialPage) => services.find((s) => s.slug === slug)?.name ?? slug;
   const countFor = (slug: TestimonialPage) => data.testimonials.filter((t) => t.services.includes(slug)).length;
 
+  /** What a card plays now: its own video, else the site video slot it started from. */
+  const videoOf = (t: { videoUrl: string; videoKey: VideoKey | null }) =>
+    t.videoUrl || (t.videoKey ? data.media[t.videoKey] || VIDEOS[t.videoKey].src : "");
+
   const newTestimonial = (): TestimonialInput => ({
     kind: "video",
     name: "",
+    nameEn: "",
     detail: { ro: "", en: "" },
     videoUrl: "",
+    videoKey: null,
+    // Added from "Testimoniale": on the home page too. From a service page: on that page.
+    home: !service,
+    topic: service && isServiceSlug(service.slug) ? service.slug : null,
     quote: { ro: "", en: "" },
     services: service ? [service.slug] : [],
     visible: true,
@@ -133,8 +147,14 @@ export function AdminApp({
           <h1 id="pick" className="text-[1.6rem] sm:text-[2rem]">
             Ce pagină vrei să modifici?
           </h1>
-          <p className="mt-1 text-ink-soft">Fiecare serviciu și fiecare psihoterapeut are video-ul lui și testimonialele lui. Landing page-urile sunt la „Toate videoclipurile”.</p>
+          <p className="mt-1 text-ink-soft">
+            „Testimoniale” are toate testimonialele de pe site (prima pagină, pagina Testimoniale, paginile de servicii). Fiecare serviciu și fiecare
+            psihoterapeut are video-ul lui. Landing page-urile sunt la „Toate videoclipurile”.
+          </p>
           <div className="mt-4 flex flex-wrap gap-2" role="group" aria-label="Pagini">
+            <Chip active={view === "all"} onClick={() => setView("all")} count={data.testimonials.length}>
+              Testimoniale
+            </Chip>
             {services.map((s) => (
               <Chip key={s.slug} active={view === s.slug} onClick={() => setView(s.slug)} count={countFor(s.slug)}>
                 {s.name}
@@ -142,9 +162,6 @@ export function AdminApp({
             ))}
             <Chip active={view === "videos"} onClick={() => setView("videos")} count={`${videosSet}/${Object.keys(VIDEOS).length}`}>
               Toate videoclipurile
-            </Chip>
-            <Chip active={view === "all"} onClick={() => setView("all")} count={data.testimonials.length}>
-              Toate testimonialele
             </Chip>
           </div>
         </section>
@@ -167,6 +184,7 @@ export function AdminApp({
               title={service.videoTitle}
               current={data.media[service.video] ?? ""}
               pending={pending}
+              uploadMode={uploadMode}
               onSave={onSaveVideo(service.video)}
             />
 
@@ -187,6 +205,7 @@ export function AdminApp({
               </div>
               <TestimonialList
                 items={data.testimonials.filter((t) => t.services.includes(service.slug))}
+                videoOf={videoOf}
                 nameOf={nameOf}
                 pending={pending}
                 empty={
@@ -228,6 +247,7 @@ export function AdminApp({
                     title={VIDEO_SLOTS[k].label}
                     current={data.media[k] ?? ""}
                     pending={pending}
+                    uploadMode={uploadMode}
                     onSave={onSaveVideo(k)}
                   />
                 ))}
@@ -239,9 +259,12 @@ export function AdminApp({
             <div className="flex flex-wrap items-center justify-between gap-3">
               <div>
                 <h2 id="all-title" className="text-[1.6rem]">
-                  Toate testimonialele
+                  Testimoniale
                 </h2>
-                <p className={hint}>Toate apar și pe pagina Testimoniale a site-ului.</p>
+                <p className={hint}>
+                  Toate apar pe pagina Testimoniale, în ordinea de aici; cele cu „Acasă” apar și pe prima pagină. Apasă „Editează” ca să încarci
+                  video-ul sau să schimbi numele și rândul de sub nume.
+                </p>
               </div>
               <button type="button" className={btn.primary} onClick={() => setEditing(newTestimonial())} disabled={pending}>
                 <span aria-hidden="true" className="text-xl leading-none">
@@ -252,6 +275,7 @@ export function AdminApp({
             </div>
             <TestimonialList
               items={data.testimonials}
+              videoOf={videoOf}
               nameOf={nameOf}
               pending={pending}
               empty="Încă nu ai adăugat niciun testimonial."
@@ -268,6 +292,8 @@ export function AdminApp({
         <Editor
           value={editing}
           services={services}
+          videoOf={videoOf}
+          uploadMode={uploadMode}
           pending={pending}
           onCancel={() => setEditing(null)}
           onSave={(t) =>
@@ -325,12 +351,14 @@ function VideoCard({
   title,
   current,
   pending,
+  uploadMode,
   onSave,
 }: {
   videoKey: VideoKey;
   title: string;
   current: string;
   pending: boolean;
+  uploadMode: UploadMode;
   onSave: (url: string) => void;
 }) {
   const [url, setUrl] = useState(current);
@@ -373,7 +401,17 @@ function VideoCard({
             onChange={(e) => setUrl(e.target.value)}
             className={field}
           />
-          <p className={hint}>Pune video-ul pe YouTube (poate fi „Nelistat”) sau Vimeo și lipește aici linkul.</p>
+          <p className={hint}>Lipește un link YouTube (poate fi „Nelistat”) sau Vimeo, sau încarcă fișierul video mai jos.</p>
+          <div className="mt-3">
+            <VideoUpload
+              mode={uploadMode}
+              disabled={pending}
+              onUploaded={(u) => {
+                setUrl(u);
+                onSave(u);
+              }}
+            />
+          </div>
           <div className="mt-4 flex flex-wrap gap-2">
             <button type="submit" className={btn.primary} disabled={pending || !changed}>
               {pending ? "Se salvează…" : "Salvează video"}
@@ -446,6 +484,7 @@ function PlayDot() {
 
 function TestimonialList({
   items,
+  videoOf,
   nameOf,
   pending,
   empty,
@@ -455,6 +494,7 @@ function TestimonialList({
   onDelete,
 }: {
   items: CmsTestimonial[];
+  videoOf: (t: CmsTestimonial) => string;
   nameOf: (s: TestimonialPage) => string;
   pending: boolean;
   empty: string;
@@ -473,7 +513,7 @@ function TestimonialList({
           <div className="flex gap-3 sm:gap-4">
             <div className="w-24 flex-none sm:w-32">
               {t.kind === "video" ? (
-                <VideoThumb url={t.videoUrl} small />
+                <VideoThumb url={videoOf(t)} small />
               ) : (
                 <div className="flex aspect-video items-center justify-center rounded-[12px] bg-bg-alt text-[2.2rem] font-semibold leading-none text-accent ring-1 ring-line">
                   „
@@ -492,7 +532,10 @@ function TestimonialList({
               </p>
               {t.detail.ro && <p className="text-[0.95rem] text-ink-soft">{t.detail.ro}</p>}
               {t.kind === "text" && <p className="mt-1 line-clamp-2 text-[0.95rem]">„{t.quote.ro}”</p>}
-              <p className="mt-1 text-[0.85rem] text-ink-soft">Apare pe: {t.services.map(nameOf).join(", ")}</p>
+              {t.kind === "video" && !videoOf(t) && <p className="text-[0.85rem] font-semibold text-accent">Fără video încă: pe site apare „Video în curând”.</p>}
+              <p className="mt-1 text-[0.85rem] text-ink-soft">
+                Apare pe: {[...(t.home ? ["Acasă"] : []), "Testimoniale", ...t.services.map(nameOf)].join(", ")}
+              </p>
             </div>
           </div>
 
@@ -550,12 +593,16 @@ function TestimonialList({
 function Editor({
   value,
   services,
+  videoOf,
+  uploadMode,
   pending,
   onCancel,
   onSave,
 }: {
   value: TestimonialInput;
   services: AdminService[];
+  videoOf: (t: { videoUrl: string; videoKey: VideoKey | null }) => string;
+  uploadMode: UploadMode;
   pending: boolean;
   onCancel: () => void;
   onSave: (t: TestimonialInput) => void;
@@ -602,7 +649,7 @@ function Editor({
             <div className="grid grid-cols-2 gap-3">
               {(
                 [
-                  ["video", "Video", "Un link YouTube sau Vimeo"],
+                  ["video", "Video", "Un fișier video sau un link YouTube"],
                   ["text", "Text", "Ce a spus pacientul, în scris"],
                 ] as const
               ).map(([k, title, sub]) => (
@@ -652,23 +699,30 @@ function Editor({
 
           {t.kind === "video" ? (
             <div>
-              <label htmlFor="ed-video" className={label}>
-                Link video
+              <p className={label}>Video</p>
+              <VideoUpload mode={uploadMode} disabled={pending} onUploaded={(u) => set("videoUrl", u)} />
+              <label htmlFor="ed-video" className={`${label} mt-4`}>
+                {uploadMode === "none" ? "Link video" : "Sau lipește un link YouTube / Vimeo"}
               </label>
               <input
                 id="ed-video"
                 type="url"
                 inputMode="url"
-                required
                 value={t.videoUrl}
                 onChange={(e) => set("videoUrl", e.target.value)}
                 placeholder="https://www.youtube.com/watch?v=…"
                 className={field}
               />
-              <p className={hint}>Pune video-ul pe YouTube (poate fi „Nelistat”) și lipește aici linkul.</p>
-              {t.videoUrl && (
+              <p className={hint}>
+                {t.videoUrl
+                  ? "Video-ul se salvează când apeși „Salvează” mai jos."
+                  : t.videoKey && videoOf(t)
+                    ? "Acum rulează video-ul pus la „Toate videoclipurile”. Încarcă sau lipește altul ca să-l înlocuiești."
+                    : "Fără video, pe site apare caseta „Video în curând”."}
+              </p>
+              {videoOf(t) && (
                 <div className="mt-3 max-w-xs">
-                  <VideoThumb url={t.videoUrl} />
+                  <VideoThumb url={videoOf(t)} />
                 </div>
               )}
             </div>
@@ -692,6 +746,16 @@ function Editor({
 
           <fieldset>
             <legend className={label}>Pe ce pagini apare?</legend>
+            {t.kind === "video" && (
+              <label
+                className={`mb-2 flex min-h-12 cursor-pointer items-center gap-3 rounded-[14px] border px-4 py-2.5 transition ${
+                  t.home ? "border-primary bg-primary/5" : "border-line hover:border-ink/30"
+                }`}
+              >
+                <input type="checkbox" checked={t.home} onChange={(e) => set("home", e.target.checked)} className="h-5 w-5 accent-[var(--primary)]" />
+                <span className="font-semibold">Acasă (caruselul de pe prima pagină)</span>
+              </label>
+            )}
             <div className="grid gap-2 sm:grid-cols-2">
               {services.map((s) => (
                 <label
@@ -708,10 +772,32 @@ function Editor({
             <p className={hint}>Apare oricum și pe pagina „Testimoniale”.</p>
           </fieldset>
 
+          <div>
+            <label htmlFor="ed-topic" className={label}>
+              Eticheta de pe pagina Testimoniale
+            </label>
+            <select id="ed-topic" value={t.topic ?? ""} onChange={(e) => set("topic", isServiceSlug(e.target.value) ? e.target.value : null)} className={field}>
+              <option value="">Automat (prima pagină de serviciu bifată, sau fără etichetă)</option>
+              {services
+                .filter((s) => isServiceSlug(s.slug))
+                .map((s) => (
+                  <option key={s.slug} value={s.slug}>
+                    {s.name}
+                  </option>
+                ))}
+            </select>
+          </div>
+
           <details className="rounded-[14px] bg-bg-alt p-4">
             <summary className="cursor-pointer font-semibold">Traducere pentru site-ul în engleză (opțional)</summary>
             <p className={hint}>Dacă lași gol, pe site-ul în engleză apare textul în română.</p>
             <div className="mt-4 space-y-4">
+              <div>
+                <label htmlFor="ed-name-en" className={label}>
+                  Numele, în engleză <span className="font-normal text-ink-soft">(doar dacă diferă)</span>
+                </label>
+                <input id="ed-name-en" maxLength={120} value={t.nameEn} onChange={(e) => set("nameEn", e.target.value)} className={field} />
+              </div>
               <div>
                 <label htmlFor="ed-detail-en" className={label}>
                   Rândul de sub nume, în engleză

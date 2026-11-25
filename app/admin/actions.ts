@@ -5,7 +5,7 @@ import { redirect } from "next/navigation";
 import { revalidatePath, updateTag } from "next/cache";
 import { endSession, isAdmin, passwordMatches, startSession } from "@/lib/cms/auth";
 import { CMS_TAG, readCmsFresh, writeCms } from "@/lib/cms/store";
-import { isAcceptedVideoUrl, isTestimonialPage, isVideoKey, normalizeCms, type CmsData, type CmsTestimonial } from "@/lib/cms/types";
+import { isAcceptedVideoUrl, isServiceSlug, isTestimonialPage, isVideoKey, normalizeCms, type CmsData, type CmsTestimonial } from "@/lib/cms/types";
 
 /**
  * Every /admin change goes through here. Each action checks the session,
@@ -22,8 +22,6 @@ const ERR = {
   video: "Linkul video nu e valid. Folosește un link YouTube, Vimeo sau un fișier .mp4 (care începe cu https://).",
   name: "Scrie numele.",
   quote: "Scrie textul testimonialului.",
-  videoMissing: "Lipește linkul video.",
-  services: "Bifează cel puțin o pagină pe care să apară.",
   notFound: "Testimonialul nu mai există (poate a fost șters între timp). Reîncarcă pagina.",
 };
 
@@ -33,7 +31,8 @@ async function mutate(change: (data: CmsData) => CmsData | string): Promise<Acti
     const current = await readCmsFresh();
     const next = change(structuredClone(current));
     if (typeof next === "string") return { ok: false, error: next };
-    const saved = normalizeCms({ ...next, updatedAt: new Date().toISOString() });
+    // `seeded`: the starting cards are now part of the saved list (see lib/cms/seed.ts).
+    const saved = normalizeCms({ ...next, seeded: true, updatedAt: new Date().toISOString() });
     await writeCms(saved);
     updateTag(CMS_TAG);
     // Every page: the site layout hands the video links to every player.
@@ -85,16 +84,19 @@ export async function saveTestimonial(input: TestimonialInput): Promise<ActionRe
   const t: TestimonialInput = {
     ...input,
     name: input.name.trim(),
+    nameEn: input.nameEn.trim(),
     videoUrl: input.videoUrl.trim(),
+    videoKey: isVideoKey(input.videoKey) ? input.videoKey : null,
+    home: input.kind === "video" && input.home,
+    topic: isServiceSlug(input.topic) ? input.topic : null,
     detail: { ro: input.detail.ro.trim(), en: input.detail.en.trim() },
     quote: { ro: input.quote.ro.trim(), en: input.quote.en.trim() },
     services: input.services.filter(isTestimonialPage),
   };
   if (!t.name) return { ok: false, error: ERR.name };
-  if (t.kind === "video" && !t.videoUrl) return { ok: false, error: ERR.videoMissing };
+  // A video card may be saved without a video: the site shows "Video în curând" until one is added.
   if (t.kind === "video" && !isAcceptedVideoUrl(t.videoUrl)) return { ok: false, error: ERR.video };
   if (t.kind === "text" && !t.quote.ro) return { ok: false, error: ERR.quote };
-  if (t.services.length === 0) return { ok: false, error: ERR.services };
 
   return mutate((d) => {
     if (t.id) {

@@ -8,9 +8,8 @@ import { HomeComplex } from "@/components/home/HomeComplex";
 import { HomeTestimonials } from "@/components/home/HomeTestimonials";
 import { FinalCta } from "@/components/home/FinalCta";
 import { getHome } from "@/content/pages/home";
-import { getTestimonialsPage, videoTestimonials } from "@/content/testimonials";
-import { cmsToStories, staticVideoStories } from "@/components/pages/testimonials";
-import { getAllCmsTestimonials, getCms } from "@/lib/cms";
+import { cmsToStories } from "@/components/pages/testimonials";
+import { getAllCmsTestimonials } from "@/lib/cms";
 import { alternatesFor, type Locale } from "@/lib/i18n";
 
 type Props = { params: Promise<{ locale: string }> };
@@ -34,17 +33,11 @@ export default async function HomePage({ params }: Props) {
   const locale = (await params).locale as Locale;
   const c = getHome(locale);
 
-  // Video stories: the ones added in /admin first, then the fixed list (no EmSella on the home page).
-  const { media } = await getCms();
-  const cms = cmsToStories(await getAllCmsTestimonials(), locale);
-  const fixed = staticVideoStories(
-    videoTestimonials().filter((t) => t.topic !== "emsella"),
-    getTestimonialsPage(locale),
+  // Video stories: the /admin testimonials ticked "Acasă", in their /admin order.
+  const videos = cmsToStories(
+    (await getAllCmsTestimonials()).filter((t) => t.kind === "video" && t.home),
     locale,
-    media,
-    { home: true },
-  );
-  const videos = [...cms.videos, ...fixed].slice(0, 8);
+  ).videos.slice(0, 12);
 
   return (
     <>

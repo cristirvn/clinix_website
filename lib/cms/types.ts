@@ -6,8 +6,10 @@ import { VIDEOS, type VideoKey } from "@/content/media";
  * Content the clinic edits itself in `/admin` (no deploy needed):
  *  - any video on the site (every key in `content/media.ts`: landing pages,
  *    service pages, "how it works", about, children, testimonials);
- *  - testimonials (video or text), each shown on one or more service pages
- *    or psychotherapist pages (/psihoterapeut/<slug>), and on /testimoniale.
+ *  - testimonials (video or text): all on /testimoniale; videos ticked "Acasă"
+ *    also in the home carousel; plus any service / psychotherapist pages
+ *    ticked. The site's starting video cards are seeded in (`./seed.ts`).
+ *    Videos can be uploaded from /admin (Vercel Blob) or linked.
  *
  * Everything else on the site still lives in `content/`.
  */
@@ -16,15 +18,27 @@ import { VIDEOS, type VideoKey } from "@/content/media";
 export type Bilingual = { ro: string; en: string };
 
 export interface CmsTestimonial {
-  /** Random, stable id. */
+  /** Random, stable id ("site-…" for the cards the site started with). */
   id: string;
   kind: "video" | "text";
   /** As it should appear: "Mihaela R.", "Doamna Paulina". */
   name: string;
-  /** One short line under the name: "Pacientă, 52 de ani", "De la 4h la 7h somn". Optional. */
+  /** The name on the English site, when it differs (e.g. a placeholder). Empty → `name`. */
+  nameEn: string;
+  /** One short line under the name: "Pacientă, 52 de ani", "Despre somn". Optional. */
   detail: Bilingual;
-  /** kind = "video": a YouTube / Vimeo link or a direct .mp4 link. */
+  /**
+   * kind = "video": a YouTube / Vimeo link, a direct .mp4 link, or a file
+   * uploaded from /admin (Vercel Blob). Empty → `videoKey`'s video, else the
+   * card shows "Video în curând".
+   */
   videoUrl: string;
+  /** The site video slot this card started from (`content/media.ts`); used while `videoUrl` is empty. */
+  videoKey: VideoKey | null;
+  /** kind = "video": shown in the home-page carousel too. */
+  home: boolean;
+  /** The service shown as the small tag on /testimoniale. Null → the first page in `services`. */
+  topic: ServiceSlug | null;
   /** kind = "text": what the patient said. */
   quote: Bilingual;
   /**
@@ -42,10 +56,16 @@ export interface CmsData {
   media: Partial<Record<VideoKey, string>>;
   /** In display order. */
   testimonials: CmsTestimonial[];
+  /**
+   * True once the site's starting testimonial cards (`content/testimonials/items.ts`)
+   * have been saved into this list. Until then they are added on every read
+   * (`lib/cms/seed.ts`), so the clinic sees and edits them like any other.
+   */
+  seeded: boolean;
   updatedAt: string | null;
 }
 
-export const EMPTY_CMS: CmsData = { media: {}, testimonials: [], updatedAt: null };
+export const EMPTY_CMS: CmsData = { media: {}, testimonials: [], seeded: false, updatedAt: null };
 
 export const isServiceSlug = (v: unknown): v is ServiceSlug =>
   typeof v === "string" && (SERVICE_SLUGS as readonly string[]).includes(v);
@@ -104,8 +124,13 @@ export function normalizeCms(raw: unknown): CmsData {
         id,
         kind,
         name,
+        nameEn: str(t.nameEn, 120),
         detail: bi(t.detail, 160),
         videoUrl: isAcceptedVideoUrl(videoUrl) ? videoUrl : "",
+        videoKey: isVideoKey(t.videoKey) ? t.videoKey : null,
+        // Saved before the field existed: video testimonials were on the home page.
+        home: kind === "video" && t.home !== false,
+        topic: isServiceSlug(t.topic) ? t.topic : null,
         quote: bi(t.quote, 2000),
         services: Array.isArray(t.services) ? [...new Set(t.services.filter(isTestimonialPage))] : [],
         visible: t.visible !== false,
@@ -113,12 +138,19 @@ export function normalizeCms(raw: unknown): CmsData {
     }
   }
 
-  return { media, testimonials, updatedAt: typeof r.updatedAt === "string" ? r.updatedAt : null };
+  return { media, testimonials, seeded: r.seeded === true, updatedAt: typeof r.updatedAt === "string" ? r.updatedAt : null };
 }
 
 /** The visitor's language, falling back to Romanian when the English field is empty. */
 export const pick = (b: Bilingual, locale: "ro" | "en") => (locale === "en" && b.en) || b.ro;
 
-/** Is this testimonial complete enough to show? */
-export const isShowable = (t: CmsTestimonial) =>
-  t.visible && (t.kind === "video" ? Boolean(t.videoUrl) : Boolean(t.quote.ro || t.quote.en));
+/** The name in the visitor's language. */
+export const nameOf = (t: CmsTestimonial, locale: "ro" | "en") => (locale === "en" && t.nameEn) || t.name;
+
+/** Is this testimonial complete enough to show? A video card without a video shows "Video în curând". */
+export const isShowable = (t: CmsTestimonial) => t.visible && (t.kind === "video" || Boolean(t.quote.ro || t.quote.en));
+
+/** Max upload size for a video file from /admin (also enforced by the upload token). */
+export const MAX_VIDEO_BYTES = 2 * 1024 * 1024 * 1024;
+/** File types /admin accepts for upload. */
+export const VIDEO_UPLOAD_TYPES = ["video/mp4", "video/quicktime", "video/webm", "video/x-m4v"];
