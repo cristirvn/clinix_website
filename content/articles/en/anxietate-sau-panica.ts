@@ -5,7 +5,7 @@ export const ARTICLE: Article = {
   slug: "anxietate-sau-panica",
   title: "Anxiety or panic? How to tell them apart",
   description:
-    "They are related, but they look different in everyday life. What each one means, when to see a doctor first and what the first step is.",
+    "They are alike, but they feel different in everyday life. Find out what each one means, when to see a doctor first and what the first step is.",
   category: "Anxiety",
   published: "2026-11-03",
   readingMinutes: 4,
@@ -15,17 +15,17 @@ export const ARTICLE: Article = {
   body: [
     {
       type: "p",
-      text: "Many people use the words ‘anxiety’ and ‘panic’ as if they meant the same thing. They are related, but they look different in everyday life.",
+      text: "Many people use ‘anxiety’ and ‘panic’ as if they were the same thing. They are alike, but they feel different in everyday life.",
     },
     { type: "h2", text: "Anxiety: an alarm that won’t switch off" },
     {
       type: "p",
-      text: "Anxiety usually sits in the background. Worry that won’t switch off and tension in your body — your mind stays on alert even when there is no danger. It can last for days, weeks or months.",
+      text: "Anxiety usually sits in the background. You worry all the time, feel the tension in your body, and your mind stays on alert even when nothing is happening. It can last for days, weeks or months.",
     },
     { type: "h2", text: "Panic: a short, powerful wave" },
     {
       type: "p",
-      text: "A panic attack comes on suddenly and peaks within minutes. Your heart races, you can’t get enough air, you feel dizzy and shaky. Test results come back fine — and the fear that another one is coming stays.",
+      text: "A panic attack comes on suddenly and peaks within minutes. Your heart races, you feel you can’t get enough air, and dizziness and shaking set in. Test results come back fine, but the fear of the next attack stays.",
     },
     { type: "h2", text: "In short" },
     {
@@ -33,7 +33,7 @@ export const ARTICLE: Article = {
       items: [
         "Anxiety: constant, background worry that lasts.",
         "Panic: sudden, intense episodes lasting a few minutes.",
-        "They can come together: fear of the next attack is itself a form of anxiety.",
+        "They can come together. Fear of the next attack is, in fact, a form of anxiety too.",
       ],
     },
     { type: "h2", text: "When to see a doctor first" },
@@ -44,7 +44,7 @@ export const ARTICLE: Article = {
     { type: "h2", text: "What the first step is" },
     {
       type: "p",
-      text: "Find out where you stand. Our free tests take 2–3 minutes and give you a score from 1 to 10. If you want to see what is really happening in the brain, a BrainMap shows you a map of its activity.",
+      text: "First find out where you stand. Our free tests take 2–3 minutes and give you a score from 1 to 10. If you want to see what is really happening in the brain, a BrainMap shows you a map of its activity.",
     },
     {
       type: "links",
@@ -55,8 +55,8 @@ export const ARTICLE: Article = {
     },
   ],
   cta: {
-    title: "Don’t guess. Measure.",
-    text: "Take the free test in 2–3 minutes and see what your answers point to.",
+    title: "Measure, instead of guessing",
+    text: "Take the free test in 2–3 minutes and see what your answers show.",
     primary: { label: "Take the anxiety test →", href: "/chestionare/anxietate" },
   },
 };

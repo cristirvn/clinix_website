@@ -9,7 +9,7 @@ export interface BrainmapFixedPoint {
 }
 
 export interface BrainmapFixed {
-  /** "Aplică pentru BrainMap" — header / sticky bar button. */
+  /** "Programează BrainMap" — header / sticky bar button. */
   headerCta: string;
   /** Primary CTA (with arrow). */
   cta: string;

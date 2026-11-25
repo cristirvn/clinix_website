@@ -31,7 +31,7 @@ export const en: Dictionary = {
   },
   footer: {
     tagline: "Longevity. Wellness. Neuro.",
-    description: "An applied neuroscience clinic in Bucharest. We measure before we recommend.",
+    description: "Brain wellness and longevity, in Bucharest. We measure before we recommend.",
     clinic: "Clinic",
     freeTests: "Free tests",
     contact: "Contact",
@@ -79,7 +79,7 @@ export const en: Dictionary = {
     consentRequired: "Please tick the consent box so we can continue.",
     sending: "Sending…",
     error: "We couldn't send the form. Please try again or call us on",
-    privacyNote: "Your details are confidential. No spam, ever.",
+    privacyNote: "Your details stay confidential and you won’t get any spam from us.",
   },
   loader: {
     left: "Applied neuroscience",

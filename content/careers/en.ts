@@ -9,17 +9,17 @@ export const CAREERS_EN: CareersContent = {
   },
   hero: {
     eyebrow: "Careers",
-    title: "Work with us.",
-    lead: "We are looking for people who measure before they recommend.",
+    title: "Work with us",
+    lead: "We are looking for people who, like us, measure before they recommend.",
   },
   why: {
     eyebrow: "Why us",
     title: "What you’ll find here",
     items: [
-      { title: "Working with data", text: "We start from a measurement, not from guesswork. You see the result of your work." },
-      { title: "A small team", text: "We know you by name. Decisions are made quickly." },
+      { title: "You work with data", text: "We always start from measurements, and you see the real result of your work." },
+      { title: "A small team", text: "We all know each other by name, and decisions are made quickly." },
       { title: "Modern equipment", text: "You work with BrainMap, neurofeedback and other non-invasive methods." },
-      { title: "Ongoing learning", text: "We help you train in the methods we use." },
+      { title: "Ongoing learning", text: "We help you train in the methods we work with." },
     ],
   },
   roles: {
@@ -28,13 +28,13 @@ export const CAREERS_EN: CareersContent = {
     // Same ids as ro.ts.
     items: [],
     applyLabel: "Apply →",
-    emptyTitle: "We don’t have an open role right now.",
-    emptyText: "But we’d be glad to hear from you. Send us your CV and a few lines about yourself. We’ll be in touch when something suitable comes up.",
+    emptyTitle: "We don’t have any open roles right now",
+    emptyText: "We’d still be glad to meet you. Send us your CV and a few lines about yourself, and when something suitable comes up we’ll be in touch.",
     emailLabel: "Email us your CV →",
   },
   form: {
     title: "Tell us who you are",
-    text: "Leave us your details. We’ll call you for a short chat.",
+    text: "Leave us your details and we’ll call you for a short chat.",
     roleLabel: "Which role interests you?",
     rolePlaceholder: "e.g. psychologist, nurse, reception",
     roleOpen: "Speculative application",

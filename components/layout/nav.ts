@@ -29,11 +29,11 @@ export const NAV_ABOUT = [
  * it in the menu, for visitors who don't know what "taVNS" means.
  */
 export const NAV_SERVICES = [
-  { slug: "brainmap", ro: "BrainMap", en: "BrainMap", sub: { ro: "Harta activității creierului", en: "A map of your brain’s activity" } },
-  { slug: "neurofeedback", ro: "Neurofeedback", en: "Neurofeedback", sub: { ro: "Creierul învață să se regleze", en: "The brain learns to regulate itself" } },
-  { slug: "tavns", ro: "taVNS", en: "taVNS", sub: { ro: "Stimularea nervului vag, prin ureche", en: "Vagus nerve stimulation, via the ear" } },
-  { slug: "tpbm", ro: "tPBM", en: "tPBM", sub: { ro: "Terapie cu lumină infraroșie", en: "Near-infrared light therapy" } },
-  { slug: "ces", ro: "CES", en: "CES", sub: { ro: "Curent foarte slab, prin clipsuri pe urechi", en: "A very weak current, via ear clips" } },
+  { slug: "brainmap", ro: "BrainMap", en: "BrainMap", sub: { ro: "Harta activității creierului tău", en: "A map of your brain’s activity" } },
+  { slug: "neurofeedback", ro: "Neurofeedback", en: "Neurofeedback", sub: { ro: "Creierul învață să se regleze singur", en: "The brain learns to regulate itself" } },
+  { slug: "tavns", ro: "taVNS", en: "taVNS", sub: { ro: "Stimularea blândă a nervului vag, prin ureche", en: "Gentle vagus nerve stimulation, via the ear" } },
+  { slug: "tpbm", ro: "tPBM", en: "tPBM", sub: { ro: "Lumină infraroșie, printr-o cască ușoară", en: "Infrared light, through a light headset" } },
+  { slug: "ces", ro: "CES", en: "CES", sub: { ro: "Impulsuri foarte fine, prin două clipsuri pe urechi", en: "Very fine pulses, through two ear clips" } },
   { slug: "psihoterapie", ro: "Psihoterapie", en: "Psychotherapy", sub: { ro: "Ședințe cu un psihoterapeut", en: "Sessions with a psychotherapist" } },
   { slug: "psihiatrie", ro: "Psihiatrie", en: "Psychiatry", sub: { ro: "Consult cu un medic psihiatru", en: "A consultation with a psychiatrist" } },
   { slug: "emsella", ro: "EmSella", en: "EmSella", sub: { ro: "Întărirea planșeului pelvin", en: "Strengthening the pelvic floor" } },

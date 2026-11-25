@@ -8,44 +8,44 @@ export const about: AboutContent = {
   },
   hero: {
     eyebrow: "About us",
-    title: "We measure before we recommend.",
-    lead: "An applied neuroscience clinic in Bucharest.",
+    title: "We measure before we recommend",
+    lead: "A clinic in Bucharest for wellness, longevity and brain health.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
-    secondary: { label: "Take a free test", href: "/chestionare" },
+    secondary: { label: "Take the free test", href: "/chestionare" },
   },
   mission: {
     eyebrow: "Why we exist",
-    title: "Nobody has shown you what is going on.",
+    title: "No one has ever shown you, clearly, what’s going on",
     paragraphs: [
-      "Many people come to us having already tried a lot. It was all guesswork.",
-      "So with us, the first step is a map of your brain. Only then do we talk about what comes next.",
+      "Many people come to us having already tried a lot of things, all of them based on guesswork.",
+      "That’s why, with us, the first step is a map of your brain. Only after that do we talk about what comes next.",
     ],
   },
   different: {
     eyebrow: "What makes us different",
-    title: "What we do differently.",
+    title: "What we do differently",
     items: [
       {
-        title: "Data, not guesswork",
-        text: "We start from your map, not a standard recipe.",
+        title: "We start from data",
+        text: "Your plan starts from the map of your brain.",
       },
       {
         title: "All in one visit",
-        text: "Scan, interpretation and consultation. No second appointment.",
+        text: "The scan, the interpretation and the consultation all happen on the same day, so you don’t have to come back.",
       },
       {
         title: "Progress you can see",
-        text: "We repeat the map every 10 sessions. You see what has changed.",
+        text: "Every 10 sessions we redo the map, so you can see what has changed.",
       },
       {
         title: "Honest from the start",
-        text: "If we see we can’t help you, we tell you on the phone.",
+        text: "If we see we can’t help you, we tell you from the first phone call.",
       },
     ],
   },
   space: {
     eyebrow: "The clinic",
-    title: "A calm place in Bucharest.",
+    title: "A calm place in Bucharest",
     mapsLabel: "View on map →",
     photos: [
       { label: "A BrainMap scan: the brain map, explained on the spot", src: "/photos/brainmap-sesiune.webp" },
@@ -67,11 +67,11 @@ export const about: AboutContent = {
     title: "Recommended by",
     // TODO(owner): names / logos of the doctors, clinics or organisations that recommend you.
     names: [],
-    placeholderLabel: "Partner",
+    placeholderLabel: "[Real partner logo]",
   },
   cta: {
-    title: "Start with a map of your brain.",
-    text: "One hour at the clinic. Plus a PDF with your recommendations.",
+    title: "Start with a map of your brain",
+    text: "One hour at the clinic and a PDF with your recommendations, which you get the same day.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Or take a free test", href: "/chestionare" },
   },

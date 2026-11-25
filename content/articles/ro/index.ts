@@ -15,8 +15,8 @@ export const ARTICLES_PAGE_RO: ArticlesPageContent = {
   },
   hero: {
     eyebrow: "Articole",
-    title: "Pe scurt, despre creier.",
-    lead: "Explicații scurte, fără termeni medicali.",
+    title: "Pe scurt, despre creier",
+    lead: "Explicații scurte și simple, fără termeni medicali.",
   },
   readMore: "Citește →",
   minutes: "min de citit",
@@ -25,6 +25,6 @@ export const ARTICLES_PAGE_RO: ArticlesPageContent = {
   back: "← Toate articolele",
   disclaimer:
     "Informațiile de pe acest site au caracter informativ și nu înlocuiesc consultul medical.",
-  related: { title: "Citește mai mult", lead: "Articole scurte, pe înțelesul tuturor, de la echipa noastră." },
-  topicLinks: { title: "Pe aceeași temă", lp: "Află cum te putem ajuta →", test: "Fă testul gratuit →", service: "Află mai multe →" },
+  related: { title: "Citește mai mult", lead: "Articole scurte, scrise simplu de echipa noastră." },
+  topicLinks: { title: "Pe aceeași temă", lp: "Vezi cum te putem ajuta →", test: "Fă testul gratuit →", service: "Citește mai mult →" },
 };

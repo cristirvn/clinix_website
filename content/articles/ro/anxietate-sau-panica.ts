@@ -5,7 +5,7 @@ export const ARTICLE: Article = {
   slug: "anxietate-sau-panica",
   title: "Anxietate sau panică? Cum le deosebești",
   description:
-    "Sunt înrudite, dar arată diferit în viața de zi cu zi. Ce înseamnă fiecare, când mergi întâi la medic și care e primul pas.",
+    "Seamănă, dar se simt diferit în viața de zi cu zi. Afli ce înseamnă fiecare, când mergi întâi la medic și care e primul pas.",
   category: "Anxietate",
   published: "2026-11-03",
   readingMinutes: 4,
@@ -15,17 +15,17 @@ export const ARTICLE: Article = {
   body: [
     {
       type: "p",
-      text: "Mulți oameni folosesc cuvintele „anxietate” și „panică” ca și cum ar însemna același lucru. Sunt înrudite, dar arată diferit în viața de zi cu zi.",
+      text: "Mulți folosesc „anxietate” și „panică” ca și cum ar fi același lucru. Seamănă, dar se simt diferit în viața de zi cu zi.",
     },
     { type: "h2", text: "Anxietatea: o alarmă care nu se oprește" },
     {
       type: "p",
-      text: "Anxietatea stă de obicei în fundal. Îngrijorare care nu se oprește și tensiune în corp — mintea rămâne în alertă chiar și când nu e niciun pericol. Poate dura zile, săptămâni sau luni.",
+      text: "Anxietatea stă de obicei în fundal. Îți faci griji tot timpul, simți tensiunea în corp, iar mintea rămâne în alertă chiar și când nu se întâmplă nimic. Poate dura zile, săptămâni sau luni.",
     },
     { type: "h2", text: "Panica: un val scurt și puternic" },
     {
       type: "p",
-      text: "Un atac de panică vine brusc și atinge vârful în câteva minute. Inima o ia razna, aerul nu ajunge, apar amețeala și tremurul. Analizele ies bune — și rămâne teama că urmează încă unul.",
+      text: "Un atac de panică vine brusc și atinge vârful în câteva minute. Inima o ia razna, simți că nu mai ai aer, apar amețeala și tremurul. Analizele ies bune, dar rămâne frica de următorul atac.",
     },
     { type: "h2", text: "Pe scurt" },
     {
@@ -33,7 +33,7 @@ export const ARTICLE: Article = {
       items: [
         "Anxietatea: îngrijorare constantă, de fundal, care durează.",
         "Panica: episoade bruște și intense, de câteva minute.",
-        "Pot apărea împreună: frica de următorul atac este ea însăși o formă de anxietate.",
+        "Pot apărea împreună. Frica de următorul atac e, de fapt, tot o formă de anxietate.",
       ],
     },
     { type: "h2", text: "Când mergi întâi la medic" },
@@ -44,7 +44,7 @@ export const ARTICLE: Article = {
     { type: "h2", text: "Care e primul pas" },
     {
       type: "p",
-      text: "Află unde stai. Testele noastre gratuite durează 2–3 minute și îți dau o notă de la 1 la 10. Dacă vrei să vezi ce se întâmplă, de fapt, în creier, BrainMap îți arată harta activității lui.",
+      text: "Află întâi unde te situezi. Testele noastre gratuite durează 2–3 minute și îți dau un scor de la 1 la 10. Dacă vrei să vezi ce se întâmplă, de fapt, în creier, BrainMap îți arată harta activității lui.",
     },
     {
       type: "links",
@@ -55,8 +55,8 @@ export const ARTICLE: Article = {
     },
   ],
   cta: {
-    title: "Nu ghici. Măsoară.",
-    text: "Fă testul gratuit în 2–3 minute și vezi ce indică răspunsurile tale.",
+    title: "Măsoară, în loc să ghicești",
+    text: "Fă testul gratuit în 2–3 minute și vezi ce arată răspunsurile tale.",
     primary: { label: "Fă testul de anxietate →", href: "/chestionare/anxietate" },
   },
 };

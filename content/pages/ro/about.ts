@@ -48,44 +48,44 @@ export const about: AboutContent = {
   },
   hero: {
     eyebrow: "Despre noi",
-    title: "Măsurăm înainte să recomandăm.",
-    lead: "Clinică de neuroștiință aplicată, în București.",
-    primary: { label: "Vreau BrainMap →", href: "/brainmap" },
-    secondary: { label: "Fac un test gratuit", href: "/chestionare" },
+    title: "Măsurăm înainte să recomandăm",
+    lead: "O clinică din București pentru wellness, longevitate și sănătatea creierului.",
+    primary: { label: "Programează BrainMap →", href: "/brainmap" },
+    secondary: { label: "Fă testul gratuit", href: "/chestionare" },
   },
   mission: {
     eyebrow: "De ce existăm",
-    title: "Nimeni nu ți-a arătat, concret, ce se întâmplă.",
+    title: "Nimeni nu ți-a arătat, concret, ce se întâmplă",
     paragraphs: [
-      "Mulți oameni ajung la noi după ce au încercat deja multe. Toate au fost presupuneri.",
-      "De aceea, la noi, primul pas este harta creierului tău. Abia apoi vorbim despre ce urmează.",
+      "Mulți ajung la noi după ce au încercat deja multe lucruri, toate pornite de la presupuneri.",
+      "De aceea, la noi, primul pas e harta creierului tău. Abia după aceea vorbim despre ce urmează.",
     ],
   },
   different: {
     eyebrow: "Ce ne face diferiți",
-    title: "Ce facem altfel.",
+    title: "Ce facem altfel",
     items: [
       {
-        title: "Date, nu presupuneri",
-        text: "Pornim de la harta ta, nu de la o rețetă standard.",
+        title: "Pornim de la date",
+        text: "Planul tău pornește de la harta creierului tău.",
       },
       {
         title: "Totul într-o singură vizită",
-        text: "Scanare, interpretare și consult. Fără a doua programare.",
+        text: "Scanarea, interpretarea și consultul se fac în aceeași zi, fără să mai revii.",
       },
       {
         title: "Progres pe care îl vezi",
-        text: "Repetăm harta la fiecare 10 ședințe. Vezi ce s-a schimbat.",
+        text: "La fiecare 10 ședințe refacem harta, ca să vezi ce s-a schimbat.",
       },
       {
-        title: "Onești de la început",
-        text: "Dacă vedem că nu te putem ajuta, îți spunem la telefon.",
+        title: "Sinceri de la început",
+        text: "Dacă vedem că nu te putem ajuta, îți spunem de la primul telefon.",
       },
     ],
   },
   space: {
     eyebrow: "Clinica",
-    title: "Un loc liniștit, în București.",
+    title: "Un loc liniștit, în București",
     mapsLabel: "Vezi pe hartă →",
     photos: [
       { label: "Scanare BrainMap: harta creierului, explicată pe loc", src: "/photos/brainmap-sesiune.webp" },
@@ -107,12 +107,12 @@ export const about: AboutContent = {
     title: "Ne recomandă",
     // TODO(owner): names / logos of the doctors, clinics or organisations that recommend you.
     names: [],
-    placeholderLabel: "Partener",
+    placeholderLabel: "[Logo partener real]",
   },
   cta: {
-    title: "Începe cu harta creierului tău.",
-    text: "O oră în clinică. Plus un PDF cu recomandările tale.",
-    primary: { label: "Vreau BrainMap →", href: "/brainmap" },
+    title: "Începe cu harta creierului tău",
+    text: "O oră în clinică și un PDF cu recomandările tale, pe care îl primești în aceeași zi.",
+    primary: { label: "Programează BrainMap →", href: "/brainmap" },
     secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
   },
 };

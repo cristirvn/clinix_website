@@ -87,7 +87,7 @@ export const HUB_EN: QuizHub = {
   /** Fallback for people who don't fit a card — the triage screen at `/evaluare`. */
   general: {
     title: "Not sure which one to choose?",
-    text: "Tell us in a single question what you struggle with most often and we'll send you straight to the right test.",
+    text: "Answer a single question about what bothers you most often and we'll send you straight to the right test.",
     button: "Help me choose →",
   },
 };
@@ -100,7 +100,7 @@ export const TRIAGE_EN: Triage = {
   },
   eyebrow: "Free assessment",
   question: "What do you struggle with most often?",
-  help: "Choose what describes you best right now. We'll take you straight to the right test — it takes 2–3 minutes.",
+  help: "Choose what fits you best at the moment.",
   options: [
     { label: "Anxiety, constant worry", slug: "anxietate" },
     { label: "Panic attacks", slug: "panica" },
@@ -114,8 +114,8 @@ export const TRIAGE_EN: Triage = {
   ],
   /** Secondary path for people who'd rather talk than fill in a test. */
   direct: {
-    text: "Would you rather speak to someone directly?",
-    button: "Request a call back →",
+    text: "Would you rather talk to someone at the clinic?",
+    button: "We'll call you →",
     href: "/contact",
   },
 };

@@ -14,7 +14,7 @@ export const ARTICLE: Article = {
   body: [
     {
       type: "p",
-      text: "Sleep is not just rest. At night the brain tidies up: it stores what you have learnt, recovers from the day’s effort and settles your emotions for the next day.",
+      text: "Sleep means more than rest. At night the brain tidies up: it stores what you have learnt, recovers from the day’s effort and settles its emotions for the next day.",
     },
     { type: "h2", text: "What happens in the brain at night" },
     {
@@ -23,12 +23,12 @@ export const ARTICLE: Article = {
     },
     {
       type: "p",
-      text: "When the brain stays too active in the evening — from stress, worry or screens — the move into deep sleep is hard. You struggle to fall asleep, wake up in the night or too early, and feel more tired in the morning than you did the night before.",
+      text: "When the brain stays too active in the evening, because of stress, worry or screens, it struggles to move into deep sleep. You struggle to fall asleep, wake up in the night or too early, and feel more tired in the morning than you did the night before.",
     },
     { type: "h2", text: "Why pills are not the whole answer" },
     {
       type: "p",
-      text: "Sleeping pills can help you fall asleep in the short term. But they don’t tell you why you aren’t sleeping. If you already take something, don’t stop it on your own. Talk to the doctor who prescribed it.",
+      text: "Sleeping pills can help you fall asleep in the short term, but they don’t tell you why you aren’t sleeping. If you already take something, don’t stop it on your own, and talk to the doctor who prescribed it.",
     },
     { type: "h2", text: "What you can change tonight" },
     {
@@ -36,15 +36,15 @@ export const ARTICLE: Article = {
       items: [
         "Go to bed and get up at the same time, weekends included.",
         "Leave your phone in another room an hour before bed.",
-        "No coffee after lunch.",
-        "A cool, dark, quiet bedroom.",
+        "Stop drinking coffee after lunch.",
+        "Keep your bedroom cool, dark and quiet.",
         "If you can’t fall asleep within 20 minutes, get up, do something calm, then go back to bed.",
       ],
     },
     { type: "h2", text: "When it is worth looking for the cause" },
     {
       type: "p",
-      text: "If you have been sleeping badly for a few weeks and the tips above don’t help, it is worth finding out why. A BrainMap shows us how your brain is working and where the problem may come from.",
+      text: "If you have been sleeping badly for a few weeks and the tips above don’t help you, it is worth finding out why. A BrainMap shows us how your brain is working and where the problem may come from.",
     },
     {
       type: "links",
@@ -56,7 +56,7 @@ export const ARTICLE: Article = {
   ],
   cta: {
     title: "Been sleeping badly for too long?",
-    text: "See how we work with sleep at Emmanuel CliniX: we start from a measurement, not from another pill.",
+    text: "See how we work with sleep at Emmanuel CliniX. We start from what the map of your brain shows.",
     primary: { label: "See how we can help →", href: "/lp/somn" },
   },
 };

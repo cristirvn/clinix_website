@@ -8,22 +8,22 @@ export const pricing: PricingContent = {
   },
   hero: {
     eyebrow: "Pricing",
-    title: "Clear prices. No surprises.",
-    lead: "One starting step. A clear price per session for everything after it.",
+    title: "Clear prices, no surprises",
+    lead: "You start with a single assessment, and for everything after it you know in advance what each session costs.",
   },
   featured: {
     badge: "First step",
     name: "BrainMap",
     price: "1,200 RON",
-    unit: "One hour at the clinic in Bucharest",
-    includesTitle: "All of this, in a single visit",
+    unit: "A visit of about an hour, in Bucharest",
+    includesTitle: "What this visit includes",
     includes: [
-      "The BrainMap scan — 30 minutes, fully clothed",
+      "The BrainMap scan, about 30 minutes",
       "Interpretation of your map, on the spot",
       "Psychological consultation, in the same visit",
       "A PDF by email or WhatsApp, with your interpretation and recommendations",
     ],
-    deduction: "If you start a programme with us, the full amount is deducted.",
+    deduction: "If you go further with us, we deduct the full amount from the programme.",
     cta: { label: "Book a BrainMap →", href: "/brainmap" },
   },
   list: {
@@ -33,14 +33,14 @@ export const pricing: PricingContent = {
     items: [
       {
         name: "Neurofeedback",
-        description: "Sessions of 30–45 minutes. We set the number based on your map.",
+        description: "A session takes 30–45 minutes. We work out how many sessions you need from your map.",
         // TODO(owner): neurofeedback price per session (and any packages).
         price: null,
         unit: "/ session",
       },
       {
         name: "EmSella",
-        description: "A 28-minute session, fully clothed. We recommend at least 10 sessions.",
+        description: "A session takes 28 minutes and you stay fully clothed. We recommend at least 10 sessions.",
         price: "250 RON",
         unit: "/ session",
         options: [
@@ -51,7 +51,7 @@ export const pricing: PricingContent = {
       },
       {
         name: "Psychological consultation",
-        description: "Included in BrainMap. Also available on its own, as a separate session.",
+        description: "It is included in BrainMap. You can also have it separately, as a session on its own.",
         // TODO(owner): standalone psychological consultation price.
         price: null,
         unit: "/ session",
@@ -64,25 +64,25 @@ export const pricing: PricingContent = {
     items: [
       {
         q: "What does BrainMap include?",
-        a: "The assessment costs 1,200 RON and includes the scan, on-the-spot interpretation, a psychological consultation and a PDF with recommendations. If you start a programme with us, the full amount is deducted.",
+        a: "The assessment costs 1,200 RON. It includes the scan, the on-the-spot interpretation, the psychological consultation and the PDF with recommendations. If you go further with us, we deduct the full amount from the programme.",
       },
       {
         q: "Do I have to continue after BrainMap?",
-        a: "No. We talk through what the map shows and what your options are. You decide. The map and the PDF are yours to keep, whatever you choose to do next.",
+        a: "No. We look at the map together and tell you what your options are. You decide, and the map and the PDF are yours to keep whatever you choose.",
       },
       {
         q: "Do I have to buy a package straight away?",
-        a: "No, you don’t have to buy a package straight away.",
+        a: "No. You can start with a single session.",
       },
       {
         q: "Do I need a GP referral?",
-        a: "No.",
+        a: "No. You can book directly.",
       },
     ],
   },
   cta: {
-    title: "The first step takes one hour.",
-    text: "See the map of your brain, understand what it means, then decide what comes next.",
+    title: "The first step takes you an hour",
+    text: "You see the map of your brain, find out what it means and then decide what comes next.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
     secondary: { label: "Or take a free test", href: "/chestionare" },
   },

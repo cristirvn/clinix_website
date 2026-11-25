@@ -87,7 +87,7 @@ export const HUB_RO: QuizHub = {
   /** Fallback for people who don't fit a card — the triage screen at `/evaluare`. */
   general: {
     title: "Nu știi pe care să-l alegi?",
-    text: "Spune-ne într-o singură întrebare cu ce te confrunți cel mai des și te trimitem direct la testul potrivit.",
+    text: "Răspunde la o singură întrebare despre ce te deranjează cel mai des și te trimitem direct la testul potrivit.",
     button: "Ajută-mă să aleg →",
   },
 };
@@ -100,7 +100,7 @@ export const TRIAGE_RO: Triage = {
   },
   eyebrow: "Evaluare gratuită",
   question: "Cu ce te confrunți cel mai des?",
-  help: "Alege ce te descrie cel mai bine acum. Te ducem direct la testul potrivit — durează 2–3 minute.",
+  help: "Alege ce ți se potrivește cel mai bine în perioada asta.",
   options: [
     { label: "Anxietate, îngrijorare constantă", slug: "anxietate" },
     { label: "Atacuri de panică", slug: "panica" },
@@ -114,8 +114,8 @@ export const TRIAGE_RO: Triage = {
   ],
   /** Secondary path for people who'd rather talk than fill in a test. */
   direct: {
-    text: "Preferi să vorbești direct cu cineva?",
-    button: "Cere să fii sunat →",
+    text: "Preferi să vorbești cu cineva din clinică?",
+    button: "Te sunăm noi →",
     href: "/contact",
   },
 };

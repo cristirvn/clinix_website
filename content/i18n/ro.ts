@@ -17,7 +17,7 @@ export const ro = {
     pricing: "Tarife",
     team: "Echipă",
     tests: "Teste gratuite",
-    cta: "Vreau BrainMap",
+    cta: "Programează BrainMap",
     menu: "Meniu",
     close: "Închide",
     home: "Acasă",
@@ -33,7 +33,7 @@ export const ro = {
   },
   footer: {
     tagline: "Longevity. Wellness. Neuro.",
-    description: "Clinică de neuroștiință aplicată din București. Măsurăm înainte să recomandăm.",
+    description: "Wellness și longevitate pentru creier, în București. Măsurăm înainte să recomandăm.",
     clinic: "Clinica",
     freeTests: "Teste gratuite",
     contact: "Contact",
@@ -81,7 +81,7 @@ export const ro = {
     consentRequired: "Bifează acordul ca să putem continua.",
     sending: "Se trimite…",
     error: "Nu am putut trimite formularul. Încearcă din nou sau sună-ne la",
-    privacyNote: "Datele tale sunt confidențiale. Nu trimitem spam.",
+    privacyNote: "Datele tale rămân confidențiale și nu primești spam de la noi.",
   },
   loader: {
     left: "Neuroștiință aplicată",

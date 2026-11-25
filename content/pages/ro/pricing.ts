@@ -45,23 +45,23 @@ export const pricing: PricingContent = {
   },
   hero: {
     eyebrow: "Tarife",
-    title: "Prețuri clare. Fără surprize.",
-    lead: "Un singur pas de început. Un preț clar pe ședință pentru tot ce urmează.",
+    title: "Prețuri clare, fără surprize",
+    lead: "Începi cu o singură evaluare, iar pentru tot ce urmează știi dinainte cât costă fiecare ședință.",
   },
   featured: {
     badge: "Primul pas",
     name: "BrainMap",
     price: "1.200 lei",
-    unit: "O oră în clinică, în București",
-    includesTitle: "Tot ce e mai jos, într-o singură vizită",
+    unit: "O vizită de aproximativ o oră, în București",
+    includesTitle: "Ce intră în această vizită",
     includes: [
-      "Scanarea BrainMap — 30 de minute, cu hainele pe tine",
+      "Scanarea BrainMap, de aproximativ 30 de minute",
       "Interpretarea hărții, pe loc",
       "Consult psihologic, în aceeași vizită",
       "PDF pe mail sau pe WhatsApp, cu interpretarea și recomandările tale",
     ],
-    deduction: "Dacă începi un program cu noi, suma se scade integral.",
-    cta: { label: "Vreau BrainMap →", href: "/brainmap" },
+    deduction: "Dacă mergi mai departe cu noi, îți scădem integral suma din program.",
+    cta: { label: "Programează BrainMap →", href: "/brainmap" },
   },
   list: {
     eyebrow: "Ședințe",
@@ -70,14 +70,14 @@ export const pricing: PricingContent = {
     items: [
       {
         name: "Neurofeedback",
-        description: "Ședințe de 30–45 de minute. Numărul lor îl stabilim pe baza hărții tale.",
+        description: "O ședință durează 30–45 de minute. Câte ședințe îți trebuie stabilim pe baza hărții tale.",
         // TODO(owner): neurofeedback price per session (and any packages).
         price: null,
         unit: "/ ședință",
       },
       {
         name: "EmSella",
-        description: "Ședință de 28 de minute, cu hainele pe tine. Recomandăm cel puțin 10 ședințe.",
+        description: "O ședință durează 28 de minute și rămâi îmbrăcat. Recomandăm cel puțin 10 ședințe.",
         price: "250 lei",
         unit: "/ ședință",
         options: [
@@ -88,7 +88,7 @@ export const pricing: PricingContent = {
       },
       {
         name: "Consult psihologic",
-        description: "Inclus în BrainMap. Separat, ca ședință de sine stătătoare.",
+        description: "E inclus în BrainMap. Îl poți face și separat, ca ședință de sine stătătoare.",
         // TODO(owner): standalone psychological consultation price.
         price: null,
         unit: "/ ședință",
@@ -101,26 +101,26 @@ export const pricing: PricingContent = {
     items: [
       {
         q: "Ce include BrainMap?",
-        a: "Evaluarea costă 1.200 de lei și include scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă începi un program cu noi, suma se scade integral.",
+        a: "Evaluarea costă 1.200 de lei. Intră scanarea, interpretarea pe loc, consultul psihologic și PDF-ul cu recomandări. Dacă mergi mai departe cu noi, îți scădem integral suma din program.",
       },
       {
         q: "Sunt obligat să continui după BrainMap?",
-        a: "Nu. Discutăm ce arată harta și ce opțiuni ai mai departe. Decizi tu. Harta și PDF-ul rămân ale tale, indiferent ce alegi să faci mai departe.",
+        a: "Nu. Ne uităm împreună pe hartă și îți spunem ce opțiuni ai. Hotărăști tu, iar harta și PDF-ul rămân ale tale orice ai alege.",
       },
       {
         q: "Trebuie să iau un pachet din prima?",
-        a: "Nu ești obligat să iei un pachet din prima.",
+        a: "Nu. Poți începe cu o singură ședință.",
       },
       {
         q: "Am nevoie de trimitere de la medicul de familie?",
-        a: "Nu.",
+        a: "Nu. Te poți programa direct.",
       },
     ],
   },
   cta: {
-    title: "Primul pas costă o oră.",
-    text: "Vezi harta creierului tău, află ce înseamnă și decide apoi ce urmează.",
-    primary: { label: "Vreau BrainMap →", href: "/brainmap" },
+    title: "Primul pas îți ia o oră",
+    text: "Vezi harta creierului tău, afli ce înseamnă și apoi decizi ce urmează.",
+    primary: { label: "Programează BrainMap →", href: "/brainmap" },
     secondary: { label: "Sau fă un test gratuit", href: "/chestionare" },
   },
 };

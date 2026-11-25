@@ -15,8 +15,8 @@ export const ARTICLES_PAGE_EN: ArticlesPageContent = {
   },
   hero: {
     eyebrow: "Articles",
-    title: "The brain, in short.",
-    lead: "Short explanations, no medical jargon.",
+    title: "The brain, in short",
+    lead: "Short, simple explanations, with no medical jargon.",
   },
   readMore: "Read →",
   minutes: "min read",
@@ -24,6 +24,6 @@ export const ARTICLES_PAGE_EN: ArticlesPageContent = {
   updated: "Updated",
   back: "← All articles",
   disclaimer: "The information on this site is for general information only and does not replace a medical consultation.",
-  related: { title: "Further reading", lead: "Short, plain-English articles from our team." },
-  topicLinks: { title: "On the same topic", lp: "See how we can help →", test: "Take the free test →", service: "Find out more →" },
+  related: { title: "Further reading", lead: "Short articles, written simply by our team." },
+  topicLinks: { title: "On the same topic", lp: "See how we can help →", test: "Take the free test →", service: "Read more →" },
 };

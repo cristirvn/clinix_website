@@ -9,17 +9,17 @@ export const CAREERS_RO: CareersContent = {
   },
   hero: {
     eyebrow: "Cariere",
-    title: "Lucrează cu noi.",
-    lead: "Căutăm oameni care măsoară înainte să recomande.",
+    title: "Lucrează cu noi",
+    lead: "Căutăm oameni care, ca și noi, măsoară înainte să recomande.",
   },
   why: {
     eyebrow: "De ce la noi",
     title: "Ce găsești aici",
     items: [
-      { title: "Lucru pe date", text: "Pornim de la măsurătoare, nu de la presupuneri. Vezi rezultatul muncii tale." },
-      { title: "O echipă mică", text: "Te cunoaștem pe nume. Deciziile se iau repede." },
-      { title: "Aparatură modernă", text: "Lucrezi cu BrainMap, neurofeedback și alte metode neinvazive." },
-      { title: "Învățare continuă", text: "Te ajutăm să te formezi pe metodele pe care le folosim." },
+      { title: "Lucrezi pe date", text: "Pornim mereu de la măsurători și vezi concret rezultatul muncii tale." },
+      { title: "O echipă mică", text: "Ne știm toți pe nume, iar deciziile se iau repede." },
+      { title: "Aparatură modernă", text: "Lucrezi cu BrainMap, neurofeedback și alte metode non-invazive." },
+      { title: "Învățare continuă", text: "Te ajutăm să te formezi pe metodele cu care lucrăm." },
     ],
   },
   roles: {
@@ -28,13 +28,13 @@ export const CAREERS_RO: CareersContent = {
     // Add a role: { id: "psiholog-clinician", title: "Psiholog clinician", meta: "Normă întreagă · București", text: "…" }
     items: [],
     applyLabel: "Aplică →",
-    emptyTitle: "Acum nu avem un post deschis.",
-    emptyText: "Dar ne bucurăm să te cunoaștem. Trimite-ne CV-ul și câteva rânduri despre tine. Te contactăm când apare ceva potrivit.",
+    emptyTitle: "Acum nu avem niciun post deschis",
+    emptyText: "Ne bucurăm totuși să te cunoaștem. Trimite-ne CV-ul și câteva rânduri despre tine, iar când apare ceva potrivit te contactăm.",
     emailLabel: "Trimite CV-ul pe email →",
   },
   form: {
     title: "Spune-ne cine ești",
-    text: "Lasă-ne datele tale. Te sunăm noi pentru o discuție scurtă.",
+    text: "Lasă-ne datele tale și te sunăm pentru o discuție scurtă.",
     roleLabel: "Ce rol te interesează?",
     rolePlaceholder: "ex. psiholog, asistent medical, recepție",
     roleOpen: "Candidatură spontană",

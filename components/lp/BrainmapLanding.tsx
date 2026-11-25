@@ -238,6 +238,8 @@ export function BrainmapLanding({
 
       {/* 11 · FORMULAR */}
       <Section id={FORM_ID} narrow>
+        {/* Label for the funnel header button (HeaderApply): "Programează-te", not "Aplică acum". */}
+        <span hidden data-apply-label={f.footer.links.apply} />
         <SectionHead center title={lp.form.title} lead={f.formSection.lede} />
         <ol className="mb-10 grid grid-cols-2 gap-3 sm:grid-cols-4">
           {f.formSection.flow.map((s) => (

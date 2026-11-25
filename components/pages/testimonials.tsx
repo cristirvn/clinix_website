@@ -5,7 +5,7 @@ import { L } from "@/components/ui/L";
 import type { MediaVideo, VideoKey } from "@/content/media";
 import { resolveVideo, type VideoOverrides } from "@/lib/video";
 import type { Locale } from "@/lib/i18n";
-import type { QuoteTestimonial, TestimonialsPageContent, VideoTestimonial } from "@/content/testimonials/types";
+import type { QuoteTestimonial, TestimonialName, TestimonialsPageContent, VideoTestimonial } from "@/content/testimonials/types";
 import { pick, type CmsTestimonial } from "@/lib/cms/types";
 
 /**
@@ -14,7 +14,9 @@ import { pick, type CmsTestimonial } from "@/lib/cms/types";
  *  - the ones the clinic adds in /admin (`lib/cms`).
  * Both are turned into `VideoStory` / `QuoteStory` first.
  */
-type Tag = { label: string; href: string };
+type Tag = { label: string; href?: string };
+
+const nameIn = (name: TestimonialName, locale: Locale) => (typeof name === "string" ? name : name[locale]);
 
 export interface VideoStory {
   id: string;
@@ -54,17 +56,23 @@ export function cmsToStories(items: CmsTestimonial[], locale: Locale, tagFor?: (
   return { videos, quotes };
 }
 
-/** The fixed list → cards. */
+/**
+ * The fixed list → cards. On the home page (`home`) the line under the name is
+ * the testimonial's subject (`home`, else `role`), without the duration.
+ */
 export function staticVideoStories(
   items: VideoTestimonial[],
   page: TestimonialsPageContent,
   locale: Locale,
   overrides: VideoOverrides,
+  { home = false }: { home?: boolean } = {},
 ): VideoStory[] {
   return items.map((t) => ({
     id: t.id,
-    name: t.name,
-    line: [t.role[locale], resolveVideo(t.video, overrides).duration].filter(Boolean).join(" · "),
+    name: nameIn(t.name, locale),
+    line: home
+      ? (t.home ?? t.role)[locale]
+      : [t.role[locale], resolveVideo(t.video, overrides).duration].filter(Boolean).join(" · "),
     video: t.video,
     tag: page.topics[t.topic],
   }));
@@ -73,20 +81,19 @@ export function staticVideoStories(
 export function staticQuoteStories(items: QuoteTestimonial[], page: TestimonialsPageContent, locale: Locale): QuoteStory[] {
   return items.map((t) => ({
     id: t.id,
-    name: t.name,
+    name: nameIn(t.name, locale),
     initials: t.initials,
     line: t.place[locale],
     quote: t.quote[locale],
-    tag: page.topics[t.topic],
+    tag: t.topic ? page.topics[t.topic] : undefined,
   }));
 }
 
 function TopicTag({ tag }: { tag: Tag }) {
+  const cls = "inline-flex min-h-9 items-center rounded-full border border-line px-3.5 text-sm font-semibold text-ink-soft";
+  if (!tag.href) return <span className={cls}>{tag.label}</span>;
   return (
-    <L
-      href={tag.href}
-      className="inline-flex min-h-9 items-center rounded-full border border-line px-3.5 text-sm font-semibold text-ink-soft transition hover:border-primary hover:text-primary"
-    >
+    <L href={tag.href} className={`${cls} transition hover:border-primary hover:text-primary`}>
       {tag.label}
     </L>
   );

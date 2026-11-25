@@ -4,7 +4,7 @@ import type { Article } from "../types";
 export const ARTICLE: Article = {
   slug: "ce-este-brainmap-qeeg",
   title: "What is a BrainMap (qEEG)?",
-  description: "What a map of brain activity measures, how the scan goes and what it is not. Short, and in plain words.",
+  description: "What a map of brain activity measures, how the scan goes and what it is not, explained simply.",
   category: "BrainMap",
   published: "2026-11-03",
   readingMinutes: 4,
@@ -14,36 +14,36 @@ export const ARTICLE: Article = {
   body: [
     {
       type: "p",
-      text: "BrainMap is the name we use for a map of the brain’s electrical activity. Technically, the method is called qEEG: quantitative electroencephalography.",
+      text: "BrainMap is the name we use for the map of the brain’s electrical activity. The technical name for the method is qEEG, which stands for quantitative electroencephalography.",
     },
     { type: "h2", text: "What it measures" },
     {
       type: "p",
-      text: "Every second, the brain produces very weak electrical activity. Sensors in a cap read it through the scalp. Like a microphone listening to the brain talk. The sensors only read; they send nothing into the brain.",
+      text: "Every second, the brain produces very weak electrical activity, and the sensors in a cap read it through the scalp, much as a microphone would listen. The sensors only read and send no signal into the brain.",
     },
     {
       type: "p",
-      text: "Software turns the signal into a map. On the map we see areas that are too active and areas that are too slow, and compare them with the normal values for your age.",
+      text: "Software turns the signal into a map, which shows the areas that work too hard and the ones that work too slowly.",
     },
     { type: "h2", text: "How it goes" },
     {
       type: "list",
       items: [
-        "The BrainMap scan: 30 minutes, fully clothed.",
-        "Interpretation of the map, on the spot, in words you understand.",
-        "A psychological consultation, in the same visit.",
+        "The BrainMap scan, about 30 minutes. You stay fully clothed.",
+        "Interpretation of the map, on the spot, in plain words.",
+        "The psychological consultation, in the same visit.",
         "A PDF by email or WhatsApp, with the full interpretation and recommendations.",
       ],
     },
     { type: "h2", text: "What it is not" },
     {
       type: "p",
-      text: "BrainMap is not an MRI or a CT scan. It takes no pictures of the brain and uses no radiation. It does not give a diagnosis. It is an initial assessment tool: it shows how your brain is working, so that we start from a measurement, not from guesswork.",
+      text: "BrainMap is not an MRI or a CT scan. It takes no pictures of the brain, uses no radiation and makes no diagnosis. It is an initial assessment, which shows how your brain is working, so that we start from a measurement.",
     },
     { type: "h2", text: "What it is for" },
     {
       type: "p",
-      text: "Sleep, stress, focus and mood all show up on a map of your brain activity. The map helps us choose what makes sense for you. And, later on, to measure what has changed.",
+      text: "Sleep, stress, focus and mood are all linked to the way the brain works. The map helps us choose what suits you and, later on, see what has changed.",
     },
     {
       type: "links",
@@ -54,8 +54,8 @@ export const ARTICLE: Article = {
     },
   ],
   cta: {
-    title: "First step: see the map of your brain.",
-    text: "Scan, interpretation and psychological consultation. One hour, in Bucharest.",
+    title: "The first step is to see the map of your brain",
+    text: "The scan, the interpretation and the psychological consultation, all in a single visit of about an hour.",
     primary: { label: "Book a BrainMap →", href: "/brainmap" },
   },
 };

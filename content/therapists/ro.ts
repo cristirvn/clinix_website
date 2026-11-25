@@ -35,8 +35,8 @@ export const THERAPISTS_RO: TherapistsLocale = {
       "Informațiile de pe această pagină au caracter informativ și nu înlocuiesc consultul medical. Dacă ai gânduri să îți faci rău, sună acum la 112.",
     carousel: {
       title: "Alege-ți psihoterapeutul",
-      lead: "Vezi cine este fiecare și cum lucrează. Apoi programezi direct o ședință.",
-      more: "Află mai multe despre {name}",
+      lead: "Vezi cine e fiecare și cum lucrează, apoi îți faci direct programarea.",
+      more: "Citește mai mult despre {name}",
       prev: "Înapoi",
       next: "Mai departe",
     },
@@ -55,7 +55,7 @@ export const THERAPISTS_RO: TherapistsLocale = {
           "Psihoterapie cu Patricia Cihodaru la Emmanuel CliniX, în București. Peste 20 de ani de experiență cu adulți, copii și adolescenți. Programează o ședință.",
       },
       card: {
-        short: "Peste 20 de ani de psihoterapie. Lucrează cu adulți, copii și adolescenți.",
+        short: "Face psihoterapie de peste 20 de ani. Lucrează cu adulți, adolescenți și copii.",
         focus: ["Psihoterapie experiențială", "CBT", "Psihoterapie transpersonală"],
       },
       hero: {
@@ -116,7 +116,7 @@ export const THERAPISTS_RO: TherapistsLocale = {
           "Psihoterapie cu Aniela Sîrcu la Emmanuel CliniX, în București: terapie cognitiv-comportamentală, de cuplu și familie. 20 de ani de experiență. Programează o ședință.",
       },
       card: {
-        short: "20 de ani de experiență cu adolescenți, adulți și cupluri.",
+        short: "Lucrează de 20 de ani cu adolescenți, adulți și cupluri.",
         focus: ["CBT", "Cuplu și familie", "Sexologie"],
       },
       hero: {

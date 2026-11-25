@@ -13,19 +13,20 @@ export const CONDITIONS_RO: ConditionsContent = {
   },
   hero: {
     eyebrow: "Cu ce te ajutăm",
-    title: "Cu ce te putem ajuta.",
-    lead: "Alege ce te descrie. Fă testul gratuit sau vezi cum te ajutăm.",
+    title: "Cu ce te putem ajuta",
+    lead: "Alege ce ți se potrivește. Poți face testul gratuit sau poți citi cum te putem ajuta.",
   },
   ui: {
     takeTest: "Fă testul gratuit →",
-    lpLink: "Află cum te putem ajuta →",
-    lpPrimary: "Află cum te putem ajuta →",
+    lpLink: "Vezi cum te putem ajuta →",
+    lpPrimary: "Vezi cum te putem ajuta →",
     servicesLabel: "Ce te poate ajuta",
   },
   items: [
     {
       id: "anxietate",
       title: "Anxietate",
+      description: "Îți faci griji tot timpul și simți tensiunea în corp. Mintea rămâne în alertă chiar și când nu se întâmplă nimic.",
       quiz: "anxietate",
       lp: "/lp/anxietate",
       services: ["brainmap", "neurofeedback", "ces", "tavns", "psihoterapie"],
@@ -33,6 +34,7 @@ export const CONDITIONS_RO: ConditionsContent = {
     {
       id: "panica",
       title: "Atacuri de panică",
+      description: "Inima o ia razna, simți că nu mai ai aer, analizele ies bune, iar acum ți-e frică de următorul atac.",
       quiz: "panica",
       lp: "/lp/panica",
       services: ["brainmap", "neurofeedback", "tavns", "psihoterapie"],
@@ -47,6 +49,7 @@ export const CONDITIONS_RO: ConditionsContent = {
     {
       id: "burnout",
       title: "Burnout",
+      description: "Munca te-a stors. Nici weekendul nu te mai reface, iar dimineața te trezești deja obosit.",
       quiz: "burnout",
       lp: "/lp/burnout",
       services: ["brainmap", "neurofeedback", "tavns", "tpbm", "psihoterapie"],
@@ -54,6 +57,7 @@ export const CONDITIONS_RO: ConditionsContent = {
     {
       id: "focus",
       title: "Concentrare slabă și brain fog",
+      description: "Ai mintea încețoșată, amâni ce e important și sari de la una la alta. Simți că poți mai mult decât reușești acum.",
       quiz: "focus",
       lp: "/lp/focus",
       services: ["brainmap", "neurofeedback", "tpbm"],
@@ -68,6 +72,7 @@ export const CONDITIONS_RO: ConditionsContent = {
     {
       id: "migrene",
       title: "Migrene și dureri de cap",
+      description: "Dureri de cap dese sau migrene care îți strică zile întregi. Ai mereu un calmant la îndemână.",
       quiz: "migrene",
       lp: "/lp/migrene",
       services: ["brainmap", "tavns"],
@@ -75,6 +80,7 @@ export const CONDITIONS_RO: ConditionsContent = {
     {
       id: "stres",
       title: "Stres cronic",
+      description: "Ești mereu sub presiune, cu nervii întinși. Corpul nu se mai relaxează nici când ai, în sfârșit, timp liber.",
       quiz: "stres",
       lp: "/lp/stres",
       services: ["brainmap", "neurofeedback", "ces", "tavns", "psihoterapie"],
@@ -82,6 +88,7 @@ export const CONDITIONS_RO: ConditionsContent = {
     {
       id: "adictii",
       title: "Dependența de un obicei",
+      description: "Telefonul, jocurile, alcoolul, țigările, pariurile sau cumpărăturile îți iau mai mult timp și control decât ai vrea.",
       quiz: "adictii",
       lp: "/lp/adictii",
       services: ["brainmap", "psihoterapie"],
@@ -90,15 +97,15 @@ export const CONDITIONS_RO: ConditionsContent = {
       id: "planseu-pelvin",
       title: "Planșeu pelvin slăbit",
       description:
-        "Pierderi de urină la efort, senzația bruscă de urgență și trezirile de noapte. La femei și la bărbați.",
+        "Pierzi urină la efort, simți brusc nevoia să mergi la toaletă sau te trezești noaptea din cauza asta. Se potrivește atât femeilor, cât și bărbaților.",
       lp: "/lp/emsella",
       services: ["emsella"],
     },
   ],
   cta: {
-    title: "Primul pas: vezi harta creierului tău.",
-    text: "Scanare, interpretare și consult psihologic. O oră, în București.",
-    primary: { label: "Vreau BrainMap →", href: "/brainmap" },
-    secondary: { label: "Sau cere să fii sunat", href: "/contact" },
+    title: "Primul pas e să vezi harta creierului tău",
+    text: "Scanarea, interpretarea și consultul psihologic, toate într-o singură vizită de aproximativ o oră.",
+    primary: { label: "Programează BrainMap →", href: "/brainmap" },
+    secondary: { label: "Sau te sunăm noi", href: "/contact" },
   },
 };

@@ -34,8 +34,8 @@ export const THERAPISTS_EN: TherapistsLocale = {
       "The information on this page is for general information only and does not replace a medical consultation. If you are having thoughts of harming yourself, call 112 now.",
     carousel: {
       title: "Choose your psychotherapist",
-      lead: "See who each one is and how they work. Then book a session directly.",
-      more: "More about {name}",
+      lead: "See who each one is and how they work, then book your appointment directly.",
+      more: "Read more about {name}",
       prev: "Back",
       next: "Next",
     },
@@ -54,7 +54,7 @@ export const THERAPISTS_EN: TherapistsLocale = {
           "Psychotherapy with Patricia Cihodaru at Emmanuel CliniX in Bucharest. Over 20 years’ experience with adults, children and teenagers. Book a session.",
       },
       card: {
-        short: "Over 20 years of psychotherapy. Works with adults, children and teenagers.",
+        short: "Has practised psychotherapy for over 20 years. Works with adults, teenagers and children.",
         focus: ["Experiential psychotherapy", "CBT", "Transpersonal psychotherapy"],
       },
       hero: {
@@ -115,7 +115,7 @@ export const THERAPISTS_EN: TherapistsLocale = {
           "Psychotherapy with Aniela Sîrcu at Emmanuel CliniX in Bucharest: cognitive-behavioural, couple and family therapy. 20 years’ experience. Book a session.",
       },
       card: {
-        short: "20 years’ experience with teenagers, adults and couples.",
+        short: "Has worked with teenagers, adults and couples for 20 years.",
         focus: ["CBT", "Couples and families", "Sexology"],
       },
       hero: {

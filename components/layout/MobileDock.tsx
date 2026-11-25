@@ -29,7 +29,7 @@ export function MobileDock() {
   }, []);
 
   const icon =
-    "press flex h-[2.85rem] w-[2.85rem] flex-none items-center justify-center rounded-full border border-line bg-surface text-primary";
+    "press flex h-[2.85rem] w-[2.85rem] flex-none items-center justify-center rounded-full border border-line bg-surface text-primary max-[400px]:h-[2.6rem] max-[400px]:w-[2.6rem]";
 
   return (
     <div
@@ -40,7 +40,7 @@ export function MobileDock() {
     >
       <nav
         aria-label={dict.nav.cta}
-        className="mx-auto flex max-w-md items-center gap-1.5 rounded-full border border-line bg-bg/85 p-1.5 shadow-[var(--shadow-float)] backdrop-blur-xl backdrop-saturate-150"
+        className="mx-auto flex max-w-md items-center gap-1.5 rounded-full max-[400px]:gap-1 border border-line bg-bg/85 p-1.5 shadow-[var(--shadow-float)] backdrop-blur-xl backdrop-saturate-150"
       >
         <a href={CLINIC.phoneHref} aria-label={`${dict.common.callUs}: ${CLINIC.phone}`} className={icon}>
           <PhoneIcon size={20} />
@@ -48,8 +48,9 @@ export function MobileDock() {
         <a href={CLINIC.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label={dict.common.whatsapp} className={`${icon} !text-success`}>
           <WhatsAppIcon size={22} />
         </a>
-        <L href="/brainmap" tabIndex={shown ? undefined : -1} className={buttonClass("cta", "md", "btn-shine !min-h-[2.85rem] min-w-0 flex-1 !px-3 text-[1.02rem]")}>
-          <span className="truncate">{dict.nav.cta}</span>
+        <L href="/brainmap" tabIndex={shown ? undefined : -1} className={buttonClass("cta", "md", "btn-shine !min-h-[2.85rem] min-w-0 flex-1 !px-3 !py-1 text-[1.02rem] max-[400px]:!px-2")}>
+          {/* Never cut the label off: on the narrowest phones it may wrap to two lines. */}
+          <span className="text-center leading-[1.1] [text-wrap:balance]">{dict.nav.cta}</span>
         </L>
         <button
           type="button"

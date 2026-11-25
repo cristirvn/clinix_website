@@ -42,6 +42,7 @@ export default async function HomePage({ params }: Props) {
     getTestimonialsPage(locale),
     locale,
     media,
+    { home: true },
   );
   const videos = [...cms.videos, ...fixed].slice(0, 8);
 

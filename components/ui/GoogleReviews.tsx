@@ -16,7 +16,7 @@ export function Stars({ className = "" }: { className?: string }) {
   );
 }
 
-/** "4,9 ★★★★★ 98 reviews on Google" badge: a raised card, the score rolls up (NumberFlow) when seen. */
+/** "4,9 ★★★★★ 100+ reviews on Google" badge: a raised card, the score rolls up (NumberFlow) when seen. */
 export function GoogleRatingBadge({ locale, label, className = "" }: { locale: Locale; label: string; className?: string }) {
   const score = GOOGLE_RATING.score[locale];
   return (

@@ -3,7 +3,7 @@
  * The quotes are the reviewers' own words (Romanian); the English text is a
  * translation for the .co.uk site. Update the rating and count when Google does.
  */
-export const GOOGLE_RATING = { score: { ro: "4,9", en: "4.9" }, count: 98 } as const;
+export const GOOGLE_RATING = { score: { ro: "4,9", en: "4.9" }, count: "100+" } as const;
 
 export interface GoogleReview {
   name: string;
